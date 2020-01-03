@@ -2,8 +2,9 @@
   "name": "bde",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/index.js",
+  "main": "dist/index.d.ts",
   "module": "dist/index.es.js",
+  "typings": "dist/index.d.ts",
   "jsnext:main": "dist/index.es.js",
   "dependencies": {
     "aesthetic": "^5.0.1",
