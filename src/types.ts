@@ -10,30 +10,6 @@ export type Theme = {
   },
   spaceUnit: {
     [key: string]: string
-  },
-  button: {
-    primaryButton: {
-      default: {
-        [key: string]: string,
-      },
-      disabled: {
-        [key: string]: string
-      },
-      active: {
-        [key: string]: string
-      }
-    },
-    secondaryButton: {
-      default: {
-        [key: string]: string,
-      },
-      disabled: {
-        [key: string]: string
-      },
-      active: {
-        [key: string]: string
-      }
-    },
   }
 };
 
