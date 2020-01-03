@@ -1,0 +1,63 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import {H1, H2, H3, ButtonText } from "./Typography"
+import { Spacing, SquishSpacing, StretchSpacing } from "./Typography.story"
+import "../../stories/style.css";
+
+<Meta title="Design System | Typography" />
+
+# Typography 
+
+Typography is based on custom components built on simple HTML tags but stripped of some styling. Please use only one of these kind of entities when adding text to a project
+
+<blockquote>
+    <p>I love this <em>stuff</em></p>
+</blockquote>
+
+### Elements 
+
+<table className="typography-table" width="100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Element</th>
+            <th>Size</th>
+            <th>Weight</th>
+            <th>Line Height</th>
+            <th>Letter Spacing</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr className="typography-type">
+            <td><H1>Heading 1</H1></td>
+            <td>&lt;H1&gt;</td>
+            <td>43px</td>
+            <td>700</td>
+            <td>39px</td>
+            <td>1.5px</td>
+        </tr>
+        <tr className="typography-type">
+            <td><H2>Heading 2</H2></td>
+            <td>&lt;H2&gt;</td>
+            <td>43px</td>
+            <td>700</td>
+            <td>39px</td>
+            <td>1.5px</td>
+        </tr>
+        <tr className="typography-type">
+            <td><H3>Heading 3</H3></td>
+            <td>&lt;H3&gt;</td>
+            <td>43px</td>
+            <td>700</td>
+            <td>39px</td>
+            <td>1.5px</td>
+        </tr>
+        <tr className="typography-type">
+            <td><ButtonText>Button</ButtonText></td>
+            <td>&lt;ButtonText&gt;</td>
+            <td>24px</td>
+            <td>500</td>
+            <td>24px</td>
+            <td>1.5px</td>
+        </tr>
+    </tbody>
+</table>

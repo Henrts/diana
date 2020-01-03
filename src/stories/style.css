@@ -1,0 +1,143 @@
+.story-content {
+    padding: 24px;
+}
+.typography-details {
+    font-family: BrandonGrotesque;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin-left: 24px;
+}
+.typography-type:hover .typography-detail {
+    opacity: 1;
+}
+.typography-detail {
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-family: BrandonGrotesque;
+    margin: 0px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.typography-detail-title {
+    color: #bbb;
+}
+
+
+.typography-spacing {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: BrandonGrotesque;
+}
+.typography-spacing > div {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    position: relative;
+}
+.typography-spacing > div > .spacing-spec {
+    position: absolute;
+    top: 0px;
+    left: 4px;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+}
+.typography-spacing > div > .spacing-spec.black-spec {
+    color: black;
+}
+
+.typography-spacing.typography-spacing-inset > div {
+    width: 200px;
+    height: 80px;
+}
+
+.typography-spacing > div > .spacing-spec.spacing-spec-top {
+    top: 0px;
+    left: 90px;
+    color: black;
+}
+
+.typography-spacing > div > .spacing-spec.spacing-spec-left {
+    top: 30px;
+    left: 5px;
+    color: black;
+}
+.typography-spacing > .spacing-outside {
+    justify-content: unset;
+    align-items: unset;
+}
+.spacing-inside {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.intro-background {
+    position: relative;
+    margin-bottom: 50px;
+}
+.intro-background > .keg {
+    position: absolute;
+    top: -10px;
+    right: 240px;
+    transform: rotate(-45deg);
+    filter: blur(1.1px);
+    /* animation: rotate 10s linear infinite; */
+    /* transform-origin: center; */
+}
+.intro-background .image-background {
+    width: 100%;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+@keyframes punheta {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+.colors-table {
+    border-spacing: 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.colors-table .row:last-child td {
+    border: none;
+}
+.row td {
+    border-bottom: 1px solid #ccc;
+    padding: 12px 24px;
+}
+.color-div-container {
+    display: flex;
+    flex-direction: row;
+}
+.color-div {
+    border: 1px solid #eee;
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
+}
