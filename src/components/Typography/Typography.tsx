@@ -38,5 +38,7 @@ export const H3: React.FC<IProps> = ({ children, ...props }) => {
 
 export const ButtonText: React.FC<IProps> = ({ children, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
-  return <span className={cx(styles.buttonText, props.className)}>{children}</span>;
-}
+  return (
+    <span className={cx(styles.buttonText, props.className)}>{children}</span>
+  );
+};
