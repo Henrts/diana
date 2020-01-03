@@ -1,3 +1,4 @@
+import React from "react";
 import { WithStylesWrappedProps, WithThemeWrappedProps } from "aesthetic-react";
 import { defaultPalette } from "./tokens";
 
@@ -18,3 +19,9 @@ export type Theme = {
 
 export type WithStylesProps = WithStylesWrappedProps<Theme>;
 export type WithThemeProps = WithThemeWrappedProps<Theme>;
+
+export type StandardProps<C extends keyof JSX.IntrinsicElements> =  JSX.IntrinsicElements[C] & {
+  className?: string;
+  ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+  style?: React.CSSProperties;
+};

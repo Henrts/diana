@@ -1,11 +1,9 @@
 import React from "react";
 import { StyleSheetFactory } from "aesthetic";
 import { useStyles } from "aesthetic-react";
-import { Theme } from "../../types";
+import { StandardProps, Theme } from "../../types";
 
-export interface IProps {
-  className?: string;
-}
+export interface IProps extends StandardProps<"span"> {}
 
 const styleSheet: StyleSheetFactory<Theme> = theme => ({
   h1: {

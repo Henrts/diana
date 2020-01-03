@@ -41,5 +41,6 @@ export default {
         "rtl-css-js/core": ["convertProperty"]
       }
     })
-  ]
+  ],
+  external: ["react-svg"]
 };
