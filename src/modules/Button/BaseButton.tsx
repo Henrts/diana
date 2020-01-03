@@ -2,9 +2,10 @@ import React from "react";
 import { StyleSheetFactory } from "aesthetic";
 import { withStyles } from "aesthetic-react";
 import { WithStylesProps, Theme } from "../../types";
-import { ButtonText } from "../Typography/Typography";
+import { ButtonText } from "../Typography";
 
 export interface IProps {
+  renderLeftIcon?: () => JSX.Element;
   danger?: boolean;
 }
 
@@ -22,7 +23,7 @@ export const BaseButton: React.FC<IProps &
   React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
-  >> = ({ styles, cx, disabled, danger, children, ...props }) => {
+  >> = ({ styles, cx, disabled, danger, children, renderLeftIcon, ...props }) => {
   const styleArray = [danger && styles.danger, disabled && styles.disabled];
 
   return (
@@ -31,6 +32,7 @@ export const BaseButton: React.FC<IProps &
       type="button"
       {...props}
     >
+      {renderLeftIcon && renderLeftIcon()}
       <ButtonText>{children}</ButtonText>
     </button>
   );

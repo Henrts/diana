@@ -1,5 +1,22 @@
 .story-content {
     padding: 24px;
+    font: Arial;
+}
+body {
+    font-family: Arial;
+}
+
+.typography-table {
+    border-spacing: 0px;
+    tr {
+        th {
+            padding: 12px 8px;
+        }
+        td {
+            padding: 12px 16px;
+            border: 0.5px solid #ddd;
+        }
+    }
 }
 .typography-details {
     font-family: BrandonGrotesque;
@@ -140,4 +157,21 @@
     height: 80px;
     width: 80px;
     border-radius: 5px;
+}
+.icon-gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 48px;
+    .icon-container {
+        min-width: 100px;
+        max-width: 120px;
+        margin: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        flex: 1;
+    }
 }

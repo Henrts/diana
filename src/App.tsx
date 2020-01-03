@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 import { ThemeProvider } from "aesthetic-react";
-import { BaseButton } from "./components/Button";
+import { BaseButton } from "./modules/Button";
 import initDefaultTheme from "./setup";
-import { H1 } from "./components/Typography";
+import { H1 } from "./modules/Typography";
 
 initDefaultTheme();
 

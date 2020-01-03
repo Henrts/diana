@@ -1,0 +1,40 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { H3 } from "../Typography/Typography";
+import { DerivedButton } from "./Button.story";
+import BaseButton from "./BaseButton";
+
+<Meta title="Components| Button" />
+
+# Button
+
+Base Button is used to derive the App Button variants.  
+
+### API 
+
+<Preview>
+  <Story name="BaseButton">
+    <BaseButton onClick={() => console.log("Was clicked")}>Button</BaseButton>
+  </Story>
+</Preview>
+
+
+### Building a new Button
+
+Extend the BaseButton by using the `extendStyles` property:
+
+```javascript
+const DerivedButton = BaseButton.extendStyles((theme) => ({
+  button: {
+    /* Derived Button default styling */
+  },
+  disabled: {
+    /* Derived Button disabled styling */
+  }
+});
+```
+
+<Preview>
+  <Story name="DerivedButton">
+    <DerivedButton>Derived</DerivedButton>
+  </Story>
+</Preview>
