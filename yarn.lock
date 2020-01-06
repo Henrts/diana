@@ -13155,6 +13155,13 @@ rollup-plugin-delete@^1.1.0:
   dependencies:
     del "^4.1.1"
 
+rollup-plugin-dts@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-dts/-/rollup-plugin-dts-1.2.0.tgz#8e957e911282e9c9cf2043ac5827746c4ce4481a"
+  integrity sha512-aJH0jU/GvWB+PEn81n5asiBjBYhJlla+aupMC7pga4r9yoZWBhrH/YMSiGw0yhUi5iFteuEd0hbHN2huXfJ4mA==
+  optionalDependencies:
+    "@babel/code-frame" "^7.5.5"
+
 rollup-plugin-node-resolve@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-5.2.0.tgz#730f93d10ed202473b1fb54a5997a7db8c6d8523"

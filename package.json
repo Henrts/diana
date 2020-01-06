@@ -1,5 +1,5 @@
 {
-  "name": "bde",
+  "name": "ydesign",
   "version": "0.1.0",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -85,6 +85,7 @@
     "lint-staged": "^9.5.0",
     "rollup": "^1.27.5",
     "rollup-plugin-delete": "^1.1.0",
+    "rollup-plugin-dts": "^1.2.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-typescript2": "^0.25.2",
