@@ -6,6 +6,7 @@ import { ButtonText } from "../Typography";
 
 export interface IProps extends StandardProps<"button"> {
   renderLeftIcon?: () => JSX.Element;
+  renderRightIcon?: () => JSX.Element;
   danger?: boolean;
 }
 
@@ -27,6 +28,7 @@ export const BaseButton: React.FC<IProps & WithStylesProps> = ({
   danger,
   children,
   renderLeftIcon,
+  renderRightIcon,
   ...props
 }) => {
   const styleArray = [danger && styles.danger, disabled && styles.disabled];
@@ -39,6 +41,7 @@ export const BaseButton: React.FC<IProps & WithStylesProps> = ({
     >
       {renderLeftIcon && renderLeftIcon()}
       <ButtonText>{children}</ButtonText>
+      {renderRightIcon && renderRightIcon()}
     </button>
   );
 };
