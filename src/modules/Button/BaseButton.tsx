@@ -13,7 +13,9 @@ const styleSheet: StyleSheetFactory<Theme> = theme => ({
   button: {
     color: theme.colors.primary,
     cursor: "pointer",
-    outlineStyle: "none"
+    outlineStyle: "none",
+    display: "flex",
+    alignItems: "center"
   },
   danger: {}
 });

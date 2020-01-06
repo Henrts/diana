@@ -1,6 +1,17 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
-import { StandardProps } from "../../types";
+import { StyleSheetFactory } from "aesthetic";
+import { useStyles } from "aesthetic-react";
+import { StandardProps, Theme } from "../../types";
+
+const styleSheet: StyleSheetFactory<Theme> = () => ({
+    icon: {
+        display: "block",
+        "> div": {
+            display: "flex"
+        }
+    }
+});
 
 export interface IIconProps extends StandardProps<"svg"> {
   name: string;
@@ -14,14 +25,13 @@ export const Icon: React.FC<IIconProps> = ({
   stroke,
   fill,
   color,
+  className,
   src,
   size
 }) => {
   const svgIcon = src || `assets/icons/${name}.svg`;
-  return (
-    <ReactSVG
-      src={svgIcon}
-      beforeInjection={svg => {
+  const [styles, cx] = useStyles(styleSheet);
+  return <ReactSVG src={svgIcon} className={cx(styles.icon, className)} beforeInjection={svg => {
         svg.setAttribute("class", "y-icon");
         if (size) {
           svg.setAttribute("height", size.toString());
@@ -45,6 +55,5 @@ export const Icon: React.FC<IIconProps> = ({
         }
       }}
     />
-  );
 };
 export default Icon;
