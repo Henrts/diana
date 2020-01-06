@@ -1,5 +1,10 @@
 import React from "react";
-import { WithStylesWrappedProps, WithThemeWrappedProps } from "aesthetic-react";
+import {
+  WithStylesWrappedProps,
+  WithStylesWrapperProps,
+  WithThemeWrappedProps,
+  WithThemeWrapperProps
+} from "aesthetic-react";
 import { defaultPalette } from "./tokens";
 
 export type Theme = {
@@ -17,11 +22,10 @@ export type Theme = {
   icons: string[]
 };
 
-export type WithStylesProps = WithStylesWrappedProps<Theme>;
-export type WithThemeProps = WithThemeWrappedProps<Theme>;
+export type WithStylesProps = WithStylesWrappedProps<Theme> & WithStylesWrapperProps;
+export type WithThemeProps = WithThemeWrappedProps<Theme> & WithThemeWrapperProps;
 
 export type StandardProps<C extends keyof JSX.IntrinsicElements> =  JSX.IntrinsicElements[C] & {
   className?: string;
-  ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
   style?: React.CSSProperties;
 };
