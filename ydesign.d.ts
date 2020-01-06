@@ -1,2 +1,2 @@
-declare module ydesign {
+declare namespace ydesign {
 }
