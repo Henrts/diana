@@ -30,7 +30,7 @@ export default {
     svgr(),
     resolve({ preferBuiltins: true }),
     typescript({
-      rollupCommonJSResolveHack: true,
+      rollupCommonJSResolveHack: false,
       clean: true
     }),
     commonjs({
