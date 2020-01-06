@@ -7,7 +7,7 @@ const fontFamily = "Arial";
 
 
 export default {
-  name: "default",
+  name: "default_theme",
   colors: defaultPalette,
   fontFamily,
   fonts: {},
