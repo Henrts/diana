@@ -2,7 +2,7 @@
   "name": "bde",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/index.d.ts",
+  "main": "dist/index.ts",
   "module": "dist/index.es.js",
   "typings": "dist/index.d.ts",
   "jsnext:main": "dist/index.es.js",
