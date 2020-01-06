@@ -36,11 +36,33 @@ const config = [
         clean: true
       }),
       commonjs({
+        include: /node_modules/,
         namedExports: {
           // left-hand side can be an absolute path, a path
           // relative to the current directory, or the name
           // of a module in node_modules
-          "rtl-css-js/core": ["convertProperty"]
+          "rtl-css-js/core": ["convertProperty"],
+          // node_modules/prop-types/factoryWithTypeCheckers.js#L115
+          "prop-types": [
+            "array",
+            "bool",
+            "func",
+            "number",
+            "object",
+            "string",
+            "symbol",
+            "any",
+            "arrayOf",
+            "element",
+            "elementType",
+            "instanceOf",
+            "node",
+            "objectOf",
+            "oneOf",
+            "oneOfType",
+            "shape",
+            "exact"
+          ]
         }
       })
     ],
