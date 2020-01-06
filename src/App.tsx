@@ -8,9 +8,9 @@ import { H1 } from "./modules/Typography";
 initDefaultTheme();
 
 const App: React.FC = () => (
-  <ThemeProvider name="default">
+  <ThemeProvider name="default_theme">
     <div className="App">
-      <BaseButton />
+      <BaseButton>Base button </BaseButton>
       <H1>HEADING 1</H1>
     </div>
   </ThemeProvider>

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheetFactory } from "aesthetic";
 import { withStyles } from "aesthetic-react";
-import { WithStylesProps, Theme, StandardProps } from "../../types";
+import { StandardProps, Theme, WithStylesProps } from "../../types";
 import { ButtonText } from "../Typography";
 
 export interface IProps extends StandardProps<"button"> {
@@ -18,10 +18,11 @@ const styleSheet: StyleSheetFactory<Theme> = theme => ({
     display: "flex",
     alignItems: "center"
   },
-  danger: {}
+  danger: {},
+  disabled: {}
 });
 
-export const BaseButton: React.FC<IProps & WithStylesProps> = ({
+const BaseButton: React.FC<IProps & WithStylesProps> = ({
   styles,
   cx,
   disabled,
@@ -29,6 +30,7 @@ export const BaseButton: React.FC<IProps & WithStylesProps> = ({
   children,
   renderLeftIcon,
   renderRightIcon,
+  wrappedRef,
   ...props
 }) => {
   const styleArray = [danger && styles.danger, disabled && styles.disabled];
@@ -38,6 +40,7 @@ export const BaseButton: React.FC<IProps & WithStylesProps> = ({
       className={cx(styles.button, ...styleArray)}
       type="submit"
       {...props}
+      ref={wrappedRef}
     >
       {renderLeftIcon && renderLeftIcon()}
       <ButtonText>{children}</ButtonText>
@@ -46,4 +49,10 @@ export const BaseButton: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-export default withStyles(styleSheet, { extendable: true })(BaseButton);
+const ForwardedButton = React.forwardRef<
+  IProps & WithStylesProps,
+  HTMLButtonElement
+>((props: any, ref) => <BaseButton wrappedRef={ref} {...props} />);
+ForwardedButton.displayName = "BaseButton";
+
+export default withStyles(styleSheet, { extendable: true })(ForwardedButton);
