@@ -8,6 +8,7 @@ export interface IProps extends StandardProps<"button"> {
   renderLeftIcon?: () => JSX.Element;
   renderRightIcon?: () => JSX.Element;
   danger?: boolean;
+  children: JSX.Element[];
 }
 
 const styleSheet: StyleSheetFactory<Theme> = theme => ({

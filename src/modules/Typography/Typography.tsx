@@ -3,6 +3,7 @@ import { StyleSheetFactory } from "aesthetic";
 import { useStyles } from "aesthetic-react";
 import { StandardProps, Theme } from "../../types";
 
+export interface IPropsTitle extends StandardProps<"h1"> {}
 export interface IProps extends StandardProps<"span"> {}
 
 const styleSheet: StyleSheetFactory<Theme> = theme => ({
@@ -17,26 +18,72 @@ const styleSheet: StyleSheetFactory<Theme> = theme => ({
   },
   buttonText: {
     ...theme.typography.buttonText
+  },
+  descriptionMedium: {
+    ...theme.typography.descriptionMedium
   }
 });
-export const H1: React.FC<IProps> = ({ children, ...props }) => {
-  const [styles, cx] = useStyles(styleSheet);
-  return <h1 className={cx(styles.h1, props.className)}>{children}</h1>;
-};
-
-export const H2: React.FC<IProps> = ({ children, ...props }) => {
-  const [styles, cx] = useStyles(styleSheet);
-  return <h2 className={cx(styles.h2, props.className)}>{children}</h2>;
-};
-
-export const H3: React.FC<IProps> = ({ children, ...props }) => {
-  const [styles, cx] = useStyles(styleSheet);
-  return <h3 className={cx(styles.h3, props.className)}>{children}</h3>;
-};
-
-export const ButtonText: React.FC<IProps> = ({ children, ...props }) => {
+export const H1: React.FC<IPropsTitle> = ({
+  children,
+  className,
+  ...props
+}) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <span className={cx(styles.buttonText, props.className)}>{children}</span>
+    <h1 className={cx(styles.h1, className)} {...props}>
+      {children}
+    </h1>
+  );
+};
+
+export const H2: React.FC<IPropsTitle> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <h2 className={cx(styles.h2, className)} {...props}>
+      {children}
+    </h2>
+  );
+};
+
+export const H3: React.FC<IPropsTitle> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <h3 className={cx(styles.h3, className)} {...props}>
+      {children}
+    </h3>
+  );
+};
+
+export const ButtonText: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.buttonText, className)} {...props}>
+      {children}
+    </span>
+  );
+};
+
+export const DescriptionMedium: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.descriptionMedium, className)} {...props}>
+      {children}
+    </span>
   );
 };

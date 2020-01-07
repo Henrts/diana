@@ -5,12 +5,12 @@ import { useStyles } from "aesthetic-react";
 import { StandardProps, Theme } from "../../types";
 
 const styleSheet: StyleSheetFactory<Theme> = () => ({
-    icon: {
-        display: "block",
-        "> div": {
-            display: "flex"
-        }
+  icon: {
+    display: "block",
+    "> div": {
+      display: "flex"
     }
+  }
 });
 
 export interface IIconProps extends StandardProps<"svg"> {
@@ -31,7 +31,11 @@ export const Icon: React.FC<IIconProps> = ({
 }) => {
   const svgIcon = src || `assets/icons/${name}.svg`;
   const [styles, cx] = useStyles(styleSheet);
-  return <ReactSVG src={svgIcon} className={cx(styles.icon, className)} beforeInjection={svg => {
+  return (
+    <ReactSVG
+      src={svgIcon}
+      className={cx(styles.icon, className)}
+      beforeInjection={svg => {
         svg.setAttribute("class", "y-icon");
         if (size) {
           svg.setAttribute("height", size.toString());
@@ -55,5 +59,6 @@ export const Icon: React.FC<IIconProps> = ({
         }
       }}
     />
+  );
 };
 export default Icon;

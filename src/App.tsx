@@ -10,7 +10,7 @@ initDefaultTheme();
 const App: React.FC = () => (
   <ThemeProvider name="default_theme">
     <div className="App">
-      <BaseButton>Base button </BaseButton>
+      <BaseButton>Base</BaseButton>
       <H1>HEADING 1</H1>
     </div>
   </ThemeProvider>

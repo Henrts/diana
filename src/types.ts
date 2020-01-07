@@ -26,6 +26,7 @@ export type WithStylesProps = WithStylesWrappedProps<Theme> & WithStylesWrapperP
 export type WithThemeProps = WithThemeWrappedProps<Theme> & WithThemeWrapperProps;
 
 export type StandardProps<C extends keyof JSX.IntrinsicElements> =  JSX.IntrinsicElements[C] & {
+  // children?: any;
   className?: string;
   style?: React.CSSProperties;
 };

@@ -7,14 +7,14 @@ export default {
     alert100: "#D86464" 
   },
   warning: {
-    warning25: "#D86464",
-    warning50: "#D86464",
-    warning100: "#D86464" 
+    warning25: "#fbbc44",
+    warning50: "#fbbc44",
+    warning100: "#fbbc44"
   },
   success: {
-    success25: "",
-    success50: "",
-    success100: ""
+    success25: "#4e9a55",
+    success50: "#4e9a55",
+    success100: "#4e9a55"
   },
   white: "#ffffff",
   black: "#070707",
@@ -24,8 +24,8 @@ export default {
     background100: "#161616"
   },
   grey: {
-    grey25: "#808080",
+    grey25: "#f6f6f6",
     grey50: "#CCCCCC",
-    grey100: "#f6f6f6"
+    grey100: "#808080"
   }
 };

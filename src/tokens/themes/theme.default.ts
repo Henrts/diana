@@ -76,6 +76,12 @@ export default {
       lineHeight: "24px",
       fontFamily
     },
+    descriptionMedium: {
+      fontSize: "15px",
+      fontWeight:500,
+      lineHeight: "16px",
+      fontFamily
+    },
     body: {
       fontSize: `${fontSize}px`,
       fontWeight: 400,
