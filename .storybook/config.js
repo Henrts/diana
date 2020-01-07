@@ -1,5 +1,5 @@
 import { configure } from "@storybook/react";
-import initDefaultTheme from "../src/setup";
+import { initDefaultTheme } from "../src/setup";
 
 initDefaultTheme();
 
