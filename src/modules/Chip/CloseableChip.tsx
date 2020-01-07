@@ -11,7 +11,7 @@ export interface IProps extends BaseChipProps {
 }
 
 const CloseableChip: React.FC<IProps> = ({
-  onClose,
+  onClose = () => {},
   renderRightIcon,
   styleSheet,
   ...props
@@ -44,7 +44,7 @@ const CloseableChip: React.FC<IProps> = ({
       renderRightIcon={() => (
         <div
           onClick={e => {
-            onClose && onClose();
+            onClose();
             e.stopPropagation();
           }}
           className={cx(styles.deleteIcon)}

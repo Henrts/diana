@@ -8,7 +8,6 @@ export interface IProps extends StandardProps<"button"> {
   renderLeftIcon?: () => JSX.Element;
   renderRightIcon?: () => JSX.Element;
   danger?: boolean;
-  children: JSX.Element[];
 }
 
 const styleSheet: StyleSheetFactory<Theme> = theme => ({
@@ -50,10 +49,10 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-const ForwardedButton = React.forwardRef<
-  IProps & WithStylesProps,
-  HTMLButtonElement
->((props: any, ref) => <BaseButton wrappedRef={ref} {...props} />);
-ForwardedButton.displayName = "BaseButton";
+// const ForwardedButton = React.forwardRef<
+//   IProps & WithStylesProps,
+//   HTMLButtonElement
+// >((props: any, ref) => <BaseButton wrappedRef={ref} {...props} />);
+// ForwardedButton.displayName = "BaseButton";
 
-export default withStyles(styleSheet, { extendable: true })(ForwardedButton);
+export default withStyles(styleSheet, { extendable: true })(BaseButton);

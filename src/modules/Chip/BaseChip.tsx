@@ -71,10 +71,10 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-const ForwardedElement = React.forwardRef<
-  IProps & WithStylesProps,
-  HTMLDivElement
->((props: any, ref) => <BaseChip wrappedRef={ref} {...props} />);
-ForwardedElement.displayName = "BaseChip";
+// const ForwardedElement = React.forwardRef<
+//   IProps & WithStylesProps,
+//   HTMLDivElement
+// >((props: any, ref) => <BaseChip wrappedRef={ref} {...props} />);
+// ForwardedElement.displayName = "BaseChip";
 
-export default withStyles(styleSheet, { extendable: true })(ForwardedElement);
+export default withStyles(styleSheet, { extendable: true })(BaseChip);

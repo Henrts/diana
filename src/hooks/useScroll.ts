@@ -1,1 +1,1 @@
-// hey
+export const useScroll: {} = () => {}

@@ -55,7 +55,7 @@ const StatusChip: React.FC<IProps> = ({ styleSheet, type, ...props }) => {
 
   const AlteredBaseChip = BaseChip.extendStyles(styleSheet2);
 
-  return <BaseChip {...props} />;
+  return <AlteredBaseChip {...props} />;
 };
 
 export default StatusChip;
