@@ -1,9 +1,9 @@
 declare namespace ydesign {
 
 }
-export * from "./modules/Button";
-export * from "./modules/Icon";
-export * from "./modules/Typography";
-export * from "./modules/Chip";
-export * from "./setup";
+export * from "./src/modules/Button";
+export * from "./src/modules/Icon";
+export * from "./src/modules/Typography";
+export * from "./src/modules/Chip";
+export * from "./src/setup";
 export default ydesign;
