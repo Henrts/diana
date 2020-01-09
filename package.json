@@ -11,6 +11,7 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -cw",
+    "prepare": "yarn run build", 
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
