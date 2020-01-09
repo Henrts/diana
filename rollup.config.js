@@ -1,78 +1,62 @@
 import typescript from "rollup-plugin-typescript2";
-import commonjs from "@rollup/plugin-commonjs";
 import external from "rollup-plugin-peer-deps-external";
 import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import babel from "rollup-plugin-babel";
 import url from "rollup-plugin-url";
 import svgr from "@svgr/rollup";
-import dts from "rollup-plugin-dts";
 
 // eslint-disable-next-line import/extensions
 import pkg from "./package.json";
 
-const config = [
-  {
-    input: "src/index.ts",
-    output: [
-      {
-        file: pkg.main,
-        format: "cjs",
-        exports: "named",
-        sourcemap: true
-      },
-      {
-        file: pkg.module,
-        format: "es",
-        exports: "named",
-        sourcemap: true
+export default {
+  input: "src/index.ts",
+  external: ["react-svg"],
+  output: [
+    {
+      file: pkg.main,
+      format: "cjs",
+      exports: "named",
+      sourcemap: true
+    },
+    {
+      file: pkg.module,
+      format: "es",
+      exports: "named",
+      sourcemap: true
+    }
+  ],
+  plugins: [
+    external(),
+    url(),
+    svgr(),
+    resolve({
+      browser: true
+    }),
+    typescript({
+      rollupCommonJSResolveHack: true,
+      clean: true
+    }),
+    babel({
+      babelrc: false,
+      exclude: ["node_modules/**"],
+      ignore: ["**/*.scss"],
+      presets: [["es2015", { modules: false }], "stage-0", "react"],
+      plugins: ["external-helpers"]
+    }),
+    commonjs({
+      include: "node_modules/**",
+      exclude: ["**/*.stories.js"],
+      namedExports: {
+        "../../node_modules/react/index.js": [
+          "React",
+          "cloneElement",
+          "createElement",
+          "PropTypes",
+          "Children",
+          "Component"
+        ]
       }
-    ],
-    plugins: [
-      external(),
-      url(),
-      svgr(),
-      resolve({ preferBuiltins: true }),
-      typescript({
-        rollupCommonJSResolveHack: false,
-        clean: true
-      }),
-      commonjs({
-        include: /node_modules/,
-        namedExports: {
-          // left-hand side can be an absolute path, a path
-          // relative to the current directory, or the name
-          // of a module in node_modules
-          "rtl-css-js/core": ["convertProperty"],
-          // node_modules/prop-types/factoryWithTypeCheckers.js#L115
-          "prop-types": [
-            "array",
-            "bool",
-            "func",
-            "number",
-            "object",
-            "string",
-            "symbol",
-            "any",
-            "arrayOf",
-            "element",
-            "elementType",
-            "instanceOf",
-            "node",
-            "objectOf",
-            "oneOf",
-            "oneOfType",
-            "shape",
-            "exact"
-          ]
-        }
-      })
-    ],
-    external: ["react-svg"]
-  },
-  {
-    input: "./ydesign.d.ts",
-    output: [{ file: "dist/index.d.ts", format: "es" }],
-    plugins: [dts()]
-  }
-];
-
-export default config;
+    })
+  ]
+};

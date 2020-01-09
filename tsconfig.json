@@ -2,22 +2,22 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./dist",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "module": "esnext",
-    "outDir": "./dist",
+    "target": "es5",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist"
   },
-  "include": ["src", "rollup.config.js", "src/types.d.ts", "ydesign.d.ts"],
+  "include": ["src", "rollup.config.js"],
   "exclude": ["node_modules", "build", "dist", "example"]
 }

@@ -1,13 +1,8 @@
 import { configure } from "@storybook/react";
+import { DocsPage, DocsContainer } from "@storybook/addon-docs/blocks";
 import { initDefaultTheme } from "../src/setup";
 
 initDefaultTheme();
-
-// automatically import all files ending in *.stories.js
-
-if (module.hot) {
-  module.hot.accept();
-}
 
 configure(
   [
@@ -18,3 +13,13 @@ configure(
   ],
   module
 );
+
+// addParameters({
+//   options: {
+//       enableShortcuts: false,
+//   },
+//   docs: {
+//       container: DocsContainer,
+//       page: DocsPage,
+//   },
+// });
