@@ -3,6 +3,7 @@ import { H3 } from "../Typography/Typography";
 import BaseChip from "./BaseChip";
 import StatusChip from "./StatusChip";
 import CloseableChip from "./CloseableChip";
+import CloseableChip2 from "./CloseableChip2";
 import {ChipIcon,DerivedCloseableChip} from "./Chip.story";
 
 <Meta title="Components| Chip" />
@@ -91,9 +92,7 @@ By default, there will be a close Icon on the right that can be customized by ch
       renderRightIcon={() => <ChipIcon name="arrow"/>}>
         with custom close
       </CloseableChip>
-      <DerivedCloseableChip onClose={() => console.log("close custom fired")}>
-        with custom style
-      </DerivedCloseableChip>
+      <CloseableChip2 onClick={() => console.log("click variant")} onClose={() => console.log("close variant")}>variant with extra style</CloseableChip2>
     </div>
   </Story>
 </Preview>

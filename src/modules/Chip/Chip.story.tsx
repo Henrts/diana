@@ -3,7 +3,8 @@ import { Theme } from "../../types";
 import { Icon } from "../Icon";
 import { StyleSheetFactory } from "aesthetic";
 import { useStyles } from "aesthetic-react";
-import CloseableChip from "./CloseableChip";
+import CloseableChip, { CloseableChipStyle } from "./CloseableChip";
+import { IProps as CloseableChipProps } from "./CloseableChip";
 
 const styleSheet: StyleSheetFactory<Theme> = theme => ({
   iconLeft: {
@@ -32,22 +33,21 @@ export const ChipIcon: React.FC<{ name: string; type: "left" | "right" }> = ({
   );
 };
 
-export const DerivedCloseableChip: React.FC = ({ ...props }) => {
-  return (
-    <CloseableChip
-      styleSheet={(theme: Theme) => ({
-        chip: {
-          borderColor: "red",
-          backgroundColor: "blue"
-        },
-        deleteIcon: {
-          ":hover": {
+const DerivedChip = CloseableChipStyle.extendStyles(() => ({
+    chip: {
+        borderColor: "red",
+        backgroundColor: "blue"
+    },
+    deleteIcon: {
+        ":hover": {
             backgroundColor: "steelblue"
-          }
         }
-      })}
-      onClose={() => {}}
-      {...props}
-    />
-  );
+    }
+}));
+
+export const DerivedCloseableChip: React.FC<CloseableChipProps> = ({
+  onClose,
+  ...props
+}) => {
+  return <CloseableChip onClose={onClose} {...props} />;
 };

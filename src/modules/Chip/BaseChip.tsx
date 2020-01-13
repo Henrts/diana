@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheetFactory } from "aesthetic";
-import { withStyles } from "aesthetic-react";
 import { StandardProps, Theme, WithStylesProps } from "../../types";
 import { DescriptionMedium } from "../Typography/Typography";
+import CustomWithStyles from "./withStyles";
 
 export interface IProps extends StandardProps<"div"> {
   renderLeftIcon?: () => JSX.Element;
@@ -12,7 +12,7 @@ export interface IProps extends StandardProps<"div"> {
   onClick?: () => void;
 }
 
-export const styleSheet: StyleSheetFactory<Theme> = theme => ({
+const styleSheet: StyleSheetFactory<Theme> = theme => ({
   chip: {
     padding: theme.spaceUnit.xs,
     outlineStyle: "none",
@@ -77,4 +77,4 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
 // >((props: any, ref) => <BaseChip wrappedRef={ref} {...props} />);
 // ForwardedElement.displayName = "BaseChip";
 
-export default withStyles(styleSheet, { extendable: true })(BaseChip);
+export default CustomWithStyles(styleSheet, { extendable: true })(BaseChip);
