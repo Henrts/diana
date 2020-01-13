@@ -16,11 +16,26 @@ const styleSheet: StyleSheetFactory<Theme> = theme => ({
   h3: {
     ...theme.typography.h3
   },
+  h4: {
+    ...theme.typography.h4
+  },
+  h5: {
+    ...theme.typography.h5
+  },
   buttonText: {
     ...theme.typography.buttonText
   },
+  bodyText: {
+    ...theme.typography.bodyText
+  },
+  bodyTextHighlight: {
+    ...theme.typography.bodyTextHighlight
+  },
   descriptionMedium: {
     ...theme.typography.descriptionMedium
+  },
+  label: {
+    ...theme.typography.label
   }
 });
 export const H1: React.FC<IPropsTitle> = ({
@@ -75,6 +90,31 @@ export const ButtonText: React.FC<IProps> = ({
   );
 };
 
+export const Text: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.bodyText, className)} {...props}>
+      {children}
+    </span>
+  );
+}
+export const TextHighlight: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.bodyTextHighlight, className)} {...props}>
+      {children}
+    </span>
+  );
+}
+
 export const DescriptionMedium: React.FC<IProps> = ({
   children,
   className,
@@ -87,3 +127,17 @@ export const DescriptionMedium: React.FC<IProps> = ({
     </span>
   );
 };
+
+
+export const Label: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.label, className)} {...props}>
+      {children}
+    </span>
+  );
+}

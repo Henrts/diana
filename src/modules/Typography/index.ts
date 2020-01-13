@@ -1,1 +1,1 @@
-export { H1, H2, H3, ButtonText } from "./Typography";
+export { H1, H2, H3, ButtonText, Text, TextHighlight, DescriptionMedium, Label } from "./Typography";
