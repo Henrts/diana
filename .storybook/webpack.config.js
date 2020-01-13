@@ -15,56 +15,6 @@ module.exports = async ({ config }) => {
         test: /\.s?css$/,
         use: ["style-loader", "css-loader", "sass-loader"]
       },
-      // {
-      // test: /\.(css|scss)$/,
-      // use: [
-      //     require.resolve('style-loader'),
-      //     {
-      //         loader: require.resolve('css-loader'),
-      //         options: {
-      //             modules: {
-      //                 localIdentName: "[name]__[local]___[hash:base64:5]",
-      //             },
-      //             sourceMap: true
-      //         },
-      //     },
-      //     require.resolve('sass-loader'),
-      //     {
-      //         loader: require.resolve('postcss-loader'),
-      //         options: {
-      //         // Necessary for external CSS imports to work
-      //         // https://github.com/facebookincubator/create-react-app/issues/2677
-      //         ident: 'postcss',
-      //         plugins: () => [
-      //         require('postcss-flexbugs-fixes'),
-      //         require('autoprefixer')({
-      //             browsers: [
-      //             '>1%',
-      //             'last 4 versions',
-      //             'Firefox ESR',
-      //             'not ie < 9', // React doesn't support IE8 anyway
-      //             ],
-      //             flexbox: 'no-2009',
-      //         }),
-      //         ],
-      //     },
-      //     }
-      // ]
-      // },
-      // {
-      // test: /\.svg$/,
-      // use: [
-      //     {
-      //     loader: "babel-loader"
-      //     },
-      //     {
-      //     loader: "react-svg-loader",
-      //     options: {
-      //         jsx: false // true outputs JSX tags
-      //     }
-      //     }
-      // ]
-      // },
       {
         test: /\.(stories|story)\.mdx$/,
         use: [
