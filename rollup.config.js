@@ -4,6 +4,7 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
 import url from "rollup-plugin-url";
+import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import svgr from "@svgr/rollup";
 
 // eslint-disable-next-line import/extensions
@@ -27,6 +28,7 @@ export default {
     }
   ],
   plugins: [
+    sizeSnapshot(),
     external(),
     url(),
     svgr(),
