@@ -38,6 +38,10 @@ const DerivedChip = CloseableChip.extendStyles(() => ({
         borderColor: "red",
         backgroundColor: "blue"
     },
+  text: {
+    color:"white",
+    fontSize:30
+  },
     deleteIcon: {
         ":hover": {
             backgroundColor: "steelblue"

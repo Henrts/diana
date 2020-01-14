@@ -23,6 +23,7 @@ const styleSheet: StyleSheetFactory<Theme> = theme => ({
     alignItems: "center",
     borderColor: theme.colors.grey.grey50
   },
+  text: {},
   selected: {
     backgroundColor: theme.colors.grey.grey100
   },
@@ -66,7 +67,7 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
       onClick={onClick}
     >
       {renderLeftIcon && renderLeftIcon()}
-      <DescriptionMedium>{children}</DescriptionMedium>
+      <DescriptionMedium className={cx(styles.text)}>{children}</DescriptionMedium>
       {renderRightIcon && renderRightIcon()}
     </div>
   );
