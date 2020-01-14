@@ -32,8 +32,8 @@ function customWithStyles<Theme = ThemeSheet, T = unknown>(
   } = options;
 
   return function withStylesComposer<Props extends object = {}>(
-    WrappedComponent: React.ComponentType<Props & WithStylesWrappedProps<Theme>>
-  ): StyledComponent<Props & WithStylesWrapperProps> {
+    WrappedComponent: React.ComponentType<Props & WithStylesWrappedProps<Theme> & { parentStylesheet?: typeof styleSheet }>
+  ): StyledComponent<Props & WithStylesWrapperProps & { parentStylesheet?: typeof styleSheet }> {
     const baseName = WrappedComponent.displayName || WrappedComponent.name;
     const styleName = `${baseName}-${uuid()}`;
 
@@ -42,7 +42,6 @@ function customWithStyles<Theme = ThemeSheet, T = unknown>(
 
     const WithStyles = function WithStyles({
       wrappedRef,
-      parentStylesheet,
       ...props
     }: Props &
       WithStylesWrapperProps & { parentStylesheet: typeof styleSheet }) {
@@ -52,7 +51,7 @@ function customWithStyles<Theme = ThemeSheet, T = unknown>(
         {},
         aesthetic.getStyleSheet(styleName, themeName || "default_theme"),
         styleSheet(aesthetic.getTheme()),
-        parentStylesheet ? parentStylesheet(aesthetic.getTheme()) : {}
+        props.parentStylesheet ? props.parentStylesheet(aesthetic.getTheme()) : {}
       );
 
       const [styles, cx] = useStyles(() => mergedStylesheet);
@@ -74,7 +73,7 @@ function customWithStyles<Theme = ThemeSheet, T = unknown>(
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       return <WrappedComponent {...props} {...extraProps} />;
-    } as StyledComponent<Props & WithStylesWrapperProps>;
+    } as StyledComponent<Props & WithStylesWrapperProps & { parentStylesheet?: typeof styleSheet }>;
 
     hoistNonReactStatics(WithStyles, WrappedComponent);
 
