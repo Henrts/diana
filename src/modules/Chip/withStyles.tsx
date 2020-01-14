@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import aesthetic, {
-  CompiledStyleSheet,
   StyleSheetFactory,
   ThemeName,
   ThemeSheet
 } from "aesthetic";
 import hoistNonReactStatics from "hoist-non-react-statics";
 import uuid from "uuid/v4";
+import deepMerge from "extend";
 import {
   StyledComponent,
   useStyles,
@@ -14,26 +14,6 @@ import {
   WithStylesWrappedProps,
   WithStylesWrapperProps
 } from "aesthetic-react";
-
-function mergeStyles(
-  styles: CompiledStyleSheet | any,
-  newStyles: CompiledStyleSheet | any
-): CompiledStyleSheet {
-  const finalStyles: any = styles;
-
-  Object.keys(newStyles).forEach(k => {
-    if (!finalStyles[k]) {
-      finalStyles[k] = newStyles[k];
-    } else {
-      finalStyles[k]._name = newStyles[k]._name;
-      finalStyles[k]._definition = {
-        ...finalStyles[k]._definition,
-        ...newStyles[k]._definition
-      };
-    }
-  });
-  return finalStyles;
-}
 
 /**
  * Wrap a React component with an HOC that injects the defined style sheet as a prop.
@@ -62,16 +42,23 @@ function customWithStyles<Theme = ThemeSheet, T = unknown>(
 
     const WithStyles = function WithStyles({
       wrappedRef,
-      newstyles,
+      parentStylesheet,
       ...props
-    }: Props & WithStylesWrapperProps & { newstyles: typeof styles }) {
+    }: Props &
+      WithStylesWrapperProps & { parentStylesheet: typeof styleSheet }) {
       const themeName = useContext(React.createContext<ThemeName>(""));
-      const [styles, cx] = useStyles(() => ({
-        ...aesthetic.getStyleSheet(styleName, "default_theme"),
-        ...styleSheet
-      }));
+      const mergedStylesheet = deepMerge(
+        true,
+        {},
+        aesthetic.getStyleSheet(styleName, themeName || "default_theme"),
+        styleSheet(aesthetic.getTheme()),
+        parentStylesheet ? parentStylesheet(aesthetic.getTheme()) : {}
+      );
+
+      const [styles, cx] = useStyles(() => mergedStylesheet);
+
       const extraProps: WithStylesWrappedProps<Theme> & {
-        newstyles?: typeof styles;
+        parentStylesheet?: typeof styleSheet;
       } = {
         [cxPropName as "cx"]: cx,
         [stylesPropName as "styles"]: styles,
@@ -82,18 +69,8 @@ function customWithStyles<Theme = ThemeSheet, T = unknown>(
         extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName);
       }
 
-      if (newstyles) {
-        const finalStyles = mergeStyles(extraProps.styles, newstyles);
-        extraProps.newstyles = finalStyles;
-
-        return (
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          <WrappedComponent {...props} {...extraProps} styles={finalStyles} />
-        );
-      }
-
-      extraProps.newstyles = styles;
+      // @ts-ignore
+      extraProps.parentStylesheet = styleSheet;
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       return <WrappedComponent {...props} {...extraProps} />;

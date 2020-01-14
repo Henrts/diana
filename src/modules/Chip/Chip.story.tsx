@@ -33,7 +33,7 @@ export const ChipIcon: React.FC<{ name: string; type: "left" | "right" }> = ({
   );
 };
 
-const DerivedChip = CloseableChipStyle.extendStyles(() => ({
+const DerivedChip = CloseableChip.extendStyles(() => ({
     chip: {
         borderColor: "red",
         backgroundColor: "blue"
@@ -49,5 +49,5 @@ export const DerivedCloseableChip: React.FC<CloseableChipProps> = ({
   onClose,
   ...props
 }) => {
-  return <CloseableChip onClose={onClose} {...props} />;
+  return <DerivedChip onClose={onClose} {...props} />;
 };

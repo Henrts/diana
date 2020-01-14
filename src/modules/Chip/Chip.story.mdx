@@ -85,14 +85,15 @@ By default, there will be a close Icon on the right that can be customized by ch
 <Preview>
   <Story name="CloseableChip">
     <div style={{display: "flex", justifyContent:"space-around", alignItems: "center"}}>
-      <CloseableChip onClose={() => console.log("close fired")}>
+       <CloseableChip onClose={() => console.log("close fired")}>
         with close
       </CloseableChip>
       <CloseableChip onClick={() => console.log("click")} onClose={() => console.log("close custom fired")}
       renderRightIcon={() => <ChipIcon name="arrow"/>}>
         with custom close
       </CloseableChip>
-      <CloseableChip2 onClick={() => console.log("click variant")} onClose={() => console.log("close variant")}>variant with extra style</CloseableChip2>
+       <DerivedCloseableChip>derived</DerivedCloseableChip>
+        <CloseableChip2 onClick={() => console.log("click variant")} onClose={() => console.log("close variant")}>variant with extra style</CloseableChip2>
     </div>
   </Story>
 </Preview>

@@ -49,6 +49,7 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
   children,
   className,
   wrappedRef,
+  parentStylesheet,
   ...props
 }) => {
   const styleArray = [

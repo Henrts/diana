@@ -29,4 +29,5 @@ export type StandardProps<C extends keyof JSX.IntrinsicElements> =  JSX.Intrinsi
   // children?: any;
   className?: string;
   style?: React.CSSProperties;
+  parentStylesheet?: any;
 };
