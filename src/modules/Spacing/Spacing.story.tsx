@@ -58,6 +58,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     boxShadow: `inset 0 0 0 ${theme.spaceUnit.xxl} steelblue`
   }
 });
+
 interface IProps {
   margin: string;
 }
@@ -85,9 +86,9 @@ export const SpacingDiv: React.FC<IProps> = ({ margin, children }) => {
 };
 const SquishSpacingDiv: React.FC<IProps> = ({ margin, children }) => {
   const theme = useTheme();
-  const spacTop = theme.spaceUnit[margin].top;
+  const spacTop = theme.spacing[margin].top;
   const numSpacTop = +spacTop.split("px")[0];
-  const spacLeft = theme.spaceUnit[margin].left;
+  const spacLeft = theme.spacing[margin].left;
   const numSpacLeft = +spacLeft.split("px")[0];
 
   return (

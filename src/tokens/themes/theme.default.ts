@@ -12,13 +12,15 @@ export default {
   fontFamily,
   fonts: {},
   spaceUnit: {
-    xxs: `${spaceUnit/4}px`,
-    xs: `${spaceUnit/2}px`,
-    sm: `${spaceUnit/1.3}px`,
+    xxs: `${spaceUnit / 4}px`,
+    xs: `${spaceUnit / 2}px`,
+    sm: `${spaceUnit / 1.3}px`,
     md: `${spaceUnit}px`,
-    lg: `${spaceUnit*2}px`,
-    xl: `${spaceUnit*3}px`,
-    xxl:`${spaceUnit*4}px`,
+    lg: `${spaceUnit * 2}px`,
+    xl: `${spaceUnit * 3}px`,
+    xxl: `${spaceUnit * 4}px`,
+  },
+  spacing:{
     squishsm: {
       top: `${spaceUnit/4}px`,
       left: `${spaceUnit/1.3}px`
@@ -44,7 +46,6 @@ export default {
       top: `${spaceUnit*2}px`
     }
   },
-
   typography: {
     h1: {
       fontSize: "2rem",

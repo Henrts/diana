@@ -26,6 +26,9 @@ export type Theme = {
   spaceUnit: {
     [key: string]: string;
   };
+  spacing: {
+    [key: string]: {top: string; left: string};
+  };
   icons: string[];
 };
 

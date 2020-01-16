@@ -2,18 +2,19 @@ import React from "react";
 import { ThemeStyleSheetFactory } from "../../types";
 import { useStyles, useTheme } from "../../base";
 import { H3 } from "../Typography/Typography";
+import { defaultPalette } from "../../tokens/palettes";
 
 export const Colors = () => {
   const theme = useTheme();
 
   const colors: any = [];
-  Object.keys(theme.colors).map((key: string) => {
+  Object.keys(theme.colors).map((key) => {
     colors.push(key);
   });
   return (
     <table className="colors-table">
       <tbody>
-        {colors.map((colorName: string) => (
+        {colors.map((colorName: any) => (
           <tr key={colorName} className="row">
             <td>
               <H3>
@@ -51,17 +52,16 @@ const styleSheet: ThemeStyleSheetFactory = theme => {
       };
     }
   });
-  console.log(res);
   return res;
 };
+
 interface IColorsProps {
-  color: string;
+  color: keyof typeof defaultPalette;
 }
 const ColorDiv: React.FC<IColorsProps> = ({ color }) => {
   const [styles, cx] = useStyles(styleSheet);
   const theme = useTheme();
   const isObject = typeof theme.colors[color];
-  console.log(isObject);
   return isObject === "string" ? (
     <div className="color-div-container">
       <div className={cx(styles[color], "color-div")} />
