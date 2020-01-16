@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheetFactory } from "aesthetic";
-import { Theme } from "../../types";
+import { Theme, ThemeStyleSheetFactory } from "../../types";
 import { H1, H2, H3, ButtonText } from "./Typography";
-import { useStyles, useTheme } from "aesthetic-react";
+import { useStyles, useTheme } from "../../base";
 import "../../stories/style.scss";
 
 export const TypographyTable = () => {
@@ -102,7 +101,7 @@ export const StretchSpacing = () => {
   );
 };
 
-const styleSheet: StyleSheetFactory<Theme> = theme => ({
+const styleSheet: ThemeStyleSheetFactory = theme => ({
   spacingxxs: {
     boxShadow: `inset 0 0 0 ${theme.spaceUnit.xxs} steelblue`
   },

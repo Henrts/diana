@@ -1,7 +1,7 @@
 import React from "react";
-import aesthetic, { StyleSheetFactory } from "aesthetic";
-import { Theme } from "../../types";
+import { Theme, WithStylesProps } from "../../types";
 import BaseChip, { IProps as BaseChipProps } from "./BaseChip";
+import extendStyles from "../../base/extendStyles";
 
 type ChipTypes = "default" | "success" | "warning" | "danger";
 
@@ -45,8 +45,12 @@ const colorMap = (theme: Theme) => ({
   }
 });
 
-const StatusChip: React.FC<IProps> = ({ styleSheet, type, ...props }) => {
-  const styleSheet2: StyleSheetFactory<Theme> = aesthetic.extendStyles(
+const StatusChip: React.FC<IProps & WithStylesProps> = ({
+  styleSheet,
+  type,
+  ...props
+}) => {
+  const styleSheet2 = extendStyles(
     theme => ({
       ...colorMap(theme)[type]
     }),

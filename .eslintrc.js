@@ -1,6 +1,11 @@
 module.exports = {
-  parserOptions: { project: "./tsconfig.json" },
+  parserOptions: {
+    project: "./tsconfig.json",
+    extraFileExtensions: [".mdx"],
+    ecmaFeatures: { jsx: true }
+  },
   extends: [
+    "plugin:mdx/recommended",
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:@typescript-eslint/eslint-recommended",

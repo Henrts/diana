@@ -1,12 +1,11 @@
 import React from "react";
-import { StyleSheetFactory } from "aesthetic";
-import { useStyles } from "aesthetic-react";
-import { StandardProps, Theme } from "../../types";
+import { useStyles } from "../../base";
+import { StandardProps, ThemeStyleSheetFactory } from "../../types";
 
 export interface IPropsTitle extends StandardProps<"h1"> {}
 export interface IProps extends StandardProps<"span"> {}
 
-const styleSheet: StyleSheetFactory<Theme> = theme => ({
+const styleSheet: ThemeStyleSheetFactory = theme => ({
   h1: {
     ...theme.typography.h1
   },
@@ -90,18 +89,14 @@ export const ButtonText: React.FC<IProps> = ({
   );
 };
 
-export const Text: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const Text: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.bodyText, className)} {...props}>
       {children}
     </span>
   );
-}
+};
 export const TextHighlight: React.FC<IProps> = ({
   children,
   className,
@@ -113,7 +108,7 @@ export const TextHighlight: React.FC<IProps> = ({
       {children}
     </span>
   );
-}
+};
 
 export const DescriptionMedium: React.FC<IProps> = ({
   children,
@@ -128,16 +123,11 @@ export const DescriptionMedium: React.FC<IProps> = ({
   );
 };
 
-
-export const Label: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const Label: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.label, className)} {...props}>
       {children}
     </span>
   );
-}
+};

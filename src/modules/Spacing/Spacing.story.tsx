@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheetFactory } from "aesthetic";
-import { Theme } from "../../types";
-import { useStyles, useTheme } from "aesthetic-react";
+import { ThemeStyleSheetFactory } from "../../types";
+import { useTheme } from "../../base";
 
 export const Spacing = () => {
   return (
@@ -36,7 +35,7 @@ export const StretchSpacing = () => {
   );
 };
 
-const styleSheet: StyleSheetFactory<Theme> = theme => ({
+const styleSheet: ThemeStyleSheetFactory = theme => ({
   spacingxxs: {
     boxShadow: `inset 0 0 0 ${theme.spaceUnit.xxs} steelblue`
   },
@@ -63,7 +62,6 @@ interface IProps {
   margin: string;
 }
 export const SpacingDiv: React.FC<IProps> = ({ margin, children }) => {
-  const [styles, cx] = useStyles(styleSheet);
   const theme = useTheme();
   const spac = theme.spaceUnit[margin.slice(7)];
   const numSpac = +spac.split("px")[0];
