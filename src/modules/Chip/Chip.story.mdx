@@ -1,10 +1,10 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import { H3 } from "../Typography/Typography";
 import BaseChip from "./BaseChip";
 import StatusChip from "./StatusChip";
 import CloseableChip from "./CloseableChip";
 import CloseableChip2 from "./CloseableChip2";
-import {ChipIcon,DerivedCloseableChip} from "./Chip.story";
+import { ChipIcon, DerivedCloseableChip } from "./Chip.story";
 
 <Meta title="Components| Chip" />
 
@@ -16,33 +16,45 @@ Chips are compact elements that represent an input, attribute, or action.is the
 
 <Preview>
   <Story name="BaseChip">
-    <div style={{display: "flex", justifyContent:"space-around", alignItems: "center"}}>
-        <BaseChip>chip</BaseChip>
-        <BaseChip onClick={() => console.log("click")}>clickable</BaseChip>
-        <BaseChip selected>selected</BaseChip>
-        <BaseChip disabled>disabled</BaseChip>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
+      <BaseChip>chip</BaseChip>
+      <BaseChip onClick={() => console.log("click")}>clickable</BaseChip>
+      <BaseChip selected>selected</BaseChip>
+      <BaseChip disabled>disabled</BaseChip>
     </div>
   </Story>
 </Preview>
-
 
 ### Left/Right Icons
 
 The chip can be customized using _renderLeftIcon_ or _renderRightIcon_.
 
-
 <Preview>
   <Story name="IconChip">
-    <div style={{display: "flex", justifyContent:"space-around", alignItems: "center"}}>
-      <BaseChip renderLeftIcon={() => <ChipIcon type="left" name="add"/>}>
-         with left icon
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
+      <BaseChip renderLeftIcon={() => <ChipIcon type="left" name="add" />}>
+        with left icon
       </BaseChip>
-       <BaseChip renderRightIcon={() => <ChipIcon type="right" name="add"/>}>
-         with right icon
-       </BaseChip>
-       <BaseChip renderLeftIcon={() => <ChipIcon type="left" name="add"/>}
-                 renderRightIcon={() => <ChipIcon type="right" name="arrow"/>}>
-          with both icons
+      <BaseChip renderRightIcon={() => <ChipIcon type="right" name="add" />}>
+        with right icon
+      </BaseChip>
+      <BaseChip
+        renderLeftIcon={() => <ChipIcon type="left" name="add" />}
+        renderRightIcon={() => <ChipIcon type="right" name="arrow" />}
+      >
+        with both icons
       </BaseChip>
     </div>
   </Story>
@@ -51,50 +63,75 @@ The chip can be customized using _renderLeftIcon_ or _renderRightIcon_.
 ### StatusChip
 
 Props:
+
 - type: string
 
-
 There are 4 possible types for any chip:<br/>
-__default__ __success__ __warning__ __danger__
+**default** **success** **warning** **danger**
 
 <Preview>
   <Story name="StatusChip">
-    <div style={{display: "flex", justifyContent:"space-around", alignItems: "center"}}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
       <StatusChip type="default">default</StatusChip>
-      <StatusChip type="default" selected>default</StatusChip>
+      <StatusChip type="default" selected>
+        default
+      </StatusChip>
       <StatusChip type="success">success</StatusChip>
-      <StatusChip type="success" selected>success</StatusChip>
+      <StatusChip type="success" selected>
+        success
+      </StatusChip>
       <StatusChip type="warning">warning</StatusChip>
-      <StatusChip type="warning" selected>warning</StatusChip>
+      <StatusChip type="warning" selected>
+        warning
+      </StatusChip>
       <StatusChip type="danger">danger</StatusChip>
-      <StatusChip type="danger" selected>danger</StatusChip>
+      <StatusChip type="danger" selected>
+        danger
+      </StatusChip>
     </div>
   </Story>
 </Preview>
-
-
 
 ### CloseableChip
 
 Props:
+
 - onClose: function()
 
 By default, there will be a close Icon on the right that can be customized by changing _renderRightIcon_
 
-
 <Preview>
   <Story name="CloseableChip">
-    <div style={{display: "flex", justifyContent:"space-around", alignItems: "center"}}>
-       <CloseableChip onClose={() => console.log("close fired")}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
+      <CloseableChip onClose={() => console.log("close fired")}>
         with close
       </CloseableChip>
-      <CloseableChip onClick={() => console.log("click")} onClose={() => console.log("close custom fired")}
-      renderRightIcon={() => <ChipIcon name="arrow"/>}>
+      <CloseableChip
+        onClick={() => console.log("click")}
+        onClose={() => console.log("close custom fired")}
+        renderRightIcon={() => <ChipIcon name="arrow" />}
+      >
         with custom close
       </CloseableChip>
-       <DerivedCloseableChip>derived</DerivedCloseableChip>
-        <CloseableChip2 onClick={() => console.log("click variant")} onClose={() => console.log("close variant")}>variant with extra style</CloseableChip2>
+      <DerivedCloseableChip>derived</DerivedCloseableChip>
+      <CloseableChip2
+        onClick={() => console.log("click variant")}
+        onClose={() => console.log("close variant")}
+      >
+        variant with extra style
+      </CloseableChip2>
     </div>
   </Story>
 </Preview>
-

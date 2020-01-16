@@ -1,10 +1,9 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
-import { StyleSheetFactory } from "aesthetic";
-import { useStyles } from "aesthetic-react";
-import { StandardProps, Theme } from "../../types";
+import { StandardProps, ThemeStyleSheetFactory } from "../../types";
+import { useStyles } from "../../base";
 
-const styleSheet: StyleSheetFactory<Theme> = () => ({
+const styleSheet: ThemeStyleSheetFactory = () => ({
   icon: {
     display: "block",
     "> div": {

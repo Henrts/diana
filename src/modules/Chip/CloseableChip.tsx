@@ -1,15 +1,14 @@
 import React from "react";
-import { StyleSheetFactory } from "aesthetic";
-import { Theme, WithStylesProps } from "../../types";
+import { Theme, WithStylesProps, ThemeStyleSheetFactory } from "../../types";
 import BaseChip, { IProps as BaseChipProps } from "./BaseChip";
 import { Icon } from "../Icon";
-import CustomWithStyles from "./withStyles";
+import { withStyles } from "../../base";
 
 export interface IProps extends BaseChipProps {
   onClose: () => void;
 }
 
-const styleSheet: StyleSheetFactory<Theme> = (theme: Theme) => ({
+const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   chip: {
     borderColor: "green"
   },
@@ -36,6 +35,8 @@ const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
   return (
     <CloseableChipStyle
       {...props}
+      cx={cx}
+      styles={styles}
       renderRightIcon={() => (
         <div
           onClick={e => {
@@ -51,6 +52,4 @@ const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-export default CustomWithStyles(styleSheet, { extendable: true })(
-  CloseableChipComponent
-);
+export default withStyles(styleSheet)(CloseableChipComponent);

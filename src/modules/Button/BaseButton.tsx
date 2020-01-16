@@ -1,8 +1,11 @@
 import React from "react";
-import { StyleSheetFactory } from "aesthetic";
-import { withStyles } from "aesthetic-react";
-import { StandardProps, Theme, WithStylesProps } from "../../types";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory
+} from "../../types";
 import { ButtonText } from "../Typography";
+import { withStyles } from "../../base";
 
 export interface IProps extends StandardProps<"button"> {
   renderLeftIcon?: () => JSX.Element;
@@ -10,7 +13,7 @@ export interface IProps extends StandardProps<"button"> {
   danger?: boolean;
 }
 
-const styleSheet: StyleSheetFactory<Theme> = theme => ({
+const styleSheet: ThemeStyleSheetFactory = theme => ({
   button: {
     color: theme.colors.primary,
     cursor: "pointer",
@@ -55,4 +58,4 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
 // >((props: any, ref) => <BaseButton wrappedRef={ref} {...props} />);
 // ForwardedButton.displayName = "BaseButton";
 
-export default withStyles(styleSheet, { extendable: true })(BaseButton);
+export default withStyles(styleSheet)(BaseButton);

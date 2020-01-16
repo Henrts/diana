@@ -16,7 +16,7 @@
     "build-storybook": "build-storybook -s public",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "prettier": "prettier '**/*.{js,jsx,tx,tsx,json,md,scss,yaml,yml}' --write"
+    "prettier": "prettier '**/*.{js,jsx,tx,tsx,json,md,scss,yaml,yml,mdx}' --write"
   },
   "lint-staged": {
     "*.{js,jsx,tx,tsx}": [
@@ -49,8 +49,10 @@
     "awesome-typescript-loader": "^5.2.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^6.3.1",
+    "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-mdx": "^1.6.5",
     "eslint-plugin-react": "^7.15.1",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.1.0",
@@ -85,7 +87,7 @@
     "babel-runtime": "6.26.0",
     "extend": "^3.0.2",
     "hoist-non-react-statics": "^3.3.1",
-    "prettier": "^1.19.1",
+    "prettier": "prettier/prettier",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-svg": "^11.0.5",

@@ -1,9 +1,7 @@
 import React from "react";
-import { StyleSheetFactory } from "aesthetic";
-import { Theme } from "../../types";
-import { useStyles, useTheme } from "aesthetic-react";
+import { ThemeStyleSheetFactory } from "../../types";
+import { useStyles, useTheme } from "../../base";
 import { H3 } from "../Typography/Typography";
-import { defaultPalette } from "../../tokens";
 
 export const Colors = () => {
   const theme = useTheme();
@@ -32,7 +30,7 @@ export const Colors = () => {
   );
 };
 
-const styleSheet: StyleSheetFactory<Theme> = theme => {
+const styleSheet: ThemeStyleSheetFactory = theme => {
   let res: any = {};
   Object.keys(theme.colors).map((key: string) => {
     const t: any = theme.colors;

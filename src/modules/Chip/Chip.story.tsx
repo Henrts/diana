@@ -1,12 +1,11 @@
 import React from "react";
-import { Theme } from "../../types";
+import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
 import { Icon } from "../Icon";
-import { StyleSheetFactory } from "aesthetic";
-import { useStyles } from "aesthetic-react";
-import CloseableChip, { CloseableChipStyle } from "./CloseableChip";
+import { useStyles } from "../../base";
+import CloseableChip from "./CloseableChip";
 import { IProps as CloseableChipProps } from "./CloseableChip";
 
-const styleSheet: StyleSheetFactory<Theme> = theme => ({
+const styleSheet: ThemeStyleSheetFactory = theme => ({
   iconLeft: {
     marginRight: "8px"
   },
@@ -34,24 +33,23 @@ export const ChipIcon: React.FC<{ name: string; type: "left" | "right" }> = ({
 };
 
 const DerivedChip = CloseableChip.extendStyles(() => ({
-    chip: {
-        borderColor: "red",
-        backgroundColor: "blue"
-    },
-  text: {
-    color:"white",
-    fontSize:30
+  chip: {
+    borderColor: "red",
+    backgroundColor: "blue"
   },
-    deleteIcon: {
-        ":hover": {
-            backgroundColor: "steelblue"
-        }
+  text: {
+    color: "white",
+    fontSize: 30
+  },
+  deleteIcon: {
+    ":hover": {
+      backgroundColor: "steelblue"
     }
+  }
 }));
 
-export const DerivedCloseableChip: React.FC<CloseableChipProps> = ({
-  onClose,
-  ...props
-}) => {
+export const DerivedCloseableChip: React.FC<
+  CloseableChipProps & WithStylesProps
+> = ({ onClose, ...props }) => {
   return <DerivedChip onClose={onClose} {...props} />;
 };

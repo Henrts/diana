@@ -1,4 +1,4 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import { H3 } from "../Typography/Typography";
 import { DerivedButton } from "./Button.story";
 import BaseButton from "./BaseButton";
@@ -7,16 +7,15 @@ import BaseButton from "./BaseButton";
 
 # Button
 
-Base Button is used to derive the App Button variants.  
+Base Button is used to derive the App Button variants.
 
-### API 
+### API
 
 <Preview>
   <Story name="BaseButton">
     <BaseButton onClick={() => console.log("Was clicked")}>Button</BaseButton>
   </Story>
 </Preview>
-
 
 ### Building a new Button
 
@@ -32,6 +31,7 @@ const DerivedButton = BaseButton.extendStyles((theme) => ({
   }
 });
 ```
+
 Available styles to extend:
 
 <table width="100%">
@@ -62,20 +62,24 @@ Available styles to extend:
 Advanced Button customization is also available using props like `renderIconLeft`; In this example, we use this prop to build a Button with a Icon left of the Button text.
 
 ```javascript
-
-const DerivedButton: React.FC = ({ children, ...props}) => {
-    const AlteredBaseButton = BaseButton.extendStyles((theme: Theme) => ({
-        button: {
-            backgroundColor: "steelblue",
-            color: "white",
-            padding: "24px",
-            borderRadius: "10px"
-        }
-    }))
-    const renderLeftIcon = () => <Icon stroke="white" size={10} name="add" />;
-    return <AlteredBaseButton renderLeftIcon={renderLeftIcon} {...props}>{children}</AlteredBaseButton>
-}
+const DerivedButton: React.FC = ({ children, ...props }) => {
+  const AlteredBaseButton = BaseButton.extendStyles((theme: Theme) => ({
+    button: {
+      backgroundColor: "steelblue",
+      color: "white",
+      padding: "24px",
+      borderRadius: "10px"
+    }
+  }));
+  const renderLeftIcon = () => <Icon stroke="white" size={10} name="add" />;
+  return (
+    <AlteredBaseButton renderLeftIcon={renderLeftIcon} {...props}>
+      {children}
+    </AlteredBaseButton>
+  );
+};
 ```
+
 The resulting Component `DerivedButton` can be used as a normal extended button:
 
 <Preview>
