@@ -1,9 +1,9 @@
 import React from "react";
 import {
   WithStylesWrappedProps,
-  WithStylesWrapperProps,
   WithThemeWrappedProps,
   WithThemeWrapperProps,
+  WithStylesWrapperProps as AesWithStylesWrapperProps,
   WithStylesOptions as AesWithStylesOptions
 } from "aesthetic-react";
 import {
@@ -27,7 +27,7 @@ export type Theme = {
     [key: string]: string;
   };
   spacing: {
-    [key: string]: {top: string; left: string};
+    [key: string]: { top: string; left: string };
   };
   icons: string[];
 };
@@ -46,6 +46,8 @@ export type WithStylesProps = WithStylesWrappedProps<Theme> &
   WithStylesWrapperProps;
 export type WithThemeProps = WithThemeWrappedProps<Theme> &
   WithThemeWrapperProps;
+
+export type WithStylesWrapperProps = AesWithStylesWrapperProps;
 
 export type StandardProps<
   C extends keyof JSX.IntrinsicElements

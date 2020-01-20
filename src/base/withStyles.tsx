@@ -7,7 +7,8 @@ import { StyledComponent } from "aesthetic-react";
 import {
   ThemeStyleSheetFactory,
   WithStylesProps,
-  WithStylesOptions
+  WithStylesOptions,
+  WithStylesWrapperProps
 } from "../types";
 import useStyles from "./useStyles";
 
@@ -32,7 +33,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
       Props & WithStylesProps & { parentStylesheet?: typeof styleSheet }
     >
   ): StyledComponent<
-    Props & WithStylesProps & { parentStylesheet?: typeof styleSheet }
+    Props & WithStylesWrapperProps & { parentStylesheet?: typeof styleSheet }
   > {
     const baseName = WrappedComponent.displayName || WrappedComponent.name;
     const styleName = `${baseName}-${uuid()}`;
@@ -71,7 +72,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
       extraProps.parentStylesheet = styleSheet;
       return <WrappedComponent {...props} {...extraProps} />;
     }) as StyledComponent<
-      Props & WithStylesProps & { parentStylesheet?: typeof styleSheet }
+      Props & WithStylesWrapperProps & { parentStylesheet?: typeof styleSheet }
     >;
 
     hoistNonReactStatics(WithStyles, WrappedComponent);

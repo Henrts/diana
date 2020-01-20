@@ -24,12 +24,5 @@ export const DerivedButton: React.FC = ({ ...props }) => {
   const renderLeftIcon = () => (
     <Icon stroke="white" size={20} name="add" className={cx(styles.icon)} />
   );
-  return (
-    <AlteredBaseButton
-      renderLeftIcon={renderLeftIcon}
-      cx={cx}
-      styles={styles}
-      {...props}
-    />
-  );
+  return <AlteredBaseButton renderLeftIcon={renderLeftIcon} {...props} />;
 };

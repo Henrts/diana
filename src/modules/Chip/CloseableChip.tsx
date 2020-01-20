@@ -35,8 +35,6 @@ const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
   return (
     <CloseableChipStyle
       {...props}
-      cx={cx}
-      styles={styles}
       renderRightIcon={() => (
         <div
           onClick={e => {
