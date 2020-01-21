@@ -1,0 +1,35 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import TextInput from "./TextInput";
+
+<Meta title="Components| Text Input" />
+
+# Text Input
+
+<Preview>
+    <Story name="API">
+        <TextInput />
+    </Story>
+</Preview> 
+
+
+### With Label
+<Preview>
+    <Story name="With Label">
+        <TextInput label="User Input"/>
+    </Story>
+</Preview> 
+
+### With Error
+
+<Preview>
+    <Story name="With Error">
+        <TextInput label="User Input" error />
+    </Story>
+</Preview> 
+
+### Error With Text
+<Preview>
+    <Story name="With Error Text">
+        <TextInput label="User Input" error="Input has error"/>
+    </Story>
+</Preview> 
