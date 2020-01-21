@@ -5,18 +5,10 @@ import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "../../ty
 
 const stylesheet: ThemeStyleSheetFactory = (theme) => ({
     fieldset: {
-        borderRadius: "5px",
-        border: "1px solid #ccc",
         position: "relative",
         height: 38,
         display: "flex",
         padding: "2px 8px",
-        ":hover": {
-            borderColor: "black"
-        }
-    },
-    fieldsetFocus: {
-        borderColor: "black"
     },
     fieldsetError: {
         borderColor: theme.colors.alert.alert100
@@ -30,14 +22,20 @@ const stylesheet: ThemeStyleSheetFactory = (theme) => ({
         height: 35,
         flex: 1,
     },
+    labelContainer: {
+        position: "absolute",
+        top: "0px",
+        left: "4px",
+        height: "40px",
+        pointerEvents: "none",
+        display: "flex",
+        alignItems: "center"
+    },
     label: {
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        position: "absolute",
-        fontFamily: theme.fontFamily,
-        top: "13px",
-        left: "8px",
+        ...theme.fonts.label,
         color: "#808080",
         padding: "0px 4px",
         transition: "transform 0.1s, font-size 0.1s",
@@ -45,7 +43,11 @@ const stylesheet: ThemeStyleSheetFactory = (theme) => ({
         pointerEvents: "none"
     },
     labelActive: {
-        transform: "translate(0px, -20px)",
+        transform: "translate(2px, -20px)",
+        fontSize: "12px"
+    },
+    labelFocus: {
+        transform: "translate(2px, -20px)",
         fontSize: "12px"
     },
     hiddenLabel: {
@@ -62,59 +64,59 @@ const stylesheet: ThemeStyleSheetFactory = (theme) => ({
         ...theme.fonts.label,
         textAlign: "left", 
         opacity: 0,
-        transition: "width 0.1s",
+        transition: "width 0.15s",
         lineHeight: "11px",
         height: 0
     },
     legendActive: {
-        padding: "0 4px"                    
+        padding: "0 2px"                    
     },
-    error: {
-        borderColor: theme.colors.alert.alert100
+    legendFocus: {
+        padding: "0 2px"                    
     },
-    errorLabel: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-end",
-        color: theme.colors.alert.alert100,
-        ...theme.fonts.label
-    }
+    
 })
-export interface IProps extends StandardProps<"input"> {
+export interface ITextInputProps extends StandardProps<"input"> {
     label?: string;
-    error?: string | boolean;
+    hasError?: boolean;
 }
-
-export const TextInput = forwardRef<HTMLInputElement, IProps & WithStylesProps>(({ styles, cx, label, onChange, error, ...props }, ref) => {
+export const TextInput = forwardRef<HTMLInputElement, ITextInputProps & WithStylesProps>(({ styles, cx, hasError, label, onChange, disabled, ...props }, ref) => {
     
     const [isFocused, setIsFocused] = useState(false);
     const [hasContent, setHasContent] = useState(false);
     const [legendWidth, setLegendWidth] = useState(0);
-    const hiddenLabel: any = useRef(null); 
-    // const [styles, cx] = useStyles(stylesheet);
+    const hiddenLabel: any = useRef(null);
 
     useEffect(() => {
         const labelNode: any = ReactDOM.findDOMNode(hiddenLabel.current);
         setLegendWidth(labelNode != null ? labelNode.offsetWidth : 0);
     }, [hiddenLabel]);
     return (
-        <div >
-            <fieldset className={cx(styles.fieldset, isFocused && styles.fieldsetFocus, error && styles.fieldsetError)}>
-                <legend className={cx(styles.legend, (isFocused || hasContent) && label && styles.legendActive, (isFocused || hasContent) && {
-                    width: legendWidth
-                })}>{label}</legend>
-                {label && <span ref={hiddenLabel} className={cx(styles.hiddenLabel)}>{label}</span>}
-                {label && <span className={cx(styles.label, (isFocused || hasContent) && styles.labelActive )}>{label}</span>}
-                <input {...props} ref={ref} className={cx(styles.input)} 
-                onChange={(e): void=> {
-                    if(onChange) {
-                        onChange(e);
-                    }
-                    setHasContent(e.target.value.length > 0)
-                }} onBlur={(): void => setIsFocused(false)} onFocus={(): void => setIsFocused(true)} />
-            </fieldset>
-            {error && typeof error === "string" && <div className={cx(styles.errorLabel)}>{error}</div>}
-        </div>
+        <fieldset className={cx(styles.fieldset, isFocused && styles.fieldsetFocus, hasError && styles.fieldsetError, disabled && styles.fieldsetDisabled)}>
+            <legend className={cx(styles.legend, isFocused && label && styles.legendFocus, hasContent && label && styles.legendActive, 
+            isFocused && {
+                width: legendWidth
+            }, hasContent && {
+                width: legendWidth
+            }, disabled && styles.legendDisabled)}>{label}</legend>
+            {label && <span ref={hiddenLabel} className={cx(styles.hiddenLabel)}>{label}</span>}
+            {label && <div className={cx(styles.labelContainer)}>
+                <span className={cx(styles.label, 
+                    isFocused && styles.labelFocus,
+                    hasContent && styles.labelActive,
+                    hasError && styles.legendError,
+                    disabled && styles.legendDisabled)}>
+                        {label}
+                    </span>
+            </div>}
+            <input {...props} disabled={disabled} ref={ref} className={cx(styles.input)} 
+            onChange={(e): void=> {
+                if(onChange) {
+                    onChange(e);
+                }
+                setHasContent(e.target.value.length > 0)
+            }} onBlur={(): void => setIsFocused(false)} onFocus={(): void => setIsFocused(true)} />
+        </fieldset>
     )
 })
 export default withStyles(stylesheet)(TextInput);
