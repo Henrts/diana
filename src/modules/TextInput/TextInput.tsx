@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useRef, useEffect } from "react";
+import React, { useState, forwardRef, useRef, useEffect, PropsWithChildren } from "react";
 import { useStyles, withStyles } from "../../base";
 import ReactDOM from 'react-dom';
 import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "../../types";
@@ -80,7 +80,7 @@ export interface ITextInputProps extends StandardProps<"input"> {
     label?: string;
     hasError?: boolean;
 }
-export const TextInput = forwardRef<HTMLInputElement, ITextInputProps & WithStylesProps>(({ styles, cx, hasError, label, onChange, disabled, ...props }, ref) => {
+export const TextInput: React.FC<PropsWithChildren<ITextInputProps & WithStylesProps>> = (({ styles, wrappedRef, cx, hasError, label, onChange, disabled, ...props }) => {
     
     const [isFocused, setIsFocused] = useState(false);
     const [hasContent, setHasContent] = useState(false);
@@ -91,6 +91,8 @@ export const TextInput = forwardRef<HTMLInputElement, ITextInputProps & WithStyl
         const labelNode: any = ReactDOM.findDOMNode(hiddenLabel.current);
         setLegendWidth(labelNode != null ? labelNode.offsetWidth : 0);
     }, [hiddenLabel]);
+    
+    const inputRef = useRef<HTMLInputElement>(null);
     return (
         <fieldset className={cx(styles.fieldset, isFocused && styles.fieldsetFocus, hasError && styles.fieldsetError, disabled && styles.fieldsetDisabled)}>
             <legend className={cx(styles.legend, isFocused && label && styles.legendFocus, hasContent && label && styles.legendActive, 
@@ -109,7 +111,7 @@ export const TextInput = forwardRef<HTMLInputElement, ITextInputProps & WithStyl
                         {label}
                     </span>
             </div>}
-            <input {...props} disabled={disabled} ref={ref} className={cx(styles.input)} 
+            <input {...props} disabled={disabled} ref={inputRef} className={cx(styles.input)} 
             onChange={(e): void=> {
                 if(onChange) {
                     onChange(e);

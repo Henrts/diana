@@ -25,7 +25,7 @@ export interface IProps extends ITextInputProps {
 const ExtendedTextInput = TextInput.extendStyles(stylesheet);
 export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({ cx, styles, error, ...props}) => {
     return <div>
-        <ExtendedTextInput {...props} cx={cx} styles={styles} hasError={error !== null} />
+        <ExtendedTextInput {...props} hasError={error !== null} />
         {error && typeof error === "string" && <div className={cx(styles.errorLabel)}>{error}</div>}
     </div>
 }

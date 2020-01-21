@@ -46,3 +46,7 @@ export const TextInputLabelToOutside = TextInput.extendStyles((theme: Theme) => 
         ...theme.fonts.label,
     }
 }));
+
+export const TextInputStory = () => {
+    return <TextInput label="label" />
+}
