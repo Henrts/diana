@@ -4,18 +4,15 @@ import React, {
   useImperativeHandle,
   useState,
   useRef,
-  PropsWithChildren,
-  ComponentPropsWithRef,
-  PropsWithRef
+  PropsWithChildren
 } from "react";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
 import { withStyles } from "../../base";
-import { StyledComponent } from "aesthetic-react";
 
 type Direction = "bottom" | "left" | "right" | "top";
 
-interface IProps {
+export interface IProps {
   header?: React.ReactNode;
   direction?: Direction;
   dismissOnClick?: boolean;
@@ -57,10 +54,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   }
 });
 
-const Popover: React.RefForwardingComponent<
-  IPopoverRef,
-  PropsWithChildren<IProps & WithStylesProps>
-> = ({
+const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   direction = "bottom",
   dismissOnClick = true,
   children,
@@ -115,15 +109,5 @@ const Popover: React.RefForwardingComponent<
 };
 
 const StyledPopover = withStyles(styleSheet)(Popover);
-
-const ForwardedPopover = forwardRef<
-  IPopoverRef,
-  PropsWithRef<PropsWithChildren<IProps>>
->((props, ref) => (
-  <StyledPopover {...props} wrappedRef={ref} />
-)) as StyledComponent<
-  PropsWithChildren<IProps & { ref: React.Ref<IPopoverRef> }>
->;
-ForwardedPopover.displayName = "Popover";
 
 export default StyledPopover;
