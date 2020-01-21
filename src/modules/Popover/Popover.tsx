@@ -4,11 +4,14 @@ import React, {
   useImperativeHandle,
   useState,
   useRef,
-  PropsWithChildren
+  PropsWithChildren,
+  ComponentPropsWithRef,
+  PropsWithRef
 } from "react";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
-import { ThemeStyleSheetFactory } from "../../types";
-import { useStyles } from "../../base";
+import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
+import { withStyles } from "../../base";
+import { StyledComponent } from "aesthetic-react";
 
 type Direction = "bottom" | "left" | "right" | "top";
 
@@ -20,7 +23,7 @@ interface IProps {
   onHide?: () => void;
 }
 
-export interface IHandle {
+export interface IPopoverRef {
   show: () => void;
   hide: () => void;
   toggle: () => void;
@@ -54,21 +57,20 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   }
 });
 
-export const Popover: React.RefForwardingComponent<
-  IHandle,
-  PropsWithChildren<IProps>
-> = (
-  {
-    direction = "bottom",
-    dismissOnClick = true,
-    children,
-    header,
-    onShow,
-    onHide
-  },
-  ref
-) => {
-  const [styles, cx] = useStyles(styleSheet);
+const Popover: React.RefForwardingComponent<
+  IPopoverRef,
+  PropsWithChildren<IProps & WithStylesProps>
+> = ({
+  direction = "bottom",
+  dismissOnClick = true,
+  children,
+  header,
+  onShow,
+  onHide,
+  cx,
+  styles,
+  wrappedRef
+}) => {
   const [visible, _setVisible] = useState(false);
   const setVisible = useCallback(
     (newVisible: boolean) => {
@@ -87,8 +89,7 @@ export const Popover: React.RefForwardingComponent<
     visible,
     setVisible
   ]);
-
-  useImperativeHandle<IHandle, IHandle>(ref, () => ({
+  useImperativeHandle<IPopoverRef, IPopoverRef>(wrappedRef, () => ({
     show: () => setVisible(true),
     hide: () => setVisible(false),
     toggle: () => toggleVisible()
@@ -105,13 +106,24 @@ export const Popover: React.RefForwardingComponent<
         {header}
       </div>
       {visible && (
-        <div className={cx(styles.popover, styles[direction])}>{children}</div>
+        <div className={cx(styles.popover, styles[direction])}>
+          {children}AA
+        </div>
       )}
     </div>
   );
 };
 
-const ForwardedButton = forwardRef<IHandle, PropsWithChildren<IProps>>(Popover);
-ForwardedButton.displayName = "Popover";
+const StyledPopover = withStyles(styleSheet)(Popover);
 
-export default ForwardedButton;
+const ForwardedPopover = forwardRef<
+  IPopoverRef,
+  PropsWithRef<PropsWithChildren<IProps>>
+>((props, ref) => (
+  <StyledPopover {...props} wrappedRef={ref} />
+)) as StyledComponent<
+  PropsWithChildren<IProps & { ref: React.Ref<IPopoverRef> }>
+>;
+ForwardedPopover.displayName = "Popover";
+
+export default StyledPopover;

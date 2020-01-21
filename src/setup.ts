@@ -3,11 +3,12 @@ import AphroditeAdapter from "aesthetic-adapter-aphrodite";
 import { defaultTheme } from "./tokens/themes";
 
 export function initDefaultTheme() {
-  aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
-    "@global": {},
-    "@font-face": theme.fonts
-  }));
-
+  if (!aesthetic.themes[defaultTheme.name]) {
+    aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
+      "@global": {},
+      "@font-face": theme.fonts
+    }));
+  }
   aesthetic.configure({
     adapter: new AphroditeAdapter(),
     theme: defaultTheme.name,

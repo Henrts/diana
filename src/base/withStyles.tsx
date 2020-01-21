@@ -61,8 +61,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         parentStylesheet?: typeof styleSheet;
       } = {
         [cxPropName as "cx"]: cx,
-        [stylesPropName as "styles"]: styles,
-        ref: props.wrappedRef
+        [stylesPropName as "styles"]: styles
       };
 
       if (passThemeProp) {
