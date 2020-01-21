@@ -119,3 +119,4 @@ export const TextInput = forwardRef<HTMLInputElement, IProps>(({ label, onChange
         </div>
     )
 })
+export default TextInput;
