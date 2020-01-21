@@ -1,6 +1,13 @@
 {
-  "name": "ydesign",
-  "version": "1.0.0",
+  "name": "@Henrts/ydesign",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Henrts/y-design"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "version": "1.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
