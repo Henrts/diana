@@ -21,7 +21,9 @@ export type Theme = {
   };
   fontFamily: string;
   fonts: {
-    [key: string]: {};
+    [key: string]: {
+      fontSize: string
+    };
   };
   spaceUnit: {
     [key: string]: string;

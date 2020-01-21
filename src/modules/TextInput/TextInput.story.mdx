@@ -1,5 +1,6 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import TextInput from "./TextInput";
+import SimpleTextInput from "./SimpleTextInput"; 
 
 <Meta title="Components| Text Input" />
 
@@ -10,6 +11,21 @@ import TextInput from "./TextInput";
         <TextInput />
     </Story>
 </Preview> 
+
+### Without border
+<Preview>
+    <Story name="Without border">
+        <SimpleTextInput />
+    </Story>
+</Preview>
+
+<Preview>
+    <Story name="Without border and label">
+        <SimpleTextInput label="Label" />
+    </Story>
+</Preview> 
+
+
 
 
 ### With Label

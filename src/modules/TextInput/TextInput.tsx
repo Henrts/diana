@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, useRef, useEffect } from "react";
-import { useStyles } from "../../base";
+import { useStyles, withStyles } from "../../base";
 import ReactDOM from 'react-dom';
-import { ThemeStyleSheetFactory } from "../../types";
+import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "../../types";
 
 const stylesheet: ThemeStyleSheetFactory = (theme) => ({
     fieldset: {
@@ -59,7 +59,7 @@ const stylesheet: ThemeStyleSheetFactory = (theme) => ({
         width: "0",
         pointerEvents: "none",
         padding: "0px",
-        fontFamily: theme.fontFamily,
+        ...theme.fonts.label,
         textAlign: "left", 
         opacity: 0,
         transition: "width 0.1s",
@@ -76,24 +76,22 @@ const stylesheet: ThemeStyleSheetFactory = (theme) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-end",
-        fontSize: "12px", /* TODO change this to typography */
         color: theme.colors.alert.alert100,
-        fontFamily: theme.fontFamily
+        ...theme.fonts.label
     }
 })
-interface IProps {
+export interface IProps extends StandardProps<"input"> {
     label?: string;
     error?: string | boolean;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const TextInput = forwardRef<HTMLInputElement, IProps>(({ label, onChange, error }, ref) => {
+export const TextInput = forwardRef<HTMLInputElement, IProps & WithStylesProps>(({ styles, cx, label, onChange, error, ...props }, ref) => {
     
     const [isFocused, setIsFocused] = useState(false);
     const [hasContent, setHasContent] = useState(false);
     const [legendWidth, setLegendWidth] = useState(0);
-    const hiddenLabel: any = useRef(null);
-    const [styles, cx] = useStyles(stylesheet);
+    const hiddenLabel: any = useRef(null); 
+    // const [styles, cx] = useStyles(stylesheet);
 
     useEffect(() => {
         const labelNode: any = ReactDOM.findDOMNode(hiddenLabel.current);
@@ -107,7 +105,7 @@ export const TextInput = forwardRef<HTMLInputElement, IProps>(({ label, onChange
                 })}>{label}</legend>
                 {label && <span ref={hiddenLabel} className={cx(styles.hiddenLabel)}>{label}</span>}
                 {label && <span className={cx(styles.label, (isFocused || hasContent) && styles.labelActive )}>{label}</span>}
-                <input ref={ref} className={cx(styles.input)} 
+                <input {...props} ref={ref} className={cx(styles.input)} 
                 onChange={(e): void=> {
                     if(onChange) {
                         onChange(e);
@@ -119,4 +117,4 @@ export const TextInput = forwardRef<HTMLInputElement, IProps>(({ label, onChange
         </div>
     )
 })
-export default TextInput;
+export default withStyles(stylesheet)(TextInput);
