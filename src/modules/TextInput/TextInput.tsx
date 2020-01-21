@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, forwardRef, useRef, useEffect } from "react";
 import { useStyles } from "../../base";
 import ReactDOM from 'react-dom';
 import { ThemeStyleSheetFactory } from "../../types";
@@ -84,9 +84,10 @@ const stylesheet: ThemeStyleSheetFactory = (theme) => ({
 interface IProps {
     label?: string;
     error?: string | boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-export const TextInput: React.FC<IProps> = ({ label, onChange, error }) => {
+
+export const TextInput = forwardRef<HTMLInputElement, IProps>(({ label, onChange, error }, ref) => {
     
     const [isFocused, setIsFocused] = useState(false);
     const [hasContent, setHasContent] = useState(false);
@@ -106,7 +107,7 @@ export const TextInput: React.FC<IProps> = ({ label, onChange, error }) => {
                 })}>{label}</legend>
                 {label && <span ref={hiddenLabel} className={cx(styles.hiddenLabel)}>{label}</span>}
                 {label && <span className={cx(styles.label, (isFocused || hasContent) && styles.labelActive )}>{label}</span>}
-                <input className={cx(styles.input)} 
+                <input ref={ref} className={cx(styles.input)} 
                 onChange={(e): void=> {
                     if(onChange) {
                         onChange(e);
@@ -117,5 +118,4 @@ export const TextInput: React.FC<IProps> = ({ label, onChange, error }) => {
             {error && typeof error === "string" && <div className={cx(styles.errorLabel)}>{error}</div>}
         </div>
     )
-}
-export default TextInput;
+})
