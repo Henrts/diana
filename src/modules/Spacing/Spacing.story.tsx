@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeStyleSheetFactory } from "../../types";
+import {ISpaceUnit, ThemeStyleSheetFactory} from "../../types";
 import { useTheme } from "../../base";
 
 export const Spacing = () => {
@@ -64,7 +64,7 @@ interface IProps {
 }
 export const SpacingDiv: React.FC<IProps> = ({ margin, children }) => {
   const theme = useTheme();
-  const spac = theme.spaceUnit[margin.slice(7)];
+  const spac = theme.spaceUnit[margin.slice(7) as keyof ISpaceUnit];
   const numSpac = +spac.split("px")[0];
   return numSpac > 20 ? (
     <div style={{ boxShadow: `inset 0 0 0 ${spac} steelblue` }}>

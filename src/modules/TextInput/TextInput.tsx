@@ -1,14 +1,14 @@
 import React, { useState, forwardRef, useRef, useEffect, PropsWithChildren } from "react";
-import { useStyles, withStyles } from "../../base";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
+import { withStyles } from "../../base";
 import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "../../types";
 
-const stylesheet: ThemeStyleSheetFactory = (theme) => ({
+const stylesheet: ThemeStyleSheetFactory = theme => ({
     fieldset: {
         position: "relative",
         height: 38,
         display: "flex",
-        padding: "2px 8px",
+        padding: "2px 8px"
     },
     fieldsetError: {
         borderColor: theme.colors.alert.alert100
@@ -20,7 +20,7 @@ const stylesheet: ThemeStyleSheetFactory = (theme) => ({
         width: "100%",
         fontSize: 18, /* TODO change this to typography */
         height: 35,
-        flex: 1,
+        flex: 1
     },
     labelContainer: {
         position: "absolute",
@@ -62,19 +62,19 @@ const stylesheet: ThemeStyleSheetFactory = (theme) => ({
         pointerEvents: "none",
         padding: "0px",
         ...theme.fonts.label,
-        textAlign: "left", 
+        textAlign: "left",
         opacity: 0,
         transition: "width 0.15s",
         lineHeight: "11px",
         height: 0
     },
     legendActive: {
-        padding: "0 2px"                    
+        padding: "0 2px"
     },
     legendFocus: {
-        padding: "0 2px"                    
-    },
-    
+        padding: "0 2px"
+    }
+
 })
 export interface ITextInputProps extends StandardProps<"input"> {
     label?: string;
@@ -95,7 +95,7 @@ export const TextInput: React.FC<PropsWithChildren<ITextInputProps & WithStylesP
     const inputRef = useRef<HTMLInputElement>(null);
     return (
         <fieldset className={cx(styles.fieldset, isFocused && styles.fieldsetFocus, hasError && styles.fieldsetError, disabled && styles.fieldsetDisabled)}>
-            <legend className={cx(styles.legend, isFocused && label && styles.legendFocus, hasContent && label && styles.legendActive, 
+            <legend className={cx(styles.legend, isFocused && label && styles.legendFocus, hasContent && label && styles.legendActive,
             isFocused && {
                 width: legendWidth
             }, hasContent && {
@@ -103,7 +103,7 @@ export const TextInput: React.FC<PropsWithChildren<ITextInputProps & WithStylesP
             }, disabled && styles.legendDisabled)}>{label}</legend>
             {label && <span ref={hiddenLabel} className={cx(styles.hiddenLabel)}>{label}</span>}
             {label && <div className={cx(styles.labelContainer)}>
-                <span className={cx(styles.label, 
+                <span className={cx(styles.label,
                     isFocused && styles.labelFocus,
                     hasContent && styles.labelActive,
                     hasError && styles.legendError,

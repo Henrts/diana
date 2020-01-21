@@ -12,6 +12,33 @@ import {
 } from "aesthetic";
 import { defaultPalette } from "./tokens";
 
+interface IFont {
+    fontSize: string | number,
+    fontWeight: 400 | 500 | 700,
+    lineHeight: string | number,
+    fontFamily: string,
+    marginBlockStart?: number,
+    marginBlockEnd?: number
+}
+export interface IFonts {
+  h1: IFont;
+  h2: IFont;
+  h3: IFont;
+  buttonText: IFont;
+  bodyText: IFont;
+  descriptionMedium: IFont;
+  label: IFont;
+}
+export interface ISpaceUnit {
+  xxs: string,
+  xs: string,
+  sm: string,
+  md: string,
+  lg: string,
+  xl: string,
+  xxl: string
+}
+
 export type Theme = {
   colors: typeof defaultPalette;
   typography: {
@@ -20,14 +47,8 @@ export type Theme = {
     };
   };
   fontFamily: string;
-  fonts: {
-    [key: string]: {
-      fontSize: string
-    };
-  };
-  spaceUnit: {
-    [key: string]: string;
-  };
+  fonts: IFonts;
+  spaceUnit: ISpaceUnit;
   spacing: {
     [key: string]: { top: string; left: string };
   };

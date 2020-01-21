@@ -28,14 +28,15 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 const BaseButton: React.FC<IProps & WithStylesProps> = ({
   styles,
   cx,
-  disabled,
   danger,
   children,
   renderLeftIcon,
   renderRightIcon,
   wrappedRef,
+  parentStylesheet,
   ...props
 }) => {
+  const {disabled} = props;
   const styleArray = [danger && styles.danger, disabled && styles.disabled];
 
   return (

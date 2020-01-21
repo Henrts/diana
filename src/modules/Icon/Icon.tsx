@@ -12,12 +12,14 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   }
 });
 
+export type IconNames = "add" | "arrow" | "arrow-down" | "check";
+
 export interface IIconProps extends StandardProps<"svg"> {
-  name: string;
+  name: IconNames;
   src?: string;
   size?: number;
 }
-export const Icon: React.FC<IIconProps> = ({
+const Icon: React.FC<IIconProps> = ({
   name,
   height,
   width,
@@ -36,6 +38,8 @@ export const Icon: React.FC<IIconProps> = ({
       className={cx(styles.icon, className)}
       beforeInjection={svg => {
         svg.setAttribute("class", "y-icon");
+        svg.setAttribute("fill", "inherit");
+        svg.setAttribute("stroke", "inherit");
         if (size) {
           svg.setAttribute("height", size.toString());
           svg.setAttribute("width", size.toString());

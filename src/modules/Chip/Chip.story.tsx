@@ -4,6 +4,7 @@ import { Icon } from "../Icon";
 import { useStyles } from "../../base";
 import CloseableChip from "./CloseableChip";
 import { IProps as CloseableChipProps } from "./CloseableChip";
+import {IconNames} from "../Icon/Icon";
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   iconLeft: {
@@ -13,7 +14,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     marginLeft: "8px"
   }
 });
-export const ChipIcon: React.FC<{ name: string; type: "left" | "right" }> = ({
+export const ChipIcon: React.FC<{ name: IconNames, type: "left" | "right" }> = ({
   children,
   type,
   name,

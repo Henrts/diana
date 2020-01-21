@@ -1,7 +1,7 @@
 import React from "react";
 import TextInput, { ITextInputProps } from "./TextInput";
-import { WithStylesProps, StyleSheetFactory, Theme, ThemeStyleSheetFactory } from "../../types";
-import { withStyles } from "aesthetic-react";
+import { WithStylesProps, Theme, ThemeStyleSheetFactory } from "../../types";
+import {withStyles} from "../../base";
 
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
