@@ -19,11 +19,11 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   input: {
     outline: "none",
     border: "none",
-    fontFamily: theme.fontFamily,
     width: "100%",
     fontSize: 18 /* TODO change this to typography */,
     height: 35,
-    flex: 1
+    flex: 1,
+    ...theme.typography.body
   },
   labelContainer: {
     position: "absolute",
@@ -38,33 +38,32 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    ...theme.fonts.label,
     color: "#808080",
     padding: "0px 4px",
     transition: "transform 0.1s, font-size 0.1s",
     transitionTimingFunction: "ease-in",
-    pointerEvents: "none"
+    pointerEvents: "none",
+    ...theme.typography.body
   },
   labelActive: {
     transform: "translate(2px, -20px)",
-    fontSize: "12px"
+    ...theme.typography.label
   },
   labelFocus: {
     transform: "translate(2px, -20px)",
-    fontSize: "12px"
+    ...theme.typography.label
   },
   hiddenLabel: {
-    fontSize: "12px" /* TODO change this to typography */,
     opacity: "0",
     position: "absolute",
     pointerEvents: "none",
-    height: "0"
+    height: "0",
+    ...theme.typography.label
   },
   legend: {
     width: "0",
     pointerEvents: "none",
     padding: "0px",
-    ...theme.fonts.label,
     textAlign: "left",
     opacity: 0,
     transition: "width 0.15s",

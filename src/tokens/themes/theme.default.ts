@@ -86,6 +86,12 @@ export default {
       fontWeight: 400,
       lineHeight: `${fontSize}px`,
       fontFamily
+    },
+    label: {
+      fontSize: "0.66rem",
+      fontWeight: 400,
+      lineHeight: "0.66rem",
+      fontFamily
     }
   }
 };
