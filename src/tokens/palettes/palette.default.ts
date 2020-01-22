@@ -4,7 +4,7 @@ export default {
   alert: {
     alert25: "#D86464",
     alert50: "#D86464",
-    alert100: "#D86464" 
+    alert100: "#D86464"
   },
   warning: {
     warning25: "#fbbc44",
