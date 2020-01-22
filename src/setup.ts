@@ -1,6 +1,7 @@
 import aesthetic from "aesthetic";
 import AphroditeAdapter from "aesthetic-adapter-aphrodite";
 import { defaultTheme } from "./tokens/themes";
+import { selfExtension } from "./base/aphroditeExtensions";
 
 export function initDefaultTheme() {
   if (!aesthetic.themes[defaultTheme.name]) {
@@ -10,7 +11,7 @@ export function initDefaultTheme() {
     }));
   }
   aesthetic.configure({
-    adapter: new AphroditeAdapter(),
+    adapter: new AphroditeAdapter([selfExtension]),
     theme: defaultTheme.name,
     rtl: false,
     extendable: true,

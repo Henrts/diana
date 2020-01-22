@@ -1,5 +1,5 @@
 import React from "react";
-import {ISpaceUnit, ThemeStyleSheetFactory} from "../../types";
+import { ISpaceUnit, ThemeStyleSheetFactory } from "../../types";
 import { useTheme } from "../../base";
 
 export const Spacing = () => {

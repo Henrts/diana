@@ -8,7 +8,7 @@ export const Colors = () => {
   const theme = useTheme();
 
   const colors: any = [];
-  Object.keys(theme.colors).map((key) => {
+  Object.keys(theme.colors).map(key => {
     colors.push(key);
   });
   return (
