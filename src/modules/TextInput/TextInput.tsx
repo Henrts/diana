@@ -16,11 +16,11 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     input: {
         outline: "none",
         border: "none",
-        fontFamily: theme.fontFamily,
         width: "100%",
         fontSize: 18, /* TODO change this to typography */
         height: 35,
-        flex: 1
+        flex: 1,
+        ...theme.typography.body
     },
     labelContainer: {
         position: "absolute",
@@ -35,12 +35,12 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        ...theme.fonts.label,
         color: "#808080",
         padding: "0px 4px",
         transition: "transform 0.1s, font-size 0.1s",
         transitionTimingFunction: "ease-in",
-        pointerEvents: "none"
+        pointerEvents: "none",
+        ...theme.typography.label
     },
     labelActive: {
         transform: "translate(2px, -20px)",
