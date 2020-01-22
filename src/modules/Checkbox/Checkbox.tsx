@@ -12,6 +12,7 @@ import {
 } from "../../types";
 import { withStyles } from "../../base";
 import { Icon } from "../Icon";
+import { Text } from "../Typography";
 
 export interface ICheckboxRef {
   isChecked: boolean;
@@ -30,30 +31,33 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     userSelect: "none",
     cursor: "pointer",
     "@selectors": {
-      ":hover .y-checkbox-icon:not(.icon-disabled):not(.icon-checked):not(.icon-show-as-checked)": {
+      ":hover .icon:not(.disabled):not(.checked):not(.show-as-checked)": {
         opacity: 1,
         fill: theme.colors.grey.grey100
+      },
+      "&.disabled": {
+        cursor: "initial"
       }
     }
   },
-  checkboxText: {
-    ...theme.fonts.bodyText
-  },
+  checkboxText: {},
   icon: {
     opacity: 0,
     fill: theme.colors.black,
-    transition: "0.3s fill, 0.3s opacity"
-  },
-  iconDisabled: {
-    fill: theme.colors.grey.grey100
-  },
-  iconChecked: {
-    opacity: 1,
-    fill: theme.colors.white
-  },
-  iconShowAsChecked: {
-    opacity: 1,
-    fill: theme.colors.black
+    transition: "0.3s fill, 0.3s opacity",
+    "@selectors": {
+      "&.disabled": {
+        fill: theme.colors.grey.grey100
+      },
+      "&.checked": {
+        opacity: 1,
+        fill: theme.colors.white
+      },
+      "&.show-as-checked": {
+        opacity: 1,
+        fill: theme.colors.black
+      }
+    }
   },
   iconContainer: {
     width: theme.spaceUnit.md,
@@ -68,16 +72,18 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     marginRight: theme.spaceUnit.xs,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
-  },
-  iconContainerDisabled: {
-    backgroundColor: theme.colors.grey.grey25,
-    borderColor: theme.colors.grey.grey100
-  },
-  iconContainerChecked: {
-    backgroundColor: theme.colors.black
-  },
-  iconContainerShowAsChecked: {}
+    justifyContent: "center",
+    "@selectors": {
+      "&.disabled": {
+        backgroundColor: theme.colors.grey.grey25,
+        borderColor: theme.colors.grey.grey100
+      },
+      "&.checked": {
+        backgroundColor: theme.colors.black
+      },
+      "&.show-as-checked": {}
+    }
+  }
 });
 
 const Checkbox: React.FC<IProps & WithStylesProps> = ({
@@ -95,19 +101,23 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
   const { disabled } = props;
   const [checkedState, setCheckedState] = useState(!!checked);
 
+  const containerStyle = cx(
+    styles.container,
+    disabled && "disabled"
+  )
   const iconContainerStyle = cx(
     styles.iconContainer,
-    showAsChecked && styles.iconContainerShowAsChecked,
-    checkedState && styles.iconContainerChecked,
-    disabled && styles.iconContainerDisabled
+    "icon-container",
+    showAsChecked && "show-as-checked",
+    checkedState && "checked",
+    disabled && "disabled"
   );
   const iconStyle = cx(
-    ...["y-checkbox-icon", styles.icon],
-    ...(showAsChecked
-      ? ["icon-show-as-checked", styles.iconShowAsChecked]
-      : []),
-    ...(checkedState ? ["icon-checked", styles.iconChecked] : []),
-    ...(disabled ? ["icon-disabled", styles.iconDisabled] : [])
+    styles.icon,
+    "icon",
+    showAsChecked && "show-as-checked",
+    checkedState && "checked",
+    disabled && "disabled"
   );
 
   useEffect(() => {
@@ -141,7 +151,7 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
 
   return (
     <div
-      className={cx(styles.container, disabled && { cursor: "initial" })}
+      className={containerStyle}
       onClick={handleClick}
     >
       <div className={iconContainerStyle}>
@@ -156,7 +166,7 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
         ref={inputRef}
         style={{ display: "none" }}
       />
-      <span className={cx(styles.checkboxText)}>{children}</span>
+      <Text className={cx(styles.checkboxText)}>{children}</Text>
     </div>
   );
 };

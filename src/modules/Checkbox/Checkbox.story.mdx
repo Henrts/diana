@@ -83,48 +83,64 @@ These are the custom props for the Base Checkbox
     <thead>
         <tr>
             <th>Style Name</th>
+            <th>@selectors</th>
             <th>Description</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>container</td>
+            <td></td>
             <td>Style of the whole container around the checkbox and its text</td>
         </tr>
         <tr>
+            <td></td>
+            <td>&.disabled</td>
+            <td>Style of the whole container when disabled</td>
+        </tr>
+        <tr>
             <td>iconContainer</td>
+            <td></td>
             <td>Style of the box where the icon of the checkbox will display</td>
         </tr>
         <tr>
-            <td>iconContainerDisabled</td>
+            <td></td>
+            <td>&.disabled</td>
             <td>Style of the box where the icon of the checkbox will display when disabled</td>
         </tr>
         <tr>
-            <td>iconContainerChecked</td>
+            <td></td>
+            <td>&.checked</td>
             <td>Style of the box where the icon of the checkbox will display when checked</td>
         </tr>
         <tr>
-            <td>iconContainerShowAsChecked</td>
+            <td></td>
+            <td>&.show-as-checked</td>
             <td>Style of the box where the icon of the checkbox will display when showAsChecked is enabled (and not checked)</td>
         </tr>
         <tr>
             <td>icon</td>
+            <td></td>
             <td>Style of the icon featuring inside the box</td>
         </tr>
         <tr>
-            <td>iconDisabled</td>
+            <td></td>
+            <td>&.disabled</td>
             <td>Style of the icon featuring inside the box when disabled</td>
         </tr>
         <tr>
-            <td>iconChecked</td>
+            <td></td>
+            <td>&.checked</td>
             <td>Style of the icon featuring inside the box when checked</td>
         </tr>
         <tr>
-            <td>iconShowAsChecked</td>
+            <td></td>
+            <td>&.show-as-checked</td>
             <td>Style of the icon featuring inside the box when showAsChecked is enabled</td>
         </tr>
         <tr>
             <td>checkboxText</td>
+            <td></td>
             <td>Style applied to the text of the checkbox</td>
         </tr>
     </tbody>
@@ -135,7 +151,7 @@ To override the __hover__ effect you can customize it like this
 ```javascript
 container: {
     "@selectors": {
-      ":hover .y-checkbox-icon:not(.icon-disabled):not(.icon-checked):not(.icon-show-as-checked)": {
+      ":hover .icon:not(.disabled):not(.checked):not(.show-as-checked)": {
         // custom styles here
       }
     }
