@@ -37,18 +37,25 @@ export default {
     }),
     typescript({
       rollupCommonJSResolveHack: true,
-      clean: true
+      clean: true,
+      exclude: [
+        "**/*.story.tsx"
+      ]
     }),
     babel({
       babelrc: false,
-      exclude: ["node_modules/**"],
+      exclude: [
+        "node_modules/**",
+        "**/stories/**",
+        "**/**/*.story.tsx"
+      ],
       ignore: ["**/*.scss"],
       presets: [["es2015", { modules: false }], "stage-0", "react"],
       plugins: ["external-helpers"]
     }),
     commonjs({
       include: "node_modules/**",
-      exclude: ["**/*.stories.js"],
+      exclude: ["**/*.story.tsx"],
       namedExports: {
         "../../node_modules/react/index.js": [
           "React",

@@ -39,28 +39,27 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
         transition: "transform 0.1s, font-size 0.1s",
         transitionTimingFunction: "ease-in",
         pointerEvents: "none",
-        ...theme.typography.label
+        ...theme.typography.body
     },
     labelActive: {
         transform: "translate(2px, -20px)",
-        fontSize: "12px"
+        ...theme.typography.label
     },
     labelFocus: {
         transform: "translate(2px, -20px)",
-        fontSize: "12px"
+        ...theme.typography.label
     },
     hiddenLabel: {
-        fontSize: "12px", /* TODO change this to typography */
         opacity: "0",
         position: "absolute",
         pointerEvents: "none",
-        height: "0"
+        height: "0",
+        ...theme.typography.label
     },
     legend: {
         width: "0",
         pointerEvents: "none",
         padding: "0px",
-        ...theme.fonts.label,
         textAlign: "left",
         opacity: 0,
         transition: "width 0.15s",
