@@ -1,5 +1,4 @@
-import React, { useState, forwardRef, useRef, useEffect, PropsWithChildren } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useRef, useEffect, PropsWithChildren } from "react";
 import { withStyles } from "../../base";
 import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "../../types";
 
@@ -85,10 +84,10 @@ export const TextInput: React.FC<PropsWithChildren<ITextInputProps & WithStylesP
     const [isFocused, setIsFocused] = useState(false);
     const [hasContent, setHasContent] = useState(false);
     const [legendWidth, setLegendWidth] = useState(0);
-    const hiddenLabel: any = useRef(null);
+    const hiddenLabel = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
-        const labelNode: any = ReactDOM.findDOMNode(hiddenLabel.current);
+        const labelNode = hiddenLabel.current;
         setLegendWidth(labelNode != null ? labelNode.offsetWidth : 0);
     }, [hiddenLabel]);
     
