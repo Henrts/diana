@@ -40,7 +40,10 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
       }
     }
   },
-  checkboxText: {},
+  checkboxText: {
+    cursor: "inherit",
+    ...theme.fonts.bodyText
+  },
   icon: {
     opacity: 0,
     fill: theme.colors.black,
@@ -98,7 +101,7 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
   ...props
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { disabled } = props;
+  const { disabled, name } = props;
   const [checkedState, setCheckedState] = useState(!!checked);
 
   const containerStyle = cx(styles.container, disabled && "disabled");
@@ -159,8 +162,11 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
         checked={checkedState}
         ref={inputRef}
         style={{ display: "none" }}
+        id={name}
       />
-      <Text className={cx(styles.checkboxText)}>{children}</Text>
+      <label htmlFor={name} className={cx(styles.checkboxText)}>
+        {children}
+      </label>
     </div>
   );
 };
