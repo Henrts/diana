@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Checkbox, { ICheckboxRef } from "./Checkbox";
 
 export const CheckboxStory1 = () => {
@@ -7,7 +7,7 @@ export const CheckboxStory1 = () => {
     <div
       style={{
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center"
       }}
     >
@@ -28,6 +28,16 @@ export const CheckboxStory1 = () => {
 export const CheckboxStory2 = () => {
   const ref = useRef<ICheckboxRef>(null);
   const [value, setValue] = useState(false);
+
+  // just a way of showing what is checked at the time
+  const onToggle = useCallback(() => {
+    setTimeout(() => {
+      if (ref && ref.current) {
+        setValue(ref.current.isChecked);
+      }
+    });
+  }, []);
+
   return (
     <div
       style={{
@@ -36,7 +46,7 @@ export const CheckboxStory2 = () => {
         alignItems: "center"
       }}
     >
-      <Checkbox onChange={() => console.log("Was clicked")} wrappedRef={ref}>
+      <Checkbox onChange={() => onToggle()} wrappedRef={ref}>
         Default
       </Checkbox>
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -46,7 +56,7 @@ export const CheckboxStory2 = () => {
         <button
           onClick={() => {
             ref?.current?.toggle();
-            setValue(!ref?.current?.isChecked);
+            onToggle();
           }}
         >
           TOGGLE CHECKBOX

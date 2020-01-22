@@ -1,5 +1,5 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import {CheckboxStory1, CheckboxStory2} from "./Checkbox.story";
+import { CheckboxStory1, CheckboxStory2 } from "./Checkbox.story";
 import Checkbox from "./Checkbox";
 
 <Meta title="Components| Checkbox" />
@@ -7,146 +7,162 @@ import Checkbox from "./Checkbox";
 # Checkbox
 
 The base Checkbox is composed of a toggling Icon and a Text.
+
 <Preview>
-    <Story name="Checkbox">
-        <Checkbox onChange={() => console.log("onChange fired")}>click me</Checkbox>
-    </Story>
+  <Story name="Checkbox">
+    <Checkbox onChange={() => console.log("onChange fired")}>click me</Checkbox>
+  </Story>
 </Preview>
 
-
 These are the default props for the Base Checkbox
+
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Prop</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>checked</td>
-            <td>Sets the value of the checkbox</td>
-        </tr>
-        <tr>
-            <td>onChange</td>
-            <td>Callback when value of checkbox is changed. Returns the default event.</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>checked</td>
+      <td>Sets the value of the checkbox</td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>
+        Callback when value of checkbox is changed. Returns the default event.
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 These are the custom props for the Base Checkbox
+
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Prop</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>showAsChecked</td>
-            <td>This props enables the possibility to show the checkbox as checked even though it is not checked specifically (i.e. checking the checkbox when "All options" is selected). </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>showAsChecked</td>
+      <td>
+        This props enables the possibility to show the checkbox as checked even
+        though it is not checked specifically (i.e. checking the checkbox when
+        "All options" is selected).{" "}
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ### Checked / Unchecked / Disabled
 
 <Preview>
-    <Story name="Checked / Unchecked / Disabled">
-        <CheckboxStory1 />
-    </Story>
+  <Story name="Checked / Unchecked / Disabled">
+    <CheckboxStory1 />
+  </Story>
 </Preview>
 
 ### Show As Checked
 
 <Preview>
-    <Story name="Show as checked">
-        <Checkbox showAsChecked >Show as checked</Checkbox>
-    </Story>
+  <Story name="Show as checked">
+    <Checkbox showAsChecked>Show as checked</Checkbox>
+  </Story>
 </Preview>
-
 
 ### With Ref
 
 <Preview>
-    <Story name="With Ref">
-        <CheckboxStory2 />
-    </Story>
+  <Story name="With Ref">
+    <CheckboxStory2 />
+  </Story>
 </Preview>
-
-
 
 #### Extendable styles
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Style Name</th>
-            <th>@selectors</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>container</td>
-            <td></td>
-            <td>Style of the whole container around the checkbox and its text</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.disabled</td>
-            <td>Style of the whole container when disabled</td>
-        </tr>
-        <tr>
-            <td>iconContainer</td>
-            <td></td>
-            <td>Style of the box where the icon of the checkbox will display</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.disabled</td>
-            <td>Style of the box where the icon of the checkbox will display when disabled</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.checked</td>
-            <td>Style of the box where the icon of the checkbox will display when checked</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.show-as-checked</td>
-            <td>Style of the box where the icon of the checkbox will display when showAsChecked is enabled (and not checked)</td>
-        </tr>
-        <tr>
-            <td>icon</td>
-            <td></td>
-            <td>Style of the icon featuring inside the box</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.disabled</td>
-            <td>Style of the icon featuring inside the box when disabled</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.checked</td>
-            <td>Style of the icon featuring inside the box when checked</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.show-as-checked</td>
-            <td>Style of the icon featuring inside the box when showAsChecked is enabled</td>
-        </tr>
-        <tr>
-            <td>checkboxText</td>
-            <td></td>
-            <td>Style applied to the text of the checkbox</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Style Name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>container</td>
+      <td></td>
+      <td>Style of the whole container around the checkbox and its text</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.disabled</td>
+      <td>Style of the whole container when disabled</td>
+    </tr>
+    <tr>
+      <td>iconContainer</td>
+      <td></td>
+      <td>Style of the box where the icon of the checkbox will display</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.disabled</td>
+      <td>
+        Style of the box where the icon of the checkbox will display when
+        disabled
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.checked</td>
+      <td>
+        Style of the box where the icon of the checkbox will display when
+        checked
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.show-as-checked</td>
+      <td>
+        Style of the box where the icon of the checkbox will display when
+        showAsChecked is enabled (and not checked)
+      </td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td></td>
+      <td>Style of the icon featuring inside the box</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.disabled</td>
+      <td>Style of the icon featuring inside the box when disabled</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.checked</td>
+      <td>Style of the icon featuring inside the box when checked</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.show-as-checked</td>
+      <td>
+        Style of the icon featuring inside the box when showAsChecked is enabled
+      </td>
+    </tr>
+    <tr>
+      <td>checkboxText</td>
+      <td></td>
+      <td>Style applied to the text of the checkbox</td>
+    </tr>
+  </tbody>
 </table>
 
-To override the __hover__ effect you can customize it like this
+To override the **hover** effect you can customize it like this
 
 ```javascript
 container: {

@@ -46,16 +46,16 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     fill: theme.colors.black,
     transition: "0.3s fill, 0.3s opacity",
     "@selectors": {
-      "&.disabled": {
-        fill: theme.colors.grey.grey100
+      "&.show-as-checked": {
+        opacity: 1,
+        fill: theme.colors.black
       },
       "&.checked": {
         opacity: 1,
         fill: theme.colors.white
       },
-      "&.show-as-checked": {
-        opacity: 1,
-        fill: theme.colors.black
+      "&.disabled": {
+        fill: theme.colors.grey.grey100
       }
     }
   },
@@ -74,14 +74,14 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     alignItems: "center",
     justifyContent: "center",
     "@selectors": {
-      "&.disabled": {
-        backgroundColor: theme.colors.grey.grey25,
-        borderColor: theme.colors.grey.grey100
-      },
+      "&.show-as-checked": {},
       "&.checked": {
         backgroundColor: theme.colors.black
       },
-      "&.show-as-checked": {}
+      "&.disabled": {
+        backgroundColor: theme.colors.grey.grey25,
+        borderColor: theme.colors.grey.grey100
+      }
     }
   }
 });
@@ -101,10 +101,7 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
   const { disabled } = props;
   const [checkedState, setCheckedState] = useState(!!checked);
 
-  const containerStyle = cx(
-    styles.container,
-    disabled && "disabled"
-  )
+  const containerStyle = cx(styles.container, disabled && "disabled");
   const iconContainerStyle = cx(
     styles.iconContainer,
     "icon-container",
@@ -150,10 +147,7 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
   }));
 
   return (
-    <div
-      className={containerStyle}
-      onClick={handleClick}
-    >
+    <div className={containerStyle} onClick={handleClick}>
       <div className={iconContainerStyle}>
         <Icon className={iconStyle} size={10} name="check" />
       </div>
