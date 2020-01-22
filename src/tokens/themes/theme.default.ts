@@ -4,8 +4,6 @@ const spaceUnit = 16;
 const fontSize = 18;
 const fontFamily = "Arial";
 
-
-
 export default {
   name: "default_theme",
   colors: defaultPalette,
@@ -18,32 +16,32 @@ export default {
     md: `${spaceUnit}px`,
     lg: `${spaceUnit * 2}px`,
     xl: `${spaceUnit * 3}px`,
-    xxl: `${spaceUnit * 4}px`,
+    xxl: `${spaceUnit * 4}px`
   },
-  spacing:{
+  spacing: {
     squishsm: {
-      top: `${spaceUnit/4}px`,
-      left: `${spaceUnit/1.3}px`
+      top: `${spaceUnit / 4}px`,
+      left: `${spaceUnit / 1.3}px`
     },
     squishmd: {
-      top: `${spaceUnit/2}px`,
+      top: `${spaceUnit / 2}px`,
       left: `${spaceUnit}px`
     },
     squishlg: {
       top: `${spaceUnit}px`,
-      left: `${spaceUnit*2}px`
+      left: `${spaceUnit * 2}px`
     },
     stretchsm: {
-      left: `${spaceUnit/4}px`,
-      top: `${spaceUnit/1.3}px`
+      left: `${spaceUnit / 4}px`,
+      top: `${spaceUnit / 1.3}px`
     },
     stretchmd: {
-      left: `${spaceUnit/2}px`,
+      left: `${spaceUnit / 2}px`,
       top: `${spaceUnit}px`
     },
     stretchlg: {
       left: `${spaceUnit}px`,
-      top: `${spaceUnit*2}px`
+      top: `${spaceUnit * 2}px`
     }
   },
   typography: {
@@ -79,7 +77,7 @@ export default {
     },
     descriptionMedium: {
       fontSize: "15px",
-      fontWeight:500,
+      fontWeight: 500,
       lineHeight: "16px",
       fontFamily
     },
