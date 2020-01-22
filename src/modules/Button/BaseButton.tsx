@@ -36,7 +36,7 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
   parentStylesheet,
   ...props
 }) => {
-  const {disabled} = props;
+  const { disabled } = props;
   const styleArray = [danger && styles.danger, disabled && styles.disabled];
 
   return (
