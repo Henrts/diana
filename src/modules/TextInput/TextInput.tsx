@@ -1,81 +1,76 @@
 import React, { useState, useRef, useEffect, PropsWithChildren } from "react";
-import { withStyles } from "../../base";
-import {
-  ThemeStyleSheetFactory,
-  StandardProps,
-  WithStylesProps
-} from "../../types";
+import { withStyles, useTheme } from "../../base";
+import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "../../types";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
-  fieldset: {
-    position: "relative",
-    height: 38,
-    display: "flex",
-    padding: "2px 8px"
-  },
-  fieldsetError: {
-    borderColor: theme.colors.alert.alert100
-  },
-  input: {
-    outline: "none",
-    border: "none",
-    width: "100%",
-    fontSize: 18 /* TODO change this to typography */,
-    height: 35,
-    flex: 1,
-    ...theme.typography.body
-  },
-  labelContainer: {
-    position: "absolute",
-    top: "0px",
-    left: "4px",
-    height: "40px",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center"
-  },
-  label: {
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    color: "#808080",
-    padding: "0px 4px",
-    transition: "transform 0.1s, font-size 0.1s",
-    transitionTimingFunction: "ease-in",
-    pointerEvents: "none",
-    ...theme.typography.body
-  },
-  labelActive: {
-    transform: "translate(2px, -20px)",
-    ...theme.typography.label
-  },
-  labelFocus: {
-    transform: "translate(2px, -20px)",
-    ...theme.typography.label
-  },
-  hiddenLabel: {
-    opacity: "0",
-    position: "absolute",
-    pointerEvents: "none",
-    height: "0",
-    ...theme.typography.label
-  },
-  legend: {
-    width: "0",
-    pointerEvents: "none",
-    padding: "0px",
-    textAlign: "left",
-    opacity: 0,
-    transition: "width 0.15s",
-    lineHeight: "11px",
-    height: 0
-  },
-  legendActive: {
-    padding: "0 2px"
-  },
-  legendFocus: {
-    padding: "0 2px"
-  }
+    fieldset: {
+        position: "relative",
+        height: 38,
+        display: "flex",
+        padding: "2px 8px"
+    },
+    fieldsetError: {
+        borderColor: theme.colors.alert.alert100
+    },
+    input: {
+        outline: "none",
+        border: "none",
+        width: "100%",
+        height: 35,
+        flex: 1,
+        ...theme.typography.body
+    },
+    labelContainer: {
+        position: "absolute",
+        top: "0px",
+        left: "4px",
+        height: "40px",
+        pointerEvents: "none",
+        display: "flex",
+        alignItems: "center"
+    },
+    label: {
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        color: "#808080",
+        padding: "0px 4px",
+        transition: "transform 0.1s, font-size 0.1s",
+        transitionTimingFunction: "ease-in",
+        pointerEvents: "none",
+        ...theme.typography.body
+    },
+    labelActive: {
+        transform: "translate(2px, -20px)",
+        ...theme.typography.label
+    },
+    labelFocus: {
+        transform: "translate(2px, -20px)",
+        ...theme.typography.label
+    },
+    hiddenLabel: {
+        opacity: "0",
+        position: "absolute",
+        pointerEvents: "none",
+        height: "0",
+        ...theme.typography.label
+    },
+    legend: {
+        width: "0",
+        pointerEvents: "none",
+        padding: "0px",
+        textAlign: "left",
+        opacity: 0,
+        transition: "width 0.15s",
+        lineHeight: "11px",
+        height: 0
+    },
+    legendActive: {
+        padding: "0 2px"
+    },
+    legendFocus: {
+        padding: "0 2px"
+    }
 });
 export interface ITextInputProps extends StandardProps<"input"> {
   label?: string;

@@ -1,9 +1,9 @@
-import aesthetic from "aesthetic";
+import aestheticDefault, { Aesthetic } from "aesthetic";
 import AphroditeAdapter from "aesthetic-adapter-aphrodite";
 import { defaultTheme } from "./tokens/themes";
 import { selfExtension } from "./base/aphroditeExtensions";
 
-export function initDefaultTheme() {
+export function initDefaultTheme(aesthetic = aestheticDefault) {
   if (!aesthetic.themes[defaultTheme.name]) {
     aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
       "@global": {},
@@ -19,7 +19,28 @@ export function initDefaultTheme() {
   });
 }
 
-export function registerTheme(themeObj = defaultTheme) {
+export function initTheme(themeObj = defaultTheme, aesthetic: Aesthetic = aestheticDefault) {
+  if (!aesthetic.themes[defaultTheme.name]) {
+    aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
+      "@global": {},
+      "@font-face": theme.fonts
+    }));
+  }
+  const result = aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
+      "@global": {},
+      "@font-face": theme.fonts
+  }));
+  aesthetic.configure({
+      adapter: new AphroditeAdapter(),
+      theme: themeObj.name,
+      rtl: false,
+      extendable: true,
+      passThemeProp: true
+  });
+  return result;
+}
+
+export function registerTheme(themeObj = defaultTheme, aesthetic: Aesthetic = aestheticDefault) {
   aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
     "@global": {},
     "@font-face": theme.fonts
@@ -30,6 +51,6 @@ export function registerTheme(themeObj = defaultTheme) {
   });
 }
 
-export function changeTheme(theme: string) {
+export function changeTheme(theme: string, aesthetic: Aesthetic = aestheticDefault) {
   aesthetic.changeTheme(theme);
 }
