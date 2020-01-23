@@ -2,4 +2,4 @@
 
 The Y design system and component library
 
-![](https://raw.githubusercontent.com/Henrts/ydesign/master/src/stories/diagram.png)
+![](https://raw.githubusercontent.com/Henrts/y-design/master/src/stories/diagram.png)
