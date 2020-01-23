@@ -63,7 +63,6 @@ This are the available props for the Base Components
   </Story>
 </Preview>
 
-
 ### ErrorTextInput
 
 <Preview>
@@ -195,7 +194,7 @@ export const SimpleTextInput = TextInput.extendStyles(() => ({
 export const TextInputErrorBorder = TextInput.extendStyles((theme: Theme) => ({
   fieldset: {
     "@selectors": {
-      "&.error": { 
+      "&.error": {
         border: `2px solid ${theme.colors.alert.alert100}`,
         borderRadius: "5px"
       }
