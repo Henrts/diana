@@ -116,6 +116,7 @@ export const TextInput: React.FC<PropsWithChildren<
       className={cx(
         styles.fieldset,
         isFocused && "focus",
+        hasContent && "active",
         hasError && "error",
         disabled && "disabled"
       )}
