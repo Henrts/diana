@@ -14,8 +14,12 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
     color: theme.colors.alert.alert100,
     ...theme.fonts.label
   },
-  legendError: {
-    color: theme.colors.alert.alert100
+  legend: {
+    "@selectors": {
+      "&.error": {
+        color: theme.colors.alert.alert100
+      }
+    }
   }
 });
 export interface IProps extends ITextInputProps {

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, PropsWithChildren } from "react";
-import { withStyles } from "../../base";
+import { withStyles, useTheme } from "../../base";
 import {
   ThemeStyleSheetFactory,
   StandardProps,
@@ -11,19 +11,29 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     position: "relative",
     height: 38,
     display: "flex",
-    padding: "2px 8px"
-  },
-  fieldsetError: {
-    borderColor: theme.colors.alert.alert100
+    padding: "2px 8px",
+    "@selectors": {
+      "&.error": {
+        borderColor: theme.colors.alert.alert100
+      },
+      "&.disabled": {
+        backgroundColor: "#eee"
+      },
+      "&.focus": {}
+    }
   },
   input: {
     outline: "none",
     border: "none",
     width: "100%",
-    fontSize: 18 /* TODO change this to typography */,
     height: 35,
     flex: 1,
-    ...theme.typography.body
+    ...theme.typography.body,
+    "@selectors": {
+      "&.disabled": {
+        backgroundColor: "#eee"
+      }
+    }
   },
   labelContainer: {
     position: "absolute",
@@ -43,15 +53,13 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     transition: "transform 0.1s, font-size 0.1s",
     transitionTimingFunction: "ease-in",
     pointerEvents: "none",
-    ...theme.typography.body
-  },
-  labelActive: {
-    transform: "translate(2px, -20px)",
-    ...theme.typography.label
-  },
-  labelFocus: {
-    transform: "translate(2px, -20px)",
-    ...theme.typography.label
+    ...theme.typography.body,
+    "@selectors": {
+      "&.active,&.focus": {
+        transform: "translate(2px, -21px)",
+        ...theme.typography.label
+      }
+    }
   },
   hiddenLabel: {
     opacity: "0",
@@ -63,18 +71,17 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   legend: {
     width: "0",
     pointerEvents: "none",
-    padding: "0px",
+    padding: "0",
     textAlign: "left",
     opacity: 0,
     transition: "width 0.15s",
     lineHeight: "11px",
-    height: 0
-  },
-  legendActive: {
-    padding: "0 2px"
-  },
-  legendFocus: {
-    padding: "0 2px"
+    height: 0,
+    "@selectors": {
+      "&.active,&.focus": {
+        padding: "0 2px"
+      }
+    }
   }
 });
 export interface ITextInputProps extends StandardProps<"input"> {
@@ -108,23 +115,20 @@ export const TextInput: React.FC<PropsWithChildren<
     <fieldset
       className={cx(
         styles.fieldset,
-        isFocused && styles.fieldsetFocus,
-        hasError && styles.fieldsetError,
-        disabled && styles.fieldsetDisabled
+        isFocused && "focus",
+        hasError && "error",
+        disabled && "disabled"
       )}
     >
       <legend
         className={cx(
           styles.legend,
-          isFocused && label && styles.legendFocus,
-          hasContent && label && styles.legendActive,
-          isFocused && {
+          isFocused && label && "focus",
+          hasContent && label && "active",
+          (isFocused || hasContent) && {
             width: legendWidth
           },
-          hasContent && {
-            width: legendWidth
-          },
-          disabled && styles.legendDisabled
+          disabled && "disabled"
         )}
       >
         {label}
@@ -139,10 +143,10 @@ export const TextInput: React.FC<PropsWithChildren<
           <span
             className={cx(
               styles.label,
-              isFocused && styles.labelFocus,
-              hasContent && styles.labelActive,
-              hasError && styles.legendError,
-              disabled && styles.legendDisabled
+              isFocused && "focus",
+              hasContent && "active",
+              hasError && "error",
+              disabled && "disabled"
             )}
           >
             {label}
@@ -153,7 +157,7 @@ export const TextInput: React.FC<PropsWithChildren<
         {...props}
         disabled={disabled}
         ref={inputRef}
-        className={cx(styles.input)}
+        className={cx(styles.input, disabled && "disabled")}
         onChange={(e): void => {
           if (onChange) {
             onChange(e);

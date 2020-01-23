@@ -34,7 +34,7 @@ This are the available props for the Base Components
       <td>label</td>
       <td>
         This props enables a span element that, by default, slides to the
-        fieldset/border of the input when in focus.{" "}
+        fieldset/border of the input when in focus.
       </td>
     </tr>
     <tr>
@@ -55,6 +55,15 @@ This are the available props for the Base Components
   </Story>
 </Preview>
 
+### Disabled
+
+<Preview>
+  <Story name="Disabled">
+    <TextInput disabled label="User Input" />
+  </Story>
+</Preview>
+
+
 ### ErrorTextInput
 
 <Preview>
@@ -69,55 +78,77 @@ This are the available props for the Base Components
   <thead>
     <tr>
       <th>Style Name</th>
+      <th>@selectors</th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>fieldset</td>
+      <td></td>
       <td>
         This style affects the main fieldset element that contains the input
         element. Apply custom border styles here
       </td>
     </tr>
     <tr>
-      <td>fieldsetError</td>
+      <td></td>
+      <td>&.error</td>
       <td>A fieldset with error applies this style</td>
     </tr>
     <tr>
-      <td>fieldsetFocus</td>
+      <td></td>
+      <td>&.focus</td>
       <td>Style to apply to fieldset element when component has focus</td>
     </tr>
     <tr>
+      <td></td>
+      <td>&.disabled</td>
+      <td>Style to apply to fieldset of a disabled Text Input</td>
+    </tr>
+    <tr>
       <td>input</td>
+      <td></td>
       <td>HTML Input element style</td>
     </tr>
     <tr>
+      <td></td>
+      <td>&.disabled</td>
+      <td>Style of disabled input element</td>
+    </tr>
+    <tr>
       <td>labelContainer</td>
+      <td></td>
       <td>Wrapper of label element for positioning purposes</td>
     </tr>
     <tr>
       <td>label</td>
+      <td></td>
       <td>Style of span element containing text defined by the label prop</td>
     </tr>
     <tr>
-      <td>labelActive</td>
-      <td>Style applied to label when Component has a value</td>
+      <td></td>
+      <td>&.active</td>
+      <td>Style of span element containing label text on active Text Input</td>
     </tr>
     <tr>
-      <td>labelFocus</td>
-      <td>Style applied to label when Component is focused</td>
+      <td></td>
+      <td>&.focus</td>
+      <td>Style of span element containing label text on focused Text Input</td>
     </tr>
     <tr>
       <td>legend</td>
+      <td></td>
       <td>This style affects the legend element inside fieldset</td>
     </tr>
     <tr>
-      <td>legendActive</td>
+      <td></td>
+      <td>&.active</td>
       <td>Style applied to legend when Component has a value</td>
     </tr>
     <tr>
-      <td>legendFocus</td>
+      <td></td>
+      <td>&.focus</td>
       <td>Style applied to legend when Component is focused</td>
     </tr>
   </tbody>
@@ -163,11 +194,12 @@ export const SimpleTextInput = TextInput.extendStyles(() => ({
 ```javascript
 export const TextInputErrorBorder = TextInput.extendStyles((theme: Theme) => ({
   fieldset: {
-    border: "none"
-  },
-  fieldsetError: {
-    border: `2px solid ${theme.colors.alert.alert100}`,
-    borderRadius: "5px"
+    "@selectors": {
+      "&.error": { 
+        border: `2px solid ${theme.colors.alert.alert100}`,
+        borderRadius: "5px"
+      }
+    }
   }
 }));
 ```
@@ -184,26 +216,22 @@ export const TextInputLabelToOutside = TextInput.extendStyles(
     fieldset: {
       border: "2px solid #ccc"
     },
-    legendActive: {
-      width: 0,
-      maxWidth: 0,
-      padding: 0
-    },
-    legendFocus: {
-      width: 0,
-      maxWidth: 0,
-      padding: 0
-    },
     legend: {
-      transition: "none"
+      "@selectors": {
+        "&.active, &.focus": {
+          width: 0,
+          maxWidth: 0,
+          padding: 0
+        }
+      }
     },
-    labelActive: {
-      transform: "translate(0px, -30px)",
-      ...theme.fonts.label
-    },
-    labelFocus: {
-      transform: "translate(0px, -30px)",
-      ...theme.fonts.label
+    label: {
+      "@selectors": {
+        "&.active, &.focus": {
+          transform: "translate(0px, -30px)",
+          ...theme.fonts.label
+        }
+      }
     }
   })
 );

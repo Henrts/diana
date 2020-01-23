@@ -44,11 +44,11 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     const WithStyles = React.memo(function WithStyles(
       props: Props & WithStylesProps & { parentStylesheet: typeof styleSheet }
     ) {
-      const themeName = useContext(React.createContext<ThemeName>(""));
-      const mergedStylesheet = deepMerge(
+      const themeName: ThemeSheet = aesthetic.getTheme();
+      const mergedStylesheet = deepMerge( 
         true,
         {},
-        aesthetic.getStyleSheet(styleName, themeName || "default_theme"),
+        aesthetic.getStyleSheet(styleName, themeName.name || "default_theme"),
         styleSheet(aesthetic.getTheme()),
         props.parentStylesheet
           ? props.parentStylesheet(aesthetic.getTheme())
@@ -65,7 +65,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
       };
 
       if (passThemeProp) {
-        extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName);
+        extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName.name);
       }
 
       extraProps.parentStylesheet = styleSheet;
