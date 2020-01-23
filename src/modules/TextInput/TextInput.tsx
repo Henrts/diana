@@ -1,76 +1,88 @@
 import React, { useState, useRef, useEffect, PropsWithChildren } from "react";
 import { withStyles, useTheme } from "../../base";
-import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "../../types";
+import {
+  ThemeStyleSheetFactory,
+  StandardProps,
+  WithStylesProps
+} from "../../types";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
-    fieldset: {
-        position: "relative",
-        height: 38,
-        display: "flex",
-        padding: "2px 8px"
-    },
-    fieldsetError: {
+  fieldset: {
+    position: "relative",
+    height: 38,
+    display: "flex",
+    padding: "2px 8px",
+    "@selectors": {
+      "&.error": {
         borderColor: theme.colors.alert.alert100
-    },
-    input: {
-        outline: "none",
-        border: "none",
-        width: "100%",
-        height: 35,
-        flex: 1,
-        ...theme.typography.body
-    },
-    labelContainer: {
-        position: "absolute",
-        top: "0px",
-        left: "4px",
-        height: "40px",
-        pointerEvents: "none",
-        display: "flex",
-        alignItems: "center"
-    },
-    label: {
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        color: "#808080",
-        padding: "0px 4px",
-        transition: "transform 0.1s, font-size 0.1s",
-        transitionTimingFunction: "ease-in",
-        pointerEvents: "none",
-        ...theme.typography.body
-    },
-    labelActive: {
-        transform: "translate(2px, -20px)",
-        ...theme.typography.label
-    },
-    labelFocus: {
-        transform: "translate(2px, -20px)",
-        ...theme.typography.label
-    },
-    hiddenLabel: {
-        opacity: "0",
-        position: "absolute",
-        pointerEvents: "none",
-        height: "0",
-        ...theme.typography.label
-    },
-    legend: {
-        width: "0",
-        pointerEvents: "none",
-        padding: "0px",
-        textAlign: "left",
-        opacity: 0,
-        transition: "width 0.15s",
-        lineHeight: "11px",
-        height: 0
-    },
-    legendActive: {
-        padding: "0 2px"
-    },
-    legendFocus: {
-        padding: "0 2px"
+      },
+      "&.disabled": {
+        backgroundColor: "#eee"
+      },
+      "&.focus": {}
     }
+  },
+  input: {
+    outline: "none",
+    border: "none",
+    width: "100%",
+    height: 35,
+    flex: 1,
+    ...theme.typography.body,
+    "@selectors": {
+      "&.disabled": {
+        backgroundColor: "#eee"
+      }
+    }
+  },
+  labelContainer: {
+    position: "absolute",
+    top: "0px",
+    left: "4px",
+    height: "40px",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center"
+  },
+  label: {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    color: "#808080",
+    padding: "0px 4px",
+    transition: "transform 0.1s, font-size 0.1s",
+    transitionTimingFunction: "ease-in",
+    pointerEvents: "none",
+    ...theme.typography.body,
+    "@selectors": {
+      "&.active,&.focus": {
+        transform: "translate(2px, -21px)",
+        ...theme.typography.label
+      }
+    }
+  },
+  hiddenLabel: {
+    opacity: "0",
+    position: "absolute",
+    pointerEvents: "none",
+    height: "0",
+    ...theme.typography.label
+  },
+  legend: {
+    width: "0",
+    pointerEvents: "none",
+    padding: "0",
+    textAlign: "left",
+    opacity: 0,
+    transition: "width 0.15s",
+    lineHeight: "11px",
+    height: 0,
+    "@selectors": {
+      "&.active,&.focus": {
+        padding: "0 2px"
+      }
+    }
+  }
 });
 export interface ITextInputProps extends StandardProps<"input"> {
   label?: string;
@@ -103,23 +115,20 @@ export const TextInput: React.FC<PropsWithChildren<
     <fieldset
       className={cx(
         styles.fieldset,
-        isFocused && styles.fieldsetFocus,
-        hasError && styles.fieldsetError,
-        disabled && styles.fieldsetDisabled
+        isFocused && "focus",
+        hasError && "error",
+        disabled && "disabled"
       )}
     >
       <legend
         className={cx(
           styles.legend,
-          isFocused && label && styles.legendFocus,
-          hasContent && label && styles.legendActive,
-          isFocused && {
+          isFocused && label && "focus",
+          hasContent && label && "active",
+          (isFocused || hasContent) && {
             width: legendWidth
           },
-          hasContent && {
-            width: legendWidth
-          },
-          disabled && styles.legendDisabled
+          disabled && "disabled"
         )}
       >
         {label}
@@ -134,10 +143,10 @@ export const TextInput: React.FC<PropsWithChildren<
           <span
             className={cx(
               styles.label,
-              isFocused && styles.labelFocus,
-              hasContent && styles.labelActive,
-              hasError && styles.legendError,
-              disabled && styles.legendDisabled
+              isFocused && "focus",
+              hasContent && "active",
+              hasError && "error",
+              disabled && "disabled"
             )}
           >
             {label}
@@ -148,7 +157,7 @@ export const TextInput: React.FC<PropsWithChildren<
         {...props}
         disabled={disabled}
         ref={inputRef}
-        className={cx(styles.input)}
+        className={cx(styles.input, disabled && "disabled")}
         onChange={(e): void => {
           if (onChange) {
             onChange(e);
