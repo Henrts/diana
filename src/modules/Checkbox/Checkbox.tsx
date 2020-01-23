@@ -12,7 +12,6 @@ import {
 } from "../../types";
 import { withStyles } from "../../base";
 import { Icon } from "../Icon";
-import { Text } from "../Typography";
 
 export interface ICheckboxRef {
   isChecked: boolean;
