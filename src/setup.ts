@@ -31,7 +31,7 @@ export function initTheme(themeObj = defaultTheme, aesthetic: Aesthetic = aesthe
       "@font-face": theme.fonts
   }));
   aesthetic.configure({
-      adapter: new AphroditeAdapter(),
+      adapter: new AphroditeAdapter([selfExtension]),
       theme: themeObj.name,
       rtl: false,
       extendable: true,
