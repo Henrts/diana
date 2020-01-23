@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Checkbox, { ICheckboxRef } from "./Checkbox";
+import { Icon } from "../Icon";
 
 export const CheckboxStory1 = () => {
   const ref = useRef<ICheckboxRef>(null);
@@ -25,19 +26,35 @@ export const CheckboxStory1 = () => {
   );
 };
 
-export const CheckboxStory2 = () => {
-  const ref = useRef<ICheckboxRef>(null);
-  const [value, setValue] = useState(false);
-
-  // just a way of showing what is checked at the time
-  const onToggle = useCallback(() => {
-    setTimeout(() => {
-      if (ref && ref.current) {
-        setValue(ref.current.isChecked);
+const CustomCheckbox = Checkbox.extendStyles(() => ({
+  container: {
+    "@selectors": {
+      ":hover .icon:not(.disabled):not(.checked):not(.show-as-checked)": {
+        fill: "none",
+        stroke: "pink"
       }
-    });
-  }, []);
+    }
+  },
+  iconContainer: {
+    "@selectors": {
+      "&.checked": {
+        backgroundColor: "white"
+      }
+    }
+  },
+  icon: {
+    fill: "none",
+    "@selectors": {
+      "&.checked": {
+        opacity: 1,
+        fill: "none",
+        stroke: "red"
+      }
+    }
+  }
+}));
 
+export const CheckboxStory2 = () => {
   return (
     <div
       style={{
@@ -46,22 +63,41 @@ export const CheckboxStory2 = () => {
         alignItems: "center"
       }}
     >
-      <Checkbox onChange={() => onToggle()} wrappedRef={ref}>
-        Default
-      </Checkbox>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <span style={{ marginBottom: 8 }}>
-          isChecked: {value ? "true" : "false"}
-        </span>
-        <button
-          onClick={() => {
-            ref?.current?.toggle();
-            onToggle();
-          }}
-        >
-          TOGGLE CHECKBOX
-        </button>
-      </div>
+      <Checkbox checkedIcon={<Icon name="add" />}>Custom Checked Icon</Checkbox>
+      <CustomCheckbox checkedIcon={<Icon name="arrow" stroke={"red"} />}>
+        Colored Checked Icon
+      </CustomCheckbox>
+      <CustomCheckbox
+        checkedIcon={
+          <div
+            style={{ height: "100%", width: "3px", backgroundColor: "blue" }}
+          />
+        }
+      >
+        Different Checked Icon
+      </CustomCheckbox>
+    </div>
+  );
+};
+
+export const CheckboxStory3 = () => {
+  const ref = useRef<ICheckboxRef>(null);
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
+      <Checkbox wrappedRef={ref}>Default</Checkbox>
+      <button
+        onClick={() => {
+          ref?.current?.toggle();
+        }}
+      >
+        TOGGLE CHECKBOX
+      </button>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState
 } from "react";
@@ -12,7 +13,6 @@ import {
 } from "../../types";
 import { withStyles } from "../../base";
 import { Icon } from "../Icon";
-import { Text } from "../Typography";
 
 export interface ICheckboxRef {
   isChecked: boolean;
@@ -21,6 +21,7 @@ export interface ICheckboxRef {
 
 export interface IProps extends StandardProps<"input"> {
   showAsChecked?: boolean;
+  checkedIcon?: JSX.Element;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -89,12 +90,15 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
+const defaultCheckedIcon: JSX.Element = <Icon name="check" />;
+
 const Checkbox: React.FC<IProps & WithStylesProps> = ({
   styles,
   cx,
   checked,
   showAsChecked,
   onChange,
+  checkedIcon = defaultCheckedIcon,
   children,
   wrappedRef,
   parentStylesheet,
@@ -149,11 +153,16 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
     toggle: () => handleClick()
   }));
 
+  const CheckedIcon: React.ReactNode = useMemo(() => {
+    return React.cloneElement(checkedIcon, {
+      className: iconStyle,
+      size: 10
+    });
+  }, [checkedIcon, iconStyle]);
+
   return (
     <div className={containerStyle} onClick={handleClick}>
-      <div className={iconContainerStyle}>
-        <Icon className={iconStyle} size={10} name="check" />
-      </div>
+      <div className={iconContainerStyle}>{CheckedIcon}</div>
       <input
         type="checkbox"
         {...props}

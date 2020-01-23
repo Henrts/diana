@@ -1,5 +1,9 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { CheckboxStory1, CheckboxStory2 } from "./Checkbox.story";
+import {
+  CheckboxStory1,
+  CheckboxStory2,
+  CheckboxStory3
+} from "./Checkbox.story";
 import Checkbox from "./Checkbox";
 
 <Meta title="Components| Checkbox" />
@@ -55,6 +59,13 @@ These are the custom props for the Base Checkbox
         "All options" is selected).{" "}
       </td>
     </tr>
+    <tr>
+      <td>IconChecked</td>
+      <td>
+        Element that will be used when checkbox is checked. Default as `
+        <Icon name="check" />`
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -74,11 +85,27 @@ These are the custom props for the Base Checkbox
   </Story>
 </Preview>
 
+### Custom Checked Icon
+
+<Preview>
+  <Story name="Custom Checked Icon">
+    <CheckboxStory2 />
+  </Story>
+</Preview>
+
+Usage:
+
+```html
+<Checkbox checkedIcon={<Icon name="add" />}>
+  Custom Checked Icon
+</Checkbox>
+```
+
 ### With Ref
 
 <Preview>
   <Story name="With Ref">
-    <CheckboxStory2 />
+    <CheckboxStory3 />
   </Story>
 </Preview>
 
