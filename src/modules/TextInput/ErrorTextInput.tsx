@@ -27,10 +27,11 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   cx,
   styles,
   error,
+  className,
   ...props
 }) => {
   return (
-    <div>
+    <div className={className}>
       <ExtendedTextInput
         {...props}
         hasError={error !== null && error !== undefined}
