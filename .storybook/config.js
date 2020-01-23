@@ -1,4 +1,5 @@
 import { configure } from "@storybook/react";
+import "loki/configure-react";
 import { DocsPage, DocsContainer } from "@storybook/addon-docs/blocks";
 import { initDefaultTheme } from "../src/setup";
 

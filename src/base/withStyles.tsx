@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import aesthetic, { ThemeName, ThemeSheet } from "aesthetic";
+import React from "react";
+import aesthetic, { ThemeSheet } from "aesthetic";
 import hoistNonReactStatics from "hoist-non-react-statics";
 import uuid from "uuid/v4";
 import deepMerge from "extend";
@@ -45,7 +45,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
       props: Props & WithStylesProps & { parentStylesheet: typeof styleSheet }
     ) {
       const themeName: ThemeSheet = aesthetic.getTheme();
-      const mergedStylesheet = deepMerge( 
+      const mergedStylesheet = deepMerge(
         true,
         {},
         aesthetic.getStyleSheet(styleName, themeName.name || "default_theme"),
@@ -65,7 +65,9 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
       };
 
       if (passThemeProp) {
-        extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName.name);
+        extraProps[themePropName as "theme"] = aesthetic.getTheme(
+          themeName.name
+        );
       }
 
       extraProps.parentStylesheet = styleSheet;
