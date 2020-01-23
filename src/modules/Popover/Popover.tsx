@@ -99,9 +99,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
         {header}
       </div>
       {visible && (
-        <div className={cx(styles.popover, styles[direction])}>
-          {children}AA
-        </div>
+        <div className={cx(styles.popover, styles[direction])}>{children}</div>
       )}
     </div>
   );
