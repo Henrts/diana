@@ -12,3 +12,9 @@ Use `withStyles` to produce `StyledComponents` that can then be wrapped and exte
 ![](https://raw.githubusercontent.com/Henrts/y-design/master/src/stories/systemdiagram.png)
 
 Use `initTheme` with the desired theme at the start of your application.
+
+```javascript
+import theme from "../src/tokens/themes/theme.example";
+
+initTheme(theme);
+```
