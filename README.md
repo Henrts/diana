@@ -1,6 +1,6 @@
-## Y Design
+## A Template Design System
 
-The Y design system and component library. This purpose of this library is to be used as a foundation of a specific design system. It uses aphrodite and aesthetic under the hood.
+The Diana System and component library. The purpose of this library is to be used as a foundation for a specific design system. It uses aphrodite and aesthetic under the hood.
 
 ### Installation
 
