@@ -35,11 +35,11 @@ const Icon: React.FC<IIconProps> = ({
   return (
     <ReactSVG
       src={svgIcon}
-      className={cx(styles.icon, className)}
+      className={cx(styles.icon)}
       beforeInjection={svg => {
         svg.setAttribute("class", "y-icon");
-        svg.setAttribute("fill", "inherit");
-        svg.setAttribute("stroke", "inherit");
+        svg.setAttribute("class", `${svg.getAttribute("class")} ${className}`);
+
         if (size) {
           svg.setAttribute("height", size.toString());
           svg.setAttribute("width", size.toString());
