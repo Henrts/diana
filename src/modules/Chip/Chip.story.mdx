@@ -3,7 +3,7 @@ import { H3 } from "../Typography/Typography";
 import BaseChip from "./BaseChip";
 import StatusChip from "./StatusChip";
 import CloseableChip from "./CloseableChip";
-import CloseableChip2 from "./CloseableChip2";
+import ChipList from "./ChipList";
 import { ChipIcon, DerivedCloseableChip } from "./Chip.story";
 
 <Meta title="Components| Chip" />
@@ -13,6 +13,39 @@ import { ChipIcon, DerivedCloseableChip } from "./Chip.story";
 Chips are compact elements that represent an input, attribute, or action.is the
 
 ### BaseChip
+
+These are the custom props for the Base Chip
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>disabled</td>
+      <td>Chip is in disabled state</td>
+    </tr>
+    <tr>
+      <td>selected</td>
+      <td>Chip is in selected state</td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>Callback when clicking on the chip</td>
+    </tr>
+    <tr>
+      <td>renderLeftIcon</td>
+      <td>Element to be rendered on the left of the chip</td>
+    </tr>
+    <tr>
+      <td>renderRightIcon</td>
+      <td>Element to be rendered on the right of the chip</td>
+    </tr>
+  </tbody>
+</table>
 
 <Preview>
   <Story name="BaseChip">
@@ -62,12 +95,25 @@ The chip can be customized using _renderLeftIcon_ or _renderRightIcon_.
 
 ### StatusChip
 
-Props:
+These are the extra props for the Status Chip
 
-- type: string
-
-There are 4 possible types for any chip:<br/>
-**default** **success** **warning** **danger**
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>type</td>
+      <td>
+        Can be default, success, warning or danger and will set color of the
+        chip
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <Preview>
   <Story name="StatusChip">
@@ -100,9 +146,22 @@ There are 4 possible types for any chip:<br/>
 
 ### CloseableChip
 
-Props:
+These are the extra props for the Status Chip
 
-- onClose: function()
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onClose</td>
+      <td>Callback when the chip is closed by clicking on the right icon</td>
+    </tr>
+  </tbody>
+</table>
 
 By default, there will be a close Icon on the right that can be customized by changing _renderRightIcon_
 
@@ -121,17 +180,75 @@ By default, there will be a close Icon on the right that can be customized by ch
       <CloseableChip
         onClick={() => console.log("click")}
         onClose={() => console.log("close custom fired")}
-        renderRightIcon={() => <ChipIcon name="arrow" />}
+        renderRightIcon={() => <ChipIcon name="arrow" size={8} />}
       >
         with custom close
       </CloseableChip>
-      <DerivedCloseableChip>derived</DerivedCloseableChip>
-      <CloseableChip2
-        onClick={() => console.log("click variant")}
-        onClose={() => console.log("close variant")}
-      >
-        variant with extra style
-      </CloseableChip2>
     </div>
   </Story>
 </Preview>
+
+### ChipList
+
+The ChipList lists an array of items as closeable chips and will change accordingly.
+
+These are the base props for the Chip List
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>list</td>
+      <td>Array of items to be displayed</td>
+    </tr>
+    <tr>
+      <td>displayFn</td>
+      <td>
+        Function that will change how the item is displayed. Used in case of
+        objects. default: (item:T) => item
+      </td>
+    </tr>
+    <tr>
+      <td>onDismissChip</td>
+      <td>Callback triggered when one chip is closed</td>
+    </tr>
+    <tr>
+      <td>onListChange</td>
+      <td>Callback triggered everytime the list changes. </td>
+    </tr>
+  </tbody>
+</table>
+
+The chip list works as uncontrolled state but can be controlled with onListChange.
+
+<Preview>
+  <Story name="ChipList">
+    <ChipList
+      list={["test", "test2", "test3", "test", "test2", "test3"]}
+      onListChange={list => console.log(list)}
+    />
+  </Story>
+</Preview>
+
+```javascript
+<ChipList list={["test", "test2", "test3"]} />
+```
+
+<Preview>
+  <ChipList
+    list={[{ name: "testObj" }, { name: "testObj2" }, { name: "testObj3" }]}
+    displayFn={item => item.name}
+  />
+</Preview>
+
+```javascript
+<ChipList
+  list={[{ name: "testObj" }, { name: "testObj2" }, { name: "testObj3" }]}
+  displayFn={item => item.name}
+/>
+```

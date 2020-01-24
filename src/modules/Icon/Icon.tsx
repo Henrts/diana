@@ -13,7 +13,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   }
 });
 
-export type IconNames = "add" | "arrow" | "arrow-down" | "check";
+export type IconNames = "add" | "arrow" | "arrow-down" | "check" | "close";
 
 export interface IIconProps extends StandardProps<"svg"> {
   name: string;

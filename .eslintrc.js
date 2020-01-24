@@ -35,6 +35,7 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "react/no-array-index-key": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

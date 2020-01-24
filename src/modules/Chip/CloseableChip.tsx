@@ -43,7 +43,11 @@ const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
           }}
           className={cx(styles.deleteIcon)}
         >
-          {renderRightIcon ? renderRightIcon() : <Icon name="add" size={12} />}
+          {renderRightIcon ? (
+            renderRightIcon()
+          ) : (
+            <Icon name="close" size={12} />
+          )}
         </div>
       )}
     />

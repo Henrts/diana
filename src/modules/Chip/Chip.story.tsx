@@ -1,9 +1,7 @@
 import React from "react";
-import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
+import { ThemeStyleSheetFactory } from "../../types";
 import { Icon } from "../Icon";
 import { useStyles } from "../../base";
-import CloseableChip from "./CloseableChip";
-import { IProps as CloseableChipProps } from "./CloseableChip";
 import { IconNames } from "../Icon/Icon";
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -29,26 +27,4 @@ export const ChipIcon: React.FC<{
       )}
     />
   );
-};
-
-const DerivedChip = CloseableChip.extendStyles(() => ({
-  chip: {
-    borderColor: "red",
-    backgroundColor: "blue"
-  },
-  text: {
-    color: "white",
-    fontSize: 30
-  },
-  deleteIcon: {
-    ":hover": {
-      backgroundColor: "steelblue"
-    }
-  }
-}));
-
-export const DerivedCloseableChip: React.FC<
-  CloseableChipProps & WithStylesProps
-> = ({ onClose, ...props }) => {
-  return <DerivedChip onClose={onClose} {...props} />;
 };
