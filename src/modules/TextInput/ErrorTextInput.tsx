@@ -4,15 +4,12 @@ import { WithStylesProps, Theme, ThemeStyleSheetFactory } from "../../types";
 import { withStyles } from "../../base";
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
-  fieldsetError: {
-    borderColor: theme.colors.alert.alert100
-  },
   errorLabel: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
     color: theme.colors.alert.alert100,
-    ...theme.fonts.label
+    ...theme.typography.label
   },
   legend: {
     "@selectors": {
@@ -30,11 +27,15 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   cx,
   styles,
   error,
+  className,
   ...props
 }) => {
   return (
-    <div>
-      <ExtendedTextInput {...props} hasError={error !== null} />
+    <div className={className}>
+      <ExtendedTextInput
+        {...props}
+        hasError={error !== null && error !== undefined}
+      />
       {error && typeof error === "string" && (
         <div className={cx(styles.errorLabel)}>{error}</div>
       )}

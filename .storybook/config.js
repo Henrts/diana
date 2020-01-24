@@ -13,13 +13,3 @@ configure(
   ],
   module
 );
-
-// addParameters({
-//   options: {
-//       enableShortcuts: false,
-//   },
-//   docs: {
-//       container: DocsContainer,
-//       page: DocsPage,
-//   },
-// });
