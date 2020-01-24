@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Dropdown, { MultipleDropdown, IItem } from "./Dropdown";
+import Dropdown, { IItem } from "./Dropdown";
+import MultipleDropdown from "./MultipleDropdown";
 import { Text } from "../Typography";
 import { useStyles } from "../../base";
 import { ThemeStyleSheetFactory } from "../../types";
