@@ -95,9 +95,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
 
   const header = useMemo(
     () =>
-      renderHeader ? (
-        renderHeader()
-      ) : (
+      renderHeader?.() ?? (
         <DropdownHeader
           label={label}
           text={text ?? (selectedItem ? selectedItem.text : placeholder)}
@@ -123,15 +121,11 @@ const BaseDropdown: React.FC<PropsWithChildren<
               hide();
             }}
           >
-            {renderItem ? (
-              renderItem(
-                item,
-                selectedItem !== undefined && selectedItem.id === item.id,
-                index
-              )
-            ) : (
-              <span className={cx(styles.itemText)}>{item.text}</span>
-            )}
+            {renderItem?.(
+              item,
+              selectedItem !== undefined && selectedItem.id === item.id,
+              index
+            ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
           </div>
         ))}
       </div>

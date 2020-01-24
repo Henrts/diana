@@ -82,15 +82,11 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
               onItemsSelected(newItems);
             }}
           >
-            {renderItem ? (
-              renderItem(
-                item,
-                selectedItems.find(i => i.id === item.id) !== undefined,
-                index
-              )
-            ) : (
-              <span className={cx(styles.itemText)}>{item.text}</span>
-            )}
+            {renderItem?.(
+              item,
+              selectedItems.find(i => i.id === item.id) !== undefined,
+              index
+            ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
           </div>
         ))}
       </div>
