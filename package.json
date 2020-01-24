@@ -1,11 +1,8 @@
 {
-  "name": "@Henrts/diana",
+  "name": "@henrts/diana",
   "repository": {
     "type": "git",
     "url": "https://github.com/Henrts/diana"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "version": "1.2.1",
   "license": "MIT",
