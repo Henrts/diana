@@ -1,4 +1,5 @@
 import { defaultPalette } from "../palettes";
+import { defaultIcons } from "../icons";
 
 const spaceUnit = 16;
 const fontSize = 18;
@@ -9,6 +10,7 @@ export default {
   colors: defaultPalette,
   fontFamily,
   fonts: {},
+  icons: defaultIcons,
   spaceUnit: {
     xxs: `${spaceUnit / 4}px`,
     xs: `${spaceUnit / 2}px`,
