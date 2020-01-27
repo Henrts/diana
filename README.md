@@ -1,6 +1,6 @@
-## Y Design
+## A Template Design System
 
-The Y design system and component library. This purpose of this library is to be used as a foundation of a specific design system. It uses aphrodite and aesthetic under the hood.
+The Diana System and component library. The purpose of this library is to be used as a foundation for a specific design system. It uses aphrodite and aesthetic under the hood.
 
 ### Installation
 
@@ -9,7 +9,7 @@ The Y design system and component library. This purpose of this library is to be
 The base building blocks of the library are the HOC `withStyles` and the hooks `useStyles` and `useTheme`
 Use `withStyles` to produce `StyledComponents` that can then be wrapped and extended with different styles and be parts.
 
-![](https://raw.githubusercontent.com/Henrts/y-design/master/src/stories/systemdiagram.png)
+![](https://raw.githubusercontent.com/Henrts/diana/master/src/stories/systemdiagram.png)
 
 Use `initTheme` with the desired theme at the start of your application.
 

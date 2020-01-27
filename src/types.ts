@@ -46,13 +46,15 @@ export type Theme = {
       [key: string]: string;
     };
   };
+  icons: {
+    [key: string] : string
+  },
   fontFamily: string;
   fonts: IFonts;
   spaceUnit: ISpaceUnit;
   spacing: {
     [key: string]: { top: string; left: string };
   };
-  icons: string[];
 };
 
 export type StyleSheet = AesStyleSheet;
