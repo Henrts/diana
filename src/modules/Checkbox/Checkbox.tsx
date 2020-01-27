@@ -43,7 +43,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   },
   checkboxText: {
     cursor: "inherit",
-    ...theme.fonts.bodyText
+    ...theme.typography.body
   },
   icon: {
     opacity: 0,

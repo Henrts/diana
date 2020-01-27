@@ -4,7 +4,8 @@ import {
   WithThemeWrappedProps,
   WithThemeWrapperProps,
   WithStylesWrapperProps as AesWithStylesWrapperProps,
-  WithStylesOptions as AesWithStylesOptions
+  WithStylesOptions as AesWithStylesOptions,
+  StyledComponent as AesStyledComponent
 } from "aesthetic-react";
 import {
   StyleSheetFactory as AesStyleSheetFactory,
@@ -12,45 +13,52 @@ import {
 } from "aesthetic";
 import { defaultPalette } from "./tokens";
 
+export enum FontWeight {
+  REGULAR= 400,
+  MEDIUM= 500,
+  BOLD= 700,
+  BOLDER= 900
+}
+
 interface IFont {
-    fontSize: string | number,
-    fontWeight: 400 | 500 | 700,
-    lineHeight: string | number,
-    fontFamily: string,
-    marginBlockStart?: number,
-    marginBlockEnd?: number
+  fontSize: string | number;
+  fontWeight: FontWeight.REGULAR | FontWeight.MEDIUM | FontWeight.BOLD | FontWeight.BOLDER;
+  lineHeight: string | number;
+  fontFamily: string;
+  letterSpacing: string;
+  marginBlockStart?: number;
+  marginBlockEnd?: number;
 }
 export interface IFonts {
   h1: IFont;
   h2: IFont;
   h3: IFont;
+  h4: IFont;
+  h5: IFont;
   buttonText: IFont;
-  bodyText: IFont;
+  body: IFont;
+  bodyHighlight: IFont;
   descriptionMedium: IFont;
   label: IFont;
 }
 export interface ISpaceUnit {
-  xxs: string,
-  xs: string,
-  sm: string,
-  md: string,
-  lg: string,
-  xl: string,
-  xxl: string
+  xxs: string;
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+  xxl: string;
 }
 
 export type Theme = {
   colors: typeof defaultPalette;
-  typography: {
-    [key: string]: {
-      [key: string]: string;
-    };
-  };
+  typography: IFonts;
   icons: {
-    [key: string] : string
-  },
+    [key: string]: string;
+  };
   fontFamily: string;
-  fonts: IFonts;
+  fonts: any;
   spaceUnit: ISpaceUnit;
   spacing: {
     [key: string]: { top: string; left: string };
@@ -58,6 +66,8 @@ export type Theme = {
 };
 
 export type StyleSheet = AesStyleSheet;
+
+export type StyledComponent<Props> = AesStyledComponent<Props>;
 
 export type WithStylesOptions = AesWithStylesOptions;
 

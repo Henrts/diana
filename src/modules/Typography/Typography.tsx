@@ -24,11 +24,11 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   buttonText: {
     ...theme.typography.buttonText
   },
-  bodyText: {
-    ...theme.typography.bodyText
+  body: {
+    ...theme.typography.body
   },
-  bodyTextHighlight: {
-    ...theme.typography.bodyTextHighlight
+  bodyHighlight: {
+    ...theme.typography.bodyHighlight
   },
   descriptionMedium: {
     ...theme.typography.descriptionMedium
@@ -92,7 +92,7 @@ export const ButtonText: React.FC<IProps> = ({
 export const Text: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <span className={cx(styles.bodyText, className)} {...props}>
+    <span className={cx(styles.body, className)} {...props}>
       {children}
     </span>
   );
@@ -104,7 +104,7 @@ export const TextHighlight: React.FC<IProps> = ({
 }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <span className={cx(styles.bodyTextHighlight, className)} {...props}>
+    <span className={cx(styles.bodyHighlight, className)} {...props}>
       {children}
     </span>
   );
