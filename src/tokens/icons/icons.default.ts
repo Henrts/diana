@@ -5,5 +5,6 @@ export default {
     block: "block.svg",
     chart: "chart.svg",
     check: "check.svg",
-    checkmark: "checkmark.svg"
+    checkmark: "checkmark.svg",
+    close: "close.svg"
 }
