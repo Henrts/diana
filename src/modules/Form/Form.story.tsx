@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import BaseForm from "./Form";
 import { BaseButton } from "../Button";
 import * as yup from "yup";
@@ -6,6 +6,7 @@ import { StyleSheetFactory, Theme } from "../../types";
 import { useStyles } from "../../base";
 import { Checkbox } from "../Checkbox";
 import ErrorTextInput from "../TextInput/ErrorTextInput";
+
 
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {},
