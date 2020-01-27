@@ -1,0 +1,321 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { SuccessNotification } from "./Notification.story";
+import { NotificationStackExample } from "./NotificationStack.story";
+import Notification from "./Notification";
+
+<Meta title="Components| Notification" />
+
+# Notification
+
+The `Notification` component can be used independently or in a `NotificationStack`. It should be used to convey meaningful but concise information to the user and should be easily noticeable and understood.
+As of now, the `Notification`'s content/body can only be a string.
+
+<Preview>
+  <Story name="Notification">
+    <Notification>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Notification>
+  </Story>
+</Preview>
+
+### Notification w/ title
+
+<Preview>
+  <Story name="Notification with title">
+    <Notification title="Title">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Notification>
+  </Story>
+</Preview>
+
+### Notification w/ icon
+
+<Preview>
+  <Story name="Notification with icon">
+    <Notification icon="check">Something good happened!</Notification>
+  </Story>
+</Preview>
+
+### Example of a custom success notification
+
+<Preview>
+  <Story name="Custom notification example">
+    <div style={{ display: "flex ", flexDirection: "column" }}>
+      Variation with icon:
+      <SuccessNotification icon="check">
+        Something good happened!
+      </SuccessNotification>
+      <br />
+      Variation with title:
+      <SuccessNotification title="Success!">
+        Something good happened!
+      </SuccessNotification>
+    </div>
+  </Story>
+</Preview>
+
+### Available props
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children</td>
+      <td>string</td>
+      <td>The text to be displayed in the Notification body</td>
+    </tr>
+    <tr>
+      <td>icon (optional)</td>
+      <td>string</td>
+      <td>
+        The name of the icon to be shown.
+        <br />
+        If this prop is passed, an icon will be displayed on the left of the
+        Notification body.
+      </td>
+    </tr>
+    <tr>
+      <td>title (optional)</td>
+      <td>string</td>
+      <td>
+        The title of the Notification
+        <br />
+        If this prop is passed, the Notification will have a title with the
+        given content.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style Name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>icon</td>
+      <td></td>
+      <td>Style of the icon that precedes the text</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td></td>
+      <td>Style of the Notification text</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td></td>
+      <td>Style of the Notification title</td>
+    </tr>
+    <tr>
+      <td>wrapper</td>
+      <td></td>
+      <td>Style of the wrapper element</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.enter</td>
+      <td>Style of the wrapper element when it is first being rendered</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.enter-active</td>
+      <td>
+        Style of the wrapper element immediately (1 tick) after ".enter" is
+        added.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.exit</td>
+      <td>Style of the wrapper element when it is first being hidden.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.exit-active</td>
+      <td>
+        Style of the wrapper element immediately (1 tick) after ".exit" is
+        added.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+# NotificationStack
+
+The `NotificationStack` receives an array of notifications and handles their display. Through the theme, the aninmations applied to showing and hiding a notification can be configured.
+The default behaviour is for `Notification`s to be showed on the lower right corner.
+
+Each notification in the array can specify a `Notification` template, so that different variations of the `Notification` component are supported.
+
+The `NotificationStack` is a presentational component only and is not concerned with data handling at all (nor should it be).
+
+Examples of what the application using the design system would have to handle internally:
+
+- Hiding `Notification`s after a certain timeout. It would have to add a notification to the `notifications` array and remove it after the timeout.
+  (`onMouseOver` and `onMouseOut` callbacks are already supported for interrupting/resetting the timeout)
+- Allowing the user to close a `Notification`. The `Notification` passed in the template would have to have e.g. an `onClose` callback so that notification could be removed from the `notifications` array.
+
+<Story name="NotificationStack">
+  <NotificationStackExample style={{ marginBottom: "16px" }} />
+</Story>
+
+<details>
+  <summary>Example code</summary>
+
+```javascript
+export const NotificationStackExample: React.FC<{}> = () => {
+  const [notifications, setNotifications] = useState < any > [];
+  const notification1 = {
+    children: "Notificaiton",
+    template: SuccessNotification
+  };
+  const notification2 = {
+    children: "Icon notificaiton",
+    icon: "check",
+    template: SuccessNotification
+  };
+  const notification3 = {
+    children: "Title notificaiton",
+    title: "Big Title",
+    template: SuccessNotification
+  };
+  const notificationList = [notification1, notification2, notification3];
+
+  const addNotification = () => {
+    if (notifications.length < 5) {
+      const rand = getRandomNumber(0, 3);
+
+      setNotifications([...notifications, notificationList[rand]]);
+    }
+  };
+
+  const removeNotification = () => {
+    if (notifications.length > 0) {
+      const rand = getRandomNumber(0, notifications.length);
+      const newNotifications = [...notifications];
+
+      newNotifications.splice(rand, 1);
+
+      setNotifications(newNotifications);
+    }
+  };
+
+  const handleMouseOver = (id: string) => {
+    console.log("OVER: ", id);
+  };
+
+  const handleMouseOut = (id: string) => {
+    console.log("OUT: ", id);
+  };
+
+  return (
+    <>
+      <div style={{ display: "flex" }}>
+        <BaseButton
+          style={{ marginRight: "8px" }}
+          disabled={notifications.length === 5}
+          onClick={addNotification}
+        >
+          Add Notification
+        </BaseButton>
+        <BaseButton
+          disabled={notifications.length === 0}
+          onClick={removeNotification}
+        >
+          Remove Notification
+        </BaseButton>
+      </div>
+      <NotificationStack
+        notifications={notifications}
+        handleMouseOut={handleMouseOut}
+        handleMouseOver={handleMouseOver}
+      />
+    </>
+  );
+};
+```
+
+</details>
+
+<br />
+
+### Available props
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>notifications</td>
+      <td>INotification[]</td>
+      <td>
+        An array of the notifications to display. A notification contains a
+        template of its Notification component, as well as all the props to be
+        passed to that component
+      </td>
+    </tr>
+    <tr>
+      <td>timeout (optional)</td>
+      <td>number</td>
+      <td>The timeout for the CSSTransition component in milliseconds.</td>
+    </tr>
+    <tr>
+      <td>handleMouseOver (optional)</td>
+      <td>function</td>
+      <td>
+        Callback for when the user hovers over a notification.
+        <br />
+        It takes a single argument that is the id of the Notification being
+        hovered over.
+      </td>
+    </tr>
+    <tr>
+      <td>handleMouseOut (optional)</td>
+      <td>function</td>
+      <td>
+        Callback for when the user removes his/her mouse from over a
+        notification.
+        <br />
+        It takes a single argument that is the id of the Notification not being
+        hovered over any longer.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style Name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>notificationStack</td>
+      <td></td>
+      <td>Style of the wrapper element</td>
+    </tr>
+  </tbody>
+</table>
