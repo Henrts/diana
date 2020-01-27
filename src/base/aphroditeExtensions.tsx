@@ -25,8 +25,8 @@
 const selfSelectorHandler = (
   selector: string,
   baseSelector: string,
-  generateSubtreeStyles: (selector: string) => any
-) => {
+  generateSubtreeStyles: (selector: string) => string
+): string | null => {
   // Only consider selectors that start with "&" and are followed by an id, class or pseudo-class.
   if (
     !selector.startsWith("&") ||
