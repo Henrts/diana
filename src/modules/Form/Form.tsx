@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, ReactElement } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, FieldError } from "react-hook-form";
 import {
   StandardProps,
   WithStylesProps,
@@ -35,6 +35,7 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
   styles,
   onSubmitFunc,
   schema,
+  parentStylesheet,
   ...props
 }) => {
   const { handleSubmit, errors, control } = useForm({
@@ -49,23 +50,17 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
       }}
     >
       {React.Children.map(children, (Child: ReactElement) => {
-        if (Child.type === ErrorTextInput) {
-          /* eslint-disable  @typescript-eslint/no-explicit-any */
-          const error: any = errors[Child.props.name];
+        if (Child.type === ErrorTextInput || Child.type === TextInput) {
+          const error = errors[Child.props.name];
           return (
             <Controller
               as={React.cloneElement(Child, {
-                error: error?.message
+                error: (error as FieldError)?.message
               })}
               name={Child.props.name}
               control={control}
               defaultValue=""
             />
-          );
-        }
-        if (Child.type === TextInput) {
-          return (
-            <Controller as={Child} name={Child.props.name} control={control} />
           );
         }
         if (Child.type === Checkbox) {
@@ -76,7 +71,6 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
                 return checked.currentTarget.checked;
               }}
               name={Child.props.name}
-              defaultValue={false}
               control={control}
             />
           );

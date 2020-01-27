@@ -12,19 +12,24 @@ import BaseButton from "../Button/BaseButton";
 `Form` is a wrapper for all form dependent behavior, handling validation and field value changes. Displaying error messages is the responsability of the parts used in the composition as children of the form.
 
 <Preview>
-    <Story name="Simple Form">
-        <Form schema={yup.object().shape({
-          username: yup.string().required("Username is required"),
-          password: yup.string().required("Password is required").min(12, "Password is too small")
-        })} onSubmitFunc={(e) => console.log(e)}>
-            <ErrorTextInput label="Username" name="username" type="text" />
-            <ErrorTextInput label="Password" name="password" type="password" />
-            <Checkbox name="remember">Remember me</Checkbox>
-            <BaseButton type="submit">Submit</BaseButton>
-        </Form>
-    </Story>
+  <Story name="Simple Form">
+    <Form
+      schema={yup.object().shape({
+        username: yup.string().required("Username is required"),
+        password: yup
+          .string()
+          .required("Password is required")
+          .min(12, "Password is too small")
+      })}
+      onSubmitFunc={e => console.log(e)}
+    >
+      <ErrorTextInput label="Username" name="username" type="text" />
+      <ErrorTextInput label="Password" name="password" type="password" />
+      <Checkbox name="remember">Remember me</Checkbox>
+      <BaseButton type="submit">Submit</BaseButton>
+    </Form>
+  </Story>
 </Preview>
-
 
 <table width="100%">
   <thead>
@@ -32,17 +37,20 @@ import BaseButton from "../Button/BaseButton";
       <th>Prop</th>
       <th>Description</th>
     </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>schema</td>
-            <td>If you would like to centralize your validation rules with external validation schema</td>
-        </tr>
-        <tr>
-            <td>onSubmit</td>
-            <td>Callback for a successful (no errors) submission of the form</td>
-        </tr>
-    </tbody>
+  </thead>
+  <tbody>
+    <tr>
+      <td>schema</td>
+      <td>
+        If you would like to centralize your validation rules with external
+        validation schema
+      </td>
+    </tr>
+    <tr>
+      <td>onSubmit</td>
+      <td>Callback for a successful (no errors) submission of the form</td>
+    </tr>
+  </tbody>
 </table>
 
 #### Extendable styles
@@ -59,14 +67,17 @@ import BaseButton from "../Button/BaseButton";
     <tr>
       <td>form</td>
       <td></td>
-      <td>This style affects the main container element that contains all the children fields and inputs of the form</td>
+      <td>
+        This style affects the main container element that contains all the
+        children fields and inputs of the form
+      </td>
     </tr>
-    </tbody>
+  </tbody>
 </table>
 
 ### Using yup for validation
 
-[yup](https://github.com/jquense/yup) supports the definition of a validation Schema where we can define several rules for each field of the form. 
+[yup](https://github.com/jquense/yup) supports the definition of a validation Schema where we can define several rules for each field of the form.
 We can also use yup to transform values to match a rule, like trimming and uppercasing fields
 
 #### Example schema
@@ -79,25 +90,32 @@ We can also use yup to transform values to match a rule, like trimming and upper
     "password": yup.string().required("Password is required").min(12, "Password is too small")
 }
 ```
+
 <table width="100%">
-    <thead>
-        <tr>
-            <td>Component</td>
-            <td>Supported</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>TextInput</td>
-            <td><strong>x</strong></td>
-        </tr>
-        <tr>
-            <td>ErrorTextInput</td>
-            <td><strong>x</strong></td>
-        </tr>
-        <tr>
-            <td>Checkbox</td>
-            <td><strong>x</strong></td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <td>Component</td>
+      <td>Supported</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TextInput</td>
+      <td>
+        <strong>x</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>ErrorTextInput</td>
+      <td>
+        <strong>x</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>Checkbox</td>
+      <td>
+        <strong>x</strong>
+      </td>
+    </tr>
+  </tbody>
 </table>

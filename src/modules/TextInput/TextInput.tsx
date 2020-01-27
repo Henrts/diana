@@ -17,7 +17,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
         borderColor: theme.colors.alert.alert100
       },
       "&.disabled": {
-        backgroundColor: "#eee"
+        backgroundColor: theme.colors.grey.grey25
       },
       "&.focus": {}
     }
@@ -31,7 +31,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     ...theme.typography.body,
     "@selectors": {
       "&.disabled": {
-        backgroundColor: "#eee"
+        backgroundColor: theme.colors.grey.grey25
       }
     }
   },
@@ -48,7 +48,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    color: "#808080",
+    color: theme.colors.grey.grey100,
     padding: "0px 4px",
     transition: "transform 0.1s, font-size 0.1s",
     transitionTimingFunction: "ease-in",
@@ -96,9 +96,10 @@ export const TextInput: React.FC<PropsWithChildren<
   cx,
   className,
   hasError,
-  label,
+  label = "",
   onChange,
   disabled,
+  parentStylesheet,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -136,39 +137,35 @@ export const TextInput: React.FC<PropsWithChildren<
       >
         {label}
       </legend>
-      {label && (
-        <span ref={hiddenLabel} className={cx(styles.hiddenLabel)}>
+      <span ref={hiddenLabel} className={cx(styles.hiddenLabel)}>
+        {label}
+      </span>
+      <div className={cx(styles.labelContainer)}>
+        <span
+          className={cx(
+            styles.label,
+            isFocused && "focus",
+            hasContent && "active",
+            hasError && "error",
+            disabled && "disabled"
+          )}
+        >
           {label}
         </span>
-      )}
-      {label && (
-        <div className={cx(styles.labelContainer)}>
-          <span
-            className={cx(
-              styles.label,
-              isFocused && "focus",
-              hasContent && "active",
-              hasError && "error",
-              disabled && "disabled"
-            )}
-          >
-            {label}
-          </span>
-        </div>
-      )}
+      </div>
       <input
         {...props}
         disabled={disabled}
         ref={inputRef}
         className={cx(styles.input, disabled && "disabled")}
-        onChange={(e): void => {
+        onChange={e => {
           if (onChange) {
             onChange(e);
           }
           setHasContent(e.target.value.length > 0);
         }}
-        onBlur={(): void => setIsFocused(false)}
-        onFocus={(): void => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        onFocus={() => setIsFocused(true)}
       />
     </fieldset>
   );
