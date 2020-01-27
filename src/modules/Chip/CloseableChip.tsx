@@ -10,7 +10,8 @@ export interface IProps extends BaseChipProps {
 
 const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   chip: {
-    borderColor: "green"
+    borderColor: "green",
+    height: 26
   },
   deleteIcon: {
     padding: theme.spaceUnit.xxs,
@@ -43,11 +44,7 @@ const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
           }}
           className={cx(styles.deleteIcon)}
         >
-          {renderRightIcon ? (
-            renderRightIcon()
-          ) : (
-            <Icon name="close" size={12} />
-          )}
+          {renderRightIcon ? renderRightIcon() : <Icon name="close" size={8} />}
         </div>
       )}
     />

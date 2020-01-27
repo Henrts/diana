@@ -1,36 +1,43 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory
+  ThemeStyleSheetFactory,
+  StyledComponent
 } from "../../types";
 import { withStyles } from "../../base";
-import CloseableChip from "./CloseableChip";
+import CloseableChip, { IProps as ICloseableChipProps } from "./CloseableChip";
 
 export interface IProps<T> extends StandardProps<"div"> {
   list: T[];
-  displayFn?: (item: T) => string;
+  displayFn?: (item: T) => T;
   onDismissChip?: (item: T) => void;
   onListChange?: (newList: T[]) => void;
+  Chip?: StyledComponent<ICloseableChipProps>;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   chipList: {
     display: "flex",
-    flexWrap: "wrap"
+    overflowX: "auto"
   },
   chipContainer: {
     marginRight: theme.spaceUnit.xxs,
+    marginTop: theme.spaceUnit.xs,
+    marginBottom: theme.spaceUnit.xs,
     ":last-child": {
       marginRight: 0
     }
   }
 });
 
-function ChipList<T extends string>({
+const CloseableChipStyle = CloseableChip.extendStyles(styleSheet);
+
+function ChipList<T>({
   styles,
   cx,
   list = [],
+  Chip = CloseableChipStyle,
   displayFn = (item: T) => item,
   onDismissChip,
   onListChange,
@@ -39,9 +46,16 @@ function ChipList<T extends string>({
   ...props
 }: IProps<T> & WithStylesProps) {
   const [_list, setList] = useState(list);
+  const divRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setList(list);
-  }, [list]);
+    setTimeout(() => {
+      if (divRef?.current) {
+        divRef.current.scrollLeft = divRef.current.scrollWidth;
+      }
+    });
+  }, [list, onListChange]);
 
   const handleDismiss = useCallback(
     (item: T, index: number) => {
@@ -58,12 +72,10 @@ function ChipList<T extends string>({
   );
 
   return (
-    <div className={cx(styles.chipList)} {...props}>
+    <div className={cx(styles.chipList)} {...props} ref={divRef}>
       {_list.map((item: T, i) => (
         <div className={cx(styles.chipContainer)} key={i}>
-          <CloseableChip onClose={() => handleDismiss(item, i)}>
-            {displayFn(item)}
-          </CloseableChip>
+          <Chip onClose={() => handleDismiss(item, i)}>{displayFn(item)}</Chip>
         </div>
       ))}
     </div>
