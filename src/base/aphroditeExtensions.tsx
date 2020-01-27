@@ -22,13 +22,11 @@
  * @param baseSelector the parent selector
  * @param generateSubtreeStyles a function that generates the subtree styles based on the given selector
  */
-import { Extension } from "aphrodite";
-
 const selfSelectorHandler = (
   selector: string,
   baseSelector: string,
-  generateSubtreeStyles: (selector: string) => Extension
-) => {
+  generateSubtreeStyles: (selector: string) => string
+): string | null => {
   // Only consider selectors that start with "&" and are followed by an id, class or pseudo-class.
   if (
     !selector.startsWith("&") ||
