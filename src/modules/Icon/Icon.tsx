@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
+import { useTheme } from "aesthetic-react";
 import { StandardProps, ThemeStyleSheetFactory } from "../../types";
 import { useStyles } from "../../base";
 
@@ -15,7 +16,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 export type IconNames = "add" | "arrow" | "arrow-down" | "check";
 
 export interface IIconProps extends StandardProps<"svg"> {
-  name: IconNames;
+  name: string;
   src?: string;
   size?: number;
 }
@@ -23,23 +24,23 @@ const Icon: React.FC<IIconProps> = ({
   name,
   height,
   width,
-  stroke,
+  stroke = "black",
   fill,
   color,
   className,
   src,
   size
 }) => {
-  const svgIcon = src || `assets/icons/${name}.svg`;
+  const theme = useTheme();
+  const svgIcon = src || (theme && `assets/icons/${theme.icons[name]}`);
   const [styles, cx] = useStyles(styleSheet);
   return (
     <ReactSVG
       src={svgIcon}
-      className={cx(styles.icon, className)}
+      className={cx(styles.icon)}
       beforeInjection={svg => {
         svg.setAttribute("class", "y-icon");
-        svg.setAttribute("fill", "inherit");
-        svg.setAttribute("stroke", "inherit");
+        svg.setAttribute("class", `${svg.getAttribute("class")} ${className}`);
         if (size) {
           svg.setAttribute("height", size.toString());
           svg.setAttribute("width", size.toString());

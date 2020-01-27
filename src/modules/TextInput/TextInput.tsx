@@ -94,6 +94,7 @@ export const TextInput: React.FC<PropsWithChildren<
   styles,
   wrappedRef,
   cx,
+  className,
   hasError,
   label,
   onChange,
@@ -118,7 +119,8 @@ export const TextInput: React.FC<PropsWithChildren<
         isFocused && "focus",
         hasContent && "active",
         hasError && "error",
-        disabled && "disabled"
+        disabled && "disabled",
+        className
       )}
     >
       <legend
