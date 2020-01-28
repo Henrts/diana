@@ -22,9 +22,6 @@ const stylesheet: StyleSheetFactory<Theme> = () => ({
 export interface IFormProps extends StandardProps<"form"> {
   children: ReactElement[];
   onSubmitFunc: (values: { [key: string]: string | boolean }) => void;
-  toSubmit?: {
-    [key: string]: string;
-  };
   schema?: {
     /* eslint-disable  @typescript-eslint/no-explicit-any */
     [key: string]: any;
