@@ -36,6 +36,7 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unnecessary-type-assertion": "off",
+    "react/no-array-index-key": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

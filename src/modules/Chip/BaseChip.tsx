@@ -4,7 +4,7 @@ import {
   WithStylesProps,
   ThemeStyleSheetFactory
 } from "../../types";
-import { DescriptionMedium } from "../Typography/Typography";
+import { DescriptionMedium } from "../Typography";
 import { withStyles } from "../../base";
 
 export interface IProps extends StandardProps<"div"> {
@@ -47,7 +47,6 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
   cx,
   selected,
   disabled,
-  onClick,
   renderLeftIcon,
   renderRightIcon,
   children,
@@ -56,19 +55,16 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
   parentStylesheet,
   ...props
 }) => {
-  const styleArray = [
+  const { onClick } = props;
+  const styleArray = cx(
+    styles.chip,
     onClick && styles.clickable,
     selected && styles.selected,
-    disabled && styles.disabled
-  ];
-
+    disabled && styles.disabled,
+    className
+  );
   return (
-    <div
-      className={cx(styles.chip, ...styleArray, className)}
-      {...props}
-      ref={wrappedRef}
-      onClick={onClick}
-    >
+    <div className={styleArray} {...props}>
       {renderLeftIcon && renderLeftIcon()}
       <DescriptionMedium className={cx(styles.text)}>
         {children}
@@ -78,9 +74,4 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-// const ForwardedElement = React.forwardRef<
-//   IProps & WithStylesProps,
-//   HTMLDivElement
-// >((props: any, ref) => <BaseChip wrappedRef={ref} {...props} />);
-// ForwardedElement.displayName = "BaseChip";
 export default withStyles(styleSheet)(BaseChip);

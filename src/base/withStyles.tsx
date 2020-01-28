@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import aesthetic, { ThemeName, ThemeSheet } from "aesthetic";
+import React from "react";
+import aesthetic, { ThemeSheet } from "aesthetic";
 import hoistNonReactStatics from "hoist-non-react-statics";
 import uuid from "uuid/v4";
 import deepMerge from "extend";
