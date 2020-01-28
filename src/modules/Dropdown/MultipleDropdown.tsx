@@ -1,8 +1,14 @@
 import React, { PropsWithChildren, useMemo } from "react";
-import { IItem, DropdownHeader, styleSheet, IProps } from "./Dropdown";
-import { WithStylesProps, ThemeStyleSheetFactory, withStyles } from "../..";
+import {
+  IItem,
+  DropdownHeader,
+  styleSheet,
+  IProps,
+  usePopoverRef
+} from "./Dropdown";
+import { WithStylesProps, ThemeStyleSheetFactory } from "../../types";
 import StyledPopover from "../Popover/Popover";
-import extendStyles from "../../base/extendStyles";
+import { extendStyles, withStyles } from "../../base";
 
 interface IMultipleProps<T extends IItem> extends IProps<T> {
   onItemsSelected: (items: T[]) => void;
@@ -26,8 +32,13 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
     placeholder,
     text,
     renderItem,
-    renderHeader
+    renderHeader,
+    wrappedRef
   } = props;
+
+  const ref = usePopoverRef(wrappedRef);
+
+  const hide = () => ref.current?.hide();
 
   const header = useMemo(
     () =>
@@ -50,24 +61,30 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
   );
 
   return (
-    <StyledPopover {...props} header={header}>
-      <div className={cx(styles.list)}>
-        <div
+    <StyledPopover wrappedRef={ref} {...props} header={header}>
+      <ul className={cx(styles.list)}>
+        <li
           className={cx(
             styles.item,
             styles.itemAll,
-            selectedItems.length === items.length && styles.selected,
+            selectedItems.length === items.length && styles.itemSelected,
             selectedItems.length === items.length && styles.itemAllSelected
           )}
-          onClick={() => onItemsSelected([...items])}
+          onClick={() => {
+            onItemsSelected([...items]);
+            hide();
+          }}
+          role="presentation"
         >
           {selectAllItem ?? selectAllText}
-        </div>
+        </li>
         {items.map((item: IItem, index: number) => (
-          <div
+          <li
             className={cx(
               styles.item,
-              selectedItems?.find(i => i.id === item.id) ? styles.selected : {}
+              selectedItems?.find(i => i.id === item.id)
+                ? styles.itemSelected
+                : {}
             )}
             key={item.id}
             onClick={() => {
@@ -81,15 +98,16 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
               }
               onItemsSelected(newItems);
             }}
+            role="presentation"
           >
             {renderItem?.(
               item,
               selectedItems.find(i => i.id === item.id) !== undefined,
               index
             ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </StyledPopover>
   );
 };

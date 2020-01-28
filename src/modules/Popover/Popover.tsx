@@ -17,6 +17,7 @@ export interface IProps {
   dismissOnClick?: boolean;
   onShow?: () => void;
   onHide?: () => void;
+  disabled?: boolean;
 }
 
 export interface IPopoverRef {
@@ -29,11 +30,15 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   container: {
     position: "relative"
   },
+  disabled: {
+    pointerEvents: "none"
+  },
   header: {
     cursor: "pointer"
   },
   popover: {
-    position: "absolute"
+    position: "absolute",
+    width: "100%"
   },
   bottom: {
     top: "100%"
@@ -60,6 +65,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   header,
   onShow,
   onHide,
+  disabled = false,
   cx,
   styles,
   wrappedRef
@@ -89,11 +95,16 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   }));
 
   return (
-    <div className={cx(styles.container)} ref={divRef}>
+    <div
+      className={cx(styles.container, disabled && styles.disabled)}
+      ref={divRef}
+    >
       <div
         className={cx(styles.header)}
         onClick={() => {
-          toggleVisible();
+          if (!disabled) {
+            toggleVisible();
+          }
         }}
       >
         {header}

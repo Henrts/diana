@@ -9,8 +9,8 @@ import Popover, {
   IPopoverRef,
   IProps as IPopoverProps
 } from "../Popover/Popover";
-import { ThemeStyleSheetFactory, WithStylesProps } from "../..";
 import { withStyles } from "../../base";
+import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
 
 export interface IItem {
   id: string;
@@ -34,15 +34,33 @@ interface ISingleProps<T extends IItem> extends IProps<T> {
 }
 
 export const styleSheet: ThemeStyleSheetFactory = () => ({
+  container: {
+    maxWidth: "100%"
+  },
   header: {},
   label: {},
-  text: {},
-  list: {},
+  text: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
+  },
+  list: {
+    marginBottom: 0,
+    marginTop: 0,
+    paddingLeft: 0,
+    listStyle: "none",
+    overflowY: "auto"
+  },
   item: {
     cursor: "pointer"
   },
   itemSelected: {},
-  itemText: {}
+  itemText: {
+    display: "block",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
+  }
 });
 
 export const StyledPopover = Popover.extendStyles(styleSheet);
@@ -108,27 +126,28 @@ const BaseDropdown: React.FC<PropsWithChildren<
 
   return (
     <StyledPopover wrappedRef={ref} {...props} header={header}>
-      <div className={cx(styles.list)}>
+      <ul className={cx(styles.list)}>
         {items.map((item, index) => (
-          <div
+          <li
             className={cx(
               styles.item,
-              selectedItem?.id === item.id ? styles.selected : {}
+              selectedItem?.id === item.id ? styles.itemSelected : {}
             )}
             key={item.id}
             onClick={() => {
               onItemSelected(item);
               hide();
             }}
+            role="presentation"
           >
             {renderItem?.(
               item,
               selectedItem !== undefined && selectedItem.id === item.id,
               index
-            ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
-          </div>
+            ) ?? <span className={cx(styles.itemText)}>A{item.text}</span>}
+          </li>
         ))}
-      </div>
+      </ul>
     </StyledPopover>
   );
 };

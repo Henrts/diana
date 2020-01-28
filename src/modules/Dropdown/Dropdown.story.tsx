@@ -6,11 +6,16 @@ import { useStyles } from "../../base";
 import { ThemeStyleSheetFactory } from "../../types";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
+  container: {
+    maxWidth: 200,
+    marginBottom: 200
+  },
   item: {
     ":hover": {
       fontWeight: 700
     }
-  }
+  },
+  itemSelected: { fontWeight: 700 }
 });
 
 const items = [
@@ -18,7 +23,7 @@ const items = [
   { id: "2", text: "Option 2" },
   { id: "3", text: "Option 3" },
   { id: "4", text: "Option 4" },
-  { id: "5", text: "Option 5" }
+  { id: "5", text: "Option 5 with long text" }
 ];
 
 const StyledDropdown = Dropdown.extendStyles(stylesheet);
@@ -32,7 +37,6 @@ export const DropdownStory = () => {
       selectedItem={selectedItem}
       onItemSelected={selectItem}
       items={items}
-      renderItem={item => <Text>{item.text}</Text>}
     />
   );
 };
