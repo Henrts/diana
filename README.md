@@ -22,7 +22,7 @@ initTheme(theme);
 #### Creation of an extendable component
 
 ```javascript
-import { withStyles, WithStylesProps } from "@Henrts/ydesign";
+import { withStyles, WithStylesProps } from "@henrts/diana";
 
 const styleSheet = theme => ({
   exampleStyle: {

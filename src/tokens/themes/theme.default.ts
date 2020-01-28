@@ -1,5 +1,6 @@
 import { defaultPalette } from "../palettes";
 import { defaultIcons } from "../icons";
+import { FontWeight } from "../../types";
 
 const spaceUnit = 16;
 const fontSize = 18;
@@ -49,7 +50,7 @@ export default {
   typography: {
     h1: {
       fontSize: "2rem",
-      fontWeight: 700,
+      fontWeight: FontWeight.BOLD,
       lineHeight: "46px",
       fontFamily,
       marginBlockStart: 0,
@@ -57,7 +58,7 @@ export default {
     },
     h2: {
       fontSize: "1.6rem",
-      fontWeight: 400,
+      fontWeight: FontWeight.REGULAR,
       lineHeight: "43px",
       fontFamily,
       marginBlockStart: 0,
@@ -65,7 +66,7 @@ export default {
     },
     h3: {
       fontSize: "1.2rem",
-      fontWeight: 400,
+      fontWeight: FontWeight.REGULAR,
       lineHeight: "39px",
       fontFamily,
       marginBlockStart: 0,
@@ -73,25 +74,25 @@ export default {
     },
     buttonText: {
       fontSize: "1.125rem",
-      fontWeight: 500,
+      fontWeight: FontWeight.MEDIUM,
       lineHeight: "24px",
       fontFamily
     },
     descriptionMedium: {
       fontSize: "15px",
-      fontWeight: 500,
+      fontWeight: FontWeight.MEDIUM,
       lineHeight: "16px",
       fontFamily
     },
     body: {
       fontSize: `${fontSize}px`,
-      fontWeight: 400,
+      fontWeight: FontWeight.REGULAR,
       lineHeight: `${fontSize}px`,
       fontFamily
     },
     label: {
       fontSize: "0.66rem",
-      fontWeight: 400,
+      fontWeight: FontWeight.REGULAR,
       lineHeight: "0.66rem",
       fontFamily
     }

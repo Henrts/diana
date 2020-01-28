@@ -4,5 +4,6 @@ export * from "./Chip";
 export * from "./Dropdown";
 export * from "./Icon";
 export * from "./Popover";
+export * from "./Radio";
 export * from "./TextInput";
 export * from "./Typography";
