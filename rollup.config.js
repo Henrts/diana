@@ -4,6 +4,7 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
 import url from "rollup-plugin-url";
+import copy from "rollup-plugin-copy-assets";
 import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import svgr from "@svgr/rollup";
 
@@ -60,6 +61,10 @@ export default {
           "Component"
         ]
       }
+    }),
+    // copy assets into bundle
+    copy({
+      assets: ["assets"]
     })
   ]
 };

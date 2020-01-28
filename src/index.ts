@@ -2,6 +2,7 @@ export * from "./modules/Typography";
 export * from "./modules/Button";
 export * from "./modules/Chip";
 export * from "./modules/Icon";
+export * from "./modules/Radio";
 export * from "./modules/TextInput";
 export * from "./modules/Checkbox";
 export * from "./base";

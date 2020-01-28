@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/Henrts/diana"
   },
-  "version": "1.2.2",
+  "version": "1.2.3",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -98,6 +98,7 @@
     "react-svg": "^11.0.5",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy-assets": "^2.0.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-size-snapshot": "^0.10.0",
