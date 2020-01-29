@@ -15,7 +15,6 @@ import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
 export interface IItem {
   id: string;
   text: string;
-  inactive?: boolean;
 }
 
 export interface IProps<T extends IItem>
@@ -144,7 +143,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
               item,
               selectedItem !== undefined && selectedItem.id === item.id,
               index
-            ) ?? <span className={cx(styles.itemText)}>A{item.text}</span>}
+            ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
           </li>
         ))}
       </ul>
