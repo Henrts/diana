@@ -5,24 +5,29 @@ import {
   WithThemeWrapperProps,
   WithStylesWrapperProps as AesWithStylesWrapperProps,
   WithStylesOptions as AesWithStylesOptions,
-  StyledComponent as AesStyledComponent
 } from "aesthetic-react";
 import {
   StyleSheetFactory as AesStyleSheetFactory,
-  StyleSheet as AesStyleSheet
+  StyleSheet as AesStyleSheet,
+  ThemeSheet as AesThemeSheet,
+  StyleName as AesStyleName
 } from "aesthetic";
 import { defaultPalette } from "./tokens";
 
 export enum FontWeight {
-  REGULAR= 400,
-  MEDIUM= 500,
-  BOLD= 700,
-  BOLDER= 900
+  REGULAR = 400,
+  MEDIUM = 500,
+  BOLD = 700,
+  BOLDER = 900
 }
 
 interface IFont {
   fontSize: string | number;
-  fontWeight: FontWeight.REGULAR | FontWeight.MEDIUM | FontWeight.BOLD | FontWeight.BOLDER;
+  fontWeight:
+    | FontWeight.REGULAR
+    | FontWeight.MEDIUM
+    | FontWeight.BOLD
+    | FontWeight.BOLDER;
   lineHeight: string | number;
   fontFamily: string;
   letterSpacing: string;
@@ -65,11 +70,25 @@ export type Theme = {
   };
 };
 
+export type ThemeSheet = AesThemeSheet;
+
 export type StyleSheet = AesStyleSheet;
 
-export type StyledComponent<Props> = AesStyledComponent<Props>;
+export type StyleName = AesStyleName;
 
-export type WithStylesOptions = AesWithStylesOptions;
+// eslint-disable-next-line @typescript-eslint/interface-name-prefix
+export interface StyledComponent<Props>
+  extends React.NamedExoticComponent<Props> {
+  displayName: string;
+  styleName: StyleName;
+  WrappedComponent: React.ComponentType<any>;
+  extendStyles<T>(
+    styleSheet: ThemeStyleSheetFactory<T>,
+    extendOptions?: Omit<WithStylesOptions, "extendFrom">
+  ): StyledComponent<Props>;
+}
+
+export type WithStylesOptions = AesWithStylesOptions & { register: boolean };
 
 export type StyleSheetFactory<
   ThemeSheet = Theme,

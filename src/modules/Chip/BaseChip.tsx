@@ -74,4 +74,4 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
     </div>
   );
 };
-export default withStyles(styleSheet)(BaseChip);
+export default withStyles(styleSheet, { register: true })(BaseChip);

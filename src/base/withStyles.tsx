@@ -1,23 +1,25 @@
 import React from "react";
-import aesthetic, { ThemeSheet } from "aesthetic";
+import aesthetic from "aesthetic";
 import hoistNonReactStatics from "hoist-non-react-statics";
 import uuid from "uuid/v4";
 import deepMerge from "extend";
-import { StyledComponent } from "aesthetic-react";
 import {
   ThemeStyleSheetFactory,
   WithStylesProps,
   WithStylesOptions,
-  WithStylesWrapperProps
+  WithStylesWrapperProps,
+  StyledComponent,
+  ThemeSheet
 } from "../types";
 import useStyles from "./useStyles";
+import ComponentRegistry from "./Registry";
 
 /**
  * Wrap a React component with an HOC that injects the defined style sheet as a prop.
  */
 function withStyles<Theme = ThemeSheet, T = unknown>(
   styleSheet: ThemeStyleSheetFactory<T>,
-  options: WithStylesOptions = { extendable: true }
+  options: WithStylesOptions = { extendable: true, register: false }
 ) /* infer */ {
   const {
     cxPropName = aesthetic.options.cxPropName,
@@ -25,7 +27,8 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     extendFrom = "",
     passThemeProp = aesthetic.options.passThemeProp,
     stylesPropName = aesthetic.options.stylesPropName,
-    themePropName = aesthetic.options.themePropName
+    themePropName = aesthetic.options.themePropName,
+    register
   } = options;
 
   return function withStylesComposer<Props extends object = {}>(
@@ -96,6 +99,10 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         extendFrom: styleName
       })(WrappedComponent);
     };
+
+    if (register) {
+      ComponentRegistry.register(WithStyles, baseName);
+    }
 
     return WithStyles;
   };
