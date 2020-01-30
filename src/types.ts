@@ -38,12 +38,12 @@ export interface IFonts {
   h1: IFont;
   h2: IFont;
   h3: IFont;
-  h4: IFont;
-  h5: IFont;
+  h4?: IFont;
+  h5?: IFont;
   buttonText: IFont;
   body: IFont;
-  bodyHighlight: IFont;
-  descriptionMedium: IFont;
+  bodyHighlight?: IFont;
+  descriptionMedium?: IFont;
   label: IFont;
 }
 export interface ISpaceUnit {
@@ -57,6 +57,7 @@ export interface ISpaceUnit {
 }
 
 export type Theme = {
+  name: string;
   colors: typeof defaultPalette;
   typography: IFonts;
   icons: {
