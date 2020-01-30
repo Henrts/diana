@@ -15,7 +15,7 @@ export function useRegistryWithStyles<T>(
   styleSheet: ThemeStyleSheetFactory
 ) {
   return useMemo(() => {
-    const component = ComponentRegistry.get<BaseChipProps>(componentRegistryId);
+    const component = ComponentRegistry.get<T>(componentRegistryId);
     if (styleSheet) {
       return component.extendStyles(styleSheet);
     }
