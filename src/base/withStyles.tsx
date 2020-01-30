@@ -100,7 +100,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     };
 
     if (register) {
-      ComponentRegistry.register<Props>(WithStyles, baseName);
+      ComponentRegistry.register(WithStyles, baseName);
     }
 
     return WithStyles;

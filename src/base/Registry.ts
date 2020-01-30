@@ -26,8 +26,8 @@ class ComponentRegistry {
     return component;
   }
 
-  static register<T>(
-    component: StyledComponent<T>,
+  static register(
+    component: any,
     componentRegistryId: string,
     params?: Arguments
   ) {
