@@ -5,7 +5,6 @@ import {
   WithThemeWrapperProps,
   WithStylesWrapperProps as AesWithStylesWrapperProps,
   WithStylesOptions as AesWithStylesOptions,
-  StyledComponent as AesStyledComponent
 } from "aesthetic-react";
 import {
   StyleSheetFactory as AesStyleSheetFactory,
