@@ -71,6 +71,10 @@ export type StyledComponent<Props> = AesStyledComponent<Props>;
 
 export type WithStylesOptions = AesWithStylesOptions;
 
+export interface IWithAditionalStylesProps {
+  aditionalStyles?: AesWithStylesOptions[]
+}
+
 export type StyleSheetFactory<
   ThemeSheet = Theme,
   T = unknown
@@ -78,7 +82,8 @@ export type StyleSheetFactory<
 export type ThemeStyleSheetFactory<T = unknown> = StyleSheetFactory<Theme, T>;
 
 export type WithStylesProps = WithStylesWrappedProps<Theme> &
-  WithStylesWrapperProps;
+  WithStylesWrapperProps & IWithAditionalStylesProps;
+  
 export type WithThemeProps = WithThemeWrappedProps<Theme> &
   WithThemeWrapperProps;
 

@@ -19,10 +19,12 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     cursor: "pointer",
     outlineStyle: "none",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    "@selectors": {
+      "&.disabled": {},
+      "&.danger": {}
+    }
   },
-  danger: {},
-  disabled: {},
   buttonText: {}
 });
 
@@ -36,14 +38,14 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
   renderRightIcon,
   wrappedRef,
   parentStylesheet,
+  aditionalStyles = [],
   ...props
 }) => {
   const { disabled } = props;
-  const styleArray = [danger && styles.danger, disabled && styles.disabled];
-
+  const styleArray = [danger && "danger", disabled && "disabled"];
   return (
     <button
-      className={cx(styles.button, ...styleArray, className)}
+      className={cx(styles.button, ...styleArray, ...aditionalStyles)}
       type="submit"
       {...props}
       ref={wrappedRef}
@@ -54,11 +56,5 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
     </button>
   );
 };
-
-// const ForwardedButton = React.forwardRef<
-//   IProps & WithStylesProps,
-//   HTMLButtonElement
-// >((props: any, ref) => <BaseButton wrappedRef={ref} {...props} />);
-// ForwardedButton.displayName = "BaseButton";
 
 export default withStyles(styleSheet)(BaseButton);
