@@ -57,4 +57,4 @@ const CloseableChip: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-export default withStyles(styleSheet)(CloseableChip);
+export default withStyles(styleSheet, { register: true })(CloseableChip);

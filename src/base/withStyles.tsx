@@ -18,7 +18,7 @@ import ComponentRegistry from "./Registry";
  */
 function withStyles<Theme = ThemeSheet, T = unknown>(
   styleSheet: ThemeStyleSheetFactory<T>,
-  options: WithStylesOptions = { extendable: true, register: true }
+  options: WithStylesOptions = { extendable: true, register: false }
 ) /* infer */ {
   const {
     cxPropName = aesthetic.options.cxPropName,
