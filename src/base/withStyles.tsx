@@ -1,14 +1,15 @@
 import React from "react";
-import aesthetic, { ThemeSheet } from "aesthetic";
+import aesthetic from "aesthetic";
 import hoistNonReactStatics from "hoist-non-react-statics";
 import uuid from "uuid/v4";
 import deepMerge from "extend";
-import { StyledComponent } from "aesthetic-react";
 import {
   ThemeStyleSheetFactory,
   WithStylesProps,
   WithStylesOptions,
-  WithStylesWrapperProps
+  WithStylesWrapperProps,
+  StyledComponent,
+  ThemeSheet
 } from "../types";
 import useStyles from "./useStyles";
 import ComponentRegistry from "./Registry";

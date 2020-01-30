@@ -9,7 +9,9 @@ import {
 } from "aesthetic-react";
 import {
   StyleSheetFactory as AesStyleSheetFactory,
-  StyleSheet as AesStyleSheet
+  StyleSheet as AesStyleSheet,
+  ThemeSheet as AesThemeSheet,
+  StyleName as AesStyleName
 } from "aesthetic";
 import { defaultPalette } from "./tokens";
 
@@ -69,9 +71,23 @@ export type Theme = {
   };
 };
 
+export type ThemeSheet = AesThemeSheet;
+
 export type StyleSheet = AesStyleSheet;
 
-export type StyledComponent<Props> = AesStyledComponent<Props>;
+export type StyleName = AesStyleName;
+
+// eslint-disable-next-line @typescript-eslint/interface-name-prefix
+export interface StyledComponent<Props>
+  extends React.NamedExoticComponent<Props> {
+  displayName: string;
+  styleName: StyleName;
+  WrappedComponent: React.ComponentType<any>;
+  extendStyles<T>(
+    styleSheet: ThemeStyleSheetFactory<T>,
+    extendOptions?: Omit<WithStylesOptions, "extendFrom">
+  ): StyledComponent<Props>;
+}
 
 export type WithStylesOptions = AesWithStylesOptions & { register: boolean };
 
