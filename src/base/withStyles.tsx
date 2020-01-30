@@ -11,13 +11,14 @@ import {
   WithStylesWrapperProps
 } from "../types";
 import useStyles from "./useStyles";
+import ComponentRegistry from "./Registry";
 
 /**
  * Wrap a React component with an HOC that injects the defined style sheet as a prop.
  */
 function withStyles<Theme = ThemeSheet, T = unknown>(
   styleSheet: ThemeStyleSheetFactory<T>,
-  options: WithStylesOptions = { extendable: true }
+  options: WithStylesOptions = { extendable: true, register: true }
 ) /* infer */ {
   const {
     cxPropName = aesthetic.options.cxPropName,
@@ -25,7 +26,8 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     extendFrom = "",
     passThemeProp = aesthetic.options.passThemeProp,
     stylesPropName = aesthetic.options.stylesPropName,
-    themePropName = aesthetic.options.themePropName
+    themePropName = aesthetic.options.themePropName,
+    register
   } = options;
 
   return function withStylesComposer<Props extends object = {}>(
@@ -96,6 +98,10 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         extendFrom: styleName
       })(WrappedComponent);
     };
+
+    if (register) {
+      ComponentRegistry.register<Props>(WithStyles, baseName);
+    }
 
     return WithStyles;
   };

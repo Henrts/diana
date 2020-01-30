@@ -14,15 +14,19 @@ import {
 import { defaultPalette } from "./tokens";
 
 export enum FontWeight {
-  REGULAR= 400,
-  MEDIUM= 500,
-  BOLD= 700,
-  BOLDER= 900
+  REGULAR = 400,
+  MEDIUM = 500,
+  BOLD = 700,
+  BOLDER = 900
 }
 
 interface IFont {
   fontSize: string | number;
-  fontWeight: FontWeight.REGULAR | FontWeight.MEDIUM | FontWeight.BOLD | FontWeight.BOLDER;
+  fontWeight:
+    | FontWeight.REGULAR
+    | FontWeight.MEDIUM
+    | FontWeight.BOLD
+    | FontWeight.BOLDER;
   lineHeight: string | number;
   fontFamily: string;
   letterSpacing: string;
@@ -69,7 +73,7 @@ export type StyleSheet = AesStyleSheet;
 
 export type StyledComponent<Props> = AesStyledComponent<Props>;
 
-export type WithStylesOptions = AesWithStylesOptions;
+export type WithStylesOptions = AesWithStylesOptions & { register: boolean };
 
 export type StyleSheetFactory<
   ThemeSheet = Theme,

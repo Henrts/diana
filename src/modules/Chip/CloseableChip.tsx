@@ -1,8 +1,9 @@
 import React from "react";
 import { Theme, WithStylesProps, ThemeStyleSheetFactory } from "../../types";
-import BaseChip, { IProps as BaseChipProps } from "./BaseChip";
+import { IProps as BaseChipProps } from "./BaseChip";
 import { Icon } from "../Icon";
 import { withStyles } from "../../base";
+import useRegistryWithStyles from "../../hooks/useRegistry";
 
 export interface IProps extends BaseChipProps {
   onClose: () => void;
@@ -23,15 +24,17 @@ const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   }
 });
 
-export const CloseableChipStyle = BaseChip.extendStyles(styleSheet);
-
-const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
+const CloseableChip: React.FC<IProps & WithStylesProps> = ({
   onClose = () => {},
   renderRightIcon,
   styles,
   cx,
   ...props
 }) => {
+  const CloseableChipStyle = useRegistryWithStyles<IProps>(
+    "BaseChip",
+    styleSheet
+  );
   return (
     <CloseableChipStyle
       {...props}
@@ -54,4 +57,4 @@ const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-export default withStyles(styleSheet)(CloseableChipComponent);
+export default withStyles(styleSheet)(CloseableChip);
