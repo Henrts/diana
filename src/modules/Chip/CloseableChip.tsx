@@ -31,7 +31,7 @@ const CloseableChip: React.FC<IProps & WithStylesProps> = ({
   cx,
   ...props
 }) => {
-  const CloseableChipStyle = useRegistryWithStyles<IProps>(
+  const CloseableChipStyle = useRegistryWithStyles<BaseChipProps>(
     "BaseChip",
     styleSheet
   );
