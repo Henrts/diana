@@ -7,7 +7,6 @@ import { useStyles } from "../../base";
 import { Checkbox } from "../Checkbox";
 import ErrorTextInput from "../TextInput/ErrorTextInput";
 
-
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {},
   formItem: {

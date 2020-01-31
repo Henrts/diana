@@ -3,6 +3,7 @@ import { Theme, WithStylesProps, ThemeStyleSheetFactory } from "../../types";
 import BaseChip, { IProps as BaseChipProps } from "./BaseChip";
 import { Icon } from "../Icon";
 import { withStyles } from "../../base";
+import useRegistryWithStyles from "../../hooks/useRegistry";
 
 export interface IProps extends BaseChipProps {
   onClose: () => void;
@@ -10,7 +11,9 @@ export interface IProps extends BaseChipProps {
 
 const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   chip: {
-    borderColor: "green"
+    borderColor: "green",
+    height: 26,
+    border: "10px solid"
   },
   deleteIcon: {
     padding: theme.spaceUnit.xxs,
@@ -23,15 +26,17 @@ const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   }
 });
 
-export const CloseableChipStyle = BaseChip.extendStyles(styleSheet);
-
-const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
+const CloseableChip: React.FC<IProps & WithStylesProps> = ({
   onClose = () => {},
   renderRightIcon,
   styles,
   cx,
   ...props
 }) => {
+  const CloseableChipStyle = useRegistryWithStyles<BaseChipProps>(
+    "BaseChip",
+    styleSheet
+  );
   return (
     <CloseableChipStyle
       {...props}
@@ -43,15 +48,11 @@ const CloseableChipComponent: React.FC<IProps & WithStylesProps> = ({
           }}
           className={cx(styles.deleteIcon)}
         >
-          {renderRightIcon ? (
-            renderRightIcon()
-          ) : (
-            <Icon name="close" size={12} />
-          )}
+          {renderRightIcon ? renderRightIcon() : <Icon name="close" size={8} />}
         </div>
       )}
     />
   );
 };
 
-export default withStyles(styleSheet)(CloseableChipComponent);
+export default withStyles(styleSheet, { register: true })(CloseableChip);
