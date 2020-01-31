@@ -272,8 +272,11 @@ With a different extended CloseableChip by registering a new CloseableChip. This
 </Preview>
 
 ```javascript
-  CloseableChip.extendStyles(() => ({chip:{backgroundColor:"grey",borderColor:"yellow"}}), {register:true});
-<ChipList list={["test", "test2", "test3"]} />
+CloseableChip.extendStyles(
+  () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
+  { register: true }
+);
+<ChipList list={["test", "test2", "test3"]} />;
 ```
 
 ### ChipInput
@@ -340,6 +343,9 @@ With a different extended CloseableChip by registering a new CloseableChip. This
 </Preview>
 
 ```javascript
-CloseableChip.extendStyles(() => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),{ register: true });
+CloseableChip.extendStyles(
+  () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
+  { register: true }
+);
 <ChipInput value={[]} />;
 ```
