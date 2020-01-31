@@ -22,7 +22,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     alignItems: "center"
   },
   danger: {},
-  disabled: {}
+  disabled: {},
+  buttonText: {}
 });
 
 const BaseButton: React.FC<IProps & WithStylesProps> = ({
@@ -48,7 +49,7 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
       ref={wrappedRef}
     >
       {renderLeftIcon && renderLeftIcon()}
-      <ButtonText>{children}</ButtonText>
+      <ButtonText className={cx(styles.buttonText)}>{children}</ButtonText>
       {renderRightIcon && renderRightIcon()}
     </button>
   );
