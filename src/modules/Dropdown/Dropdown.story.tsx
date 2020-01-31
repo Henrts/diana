@@ -46,7 +46,7 @@ export const MultipleDropdownStory = () => {
   const [styles, cx] = useStyles(stylesheet);
   return (
     <StyledMultipleDropdown
-      placeholder="Dropdown"
+      placeholder="Multiple Dropdown"
       selectAllText="Select all"
       selectedItems={selectedItems}
       onItemsSelected={selectItems}

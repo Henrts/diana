@@ -5,12 +5,10 @@ import React, {
   RefObject,
   useMemo
 } from "react";
-import Popover, {
-  IPopoverRef,
-  IProps as IPopoverProps
-} from "../Popover/Popover";
+import { IPopoverRef, IProps as IPopoverProps } from "../Popover/Popover";
 import { withStyles } from "../../base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
+import useRegistryWithStyles from "../../hooks/useRegistry";
 
 export interface IItem {
   id: string;
@@ -33,9 +31,6 @@ interface ISingleProps<T extends IItem> extends IProps<T> {
 }
 
 export const styleSheet: ThemeStyleSheetFactory = () => ({
-  container: {
-    maxWidth: "100%"
-  },
   header: {},
   label: {},
   text: {
@@ -62,7 +57,11 @@ export const styleSheet: ThemeStyleSheetFactory = () => ({
   }
 });
 
-export const StyledPopover = Popover.extendStyles(styleSheet);
+export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
+  container: {
+    maxWidth: "100%"
+  }
+});
 
 export const usePopoverRef = (
   wrappedRef:
@@ -107,6 +106,10 @@ const BaseDropdown: React.FC<PropsWithChildren<
     wrappedRef
   } = props;
   const ref = usePopoverRef(wrappedRef);
+  const StyledPopover = useRegistryWithStyles<IPopoverProps>(
+    "Popover",
+    styleSheetPopover
+  );
 
   const hide = () => ref.current?.hide();
 

@@ -7,8 +7,9 @@ import {
   usePopoverRef
 } from "./Dropdown";
 import { WithStylesProps, ThemeStyleSheetFactory } from "../../types";
-import StyledPopover from "../Popover/Popover";
+import { IProps as IPopoverProps } from "../Popover/Popover";
 import { extendStyles, withStyles } from "../../base";
+import { useRegistry } from "../../hooks/useRegistry";
 
 interface IMultipleProps<T extends IItem> extends IProps<T> {
   onItemsSelected: (items: T[]) => void;
@@ -37,6 +38,7 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
   } = props;
 
   const ref = usePopoverRef(wrappedRef);
+  const StyledPopover = useRegistry<IPopoverProps>("Popover");
 
   const hide = () => ref.current?.hide();
 

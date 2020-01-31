@@ -6,12 +6,16 @@ import React, {
   PropsWithChildren
 } from "react";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
-import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps
+} from "../../types";
 import { withStyles } from "../../base";
 
 type Direction = "bottom" | "left" | "right" | "top";
 
-export interface IProps {
+export interface IProps extends StandardProps<"div"> {
   header?: React.ReactNode;
   direction?: Direction;
   dismissOnClick?: boolean;
@@ -116,6 +120,4 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   );
 };
 
-const StyledPopover = withStyles(styleSheet)(Popover);
-
-export default StyledPopover;
+export default withStyles(styleSheet, { register: true })(Popover);
