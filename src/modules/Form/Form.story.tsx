@@ -35,9 +35,10 @@ export const FormStory: React.FC = () => {
           password: yup
             .string()
             .required("Password is required")
-            .min(12, "Password is too small")
+            .min(12, "Password is too small"),
+          remember: yup.boolean()
         })}
-        onSubmitFunc={e => console.log(e)}
+        onSubmit={e => console.log(e)}
       >
         <ErrorTextInput label="Username" name="username" type="text" />
         <ErrorTextInput label="Password" name="password" type="password" />

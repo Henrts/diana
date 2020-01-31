@@ -108,6 +108,11 @@ export const TextInput: React.FC<PropsWithChildren<
   const hiddenLabel = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    const value = props.value as string;
+    setHasContent(value?.length > 0);
+  }, [props.value]);
+
+  useEffect(() => {
     const labelNode = hiddenLabel.current;
     setLegendWidth(labelNode != null ? labelNode.offsetWidth : 0);
   }, [hiddenLabel]);

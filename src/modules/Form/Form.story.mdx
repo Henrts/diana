@@ -19,11 +19,12 @@ import BaseButton from "../Button/BaseButton";
         password: yup
           .string()
           .required("Password is required")
-          .min(12, "Password is too small")
+          .min(12, "Password is too small"),
+        remember:yup.boolean()
       })}
-      onSubmitFunc={e => console.log(e)}
+      onSubmit={e => console.log(e)}
     >
-      <ErrorTextInput label="Username" name="username" type="text" />
+      <ErrorTextInput label="Username" name="username" type="text"/>
       <ErrorTextInput label="Password" name="password" type="password" />
       <Checkbox name="remember">Remember me</Checkbox>
       <BaseButton type="submit">Submit</BaseButton>
@@ -49,6 +50,14 @@ import BaseButton from "../Button/BaseButton";
     <tr>
       <td>onSubmit</td>
       <td>Callback for a successful (no errors) submission of the form</td>
+    </tr>
+    <tr>
+      <td>defaultValues (optional)</td>
+      <td>Object of values following the schema rules to initialize the form</td>
+    </tr>
+    <tr>
+      <td>clearOnSubmit (default: true)</td>
+      <td>Resets the form to its initial state (uses defaultValues if specified)</td>
     </tr>
   </tbody>
 </table>
