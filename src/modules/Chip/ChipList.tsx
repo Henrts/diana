@@ -1,15 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StandardProps,
   WithStylesProps,
   ThemeStyleSheetFactory
 } from "../../types";
 import { withStyles } from "../../base";
-import CloseableChip from "./CloseableChip";
+import { IProps as ICloseableChipProps } from "./CloseableChip";
+import { useRegistry } from "../../hooks/useRegistry";
 
 export interface IProps<T> extends StandardProps<"div"> {
   list: T[];
-  displayFn?: (item: T) => string;
+  displayFn?: (item: T) => T;
   onDismissChip?: (item: T) => void;
   onListChange?: (newList: T[]) => void;
 }
@@ -17,17 +18,19 @@ export interface IProps<T> extends StandardProps<"div"> {
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   chipList: {
     display: "flex",
-    flexWrap: "wrap"
+    overflowX: "auto"
   },
   chipContainer: {
     marginRight: theme.spaceUnit.xxs,
+    marginTop: theme.spaceUnit.xs,
+    marginBottom: theme.spaceUnit.xs,
     ":last-child": {
       marginRight: 0
     }
   }
 });
 
-function ChipList<T extends string>({
+function ChipList<T>({
   styles,
   cx,
   list = [],
@@ -39,9 +42,17 @@ function ChipList<T extends string>({
   ...props
 }: IProps<T> & WithStylesProps) {
   const [_list, setList] = useState(list);
+  const divRef = useRef<HTMLDivElement>(null);
+  const CloseableChipStyle = useRegistry<ICloseableChipProps>("CloseableChip");
+
   useEffect(() => {
     setList(list);
-  }, [list]);
+    setTimeout(() => {
+      if (divRef?.current) {
+        divRef.current.scrollLeft = divRef.current.scrollWidth;
+      }
+    });
+  }, [list, onListChange]);
 
   const handleDismiss = useCallback(
     (item: T, index: number) => {
@@ -58,15 +69,15 @@ function ChipList<T extends string>({
   );
 
   return (
-    <div className={cx(styles.chipList)} {...props}>
+    <div className={cx(styles.chipList)} {...props} ref={divRef}>
       {_list.map((item: T, i) => (
         <div className={cx(styles.chipContainer)} key={i}>
-          <CloseableChip onClose={() => handleDismiss(item, i)}>
+          <CloseableChipStyle onClose={() => handleDismiss(item, i)}>
             {displayFn(item)}
-          </CloseableChip>
+          </CloseableChipStyle>
         </div>
       ))}
     </div>
   );
 }
-export default withStyles(styleSheet)(ChipList);
+export default withStyles(styleSheet, { register: true })(ChipList);

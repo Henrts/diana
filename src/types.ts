@@ -4,7 +4,7 @@ import {
   WithThemeWrappedProps,
   WithThemeWrapperProps,
   WithStylesWrapperProps as AesWithStylesWrapperProps,
-  WithStylesOptions as AesWithStylesOptions,
+  WithStylesOptions as AesWithStylesOptions
 } from "aesthetic-react";
 import {
   StyleSheetFactory as AesStyleSheetFactory,

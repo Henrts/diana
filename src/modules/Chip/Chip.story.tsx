@@ -3,6 +3,9 @@ import { ThemeStyleSheetFactory } from "../../types";
 import { Icon } from "../Icon";
 import { useStyles } from "../../base";
 import { IconNames } from "../Icon/Icon";
+import ChipInput from "./ChipInput";
+import ChipList from "./ChipList";
+import CloseableChip from "./CloseableChip";
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   iconLeft: {
@@ -27,4 +30,20 @@ export const ChipIcon: React.FC<{
       )}
     />
   );
+};
+
+export const ChipListStory = () => {
+  CloseableChip.extendStyles(
+    () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
+    { register: true }
+  );
+  return <ChipList list={["test", "test2", "test3"]} />;
+};
+
+export const ChipInputStory = () => {
+  CloseableChip.extendStyles(
+    () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
+    { register: true }
+  );
+  return <ChipInput value={[]} />;
 };

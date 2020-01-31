@@ -4,7 +4,13 @@ import BaseChip from "./BaseChip";
 import StatusChip from "./StatusChip";
 import CloseableChip from "./CloseableChip";
 import ChipList from "./ChipList";
-import { ChipIcon, DerivedCloseableChip } from "./Chip.story";
+import ChipInput from "./ChipInput";
+import {
+  ChipIcon,
+  DerivedCloseableChip,
+  ChipInputStory,
+  ChipListStory
+} from "./Chip.story";
 
 <Meta title="Components| Chip" />
 
@@ -221,6 +227,10 @@ These are the base props for the Chip List
       <td>onListChange</td>
       <td>Callback triggered everytime the list changes. </td>
     </tr>
+    <tr>
+      <td>Chip</td>
+      <td>Extended CloseableChip to replace default one</td>
+    </tr>
   </tbody>
 </table>
 
@@ -239,6 +249,8 @@ The chip list works as uncontrolled state but can be controlled with onListChang
 <ChipList list={["test", "test2", "test3"]} />
 ```
 
+With a list of objects and _displayFn_ function.
+
 <Preview>
   <ChipList
     list={[{ name: "testObj" }, { name: "testObj2" }, { name: "testObj3" }]}
@@ -251,4 +263,89 @@ The chip list works as uncontrolled state but can be controlled with onListChang
   list={[{ name: "testObj" }, { name: "testObj2" }, { name: "testObj3" }]}
   displayFn={item => item.name}
 />
+```
+
+With a different extended CloseableChip by registering a new CloseableChip. This will affect all forward closeable chips used by the registry.
+
+<Preview>
+  <ChipListStory />
+</Preview>
+
+```javascript
+CloseableChip.extendStyles(
+  () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
+  { register: true }
+);
+<ChipList list={["test", "test2", "test3"]} />;
+```
+
+### ChipInput
+
+The ChipInput allows to manipulate a _ChipList_ with the possibility to add new items
+
+These are the base props for the ChipInput
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>Array of strings to be displayed</td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>Callback triggered when the list of chips changes</td>
+    </tr>
+    <tr>
+      <td>allowDuplicates</td>
+      <td>Boolean that enables duplicates. Default is false </td>
+    </tr>
+  </tbody>
+</table>
+
+<Preview>
+  <Story name="ChipInput">
+    <ChipInput onChange={e => console.log(e)} />
+  </Story>
+</Preview>
+
+```javascript
+<ChipInput onChange={e => console.log(e)} />
+```
+
+With initial values and a placeholder. This one enables duplicates.
+
+<Preview>
+  <ChipInput
+    value={["1", "2"]}
+    allowDuplicates={true}
+    placeholder="Placeholder"
+  />
+</Preview>
+
+```javascript
+<ChipInput
+  value={["1", "2"]}
+  allowDuplicates={true}
+  placeholder="Placeholder"
+/>
+```
+
+With a different extended CloseableChip by registering a new CloseableChip. This will affect all forward closeable chips used by the registry.
+
+<Preview>
+  <ChipInputStory />
+</Preview>
+
+```javascript
+CloseableChip.extendStyles(
+  () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
+  { register: true }
+);
+<ChipInput value={[]} />;
 ```
