@@ -96,6 +96,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
       return withStyles<Theme>(customStyleSheet, {
         ...options,
         ...extendOptions,
+        ...(extendOptions?.register === undefined ? { register: false } : {}),
         extendFrom: styleName
       })(WrappedComponent);
     };

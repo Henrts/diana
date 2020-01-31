@@ -1,6 +1,6 @@
 import React from "react";
 import { Theme, WithStylesProps, ThemeStyleSheetFactory } from "../../types";
-import { IProps as BaseChipProps } from "./BaseChip";
+import BaseChip, { IProps as BaseChipProps } from "./BaseChip";
 import { Icon } from "../Icon";
 import { withStyles } from "../../base";
 import useRegistryWithStyles from "../../hooks/useRegistry";
@@ -12,7 +12,8 @@ export interface IProps extends BaseChipProps {
 const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   chip: {
     borderColor: "green",
-    height: 26
+    height: 26,
+    border: "10px solid"
   },
   deleteIcon: {
     padding: theme.spaceUnit.xxs,

@@ -2,12 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory,
-  StyledComponent
+  ThemeStyleSheetFactory
 } from "../../types";
 import { withStyles } from "../../base";
-import CloseableChip, { IProps as ICloseableChipProps } from "./CloseableChip";
-import ChipList, { IProps as IChipListProps } from "./ChipList";
+import { IProps as IChipListProps } from "./ChipList";
+import useRegistryWithStyles from "../../hooks/useRegistry";
 
 // typescript doesnt allow to override interfaces, don't know why
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -16,7 +15,6 @@ export interface IProps extends StandardProps<"input"> {
   value: string[];
   allowDuplicates?: boolean;
   onChange?: (newList: string[]) => void;
-  Chip: StyledComponent<ICloseableChipProps>;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -41,13 +39,9 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-export const CloseableChipStyle = CloseableChip.extendStyles(styleSheet);
-export const ChipListStyle = ChipList.extendStyles(styleSheet);
-
 function ChipInput({
   styles,
   cx,
-  Chip = CloseableChipStyle,
   value,
   onChange,
   allowDuplicates = false,
@@ -57,6 +51,11 @@ function ChipInput({
 }: IProps & WithStylesProps) {
   const [_list, setList] = useState(value || []);
   const [inputValue, setInputValue] = useState("");
+
+  const ChipListStyle = useRegistryWithStyles<IChipListProps<string>>(
+    "ChipList",
+    styleSheet
+  );
 
   useEffect(() => {
     setList(value || []);
@@ -92,7 +91,7 @@ function ChipInput({
 
   return (
     <div className={cx(styles.chipInput)}>
-      <ChipListStyle list={_list} onListChange={handleChange} Chip={Chip} />
+      <ChipListStyle list={_list} onListChange={handleChange} />
       <input
         className={cx(styles.input)}
         value={inputValue}

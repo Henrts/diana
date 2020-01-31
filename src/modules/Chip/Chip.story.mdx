@@ -5,7 +5,12 @@ import StatusChip from "./StatusChip";
 import CloseableChip from "./CloseableChip";
 import ChipList from "./ChipList";
 import ChipInput from "./ChipInput";
-import { ChipIcon, DerivedCloseableChip } from "./Chip.story";
+import {
+  ChipIcon,
+  DerivedCloseableChip,
+  ChipInputStory,
+  ChipListStory
+} from "./Chip.story";
 
 <Meta title="Components| Chip" />
 
@@ -260,24 +265,15 @@ With a list of objects and _displayFn_ function.
 />
 ```
 
-Using an extended CloseableChip
+With a different extended CloseableChip by registering a new CloseableChip. This will affect all forward closeable chips used by the registry.
 
 <Preview>
-  <ChipList
-    list={["test", "test2", "test3"]}
-    Chip={CloseableChip.extendStyles(() => ({
-      chip: { backgroundColor: "steelblue" }
-    }))}
-  />
+  <ChipListStory />
 </Preview>
 
 ```javascript
-<ChipList
-  list={["test", "test2", "test3"]}
-  Chip={CloseableChip.extendStyles(() => ({
-    chip: { backgroundColor: "steelblue" }
-  }))}
-/>
+  CloseableChip.extendStyles(() => ({chip:{backgroundColor:"grey",borderColor:"yellow"}}), {register:true});
+<ChipList list={["test", "test2", "test3"]} />
 ```
 
 ### ChipInput
@@ -305,10 +301,6 @@ These are the base props for the ChipInput
     <tr>
       <td>allowDuplicates</td>
       <td>Boolean that enables duplicates. Default is false </td>
-    </tr>
-    <tr>
-      <td>Chip</td>
-      <td>Extended CloseableChip to replace default one</td>
     </tr>
   </tbody>
 </table>
@@ -341,20 +333,13 @@ With initial values and a placeholder. This one enables duplicates.
 />
 ```
 
-With a different extended CloseableChip.
+With a different extended CloseableChip by registering a new CloseableChip. This will affect all forward closeable chips used by the registry.
 
 <Preview>
-  <ChipInput
-    Chip={CloseableChip.extendStyles(() => ({
-      chip: { backgroundColor: "steelblue" }
-    }))}
-  />
+  <ChipInputStory />
 </Preview>
 
 ```javascript
-<ChipInput
-  Chip={CloseableChip.extendStyles(() => ({
-    chip: { backgroundColor: "steelblue" }
-  }))}
-/>
+CloseableChip.extendStyles(() => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),{ register: true });
+<ChipInput value={[]} />;
 ```

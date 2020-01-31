@@ -2,18 +2,17 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory,
-  StyledComponent
+  ThemeStyleSheetFactory
 } from "../../types";
 import { withStyles } from "../../base";
-import CloseableChip, { IProps as ICloseableChipProps } from "./CloseableChip";
+import { IProps as ICloseableChipProps } from "./CloseableChip";
+import { useRegistry } from "../../hooks/useRegistry";
 
 export interface IProps<T> extends StandardProps<"div"> {
   list: T[];
   displayFn?: (item: T) => T;
   onDismissChip?: (item: T) => void;
   onListChange?: (newList: T[]) => void;
-  Chip?: StyledComponent<ICloseableChipProps>;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -31,13 +30,10 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const CloseableChipStyle = CloseableChip.extendStyles(styleSheet);
-
 function ChipList<T>({
   styles,
   cx,
   list = [],
-  Chip = CloseableChipStyle,
   displayFn = (item: T) => item,
   onDismissChip,
   onListChange,
@@ -47,6 +43,7 @@ function ChipList<T>({
 }: IProps<T> & WithStylesProps) {
   const [_list, setList] = useState(list);
   const divRef = useRef<HTMLDivElement>(null);
+  const CloseableChipStyle = useRegistry<ICloseableChipProps>("CloseableChip");
 
   useEffect(() => {
     setList(list);
@@ -75,10 +72,12 @@ function ChipList<T>({
     <div className={cx(styles.chipList)} {...props} ref={divRef}>
       {_list.map((item: T, i) => (
         <div className={cx(styles.chipContainer)} key={i}>
-          <Chip onClose={() => handleDismiss(item, i)}>{displayFn(item)}</Chip>
+          <CloseableChipStyle onClose={() => handleDismiss(item, i)}>
+            {displayFn(item)}
+          </CloseableChipStyle>
         </div>
       ))}
     </div>
   );
 }
-export default withStyles(styleSheet)(ChipList);
+export default withStyles(styleSheet, { register: true })(ChipList);
