@@ -5,6 +5,7 @@ export * from "./modules/Icon";
 export * from "./modules/Radio";
 export * from "./modules/TextInput";
 export * from "./modules/Checkbox";
+export * from "./modules/Form";
 export * from "./base";
 export * from "./setup";
 export * from "./types";
