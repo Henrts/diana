@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, PropsWithChildren } from "react";
-import { withStyles, useTheme } from "../../base";
+import { withStyles } from "../../base";
 import {
   ThemeStyleSheetFactory,
   StandardProps,

@@ -5,8 +5,114 @@ import { PopoverStory } from "./Popover.story.tsx";
 
 # Popover
 
+The `Popover` is a component used to show and hide a modal element. It consists of an `Header` element,
+which is used to toggle the element and show the current state when it is closed, and the `children` elements that are shown on the modal.
+
 <Preview>
   <Story name="Popover">
     <PopoverStory />
   </Story>
 </Preview>
+
+### Available props
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>direction</td>
+      <th>bottom | left | right | top</th>
+      <td>The direction the modal window should take. Defaults to `bottom`.</td>
+    </tr>
+    <tr>
+      <td>dismissOnClick</td>
+      <th>boolean</th>
+      <td>If the Popover should close when there is a click outside of it.</td>
+    </tr>
+    <tr>
+      <td>children</td>
+      <th>ReactElement</th>
+      <td>The content of the Popover.</td>
+    </tr>
+    <tr>
+      <td>header</td>
+      <th>ReactElement</th>
+      <td>The trigger element. Defaults to a `button`</td>
+    </tr>
+    <tr>
+      <td>onShow</td>
+      <th>Function</th>
+      <td>Called when the Popover content is shown.</td>
+    </tr>
+    <tr>
+      <td>onHide</td>
+      <th>Function</th>
+      <td>Called when the Popover content is hidden.</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <th>boolean</th>
+      <td>If the Popover should not be opened.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style Name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>container</td>
+      <td></td>
+      <td>Styles of the wrapper div</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.disabled</td>
+      <td>Popover styles when it is disabled</td>
+    </tr>
+    <tr>
+      <td>header</td>
+      <td></td>
+      <td>header styles</td>
+    </tr>
+    <tr>
+      <td>popover</td>
+      <td></td>
+      <td>Styles of the modal element</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.bottom</td>
+      <td>Styles when the modal element is in the `bottom` direction</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.top</td>
+      <td>Styles when the modal element is in the `top` direction</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.left</td>
+      <td>Styles when the modal element is in the `left` direction</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.right</td>
+      <td>Styles when the modal element is in the `right` direction</td>
+    </tr>
+  </tbody>
+</table>

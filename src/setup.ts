@@ -19,7 +19,10 @@ export function initDefaultTheme(aesthetic = aestheticDefault) {
   });
 }
 
-export function initTheme(themeObj = defaultTheme, aesthetic: Aesthetic = aestheticDefault) {
+export function initTheme(
+  themeObj = defaultTheme,
+  aesthetic: Aesthetic = aestheticDefault
+) {
   if (!aesthetic.themes[defaultTheme.name]) {
     aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
       "@global": {},
@@ -27,20 +30,23 @@ export function initTheme(themeObj = defaultTheme, aesthetic: Aesthetic = aesthe
     }));
   }
   const result = aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
-      "@global": {},
-      "@font-face": theme.fonts
+    "@global": {},
+    "@font-face": theme.fonts
   }));
   aesthetic.configure({
-      adapter: new AphroditeAdapter([selfExtension]),
-      theme: themeObj.name,
-      rtl: false,
-      extendable: true,
-      passThemeProp: true
+    adapter: new AphroditeAdapter([selfExtension]),
+    theme: themeObj.name,
+    rtl: false,
+    extendable: true,
+    passThemeProp: true
   });
   return result;
 }
 
-export function registerTheme(themeObj = defaultTheme, aesthetic: Aesthetic = aestheticDefault) {
+export function registerTheme(
+  themeObj = defaultTheme,
+  aesthetic: Aesthetic = aestheticDefault
+) {
   aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
     "@global": {},
     "@font-face": theme.fonts
@@ -51,6 +57,9 @@ export function registerTheme(themeObj = defaultTheme, aesthetic: Aesthetic = ae
   });
 }
 
-export function changeTheme(theme: string, aesthetic: Aesthetic = aestheticDefault) {
+export function changeTheme(
+  theme: string,
+  aesthetic: Aesthetic = aestheticDefault
+) {
   aesthetic.changeTheme(theme);
 }
