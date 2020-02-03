@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/Henrts/diana"
   },
-  "version": "1.2.6",
+  "version": "1.2.9",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -53,6 +53,7 @@
     "@types/react": "^16.9.17",
     "@types/react-transition-group": "^4.2.3",
     "@types/uuid": "^3.4.6",
+    "@types/yup": "^0.26.28",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.13.0",
     "awesome-typescript-loader": "^5.2.1",
@@ -95,6 +96,7 @@
     "prettier": "prettier/prettier",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-hook-form": "^4.6.2",
     "react-is": "^16.12.0",
     "react-registry": "^0.5.0",
     "react-svg": "^11.0.5",
@@ -112,7 +114,8 @@
     "uuid": "^3.3.3",
     "webpack": "^4.41.5",
     "webpack-dev-server": "^3.10.1",
-    "webpack-manifest-plugin": "^2.2.0"
+    "webpack-manifest-plugin": "^2.2.0",
+    "yup": "^0.28.0"
   },
   "peerDependencies": {
     "aesthetic": "^5.0.1",

@@ -63,7 +63,6 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
     disabled && styles.disabled,
     className
   );
-
   return (
     <div className={styleArray} {...props}>
       {renderLeftIcon && renderLeftIcon()}

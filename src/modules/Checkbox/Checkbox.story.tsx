@@ -30,8 +30,8 @@ const CustomCheckbox = Checkbox.extendStyles(() => ({
   container: {
     "@selectors": {
       ":hover .icon:not(.disabled):not(.checked):not(.show-as-checked)": {
-        fill: "none",
-        stroke: "pink"
+        stroke: "pink",
+        backgroundColor: "steelblue"
       }
     }
   },

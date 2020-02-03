@@ -20,7 +20,7 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   }
 });
 export interface IProps extends ITextInputProps {
-  error: string | boolean;
+  error?: string | boolean;
 }
 const ExtendedTextInput = TextInput.extendStyles(stylesheet);
 export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
@@ -36,9 +36,9 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
         {...props}
         hasError={error !== null && error !== undefined}
       />
-      {error && typeof error === "string" && (
-        <div className={cx(styles.errorLabel)}>{error}</div>
-      )}
+      <div className={cx(styles.errorLabel)}>
+        {error && typeof error === "string" ? error : <span>&nbsp;</span>}
+      </div>
     </div>
   );
 };

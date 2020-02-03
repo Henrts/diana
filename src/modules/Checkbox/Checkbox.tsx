@@ -34,7 +34,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       ":hover .icon:not(.disabled):not(.checked):not(.show-as-checked)": {
         opacity: 1,
-        fill: theme.colors.grey.grey100
+        stroke: theme.colors.grey.grey100
       },
       "&.disabled": {
         cursor: "initial"
@@ -47,19 +47,19 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   },
   icon: {
     opacity: 0,
-    fill: theme.colors.black,
-    transition: "0.3s fill, 0.3s opacity",
+    stroke: theme.colors.black,
+    transition: "0.3s stroke, 0.3s opacity",
     "@selectors": {
       "&.show-as-checked": {
         opacity: 1,
-        fill: theme.colors.black
+        stroke: theme.colors.black
       },
       "&.checked": {
         opacity: 1,
-        fill: theme.colors.white
+        stroke: theme.colors.white
       },
       "&.disabled": {
-        fill: theme.colors.grey.grey100
+        stroke: theme.colors.grey.grey100
       }
     }
   },
@@ -143,8 +143,12 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
     [onChange, checked, disabled]
   );
 
-  const handleClick = useCallback(() => {
+  const handleClick = useCallback((e?: React.MouseEvent) => {
     const input = inputRef.current;
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
     return input?.click();
   }, []);
 

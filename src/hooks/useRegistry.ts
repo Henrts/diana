@@ -1,14 +1,12 @@
 import { useMemo } from "react";
 import { ThemeStyleSheetFactory } from "../types";
 import { ComponentRegistry } from "../base";
-import { IProps as BaseChipProps } from "../modules/Chip/BaseChip";
 
-export function useRegistry<T>(
-  componentRegistryId: string
-) {
-  return useMemo(() => ComponentRegistry.get<T>(componentRegistryId), [componentRegistryId]);
+export function useRegistry<T>(componentRegistryId: string) {
+  return useMemo(() => ComponentRegistry.get<T>(componentRegistryId), [
+    componentRegistryId
+  ]);
 }
-
 
 export function useRegistryWithStyles<T>(
   componentRegistryId: string,
@@ -20,8 +18,7 @@ export function useRegistryWithStyles<T>(
       return component.extendStyles(styleSheet);
     }
     return component;
-  }, [componentRegistryId,styleSheet]);
+  }, [componentRegistryId, styleSheet]);
 }
-
 
 export default useRegistryWithStyles;
