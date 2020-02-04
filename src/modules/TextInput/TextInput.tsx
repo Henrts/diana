@@ -84,12 +84,12 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     }
   }
 });
-export interface ITextInputProps extends StandardProps<"input"> {
+export interface IProps extends StandardProps<"input"> {
   label?: string;
   hasError?: boolean;
 }
 export const TextInput: React.FC<PropsWithChildren<
-  ITextInputProps & WithStylesProps
+  IProps & WithStylesProps
 >> = ({
   styles,
   wrappedRef,

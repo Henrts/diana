@@ -1,6 +1,6 @@
 import React from "react";
 import { Theme, WithStylesProps, ThemeStyleSheetFactory } from "../../types";
-import BaseChip, { IProps as BaseChipProps } from "./BaseChip";
+import { IProps as BaseChipProps } from "./BaseChip";
 import { Icon } from "../Icon";
 import { withStyles } from "../../base";
 import useRegistryWithStyles from "../../hooks/useRegistry";

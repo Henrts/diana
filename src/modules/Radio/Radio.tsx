@@ -7,7 +7,7 @@ import {
 } from "../../types";
 import { withStyles } from "../../base";
 
-interface IProps extends StandardProps<"input"> {
+export interface IProps extends StandardProps<"input"> {
   children?: ReactElement;
   hasError?: boolean;
   label: string;

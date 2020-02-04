@@ -8,6 +8,7 @@ import { withStyles } from "../../base";
 export interface INotification {
   children: string;
   icon?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   template: StyledComponent<any>;
   title?: string;
 }

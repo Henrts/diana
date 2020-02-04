@@ -15,12 +15,12 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 
 export type IconNames = "add" | "arrow" | "arrow-down" | "check" | "close";
 
-export interface IIconProps extends StandardProps<"svg"> {
+export interface IProps extends StandardProps<"svg"> {
   name: string;
   src?: string;
   size?: number;
 }
-const Icon: React.FC<IIconProps> = ({
+const Icon: React.FC<IProps> = ({
   name,
   height,
   width,

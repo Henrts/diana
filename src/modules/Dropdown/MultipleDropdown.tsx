@@ -11,7 +11,7 @@ import { IProps as IPopoverProps } from "../Popover/Popover";
 import { extendStyles, withStyles } from "../../base";
 import { useRegistry } from "../../hooks/useRegistry";
 
-interface IMultipleProps<T extends IItem> extends IProps<T> {
+export interface IMultipleProps<T extends IItem> extends IProps<T> {
   onItemsSelected: (items: T[]) => void;
   selectedItems: T[];
   selectAllText?: string;
