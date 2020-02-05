@@ -1,0 +1,12 @@
+{
+  "name": "@diana/button",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@diana/base": "1.0.0",
+    "@diana/types": "1.0.0",
+    "@diana/typography": "1.0.0",
+    "react": "^16.12.0"
+  }
+}

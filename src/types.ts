@@ -1,25 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React from 'react';
 import {
   WithStylesWrappedProps,
   WithThemeWrappedProps,
   WithThemeWrapperProps,
   WithStylesWrapperProps as AesWithStylesWrapperProps,
-  WithStylesOptions as AesWithStylesOptions
-} from "aesthetic-react";
+  WithStylesOptions as AesWithStylesOptions,
+} from 'aesthetic-react';
 import {
   StyleSheetFactory as AesStyleSheetFactory,
   StyleSheet as AesStyleSheet,
   ThemeSheet as AesThemeSheet,
-  StyleName as AesStyleName
-} from "aesthetic";
-import { defaultPalette } from "./tokens";
+  StyleName as AesStyleName,
+} from 'aesthetic';
+import { defaultPalette } from './tokens';
 
 export enum FontWeight {
   REGULAR = 400,
   MEDIUM = 500,
   BOLD = 700,
-  BOLDER = 900
+  BOLDER = 900,
 }
 
 interface IFont {
@@ -65,6 +64,7 @@ export type Theme = {
     [key: string]: string;
   };
   fontFamily: string;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   fonts: any;
   spaceUnit: ISpaceUnit;
   spacing: {
@@ -83,10 +83,11 @@ export interface StyledComponent<Props>
   extends React.NamedExoticComponent<Props> {
   displayName: string;
   styleName: StyleName;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   WrappedComponent: React.ComponentType<any>;
   extendStyles<T>(
     styleSheet: ThemeStyleSheetFactory<T>,
-    extendOptions?: Omit<WithStylesOptions, "extendFrom">
+    extendOptions?: Omit<WithStylesOptions, 'extendFrom'>,
   ): StyledComponent<Props>;
 }
 
