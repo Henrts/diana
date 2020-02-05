@@ -1,5 +1,4 @@
 import React from "react";
-import uuid from "uuid";
 import {
   StandardProps,
   WithStylesProps,
@@ -9,9 +8,9 @@ import { withStyles } from "../../base";
 
 export interface IProps extends StandardProps<"li"> {
   disabled?: boolean;
-  id: string;
-  selectedTab?: string;
-  onTabClick?: (id: string) => void;
+  index?: number;
+  selectedTab?: number;
+  onTabClick?: (index?: number) => void;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -36,22 +35,21 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
   className,
   cx,
   disabled,
-  id = uuid(),
+  index,
   selectedTab,
   styles,
   onTabClick = () => {}
 }) => {
-  const handleClick = () => !disabled && onTabClick(id);
+  const handleClick = () => !disabled && onTabClick(index);
   const stylesArray = cx(
     styles.tab,
-    selectedTab === id && "selected",
+    selectedTab === index && "selected",
     disabled && "disabled",
     className
   );
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-    <li className={stylesArray} role="button" onClick={handleClick}>
+    <li className={stylesArray} role="menuitem" onClick={handleClick}>
       {children}
     </li>
   );

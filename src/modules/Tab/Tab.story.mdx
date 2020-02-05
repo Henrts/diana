@@ -1,5 +1,6 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { TabGroupExample } from "./TabGroup.story";
+import { TabGroupRefExample } from "./TabGroup.story";
+import TabGroup from "./TabGroup";
 import Tab from "./Tab";
 
 <Meta title="Components| Tab" />
@@ -52,17 +53,21 @@ The `Tab` component allows the user to navigate to a specific section of the app
       <td>A flag indicating whether this tab can be selected</td>
     </tr>
     <tr>
-      <td>id (optional)</td>
-      <td>string</td>
-      <td>The Tab's id. A randomly generated id is used if none is passed.</td>
+      <td>index (optional)</td>
+      <td>number</td>
+      <td>
+        The Tab's index.
+        <br /> This prop should not be passed manually, as it is injected by the
+        Tab's <i>TabGroup</i>.
+      </td>
     </tr>
     <tr>
       <td>selectedTab (optional)</td>
       <td>string</td>
       <td>
-        The Tab compares <i>selectedTab</i> to its own id to determine whether
-        it is selected. <br /> This prop should not be passed manually, as it is
-        injected by the Tab's <i>TabGroup</i>.
+        The Tab compares <i>selectedTab</i> to its own index to determine
+        whether it is selected. <br /> This prop should not be passed manually,
+        as it is injected by the Tab's <i>TabGroup</i>.
       </td>
     </tr>
     <tr>
@@ -70,7 +75,9 @@ The `Tab` component allows the user to navigate to a specific section of the app
       <td>function</td>
       <td>
         Callback that is invoked whenever the tab is clicked on (given
-        <i> isDisabled</i> is <i>false</i>)
+        <i> isDisabled</i> is <i>false</i>).
+        <br /> This prop should not be passed manually, as it is injected by the
+        Tab's <i>TabGroup</i>.
       </td>
     </tr>
   </tbody>
@@ -109,34 +116,21 @@ The `Tab` component allows the user to navigate to a specific section of the app
 
 ### TabGroup
 
-A `TabGroup` consists of a set of `Tab`s.
-It is responsible for passing the necessary props to every child `Tab` and for handling changes to the selected option.
+A `TabGroup` consists of a set of `Tab`s. It is responsible for passing the necessary props to every child `Tab`.
 
-The following component is used for the different examples of a `TabGroup` described below:
+If no `selectedTab` prop is passed, it will control its own state, i.e. it will handle selected Tab changes internally.
 
-```javascript
-const TabGroupExample: React.FC<IProps> = ({ selectedTab, ...props }) => {
-  const [selected, setSelected] = useState(selectedTab);
-
-  return (
-    <TabGroup
-      selectedTab={selected}
-      onTabClick={newTab => setSelected(newTab)}
-      {...props}
-    >
-      <Tab id="tab1">Tab 1</Tab>
-      <Tab id="tab2">Tab 2</Tab>
-      <Tab id="tab3">Tab 3</Tab>
-    </TabGroup>
-  );
-};
-```
+If the `selectedTab` prop is passed, it will be the responsibility of the parent component to handle state changes by making use of the `onTabClick` callback and changing `selectedTab` accordingly.
 
 ### TabGroup
 
 <Preview>
   <Story name="TabGroup">
-    <TabGroupExample selectedTab="tab1" />
+    <TabGroup initialTab={2}>
+      <Tab>Tab 1</Tab>
+      <Tab>Tab 2</Tab>
+      <Tab>Tab 3</Tab>
+    </TabGroup>
   </Story>
 </Preview>
 
@@ -144,9 +138,21 @@ const TabGroupExample: React.FC<IProps> = ({ selectedTab, ...props }) => {
 
 <Preview>
   <Story name="Disabled TabGroup">
-    <TabGroupExample selectedTab="tab1" disabled />
+    <TabGroup disabled>
+      <Tab>Tab 1</Tab>
+      <Tab>Tab 2</Tab>
+      <Tab>Tab 3</Tab>
+    </TabGroup>
   </Story>
 </Preview>
+
+### With ref
+
+The `TabGroup`'s selected tab can alternatively be changed via `ref`, although this should be avoided in most cases.
+
+<Story name="TabGroup with ref">
+  <TabGroupRefExample />
+</Story>
 
 ### Available props
 
@@ -169,10 +175,17 @@ const TabGroupExample: React.FC<IProps> = ({ selectedTab, ...props }) => {
       </td>
     </tr>
     <tr>
-      <td>selectedTab (optional)</td>
-      <td>string</td>
+      <td>initialTab (optional)</td>
+      <td>number</td>
       <td>
-        The id of the selected <i>Tab</i>.
+        The index of the <i>Tab</i> that should be selected initially.
+      </td>
+    </tr>
+    <tr>
+      <td>selectedTab (optional)</td>
+      <td>number</td>
+      <td>
+        The index of the selected <i>Tab</i>.
         <br />
         This prop will be injected into each child <i>Tab</i>.
       </td>
@@ -185,7 +198,7 @@ const TabGroupExample: React.FC<IProps> = ({ selectedTab, ...props }) => {
         a <i>Tab</i> inside the <i>TabGroup</i> is clicked on (given
         <i> disabled</i> is <i>false</i>).
         <br />
-        This callback receives the newly selected tab id as its only parameter.
+        This callback receives the newly selected tab's index as its only parameter.
       </td>
     </tr>
   </tbody>
