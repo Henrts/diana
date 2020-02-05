@@ -1,0 +1,15 @@
+{
+  "name": "@diana/checkbox",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@diana/base": "1.0.0",
+    "@diana/icon": "1.0.0",
+    "@diana/types": "1.0.0",
+    "react": "^16.12.0"
+  }
+}

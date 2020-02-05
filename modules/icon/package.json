@@ -1,0 +1,22 @@
+{
+  "name": "@diana/icon",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "module": "module/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module commonjs --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module"
+  },
+  "dependencies": {
+    "@diana/base": "1.0.0",
+    "@diana/types": "1.0.0",
+    "aesthetic-react": "^2.1.0",
+    "react": "^16.12.0",
+    "react-svg": "^11.0.9"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  }
+}

@@ -6,12 +6,16 @@
   },
   "version": "1.2.10",
   "license": "MIT",
+  "private": true,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "files": [
     "dist"
   ],
   "types": "dist/src/index.d.ts",
+  "workspaces": [
+    "modules/*"
+  ],
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -cw",
@@ -67,6 +71,7 @@
     "eslint-plugin-react": "^7.15.1",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.1.0",
+    "lerna": "^3.20.2",
     "lint-staged": "^9.5.0",
     "loki": "^0.18.1",
     "node-sass": "^4.13.0",

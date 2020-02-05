@@ -1,29 +1,30 @@
-import React, { PropsWithChildren, ReactElement, useCallback } from "react";
-import { useForm, Controller, FieldError, DeepPartial } from "react-hook-form";
+import React, { PropsWithChildren, ReactElement, useCallback } from 'react';
+import { useForm, Controller, FieldError, DeepPartial } from 'react-hook-form';
 import {
   StandardProps,
   WithStylesProps,
   Theme,
-  StyleSheetFactory
-} from "../../types";
-import { withStyles } from "../../base";
-import TextInput from "../TextInput/TextInput";
-import ErrorTextInput from "../TextInput/ErrorTextInput";
-import { Checkbox } from "../Checkbox";
+  StyleSheetFactory,
+} from '../../types';
+import { withStyles } from '../../base';
+import TextInput from '../TextInput/TextInput';
+import ErrorTextInput from '../TextInput/ErrorTextInput';
+import { Checkbox } from '../Checkbox';
 
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {
-    display: "flex",
-    flexDirection: "column"
-  }
+    display: 'flex',
+    flexDirection: 'column',
+  },
 });
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-export interface IFormProps extends StandardProps<"form"> {
+export interface IFormProps extends StandardProps<'form'> {
   children: ReactElement[];
   onSubmit: (values: { [key: string]: string | boolean }) => void;
   clearOnSubmit?: boolean;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   defaultValues?: DeepPartial<Record<string, any>>;
   schema?: {
     /* eslint-disable  @typescript-eslint/no-explicit-any */
@@ -43,7 +44,7 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
 }) => {
   const { handleSubmit, errors, control, reset } = useForm({
     validationSchema: schema,
-    defaultValues
+    defaultValues,
   });
 
   const onSubmitCallback = useCallback(
@@ -57,10 +58,10 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
         Object.keys(schema.fields).forEach((f: string) => {
           // eslint-disable-next-line no-underscore-dangle
           const type = schema.fields[f]._type;
-          if (type === "string") {
-            obj[f] = "";
+          if (type === 'string') {
+            obj[f] = '';
           }
-          if (type === "boolean") {
+          if (type === 'boolean') {
             obj[f] = false;
           }
         });
@@ -70,7 +71,7 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
         reset(obj);
       }
     },
-    [defaultValues, schema, clearOnSubmit, reset, onSubmit]
+    [defaultValues, schema, clearOnSubmit, reset, onSubmit],
   );
   return (
     <form
@@ -84,7 +85,7 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
           return (
             <Controller
               as={React.cloneElement(Child, {
-                error: (error as FieldError)?.message
+                error: (error as FieldError)?.message,
               })}
               value={Child.props.value}
               name={Child.props.name}
