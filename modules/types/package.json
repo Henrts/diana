@@ -1,0 +1,19 @@
+{
+  "name": "@diana/types",
+  "version": "1.0.0",
+  "main": "types.ts",
+  "type": "types.ts",
+  "license": "MIT",
+  "files": [
+    "types.ts"
+  ],
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@diana/tokens": "1.0.0",
+    "aesthetic": "^5.1.0",
+    "aesthetic-react": "^2.1.0",
+    "react": "^16.12.0"
+  }
+}

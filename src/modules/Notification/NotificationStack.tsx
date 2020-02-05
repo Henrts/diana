@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import React from "react";
-import { StyledComponent } from "aesthetic-react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { WithStylesProps, ThemeStyleSheetFactory } from "../../types";
-import { withStyles } from "../../base";
+import React from 'react';
+import { StyledComponent } from 'aesthetic-react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { WithStylesProps, ThemeStyleSheetFactory } from '../../types';
+import { withStyles } from '../../base';
 
 export interface INotification {
   children: string;
   icon?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   template: StyledComponent<any>;
   title?: string;
 }
@@ -22,12 +22,12 @@ export interface IProps {
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   notificationStack: {
-    position: "fixed",
+    position: 'fixed',
     zIndex: 1000,
     bottom: 0,
     right: 0,
-    margin: theme.spaceUnit.md
-  }
+    margin: theme.spaceUnit.md,
+  },
 });
 
 const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
@@ -36,7 +36,7 @@ const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
   styles,
   timeout = 500,
   handleMouseOver,
-  handleMouseOut
+  handleMouseOut,
 }) => {
   return (
     <TransitionGroup className={cx(styles.notificationStack)}>
