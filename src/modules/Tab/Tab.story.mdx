@@ -14,7 +14,7 @@ The `Tab` component allows the user to navigate to a specific section of the app
 
 <Preview>
   <Story name="Tab">
-    <Tab>Tab</Tab>
+    <Tab label="Tab" />
   </Story>
 </Preview>
 
@@ -22,9 +22,7 @@ The `Tab` component allows the user to navigate to a specific section of the app
 
 <Preview>
   <Story name="Selected tab">
-    <Tab id={"selected"} selectedTab={"selected"}>
-      Tab
-    </Tab>
+    <Tab label="Tab" index={0} selectedTab={0} />
   </Story>
 </Preview>
 
@@ -32,7 +30,7 @@ The `Tab` component allows the user to navigate to a specific section of the app
 
 <Preview>
   <Story name="Disabled Tab">
-    <Tab disabled>Tab</Tab>
+    <Tab label="Tab" disabled />
   </Story>
 </Preview>
 
@@ -48,6 +46,14 @@ The `Tab` component allows the user to navigate to a specific section of the app
   </thead>
   <tbody>
     <tr>
+      <td>children (optional)</td>
+      <td>string | JSX.Element</td>
+      <td>
+        If any children are passed, they will be rendered inside the parent
+        <i> TabGroup</i>'s <i>section</i> element
+      </td>
+    </tr>
+    <tr>
       <td>disabled (optional)</td>
       <td>boolean</td>
       <td>A flag indicating whether this tab can be selected</td>
@@ -60,6 +66,11 @@ The `Tab` component allows the user to navigate to a specific section of the app
         <br /> This prop should not be passed manually, as it is injected by the
         Tab's <i>TabGroup</i>.
       </td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string | JSX.Element</td>
+      <td>Content to be shown inside the tab itself</td>
     </tr>
     <tr>
       <td>selectedTab (optional)</td>
@@ -116,20 +127,22 @@ The `Tab` component allows the user to navigate to a specific section of the app
 
 ### TabGroup
 
-A `TabGroup` consists of a set of `Tab`s. It is responsible for passing the necessary props to every child `Tab`.
+The `TabGroup` consists of a set of `Tab`s. It is responsible for passing the necessary props to every child `Tab`.
 
 If no `selectedTab` prop is passed, it will control its own state, i.e. it will handle selected Tab changes internally.
 
 If the `selectedTab` prop is passed, it will be the responsibility of the parent component to handle state changes by making use of the `onTabClick` callback and changing `selectedTab` accordingly.
+
+Aside from the `Tab`s themselves, the `TabGroup` renders a `section` with the selected tab's `children` if it contains any.
 
 ### TabGroup
 
 <Preview>
   <Story name="TabGroup">
     <TabGroup initialTab={2}>
-      <Tab>Tab 1</Tab>
-      <Tab>Tab 2</Tab>
-      <Tab>Tab 3</Tab>
+      <Tab label="Tab 1" />
+      <Tab label="Tab 2" />
+      <Tab label="Tab 3" />
     </TabGroup>
   </Story>
 </Preview>
@@ -139,9 +152,28 @@ If the `selectedTab` prop is passed, it will be the responsibility of the parent
 <Preview>
   <Story name="Disabled TabGroup">
     <TabGroup disabled>
-      <Tab>Tab 1</Tab>
-      <Tab>Tab 2</Tab>
-      <Tab>Tab 3</Tab>
+      <Tab label="Tab 1" />
+      <Tab label="Tab 2" />
+      <Tab label="Tab 3" />
+    </TabGroup>
+  </Story>
+</Preview>
+
+### TabGroup with section for selected tab's content
+
+<Preview>
+  <Story name="TabGroup with section for selected tab content">
+    <TabGroup>
+      <Tab label="Tab 1">Simpe text</Tab>
+      <Tab label="Tab 2">
+        <p>A cheeky paragraph</p>
+      </Tab>
+      <Tab label="Tab 3">
+        <div>
+          <h3>A complex component</h3>
+          <img src="https://c.ststat.net/content/EntImg/Tour/complex--1703017950-300x300.jpg" />
+        </div>
+      </Tab>
     </TabGroup>
   </Story>
 </Preview>

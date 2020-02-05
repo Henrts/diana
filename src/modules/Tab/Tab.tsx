@@ -9,6 +9,7 @@ import { withStyles } from "../../base";
 export interface IProps extends StandardProps<"li"> {
   disabled?: boolean;
   index?: number;
+  label: string | JSX.Element;
   selectedTab?: number;
   onTabClick?: (index?: number) => void;
 }
@@ -31,11 +32,11 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 });
 
 const Tab: React.FC<IProps & WithStylesProps> = ({
-  children,
   className,
   cx,
   disabled,
   index,
+  label,
   selectedTab,
   styles,
   onTabClick = () => {}
@@ -50,7 +51,7 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
 
   return (
     <li className={stylesArray} role="menuitem" onClick={handleClick}>
-      {children}
+      {label}
     </li>
   );
 };

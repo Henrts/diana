@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import TabGroup, { IProps, ITabGroupRef } from "./TabGroup";
+import TabGroup, { ITabGroupRef } from "./TabGroup";
 import Tab from "./Tab";
 
 export const TabGroupRefExample = () => {
@@ -14,9 +14,9 @@ export const TabGroupRefExample = () => {
       }}
     >
       <TabGroup wrappedRef={ref}>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
+        <Tab label="Tab 1" />
+        <Tab label="Tab 2" />
+        <Tab label="Tab 3" />
       </TabGroup>
       <div
         style={{

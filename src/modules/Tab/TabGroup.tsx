@@ -44,6 +44,7 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
 }) => {
   const [selected, setSelected] = useState(initialTab);
 
+  // state is being controlled by the parent component
   useEffect(() => {
     if (typeof selectedTab !== "undefined") {
       setSelected(selectedTab);
@@ -69,16 +70,19 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
   }));
 
   return (
-    <ul className={cx(className, styles.tabGroup)}>
-      {React.Children.map(children, (tab, index) =>
-        React.cloneElement(tab, {
-          disabled: tab.props.disabled ?? disabled,
-          index,
-          selectedTab: selected,
-          onTabClick: handleTabClick
-        })
-      )}
-    </ul>
+    <>
+      <ul className={cx(className, styles.tabGroup)}>
+        {React.Children.map(children, (tab, index) =>
+          React.cloneElement(tab, {
+            disabled: tab.props.disabled ?? disabled,
+            index,
+            selectedTab: selected,
+            onTabClick: handleTabClick
+          })
+        )}
+      </ul>
+      <section>{children[selected].props.children}</section>
+    </>
   );
 };
 
