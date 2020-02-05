@@ -50,8 +50,8 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <li className={stylesArray} onClick={handleClick}>
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+    <li className={stylesArray} role="button" onClick={handleClick}>
       {children}
     </li>
   );

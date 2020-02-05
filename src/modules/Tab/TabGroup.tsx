@@ -26,15 +26,17 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
   className,
   cx,
   disabled,
+  selectedTab,
   styles,
-  ...props
+  onTabClick
 }) => {
   return (
     <ul className={cx(className, styles.tabGroup)}>
       {React.Children.map(children, tab =>
         React.cloneElement(tab, {
           disabled: tab.props.disabled ?? disabled,
-          ...props
+          selectedTab,
+          onTabClick
         })
       )}
     </ul>

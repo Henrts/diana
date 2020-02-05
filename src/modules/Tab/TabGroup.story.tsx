@@ -1,11 +1,6 @@
 import React, { useState } from "react";
+import TabGroup, { IProps } from "./TabGroup";
 import Tab from "./Tab";
-import TabGroup from "./TabGroup";
-
-interface IProps {
-  disabled?: boolean;
-  selectedTab: string;
-}
 
 const TabGroupExample: React.FC<IProps> = ({ selectedTab, ...props }) => {
   const [selected, setSelected] = useState(selectedTab);
