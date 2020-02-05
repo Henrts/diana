@@ -28,7 +28,8 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
     display: "flex",
     margin: "0",
     padding: "0"
-  }
+  },
+  tabPanel: {}
 });
 
 const TabGroup: React.FC<IProps & WithStylesProps> = ({
@@ -81,7 +82,9 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
           })
         )}
       </ul>
-      <section>{children[selected].props.children}</section>
+      <section className={cx(styles.tabPanel)}>
+        {children[selected].props.children}
+      </section>
     </>
   );
 };

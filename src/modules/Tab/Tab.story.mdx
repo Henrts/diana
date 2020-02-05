@@ -133,7 +133,7 @@ If no `selectedTab` prop is passed, it will control its own state, i.e. it will 
 
 If the `selectedTab` prop is passed, it will be the responsibility of the parent component to handle state changes by making use of the `onTabClick` callback and changing `selectedTab` accordingly.
 
-Aside from the `Tab`s themselves, the `TabGroup` renders a `section` with the selected tab's `children` if it contains any.
+Aside from the `Tab`s themselves, the `TabGroup` also renders a tab panel. This is a `section` element with the selected tab's `children` if it contains any.
 
 ### TabGroup
 
@@ -252,6 +252,14 @@ The `TabGroup`'s selected tab can alternatively be changed via `ref`, although t
       <td></td>
       <td>
         Style of the <i>ul</i> element that wraps the tabs
+      </td>
+    </tr>
+    <tr>
+      <td>tabPanel</td>
+      <td></td>
+      <td>
+        Style of the <i>section</i> element that contains the selected tab's
+        content (<i>children</i>)
       </td>
     </tr>
   </tbody>
