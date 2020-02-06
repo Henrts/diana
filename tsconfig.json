@@ -1,17 +1,17 @@
 {
-    "compilerOptions": {
-        "declaration": true,
-        "jsx": "react",
-        "esModuleInterop": true,
-        "noImplicitAny": true,
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "allowSyntheticDefaultImports": true,
-        "allowJs": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true
-    },
-    "include": ["*.ts", "*.tsx"],
-    "exclude": ["node_modules", "build", "dist", "example"]
+  "compilerOptions": {
+    "declaration": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "build", "dist"]
 }

@@ -3,9 +3,9 @@ import TextInput from "./TextInput";
 import SimpleTextInput from "./SimpleTextInput";
 import ErrorTextInput from "./ErrorTextInput";
 import {
-    TextInputCustomBorder,
-    TextInputErrorBorder,
-    TextInputLabelToOutside,
+  TextInputCustomBorder,
+  TextInputErrorBorder,
+  TextInputLabelToOutside,
 } from "./TextInput.story";
 
 <Meta title="Components| Text Input" />
@@ -15,157 +15,150 @@ import {
 The base Text Input is composed of a fieldset with an animated optional label.
 
 <Preview>
-    <Story name="TextInput">
-        <TextInput />
-    </Story>
+  <Story name="TextInput">
+    <TextInput />
+  </Story>
 </Preview>
 
 This are the available props for the Base Components
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Prop</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>label</td>
-            <td>
-                This props enables a span element that, by default, slides to
-                the fieldset/border of the input when in focus.
-            </td>
-        </tr>
-        <tr>
-            <td>hasError</td>
-            <td>
-                hasError signals to the TextInput component to activate the
-                necessary styles to customize an error text input component
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>
+        This props enables a span element that, by default, slides to the
+        fieldset/border of the input when in focus.
+      </td>
+    </tr>
+    <tr>
+      <td>hasError</td>
+      <td>
+        hasError signals to the TextInput component to activate the necessary
+        styles to customize an error text input component
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ### With Label
 
 <Preview>
-    <Story name="With Label ">
-        <TextInput label="User Input" />
-    </Story>
+  <Story name="With Label ">
+    <TextInput label="User Input" />
+  </Story>
 </Preview>
 
 ### Disabled
 
 <Preview>
-    <Story name="Disabled">
-        <TextInput disabled label="User Input" />
-    </Story>
+  <Story name="Disabled">
+    <TextInput disabled label="User Input" />
+  </Story>
 </Preview>
 
 ### ErrorTextInput
 
 <Preview>
-    <Story name="Customizing Text With Error">
-        <ErrorTextInput label="User Input" error="Error" />
-    </Story>
+  <Story name="Customizing Text With Error">
+    <ErrorTextInput label="User Input" error="Error" />
+  </Story>
 </Preview>
 
 #### Extendable styles
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Style Name</th>
-            <th>@selectors</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>fieldset</td>
-            <td></td>
-            <td>
-                This style affects the main fieldset element that contains the
-                input element. Apply custom border styles here
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.error</td>
-            <td>A fieldset with error applies this style</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.active</td>
-            <td>
-                Style to apply to fieldset element when component has content
-                (is active)
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.focus</td>
-            <td>Style to apply to fieldset element when component has focus</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.disabled</td>
-            <td>Style to apply to fieldset of a disabled Text Input</td>
-        </tr>
-        <tr>
-            <td>input</td>
-            <td></td>
-            <td>HTML Input element style</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.disabled</td>
-            <td>Style of disabled input element</td>
-        </tr>
-        <tr>
-            <td>labelContainer</td>
-            <td></td>
-            <td>Wrapper of label element for positioning purposes</td>
-        </tr>
-        <tr>
-            <td>label</td>
-            <td></td>
-            <td>
-                Style of span element containing text defined by the label prop
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.active</td>
-            <td>
-                Style of span element containing label text on active Text Input
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.focus</td>
-            <td>
-                Style of span element containing label text on focused Text
-                Input
-            </td>
-        </tr>
-        <tr>
-            <td>legend</td>
-            <td></td>
-            <td>This style affects the legend element inside fieldset</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.active</td>
-            <td>Style applied to legend when Component has a value</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>&.focus</td>
-            <td>Style applied to legend when Component is focused</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Style Name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>fieldset</td>
+      <td></td>
+      <td>
+        This style affects the main fieldset element that contains the input
+        element. Apply custom border styles here
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.error</td>
+      <td>A fieldset with error applies this style</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.active</td>
+      <td>
+        Style to apply to fieldset element when component has content (is
+        active)
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.focus</td>
+      <td>Style to apply to fieldset element when component has focus</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.disabled</td>
+      <td>Style to apply to fieldset of a disabled Text Input</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td></td>
+      <td>HTML Input element style</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.disabled</td>
+      <td>Style of disabled input element</td>
+    </tr>
+    <tr>
+      <td>labelContainer</td>
+      <td></td>
+      <td>Wrapper of label element for positioning purposes</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td></td>
+      <td>Style of span element containing text defined by the label prop</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.active</td>
+      <td>Style of span element containing label text on active Text Input</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.focus</td>
+      <td>Style of span element containing label text on focused Text Input</td>
+    </tr>
+    <tr>
+      <td>legend</td>
+      <td></td>
+      <td>This style affects the legend element inside fieldset</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.active</td>
+      <td>Style applied to legend when Component has a value</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>&.focus</td>
+      <td>Style applied to legend when Component is focused</td>
+    </tr>
+  </tbody>
 </table>
 
 #### Customizing Text Input
@@ -182,9 +175,9 @@ const TextInputCustomBorder = TextInput.extendStyles((theme) => ({
 ```
 
 <Preview>
-    <Story name="Customizing Text Input">
-        <TextInputCustomBorder label="User Input" />
-    </Story>
+  <Story name="Customizing Text Input">
+    <TextInputCustomBorder label="User Input" />
+  </Story>
 </Preview>
 
 ## Examples
@@ -193,64 +186,64 @@ const TextInputCustomBorder = TextInput.extendStyles((theme) => ({
 
 ```javascript
 export const SimpleTextInput = TextInput.extendStyles(() => ({
-    fieldset: {
-        border: "none",
-    },
+  fieldset: {
+    border: "none",
+  },
 }));
 ```
 
 <Preview>
-    <SimpleTextInput />
+  <SimpleTextInput />
 </Preview>
 
 ### Border When Input has Error
 
 ```javascript
 export const TextInputErrorBorder = TextInput.extendStyles((theme: Theme) => ({
-    fieldset: {
-        "@selectors": {
-            "&.error": {
-                border: `2px solid ${theme.colors.alert.alert100}`,
-                borderRadius: "5px",
-            },
-        },
+  fieldset: {
+    "@selectors": {
+      "&.error": {
+        border: `2px solid ${theme.colors.alert.alert100}`,
+        borderRadius: "5px",
+      },
     },
+  },
 }));
 ```
 
 <Preview>
-    <TextInputErrorBorder hasError label="Label" />
+  <TextInputErrorBorder hasError label="Label" />
 </Preview>
 
 ### Label to Outside
 
 ```javascript
 export const TextInputLabelToOutside = TextInput.extendStyles(
-    (theme: Theme) => ({
-        fieldset: {
-            border: "2px solid #ccc",
+  (theme: Theme) => ({
+    fieldset: {
+      border: "2px solid #ccc",
+    },
+    legend: {
+      "@selectors": {
+        "&.active, &.focus": {
+          width: 0,
+          maxWidth: 0,
+          padding: 0,
         },
-        legend: {
-            "@selectors": {
-                "&.active, &.focus": {
-                    width: 0,
-                    maxWidth: 0,
-                    padding: 0,
-                },
-            },
+      },
+    },
+    label: {
+      "@selectors": {
+        "&.active, &.focus": {
+          transform: "translate(0px, -30px)",
+          ...theme.typography.label,
         },
-        label: {
-            "@selectors": {
-                "&.active, &.focus": {
-                    transform: "translate(0px, -30px)",
-                    ...theme.typography.label,
-                },
-            },
-        },
-    }),
+      },
+    },
+  }),
 );
 ```
 
 <Preview>
-    <TextInputLabelToOutside label="User Input" />
+  <TextInputLabelToOutside label="User Input" />
 </Preview>
