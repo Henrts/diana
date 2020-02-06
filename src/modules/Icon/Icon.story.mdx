@@ -2,6 +2,7 @@ import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import { H3 } from "../Typography/Typography";
 import Icon from "./Icon";
 import { IconGallery } from "./Icon.story";
+import arrowIcon from "../../assets/icons/arrow.svg";
 
 <Meta title="Components| Icon" />
 
@@ -29,7 +30,7 @@ You can also use the `src` prop to load a custom icon not in the system
 
 <Preview>
   <Story name="Custom Icon">
-    <Icon src="assets/icons/arrow.svg" />
+    <Icon src={arrowIcon} />
   </Story>
 </Preview>
 

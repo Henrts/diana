@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Icon from "./Icon";
+import Icon, { IconNames } from "./Icon";
 import "../../stories/style.scss";
 import { ButtonText } from "../Typography";
 import { useTheme } from "aesthetic-react";
@@ -33,8 +33,8 @@ export const IconGallery: React.FC = () => {
         />
         <div className="icon-gallery">
           {icons.map((d: string) => (
-            <div className="icon-container">
-              <Icon name={d} size={20} />
+            <div className="icon-container" key={d}>
+              <Icon name={d as IconNames} size={20} />
               <ButtonText>{d}</ButtonText>
             </div>
           ))}
