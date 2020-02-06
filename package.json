@@ -75,8 +75,7 @@
     "sass-loader": "^8.0.0",
     "typescript": "^3.7.4",
     "typings": "^2.1.1",
-    "webpack-node-externals": "^1.7.2",
-    "react-svg-loader": "^3.0.3"
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",

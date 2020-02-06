@@ -55,23 +55,6 @@ module.exports = {
           use: "raw-loader"
         },
         {
-          test: /\*.svg$/,
-          use: [
-            {
-              loader: "react-svg-loader",
-              options: {
-                svgo: {
-                  plugins: [
-                    {
-                      removeViewBox: false
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
           // Exclude `js` files to keep "css" loader working as it injects
           // its runtime that would otherwise processed through "file" loader.
           // Also exclude `html` and `json` extensions so they get processed
@@ -90,7 +73,36 @@ module.exports = {
         }
       ]
     });
-    // Adds new SVG loader
+    // Removes old SVG Loader
+    config.module.rules = config.module.rules.map(rule => {
+      if (rule.test && rule.test.toString().includes("svg")) {
+        const test = rule.test
+          .toString()
+          .replace("svg|", "")
+          .replace(/\//g, "");
+        return { ...rule, test: new RegExp(test) };
+      } else {
+        return rule;
+      }
+    });
+    // Adds new SVG Loader
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  removeViewBox: false
+                }
+              ]
+            }
+          }
+        }
+      ]
+    });
 
     return config;
   }
