@@ -1,7 +1,7 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import { H3 } from "../Typography/Typography";
-import { RadioGroupExample } from "./RadioGroup.story";
 import { CustomRadio } from "./Radio.story";
+import RadioGroup from "./RadioGroup";
 import Radio from "./Radio";
 
 <Meta title="Components| Radio" />
@@ -347,39 +347,21 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
 
 # RadioGroup
 
-A `RadioGroup` consists of a set of `Radio buttons`.
-It is responsible for passing the necessary props to every child `Radio button` and for handling changes to the selected option.
+The `RadioGroup` consists of a set of `Radio buttons`. It is responsible for passing the necessary props to every child `Radio button`.
 
-The following example is used for the different variations of a `RadioGroup` described below:
+If no `selectedValue` prop is passed, it will control its own state, i.e. it will handle selected value changes internally.
 
-```javascript
-const RadioGroupExample: React.FC<IProps> = ({
-  name,
-  selectedValue,
-  ...props
-}) => {
-  const [selected, setSelected] = useState(selectedValue);
-
-  return (
-    <RadioGroup
-      name={name}
-      selectedValue={selected}
-      onValueSelect={newSelectedValue => setSelected(newSelectedValue)}
-      {...props}
-    >
-      <Radio value={`${name}1`} label="Example Radio 1" />
-      <Radio value={`${name}2`} label="Example Radio 2" />
-      <Radio value={`${name}3`} label="Example Radio 3" />
-    </RadioGroup>
-  );
-};
-```
+If the `selectedValue` prop is passed, it will be the responsibility of the parent component to handle state changes by making use of the `onValueSelect` callback and changing `selectedValue` accordingly.
 
 ### Radio group
 
 <Preview>
   <Story name="Radio group">
-    <RadioGroupExample name="radioExample" />
+    <RadioGroup name="radioGroupExample">
+      <Radio value="radioGroupExample1" label="Example Radio 1" />
+      <Radio value="radioGroupExample2" label="Example Radio 2" />
+      <Radio value="radioGroupExample3" label="Example Radio 3" />
+    </RadioGroup>
   </Story>
 </Preview>
 
@@ -387,10 +369,14 @@ const RadioGroupExample: React.FC<IProps> = ({
 
 <Preview>
   <Story name="Radio group with given selected value">
-    <RadioGroupExample
+    <RadioGroup
       name="selectedRadioExample"
-      selectedValue="selectedRadioExample1"
-    />
+      initialValue="selectedRadioExample1"
+    >
+      <Radio value="selectedRadioExample1" label="Example Radio 1" />
+      <Radio value="selectedRadioExample2" label="Example Radio 2" />
+      <Radio value="selectedRadioExample3" label="Example Radio 3" />
+    </RadioGroup>
   </Story>
 </Preview>
 
@@ -398,7 +384,11 @@ const RadioGroupExample: React.FC<IProps> = ({
 
 <Preview>
   <Story name="Disabled radio group">
-    <RadioGroupExample name="disabledRadioExample" disabled />
+    <RadioGroup name="disabledRadioExample" disabled>
+      <Radio value="disabledRadioExample1" label="Example Radio 1" />
+      <Radio value="disabledRadioExample2" label="Example Radio 2" />
+      <Radio value="disabledRadioExample3" label="Example Radio 3" />
+    </RadioGroup>
   </Story>
 </Preview>
 
@@ -406,7 +396,11 @@ const RadioGroupExample: React.FC<IProps> = ({
 
 <Preview>
   <Story name="Radio group with error">
-    <RadioGroupExample name="errorRadioExample" hasError />
+    <RadioGroup name="errorRadioExample" hasError>
+      <Radio value="errorRadioExample1" label="Example Radio 1" />
+      <Radio value="errorRadioExample2" label="Example Radio 2" />
+      <Radio value="errorRadioExample3" label="Example Radio 3" />
+    </RadioGroup>
   </Story>
 </Preview>
 
@@ -439,6 +433,13 @@ const RadioGroupExample: React.FC<IProps> = ({
       </td>
     </tr>
     <tr>
+      <td>initialValue (optional)</td>
+      <td>string</td>
+      <td>
+        The value of the <i>Radio</i> that should be selected initially.
+      </td>
+    </tr>
+    <tr>
       <td>name</td>
       <td>string</td>
       <td>
@@ -458,7 +459,7 @@ const RadioGroupExample: React.FC<IProps> = ({
       </td>
     </tr>
     <tr>
-      <td>onValueSelect</td>
+      <td>onValueSelect (optional)</td>
       <td>function</td>
       <td>
         Callback that is passed on to each child <i>Radio</i> and is invoked
