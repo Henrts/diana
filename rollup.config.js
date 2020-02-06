@@ -12,59 +12,59 @@ import svgr from "@svgr/rollup";
 import pkg from "./package.json";
 
 export default {
-    input: "src/index.ts",
-    external: ["react-svg"],
-    output: [
-        {
-            file: pkg.main,
-            format: "cjs",
-            exports: "named",
-            sourcemap: true,
-        },
-        {
-            file: pkg.module,
-            format: "es",
-            exports: "named",
-            sourcemap: true,
-        },
-    ],
-    plugins: [
-        sizeSnapshot(),
-        external(),
-        url(),
-        svgr(),
-        resolve({
-            browser: true,
-        }),
-        typescript({
-            rollupCommonJSResolveHack: true,
-            clean: true,
-            exclude: ["**/*.story.tsx"],
-        }),
-        babel({
-            babelrc: false,
-            exclude: ["node_modules/**", "**/stories/**", "**/**/*.story.tsx"],
-            ignore: ["**/*.scss"],
-            presets: [["es2015", { modules: false }], "stage-0", "react"],
-            plugins: ["external-helpers"],
-        }),
-        commonjs({
-            include: "node_modules/**",
-            exclude: ["**/*.story.tsx"],
-            namedExports: {
-                "../../node_modules/react/index.js": [
-                    "React",
-                    "cloneElement",
-                    "createElement",
-                    "PropTypes",
-                    "Children",
-                    "Component",
-                ],
-            },
-        }),
-        // copy assets into bundle
-        copy({
-            assets: ["assets"],
-        }),
-    ],
+  input: "src/index.ts",
+  external: ["react-svg"],
+  output: [
+    {
+      file: pkg.main,
+      format: "cjs",
+      exports: "named",
+      sourcemap: true,
+    },
+    {
+      file: pkg.module,
+      format: "es",
+      exports: "named",
+      sourcemap: true,
+    },
+  ],
+  plugins: [
+    sizeSnapshot(),
+    external(),
+    url(),
+    svgr(),
+    resolve({
+      browser: true,
+    }),
+    typescript({
+      rollupCommonJSResolveHack: true,
+      clean: true,
+      exclude: ["**/*.story.tsx"],
+    }),
+    babel({
+      babelrc: false,
+      exclude: ["node_modules/**", "**/stories/**", "**/**/*.story.tsx"],
+      ignore: ["**/*.scss"],
+      presets: [["es2015", { modules: false }], "stage-0", "react"],
+      plugins: ["external-helpers"],
+    }),
+    commonjs({
+      include: "node_modules/**",
+      exclude: ["**/*.story.tsx"],
+      namedExports: {
+        "../../node_modules/react/index.js": [
+          "React",
+          "cloneElement",
+          "createElement",
+          "PropTypes",
+          "Children",
+          "Component",
+        ],
+      },
+    }),
+    // copy assets into bundle
+    copy({
+      assets: ["assets"],
+    }),
+  ],
 };

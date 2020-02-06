@@ -1,14 +1,14 @@
 {
-    "name": "@diana/tokens",
-    "version": "1.0.0",
-    "main": "lib/index.js",
-    "license": "MIT",
-    "scripts": {
-        "build": "yarn compile:lib && yarn compile:module",
-        "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
-        "compile:module": "tsc --target es6 --module esnext --outDir module"
-    },
-    "devDependencies": {
-        "typescript": "^3.7.5"
-    }
+  "name": "@diana/tokens",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  }
 }
