@@ -21,37 +21,37 @@ Where multiple controls exist, radio buttons allow one to be selected out of the
 ### Radio button
 
 <Preview>
-    <Story name="Radio">
-        <Radio value="radio1" label="Example radio" />
-    </Story>
+  <Story name="Radio">
+    <Radio value="radio1" label="Example radio" />
+  </Story>
 </Preview>
 
 ### Radio button with given selected value
 
 <Preview>
-    <Story name="Radio with selected value">
-        <Radio
-            value="radio2"
-            label="Example selected radio"
-            selectedValue="radio2"
-        />
-    </Story>
+  <Story name="Radio with selected value">
+    <Radio
+      value="radio2"
+      label="Example selected radio"
+      selectedValue="radio2"
+    />
+  </Story>
 </Preview>
 
 ### Disabled Radio button
 
 <Preview>
-    <Story name="Disabled radio">
-        <Radio value="radio3" label="Example disabled radio" disabled />
-    </Story>
+  <Story name="Disabled radio">
+    <Radio value="radio3" label="Example disabled radio" disabled />
+  </Story>
 </Preview>
 
 ### Radio button with error
 
 <Preview>
-    <Story name="Radio with error">
-        <Radio value="radio4" label="Example error radio" hasError />
-    </Story>
+  <Story name="Radio with error">
+    <Radio value="radio4" label="Example error radio" hasError />
+  </Story>
 </Preview>
 
 ### Radio button with custom input styles
@@ -64,304 +64,285 @@ Here is an example of a custom radio button using material ui's styles.
 
 ```javascript
 const styleSheet: ThemeStyleSheetFactory = () => ({
-    svg: {
-        fill: "none",
-        verticalAlign: "middle",
+  svg: {
+    fill: "none",
+    verticalAlign: "middle",
+  },
+  circle: {
+    strokeWidth: 2,
+    stroke: "#C8CCD4",
+  },
+  innerPath: {
+    stroke: "#008FFF",
+    strokeWidth: 6,
+    strokeDasharray: 19,
+    strokeDashoffset: 19,
+    "@selectors": {
+      "&.checked": {
+        strokeDashoffset: 38,
+      },
     },
-    circle: {
-        strokeWidth: 2,
-        stroke: "#C8CCD4",
+  },
+  outerPath: {
+    stroke: "#008FFF",
+    strokeWidth: 2,
+    strokeDasharray: 57,
+    strokeDashoffset: 57,
+    "@selectors": {
+      "&.checked": {
+        strokeDashoffset: 0,
+      },
     },
-    innerPath: {
-        stroke: "#008FFF",
-        strokeWidth: 6,
-        strokeDasharray: 19,
-        strokeDashoffset: 19,
-        "@selectors": {
-            "&.checked": {
-                strokeDashoffset: 38,
-            },
-        },
-    },
-    outerPath: {
-        stroke: "#008FFF",
-        strokeWidth: 2,
-        strokeDasharray: 57,
-        strokeDashoffset: 57,
-        "@selectors": {
-            "&.checked": {
-                strokeDashoffset: 0,
-            },
-        },
-    },
+  },
 });
 
 const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
-    const StyledRadio = Radio.extendStyles(theme => ({
-        input: {
-            marginRight: theme.spaceUnit.xxs,
-        },
-    }));
+  const StyledRadio = Radio.extendStyles(theme => ({
+    input: {
+      marginRight: theme.spaceUnit.xxs,
+    },
+  }));
 
-    const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet);
 
-    return (
-        <StyledRadio selectedValue={selectedValue} {...props}>
-            <svg
-                width="20px"
-                height="20px"
-                viewBox="0 0 20 20"
-                className={cx(styles.svg)}
-            >
-                <circle
-                    cx="10"
-                    cy="10"
-                    r="9"
-                    className={cx(styles.circle)}
-                ></circle>
-                <path
-                    d="..."
-                    className={cx(
-                        "inner",
-                        styles.innerPath,
-                        selectedValue && "checked",
-                    )}
-                ></path>
-                <path
-                    d="..."
-                    className={cx(
-                        "outer",
-                        styles.outerPath,
-                        selectedValue && "checked",
-                    )}
-                ></path>
-            </svg>
-        </StyledRadio>
-    );
+  return (
+    <StyledRadio selectedValue={selectedValue} {...props}>
+      <svg
+        width="20px"
+        height="20px"
+        viewBox="0 0 20 20"
+        className={cx(styles.svg)}
+      >
+        <circle cx="10" cy="10" r="9" className={cx(styles.circle)}></circle>
+        <path
+          d="..."
+          className={cx("inner", styles.innerPath, selectedValue && "checked")}
+        ></path>
+        <path
+          d="..."
+          className={cx("outer", styles.outerPath, selectedValue && "checked")}
+        ></path>
+      </svg>
+    </StyledRadio>
+  );
 };
 ```
 
 <Preview>
-    <Story name="Custom selected radio">
-        <CustomRadio
-            value="radio5"
-            label="Example selected custom radio"
-            selectedValue={"radio5"}
-        />
-    </Story>
-    <Story name="Custom radio">
-        <CustomRadio value="radio6" label="Example custom radio" />
-    </Story>
+  <Story name="Custom selected radio">
+    <CustomRadio
+      value="radio5"
+      label="Example selected custom radio"
+      selectedValue={"radio5"}
+    />
+  </Story>
+  <Story name="Custom radio">
+    <CustomRadio value="radio6" label="Example custom radio" />
+  </Story>
 </Preview>
 
 ### Available props
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Prop Name</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>children (optional)</td>
-            <td>ReactElement</td>
-            <td>
-                A React element to provide a custom input for styling purposes
-            </td>
-        </tr>
-        <tr>
-            <td>disabled (optional)</td>
-            <td>boolean</td>
-            <td>Flag indicating whether user can interact with radio button</td>
-        </tr>
-        <tr>
-            <td>hasError (optional)</td>
-            <td>boolean</td>
-            <td>
-                Flag indicating whether there is an error present in radio
-                button
-            </td>
-        </tr>
-        <tr>
-            <td>label</td>
-            <td>string</td>
-            <td>The radio button's label</td>
-        </tr>
-        <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>
-                This prop is used to group a set of radio buttons that share the
-                same name prop.
-                <br />
-                This prop should not be passed manually, as it is injected by
-                the radio button's <i>RadioGroup</i>.
-            </td>
-        </tr>
-        <tr>
-            <td>selectedValue (optional)</td>
-            <td>string</td>
-            <td>
-                The radio button compares <i>selectedValue</i> to its own value
-                to determine whether it is selected.
-                <br />
-                This prop should not be passed manually, as it is injected by
-                the radio button's <i>RadioGroup</i>.
-            </td>
-        </tr>
-        <tr>
-            <td>value</td>
-            <td>string</td>
-            <td>
-                This <i>value</i> is used to determine whether the radio button
-                is selected.
-            </td>
-        </tr>
-        <tr>
-            <td>onValueSelect</td>
-            <td>function</td>
-            <td>
-                Callback that is invoked whenever the radio button is clicked on
-                (given
-                <i> disabled</i> is <i>false</i>)
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>children (optional)</td>
+      <td>ReactElement</td>
+      <td>A React element to provide a custom input for styling purposes</td>
+    </tr>
+    <tr>
+      <td>disabled (optional)</td>
+      <td>boolean</td>
+      <td>Flag indicating whether user can interact with radio button</td>
+    </tr>
+    <tr>
+      <td>hasError (optional)</td>
+      <td>boolean</td>
+      <td>Flag indicating whether there is an error present in radio button</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>The radio button's label</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>
+        This prop is used to group a set of radio buttons that share the same
+        name prop.
+        <br />
+        This prop should not be passed manually, as it is injected by the radio
+        button's <i>RadioGroup</i>.
+      </td>
+    </tr>
+    <tr>
+      <td>selectedValue (optional)</td>
+      <td>string</td>
+      <td>
+        The radio button compares <i>selectedValue</i> to its own value to
+        determine whether it is selected.
+        <br />
+        This prop should not be passed manually, as it is injected by the radio
+        button's <i>RadioGroup</i>.
+      </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>
+        This <i>value</i> is used to determine whether the radio button is
+        selected.
+      </td>
+    </tr>
+    <tr>
+      <td>onValueSelect</td>
+      <td>function</td>
+      <td>
+        Callback that is invoked whenever the radio button is clicked on (given
+        <i> disabled</i> is <i>false</i>)
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ### Extendable styles
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Style name</th>
-            <th>@selectors</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>input</td>
-            <td></td>
-            <td>
-                This style affects the radio button's <i>input</i> element
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>:hover</td>
-            <td>
-                This style affects the radio button's <i>input</i> element when
-                the user hovers over the button
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>:active</td>
-            <td>
-                This style affects the radio button's <i>input</i> element when
-                the button is active (being clicked on)
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>.checked</td>
-            <td>
-                This style affects the radio button's <i>input</i> element when
-                the button is selected
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>.disabled</td>
-            <td>
-                This style affects the radio button's <i>input</i> element when
-                the button is disabled
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>.error</td>
-            <td>
-                This style affects the radio button's <i>input</i> element when
-                the button has an error
-            </td>
-        </tr>
-        <tr>
-            <td>label</td>
-            <td></td>
-            <td>
-                This style affects the radio button's <i>label</i> element
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>:hover</td>
-            <td>
-                This style affects the radio button's <i>label</i> element when
-                the user hovers over the button
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>:active</td>
-            <td>
-                This style affects the radio button's <i>label</i> element when
-                the button is active (being clicked on)
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>.checked</td>
-            <td>
-                This style affects the radio button's <i>label</i> element when
-                the button is selected
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>.disabled</td>
-            <td>
-                This style affects the radio button's <i>label</i> element when
-                the button is disabled
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>.error</td>
-            <td>
-                This style affects the radio button's <i>label</i> element when
-                the button has an error
-            </td>
-        </tr>
-        <tr>
-            <td>wrapper</td>
-            <td></td>
-            <td>
-                This style affects the element that wraps the <i>input</i> and{" "}
-                <i>label</i> elements
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>.disabled</td>
-            <td>
-                This style affects the element that wraps the <i>input</i> and{" "}
-                <i>label</i> elements when the button is disabled
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>.error</td>
-            <td>
-                This style affects the element that wraps the <i>input</i> and{" "}
-                <i>label</i> elements when the button has error
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Style name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>input</td>
+      <td></td>
+      <td>
+        This style affects the radio button's <i>input</i> element
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>:hover</td>
+      <td>
+        This style affects the radio button's <i>input</i> element when the user
+        hovers over the button
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>:active</td>
+      <td>
+        This style affects the radio button's <i>input</i> element when the
+        button is active (being clicked on)
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.checked</td>
+      <td>
+        This style affects the radio button's <i>input</i> element when the
+        button is selected
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.disabled</td>
+      <td>
+        This style affects the radio button's <i>input</i> element when the
+        button is disabled
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.error</td>
+      <td>
+        This style affects the radio button's <i>input</i> element when the
+        button has an error
+      </td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td></td>
+      <td>
+        This style affects the radio button's <i>label</i> element
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>:hover</td>
+      <td>
+        This style affects the radio button's <i>label</i> element when the user
+        hovers over the button
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>:active</td>
+      <td>
+        This style affects the radio button's <i>label</i> element when the
+        button is active (being clicked on)
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.checked</td>
+      <td>
+        This style affects the radio button's <i>label</i> element when the
+        button is selected
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.disabled</td>
+      <td>
+        This style affects the radio button's <i>label</i> element when the
+        button is disabled
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.error</td>
+      <td>
+        This style affects the radio button's <i>label</i> element when the
+        button has an error
+      </td>
+    </tr>
+    <tr>
+      <td>wrapper</td>
+      <td></td>
+      <td>
+        This style affects the element that wraps the <i>input</i> and{" "}
+        <i>label</i> elements
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.disabled</td>
+      <td>
+        This style affects the element that wraps the <i>input</i> and{" "}
+        <i>label</i> elements when the button is disabled
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.error</td>
+      <td>
+        This style affects the element that wraps the <i>input</i> and{" "}
+        <i>label</i> elements when the button has error
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 # RadioGroup
@@ -373,140 +354,138 @@ The following example is used for the different variations of a `RadioGroup` des
 
 ```javascript
 const RadioGroupExample: React.FC<IProps> = ({
-    name,
-    selectedValue,
-    ...props
+  name,
+  selectedValue,
+  ...props
 }) => {
-    const [selected, setSelected] = useState(selectedValue);
+  const [selected, setSelected] = useState(selectedValue);
 
-    return (
-        <RadioGroup
-            name={name}
-            selectedValue={selected}
-            onValueSelect={newSelectedValue => setSelected(newSelectedValue)}
-            {...props}
-        >
-            <Radio value={`${name}1`} label="Example Radio 1" />
-            <Radio value={`${name}2`} label="Example Radio 2" />
-            <Radio value={`${name}3`} label="Example Radio 3" />
-        </RadioGroup>
-    );
+  return (
+    <RadioGroup
+      name={name}
+      selectedValue={selected}
+      onValueSelect={newSelectedValue => setSelected(newSelectedValue)}
+      {...props}
+    >
+      <Radio value={`${name}1`} label="Example Radio 1" />
+      <Radio value={`${name}2`} label="Example Radio 2" />
+      <Radio value={`${name}3`} label="Example Radio 3" />
+    </RadioGroup>
+  );
 };
 ```
 
 ### Radio group
 
 <Preview>
-    <Story name="Radio group">
-        <RadioGroupExample name="radioExample" />
-    </Story>
+  <Story name="Radio group">
+    <RadioGroupExample name="radioExample" />
+  </Story>
 </Preview>
 
 ### Radio group with given selected value
 
 <Preview>
-    <Story name="Radio group with given selected value">
-        <RadioGroupExample
-            name="selectedRadioExample"
-            selectedValue="selectedRadioExample1"
-        />
-    </Story>
+  <Story name="Radio group with given selected value">
+    <RadioGroupExample
+      name="selectedRadioExample"
+      selectedValue="selectedRadioExample1"
+    />
+  </Story>
 </Preview>
 
 ### Disabled Radio group
 
 <Preview>
-    <Story name="Disabled radio group">
-        <RadioGroupExample name="disabledRadioExample" disabled />
-    </Story>
+  <Story name="Disabled radio group">
+    <RadioGroupExample name="disabledRadioExample" disabled />
+  </Story>
 </Preview>
 
 ### Radio group with an error
 
 <Preview>
-    <Story name="Radio group with error">
-        <RadioGroupExample name="errorRadioExample" hasError />
-    </Story>
+  <Story name="Radio group with error">
+    <RadioGroupExample name="errorRadioExample" hasError />
+  </Story>
 </Preview>
 
 ### Available props
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Prop Name</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>disabled (optional)</td>
-            <td>boolean</td>
-            <td>
-                Flag indicating whether user can interact with any radio button
-                that is part of the <i>RadioGroup</i>
-            </td>
-        </tr>
-        <tr>
-            <td>hasError (optional)</td>
-            <td>boolean</td>
-            <td>
-                Flag indicating whether there is an error present in{" "}
-                <i>RadioGroup</i>.
-                <br />
-                This prop will be injected into each radio button.
-            </td>
-        </tr>
-        <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>
-                This prop is used to group the set of radio buttons that are
-                part of the <i>RadioGroup</i>.
-                <br />
-                This prop will be injected into each radio button.
-            </td>
-        </tr>
-        <tr>
-            <td>selectedValue (optional)</td>
-            <td>string</td>
-            <td>
-                This prop contains the value of the selected radio button (it
-                may also be undefined if no option is selected). <br />
-                This prop will be injected into each radio button.
-            </td>
-        </tr>
-        <tr>
-            <td>onValueSelect</td>
-            <td>function</td>
-            <td>
-                Callback that is passed on to each child <i>Radio</i> and is
-                invoked whenever a radio button inside the <i>RadioGroup</i> is
-                clicked on (given <i> disabled</i> is <i>false</i>).
-                <br />
-                This callback receives the newly selected value as its only
-                parameter.
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>disabled (optional)</td>
+      <td>boolean</td>
+      <td>
+        Flag indicating whether user can interact with any radio button that is
+        part of the <i>RadioGroup</i>
+      </td>
+    </tr>
+    <tr>
+      <td>hasError (optional)</td>
+      <td>boolean</td>
+      <td>
+        Flag indicating whether there is an error present in <i>RadioGroup</i>.
+        <br />
+        This prop will be injected into each radio button.
+      </td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>
+        This prop is used to group the set of radio buttons that are part of the{" "}
+        <i>RadioGroup</i>.
+        <br />
+        This prop will be injected into each radio button.
+      </td>
+    </tr>
+    <tr>
+      <td>selectedValue (optional)</td>
+      <td>string</td>
+      <td>
+        This prop contains the value of the selected radio button (it may also
+        be undefined if no option is selected). <br />
+        This prop will be injected into each radio button.
+      </td>
+    </tr>
+    <tr>
+      <td>onValueSelect</td>
+      <td>function</td>
+      <td>
+        Callback that is passed on to each child <i>Radio</i> and is invoked
+        whenever a radio button inside the <i>RadioGroup</i> is clicked on
+        (given <i> disabled</i> is <i>false</i>).
+        <br />
+        This callback receives the newly selected value as its only parameter.
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ### Extendable styles
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Style name</th>
-            <th>@selectors</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>radioGroup</td>
-            <td></td>
-            <td>This style affects the radio buttons' wrapper element.</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Style name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>radioGroup</td>
+      <td></td>
+      <td>This style affects the radio buttons' wrapper element.</td>
+    </tr>
+  </tbody>
 </table>

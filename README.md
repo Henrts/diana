@@ -14,7 +14,7 @@ Use `withStyles` to produce `StyledComponents` that can then be wrapped and exte
 Use `initTheme` with the desired theme at the start of your application.
 
 ```javascript
-import theme from '../src/tokens/themes/theme.example';
+import theme from "../src/tokens/themes/theme.example";
 
 initTheme(theme);
 ```
@@ -22,11 +22,11 @@ initTheme(theme);
 #### Creation of an extendable component
 
 ```javascript
-import { withStyles, WithStylesProps } from '@henrts/diana';
+import { withStyles, WithStylesProps } from "@henrts/diana";
 
 const styleSheet = theme => ({
   exampleStyle: {
-    color: 'black',
+    color: "black",
     fontSize: 23,
     margin: 16,
   },
@@ -42,7 +42,7 @@ export default withStyles(styleSheet)(ExampleComponent);
 #### Extending a Component
 
 ```javascript
-import { ExampleComponent } from './ExampleComponent';
+import { ExampleComponent } from "./ExampleComponent";
 
 export const DerivedComponent = ExampleComponent.extendStyles(theme => ({
   exampleStyle: {

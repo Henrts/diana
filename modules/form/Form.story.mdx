@@ -12,84 +12,80 @@ import { BaseButton } from "@diana/button";
 `Form` is a wrapper for all form dependent behavior, handling validation and field value changes. Displaying error messages is the responsability of the parts used in the composition as children of the form.
 
 <Preview>
-    <Story name="Simple Form">
-        <Form
-            schema={yup.object().shape({
-                username: yup.string().required("Username is required"),
-                password: yup
-                    .string()
-                    .required("Password is required")
-                    .min(12, "Password is too small"),
-                remember: yup.boolean(),
-            })}
-            onSubmit={e => console.log(e)}
-        >
-            <ErrorTextInput label="Username" name="username" type="text" />
-            <ErrorTextInput label="Password" name="password" type="password" />
-            <Checkbox name="remember">Remember me</Checkbox>
-            <BaseButton type="submit">Submit</BaseButton>
-        </Form>
-    </Story>
+  <Story name="Simple Form">
+    <Form
+      schema={yup.object().shape({
+        username: yup.string().required("Username is required"),
+        password: yup
+          .string()
+          .required("Password is required")
+          .min(12, "Password is too small"),
+        remember: yup.boolean(),
+      })}
+      onSubmit={e => console.log(e)}
+    >
+      <ErrorTextInput label="Username" name="username" type="text" />
+      <ErrorTextInput label="Password" name="password" type="password" />
+      <Checkbox name="remember">Remember me</Checkbox>
+      <BaseButton type="submit">Submit</BaseButton>
+    </Form>
+  </Story>
 </Preview>
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Prop</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>schema</td>
-            <td>
-                If you would like to centralize your validation rules with
-                external validation schema
-            </td>
-        </tr>
-        <tr>
-            <td>onSubmit</td>
-            <td>
-                Callback for a successful (no errors) submission of the form
-            </td>
-        </tr>
-        <tr>
-            <td>defaultValues (optional)</td>
-            <td>
-                Object of values following the schema rules to initialize the
-                form
-            </td>
-        </tr>
-        <tr>
-            <td>clearOnSubmit (default: true)</td>
-            <td>
-                Resets the form to its initial state (uses defaultValues if
-                specified)
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>schema</td>
+      <td>
+        If you would like to centralize your validation rules with external
+        validation schema
+      </td>
+    </tr>
+    <tr>
+      <td>onSubmit</td>
+      <td>Callback for a successful (no errors) submission of the form</td>
+    </tr>
+    <tr>
+      <td>defaultValues (optional)</td>
+      <td>
+        Object of values following the schema rules to initialize the form
+      </td>
+    </tr>
+    <tr>
+      <td>clearOnSubmit (default: true)</td>
+      <td>
+        Resets the form to its initial state (uses defaultValues if specified)
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 #### Extendable styles
 
 <table width="100%">
-    <thead>
-        <tr>
-            <th>Style Name</th>
-            <th>@selectors</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>form</td>
-            <td></td>
-            <td>
-                This style affects the main container element that contains all
-                the children fields and inputs of the form
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Style Name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>form</td>
+      <td></td>
+      <td>
+        This style affects the main container element that contains all the
+        children fields and inputs of the form
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ### Using yup for validation
@@ -109,30 +105,30 @@ We can also use yup to transform values to match a rule, like trimming and upper
 ```
 
 <table width="100%">
-    <thead>
-        <tr>
-            <td>Component</td>
-            <td>Supported</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>TextInput</td>
-            <td>
-                <strong>x</strong>
-            </td>
-        </tr>
-        <tr>
-            <td>ErrorTextInput</td>
-            <td>
-                <strong>x</strong>
-            </td>
-        </tr>
-        <tr>
-            <td>Checkbox</td>
-            <td>
-                <strong>x</strong>
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <td>Component</td>
+      <td>Supported</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TextInput</td>
+      <td>
+        <strong>x</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>ErrorTextInput</td>
+      <td>
+        <strong>x</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>Checkbox</td>
+      <td>
+        <strong>x</strong>
+      </td>
+    </tr>
+  </tbody>
 </table>

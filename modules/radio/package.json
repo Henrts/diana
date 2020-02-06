@@ -1,20 +1,20 @@
 {
-    "name": "@diana/radio",
-    "version": "1.0.0",
-    "main": "index.js",
-    "license": "MIT",
-    "scripts": {
-        "build": "yarn compile:lib && yarn compile:module",
-        "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
-        "compile:module": "tsc --target es6 --module esnext --outDir module"
-    },
-    "dependencies": {
-        "@diana/base": "1.0.0",
-        "@diana/types": "1.0.0",
-        "react": "^16.12.0",
-        "uuid": "^3.4.0"
-    },
-    "devDependencies": {
-        "@diana/typography": "1.0.0"
-    }
+  "name": "@diana/radio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module"
+  },
+  "dependencies": {
+    "@diana/base": "1.0.0",
+    "@diana/types": "1.0.0",
+    "react": "^16.12.0",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@diana/typography": "1.0.0"
+  }
 }

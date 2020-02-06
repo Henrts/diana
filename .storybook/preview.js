@@ -6,8 +6,8 @@ import "loki/configure-react";
 initDefaultTheme();
 
 addParameters({
-    docs: {
-        container: DocsContainer,
-        page: DocsPage,
-    },
+  docs: {
+    container: DocsContainer,
+    page: DocsPage,
+  },
 });

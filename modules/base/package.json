@@ -1,32 +1,32 @@
 {
-    "name": "@diana/base",
-    "version": "1.0.0",
-    "main": "lib/index.js",
-    "license": "MIT",
-    "files": [
-        "lib",
-        "module"
-    ],
-    "scripts": {
-        "build": "yarn compile:lib && yarn compile:module",
-        "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
-        "compile:module": "tsc --target es6 --module esnext --outDir module"
-    },
-    "devDependencies": {
-        "typescript": "^3.7.5"
-    },
-    "peerDependencies": {
-        "react": "^16.12.0"
-    },
-    "dependencies": {
-        "@diana/types": "1.0.0",
-        "@diana/tokens": "1.0.0",
-        "aesthetic": "^5.1.0",
-        "aesthetic-adapter-aphrodite": "^5.1.0",
-        "aesthetic-react": "^2.1.0",
-        "extend": "^3.0.2",
-        "hoist-non-react-statics": "^3.3.2",
-        "react-registry": "^0.5.0",
-        "uuid": "^3.4.0"
-    }
+  "name": "@diana/base",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "module"
+  ],
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  },
+  "dependencies": {
+    "@diana/types": "1.0.0",
+    "@diana/tokens": "1.0.0",
+    "aesthetic": "^5.1.0",
+    "aesthetic-adapter-aphrodite": "^5.1.0",
+    "aesthetic-react": "^2.1.0",
+    "extend": "^3.0.2",
+    "hoist-non-react-statics": "^3.3.2",
+    "react-registry": "^0.5.0",
+    "uuid": "^3.4.0"
+  }
 }
