@@ -2,7 +2,7 @@ module.exports = {
   parserOptions: {
     project: "./tsconfig.json",
     extraFileExtensions: [".mdx"],
-    ecmaFeatures: { jsx: true },
+    ecmaFeatures: { jsx: true }
   },
   extends: [
     "plugin:mdx/recommended",
@@ -13,7 +13,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
     "prettier/react",
-    "prettier/@typescript-eslint",
+    "prettier/@typescript-eslint"
   ],
   rules: {
     "no-underscore-dangle": "off",
@@ -23,10 +23,11 @@ module.exports = {
     "import/no-unresolved": "off",
     "import/no-named-as-default": "off",
     "import/prefer-default-export": "off",
+    "@typescript-eslint/quotes": ["error", "double"],
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/interface-name-prefix": [
       "error",
-      { prefixWithI: "always" },
+      { prefixWithI: "always" }
     ],
     "react/prop-types": [0],
     "react/destructuring-assignment": "off",
@@ -39,8 +40,8 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       {
-        devDependencies: [".storybook/**", "**/**/*.mdx"],
-      },
-    ],
-  },
+        devDependencies: [".storybook/**", "**/**/*.mdx"]
+      }
+    ]
+  }
 };

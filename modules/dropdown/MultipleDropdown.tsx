@@ -6,7 +6,7 @@ import {
   DropdownHeader,
   styleSheet,
   IProps,
-  usePopoverRef,
+  usePopoverRef
 } from "./Dropdown";
 import { IProps as IPopoverProps } from "../popover/Popover";
 import { useRegistry } from "../hooks/useRegistry";
@@ -34,7 +34,7 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
     text,
     renderItem,
     renderHeader,
-    wrappedRef,
+    wrappedRef
   } = props;
 
   const ref = usePopoverRef(wrappedRef);
@@ -59,7 +59,7 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
           styles={styles}
         />
       ),
-    [renderHeader, label, text, selectedItems, placeholder, cx, styles],
+    [renderHeader, label, text, selectedItems, placeholder, cx, styles]
   );
 
   return (
@@ -70,7 +70,7 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
             styles.item,
             styles.itemAll,
             selectedItems.length === items.length && styles.itemSelected,
-            selectedItems.length === items.length && styles.itemAllSelected,
+            selectedItems.length === items.length && styles.itemAllSelected
           )}
           onClick={() => {
             onItemsSelected([...items]);
@@ -86,7 +86,7 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
               styles.item,
               selectedItems?.find(i => i.id === item.id)
                 ? styles.itemSelected
-                : {},
+                : {}
             )}
             key={item.id}
             onClick={() => {
@@ -105,7 +105,7 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
             {renderItem?.(
               item,
               selectedItems.find(i => i.id === item.id) !== undefined,
-              index,
+              index
             ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
           </li>
         ))}
@@ -118,11 +118,11 @@ const multipleStylesheet: ThemeStyleSheetFactory = extendStyles(
   styleSheet,
   () => ({
     itemAll: {},
-    itemAllSelected: {},
-  }),
+    itemAllSelected: {}
+  })
 );
 
 export const MultipleDropdown = withStyles(multipleStylesheet)(
-  BaseMultipleDropdown,
+  BaseMultipleDropdown
 );
 export default MultipleDropdown;

@@ -17,7 +17,7 @@ export interface IProps {
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   icon: {
-    marginRight: theme.spaceUnit.sm,
+    marginRight: theme.spaceUnit.sm
   },
   text: {},
   title: {},
@@ -25,24 +25,24 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       "&.enter": {
         opacity: 0,
-        transform: "translateY(10px)",
+        transform: "translateY(10px)"
       },
       "&.enter-active": {
         opacity: 1,
         transition: "opacity 250ms ease-in, transform 125ms ease-in",
-        transform: "translateY(0px)",
+        transform: "translateY(0px)"
       },
       "&.exit": {
         opacity: 1,
-        transform: "translateY(0px)",
+        transform: "translateY(0px)"
       },
       "&.exit-active": {
         opacity: 0,
         transform: "translateY(10px)",
-        transition: "opacity 250ms ease-in, transform 125ms ease-in",
-      },
-    },
-  },
+        transition: "opacity 250ms ease-in, transform 125ms ease-in"
+      }
+    }
+  }
 });
 
 const Notifcation: React.FC<IProps & WithStylesProps> = ({
@@ -53,18 +53,18 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
   title,
   styles,
   onMouseOver,
-  onMouseOut,
+  onMouseOut
 }) => {
   const textWithIconStyles = {
     display: "flex",
-    alignItems: "center",
+    alignItems: "center"
   };
   const handleMouseOver = () => onMouseOver?.(id);
   const handleMouseOut = () => onMouseOut?.(id);
 
   const renderText = useCallback(
     () => <span className={cx(styles.text)}>{children}</span>,
-    [children, cx, styles.text],
+    [children, cx, styles.text]
   );
 
   return (

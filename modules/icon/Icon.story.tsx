@@ -17,8 +17,8 @@ export const IconGallery: React.FC = () => {
       } else {
         setIcons(
           Object.keys(theme.icons).filter((f: string) =>
-            f.includes(searchString),
-          ),
+            f.includes(searchString)
+          )
         );
       }
     }

@@ -3,7 +3,7 @@ import { withStyles } from "@diana/base";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory,
+  ThemeStyleSheetFactory
 } from "@diana/types";
 import { ButtonText } from "@diana/typography";
 
@@ -19,11 +19,11 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     cursor: "pointer",
     outlineStyle: "none",
     display: "flex",
-    alignItems: "center",
+    alignItems: "center"
   },
   danger: {},
   disabled: {},
-  buttonText: {},
+  buttonText: {}
 });
 
 const BaseButton: React.FC<IProps & WithStylesProps> = ({

@@ -10,18 +10,18 @@ import { ErrorTextInput } from "@diana/textinput";
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {},
   formItem: {
-    marginTop: "24px",
-  },
+    marginTop: "24px"
+  }
 });
 
 export const Form = BaseForm.extendStyles(() => ({
   form: {
     "@selectors": {
       "> *": {
-        marginTop: "24px",
-      },
-    },
-  },
+        marginTop: "24px"
+      }
+    }
+  }
 }));
 
 export const FormStory: React.FC = () => {
@@ -36,7 +36,7 @@ export const FormStory: React.FC = () => {
             .string()
             .required("Password is required")
             .min(12, "Password is too small"),
-          remember: yup.boolean(),
+          remember: yup.boolean()
         })}
         onSubmit={e => console.log(e)}
       >

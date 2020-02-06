@@ -6,8 +6,8 @@ import { useStyles } from "@diana/base";
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   icon: {
-    marginRight: "12px",
-  },
+    marginRight: "12px"
+  }
 });
 
 const AlteredBaseButton = BaseButton.extendStyles((theme: Theme) => ({
@@ -15,8 +15,8 @@ const AlteredBaseButton = BaseButton.extendStyles((theme: Theme) => ({
     backgroundColor: "steelblue",
     color: "white",
     padding: "12px 16px",
-    borderRadius: "10px",
-  },
+    borderRadius: "10px"
+  }
 }));
 
 export const DerivedButton: React.FC = ({ ...props }) => {

@@ -3,7 +3,7 @@ import uuid from "uuid/v4";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory,
+  ThemeStyleSheetFactory
 } from "@diana/types";
 import { withStyles } from "@diana/base";
 
@@ -25,10 +25,10 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       "&.checked": {},
       "&.disabled": {
-        cursor: "default",
+        cursor: "default"
       },
-      "&.error": {},
-    },
+      "&.error": {}
+    }
   },
   label: {
     cursor: "pointer",
@@ -37,12 +37,12 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       "&.checked": {},
       "&.disabled": {
-        cursor: "default",
+        cursor: "default"
       },
       "&.error": {
-        color: theme.colors.alert.alert50,
-      },
-    },
+        color: theme.colors.alert.alert50
+      }
+    }
   },
   wrapper: {
     display: "flex",
@@ -51,10 +51,10 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
       "&.checked": {},
       "&.disabled": {},
       "&.error": {
-        color: theme.colors.alert.alert50,
-      },
-    },
-  },
+        color: theme.colors.alert.alert50
+      }
+    }
+  }
 });
 
 const Radio: React.FC<IProps & WithStylesProps> = ({
@@ -83,7 +83,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
     isChecked && "checked",
     disabled && "disabled",
     hasError && "error",
-    children && children.props.className,
+    children && children.props.className
   );
 
   return (
@@ -100,7 +100,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
       {children &&
         React.cloneElement(children, {
           className: inputStyles,
-          onClick: handleChange,
+          onClick: handleChange
         })}
       <label
         htmlFor={id}
@@ -108,7 +108,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
           styles.label,
           isChecked && "checked",
           disabled && "disabled",
-          hasError && "error",
+          hasError && "error"
         )}
       >
         {label}

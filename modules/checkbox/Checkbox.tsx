@@ -4,13 +4,13 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
-  useState,
+  useState
 } from "react";
 import { withStyles } from "@diana/base";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory,
+  ThemeStyleSheetFactory
 } from "@diana/types";
 import { Icon } from "@diana/icon";
 
@@ -34,16 +34,16 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       ":hover .icon:not(.disabled):not(.checked):not(.show-as-checked)": {
         opacity: 1,
-        stroke: theme.colors.grey.grey100,
+        stroke: theme.colors.grey.grey100
       },
       "&.disabled": {
-        cursor: "initial",
-      },
-    },
+        cursor: "initial"
+      }
+    }
   },
   checkboxText: {
     cursor: "inherit",
-    ...theme.typography.body,
+    ...theme.typography.body
   },
   icon: {
     opacity: 0,
@@ -52,16 +52,16 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       "&.show-as-checked": {
         opacity: 1,
-        stroke: theme.colors.black,
+        stroke: theme.colors.black
       },
       "&.checked": {
         opacity: 1,
-        stroke: theme.colors.white,
+        stroke: theme.colors.white
       },
       "&.disabled": {
-        stroke: theme.colors.grey.grey100,
-      },
-    },
+        stroke: theme.colors.grey.grey100
+      }
+    }
   },
   iconContainer: {
     width: theme.spaceUnit.md,
@@ -80,14 +80,14 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       "&.show-as-checked": {},
       "&.checked": {
-        backgroundColor: theme.colors.black,
+        backgroundColor: theme.colors.black
       },
       "&.disabled": {
         backgroundColor: theme.colors.grey.grey25,
-        borderColor: theme.colors.grey.grey100,
-      },
-    },
-  },
+        borderColor: theme.colors.grey.grey100
+      }
+    }
+  }
 });
 
 const defaultCheckedIcon: JSX.Element = <Icon name="check" />;
@@ -114,14 +114,14 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
     "icon-container",
     showAsChecked && "show-as-checked",
     checkedState && "checked",
-    disabled && "disabled",
+    disabled && "disabled"
   );
   const iconStyle = cx(
     styles.icon,
     "icon",
     showAsChecked && "show-as-checked",
     checkedState && "checked",
-    disabled && "disabled",
+    disabled && "disabled"
   );
 
   useEffect(() => {
@@ -140,7 +140,7 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
         onChange(event);
       }
     },
-    [onChange, checked, disabled],
+    [onChange, checked, disabled]
   );
 
   const handleClick = useCallback((e?: React.MouseEvent) => {
@@ -154,13 +154,13 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
 
   useImperativeHandle<ICheckboxRef, ICheckboxRef>(wrappedRef, () => ({
     isChecked: checkedState,
-    toggle: () => handleClick(),
+    toggle: () => handleClick()
   }));
 
   const CheckedIcon: React.ReactNode = useMemo(() => {
     return React.cloneElement(checkedIcon, {
       className: iconStyle,
-      size: 10,
+      size: 10
     });
   }, [checkedIcon, iconStyle]);
 

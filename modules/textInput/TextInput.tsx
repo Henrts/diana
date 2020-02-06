@@ -3,7 +3,7 @@ import { withStyles } from "@diana/base";
 import {
   ThemeStyleSheetFactory,
   StandardProps,
-  WithStylesProps,
+  WithStylesProps
 } from "@diana/types";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
@@ -14,13 +14,13 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     padding: "2px 8px",
     "@selectors": {
       "&.error": {
-        borderColor: theme.colors.alert.alert100,
+        borderColor: theme.colors.alert.alert100
       },
       "&.disabled": {
-        backgroundColor: theme.colors.grey.grey25,
+        backgroundColor: theme.colors.grey.grey25
       },
-      "&.focus": {},
-    },
+      "&.focus": {}
+    }
   },
   input: {
     outline: "none",
@@ -31,9 +31,9 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     ...theme.typography.body,
     "@selectors": {
       "&.disabled": {
-        backgroundColor: theme.colors.grey.grey25,
-      },
-    },
+        backgroundColor: theme.colors.grey.grey25
+      }
+    }
   },
   labelContainer: {
     position: "absolute",
@@ -42,7 +42,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     height: "40px",
     pointerEvents: "none",
     display: "flex",
-    alignItems: "center",
+    alignItems: "center"
   },
   label: {
     whiteSpace: "nowrap",
@@ -57,16 +57,16 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       "&.active,&.focus": {
         transform: "translate(2px, -21px)",
-        ...theme.typography.label,
-      },
-    },
+        ...theme.typography.label
+      }
+    }
   },
   hiddenLabel: {
     opacity: "0",
     position: "absolute",
     pointerEvents: "none",
     height: "0",
-    ...theme.typography.label,
+    ...theme.typography.label
   },
   legend: {
     width: "0",
@@ -79,10 +79,10 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     height: 0,
     "@selectors": {
       "&.active,&.focus": {
-        padding: "0 2px",
-      },
-    },
-  },
+        padding: "0 2px"
+      }
+    }
+  }
 });
 export interface ITextInputProps extends StandardProps<"input"> {
   label?: string;
@@ -126,7 +126,7 @@ export const TextInput: React.FC<PropsWithChildren<
         hasContent && "active",
         hasError && "error",
         disabled && "disabled",
-        className,
+        className
       )}
     >
       <legend
@@ -135,9 +135,9 @@ export const TextInput: React.FC<PropsWithChildren<
           isFocused && label && "focus",
           hasContent && label && "active",
           (isFocused || hasContent) && {
-            width: legendWidth,
+            width: legendWidth
           },
-          disabled && "disabled",
+          disabled && "disabled"
         )}
       >
         {label}
@@ -152,7 +152,7 @@ export const TextInput: React.FC<PropsWithChildren<
             isFocused && "focus",
             hasContent && "active",
             hasError && "error",
-            disabled && "disabled",
+            disabled && "disabled"
           )}
         >
           {label}

@@ -8,9 +8,9 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   icon: {
     display: "block",
     "> div": {
-      display: "flex",
-    },
-  },
+      display: "flex"
+    }
+  }
 });
 
 export type IconNames = "add" | "arrow" | "arrow-down" | "check" | "close";
@@ -29,7 +29,7 @@ const Icon: React.FC<IIconProps> = ({
   color,
   className,
   src,
-  size,
+  size
 }) => {
   const theme = useTheme();
   const svgIcon = src || (theme && `assets/icons/${theme.icons[name]}`);

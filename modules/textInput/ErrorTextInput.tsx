@@ -9,15 +9,15 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
     flexDirection: "column",
     alignItems: "flex-end",
     color: theme.colors.alert.alert100,
-    ...theme.typography.label,
+    ...theme.typography.label
   },
   legend: {
     "@selectors": {
       "&.error": {
-        color: theme.colors.alert.alert100,
-      },
-    },
-  },
+        color: theme.colors.alert.alert100
+      }
+    }
+  }
 });
 export interface IProps extends ITextInputProps {
   error?: string | boolean;

@@ -7,35 +7,35 @@ export interface IProps extends StandardProps<"span"> {}
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   h1: {
-    ...theme.typography.h1,
+    ...theme.typography.h1
   },
   h2: {
-    ...theme.typography.h2,
+    ...theme.typography.h2
   },
   h3: {
-    ...theme.typography.h3,
+    ...theme.typography.h3
   },
   h4: {
-    ...theme.typography.h4,
+    ...theme.typography.h4
   },
   h5: {
-    ...theme.typography.h5,
+    ...theme.typography.h5
   },
   buttonText: {
-    ...theme.typography.buttonText,
+    ...theme.typography.buttonText
   },
   body: {
-    ...theme.typography.body,
+    ...theme.typography.body
   },
   bodyHighlight: {
-    ...theme.typography.bodyHighlight,
+    ...theme.typography.bodyHighlight
   },
   descriptionMedium: {
-    ...theme.typography.descriptionMedium,
+    ...theme.typography.descriptionMedium
   },
   label: {
-    ...theme.typography.label,
-  },
+    ...theme.typography.label
+  }
 });
 export const H1: React.FC<IPropsTitle> = ({
   children,
