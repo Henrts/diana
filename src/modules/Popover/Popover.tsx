@@ -6,17 +6,22 @@ import React, {
   PropsWithChildren
 } from "react";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
-import { ThemeStyleSheetFactory, WithStylesProps } from "../../types";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps
+} from "../../types";
 import { withStyles } from "../../base";
 
 type Direction = "bottom" | "left" | "right" | "top";
 
-export interface IProps {
+export interface IProps extends StandardProps<"div"> {
   header?: React.ReactNode;
   direction?: Direction;
   dismissOnClick?: boolean;
   onShow?: () => void;
   onHide?: () => void;
+  disabled?: boolean;
 }
 
 export interface IPopoverRef {
@@ -29,11 +34,15 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   container: {
     position: "relative"
   },
+  disabled: {
+    pointerEvents: "none"
+  },
   header: {
     cursor: "pointer"
   },
   popover: {
-    position: "absolute"
+    position: "absolute",
+    width: "100%"
   },
   bottom: {
     top: "100%"
@@ -60,6 +69,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   header,
   onShow,
   onHide,
+  disabled = false,
   cx,
   styles,
   wrappedRef
@@ -89,24 +99,25 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   }));
 
   return (
-    <div className={cx(styles.container)} ref={divRef}>
+    <div
+      className={cx(styles.container, disabled && styles.disabled)}
+      ref={divRef}
+    >
       <div
         className={cx(styles.header)}
         onClick={() => {
-          toggleVisible();
+          if (!disabled) {
+            toggleVisible();
+          }
         }}
       >
         {header}
       </div>
       {visible && (
-        <div className={cx(styles.popover, styles[direction])}>
-          {children}AA
-        </div>
+        <div className={cx(styles.popover, styles[direction])}>{children}</div>
       )}
     </div>
   );
 };
 
-const StyledPopover = withStyles(styleSheet)(Popover);
-
-export default StyledPopover;
+export default withStyles(styleSheet, { register: true })(Popover);

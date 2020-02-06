@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import {
   WithStylesWrappedProps,
@@ -89,7 +90,7 @@ export interface StyledComponent<Props>
   ): StyledComponent<Props>;
 }
 
-export type WithStylesOptions = AesWithStylesOptions & { register: boolean };
+export type WithStylesOptions = AesWithStylesOptions & { register?: boolean };
 
 export type StyleSheetFactory<
   ThemeSheet = Theme,

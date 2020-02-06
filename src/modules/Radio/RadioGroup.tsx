@@ -2,7 +2,7 @@ import React from "react";
 import { WithStylesProps, ThemeStyleSheetFactory } from "../../types";
 import { withStyles } from "../../base";
 
-interface IProps {
+export interface IProps {
   children: JSX.Element[];
   disabled?: boolean;
   hasError?: boolean;

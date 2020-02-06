@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Registry } from "react-registry";
 import { Arguments } from "react-registry/dist/util/Arguments";
 import { StyledComponent } from "../types";

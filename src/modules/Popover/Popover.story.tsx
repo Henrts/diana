@@ -11,10 +11,12 @@ export const PopoverStory = () => {
             ref.current?.toggle();
           }}
         >
-          toggle
+          Toggle
         </button>
       }
       wrappedRef={ref}
-    />
+    >
+      Popover content
+    </Popover>
   );
 };

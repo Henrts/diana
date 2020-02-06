@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { PropsWithChildren, ReactElement, useCallback } from "react";
 import { useForm, Controller, FieldError, DeepPartial } from "react-hook-form";
 import {
@@ -20,17 +21,16 @@ const stylesheet: StyleSheetFactory<Theme> = () => ({
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-export interface IFormProps extends StandardProps<"form"> {
+export interface IProps extends StandardProps<"form"> {
   children: ReactElement[];
   onSubmit: (values: { [key: string]: string | boolean }) => void;
   clearOnSubmit?: boolean;
   defaultValues?: DeepPartial<Record<string, any>>;
   schema?: {
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
     [key: string]: any;
   };
 }
-const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
+const Form: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   children,
   cx,
   styles,

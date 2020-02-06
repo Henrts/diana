@@ -19,16 +19,16 @@ import ComponentRegistry from "./Registry";
  */
 function withStyles<Theme = ThemeSheet, T = unknown>(
   styleSheet: ThemeStyleSheetFactory<T>,
-  options: WithStylesOptions = { extendable: true, register: false }
+  options: WithStylesOptions = {}
 ) /* infer */ {
   const {
     cxPropName = aesthetic.options.cxPropName,
-    extendable = aesthetic.options.extendable,
+    extendable = true,
     extendFrom = "",
     passThemeProp = aesthetic.options.passThemeProp,
     stylesPropName = aesthetic.options.stylesPropName,
     themePropName = aesthetic.options.themePropName,
-    register
+    register = false
   } = options;
 
   return function withStylesComposer<Props extends object = {}>(

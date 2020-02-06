@@ -15,13 +15,13 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 
 export type IconNames = keyof typeof defaultIcons;
 
-export interface IIconProps extends StandardProps<"svg"> {
+export interface IProps extends StandardProps<"svg"> {
   name: IconNames;
   src?: string;
   size?: number;
 }
 
-const Icon: React.FC<IIconProps & WithStylesProps> = ({
+const Icon: React.FC<IProps & WithStylesProps> = ({
   name,
   height,
   width,

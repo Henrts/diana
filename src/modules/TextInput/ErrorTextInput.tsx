@@ -1,5 +1,5 @@
 import React from "react";
-import TextInput, { ITextInputProps } from "./TextInput";
+import TextInput, { IProps as ITextInputProps } from "./TextInput";
 import { WithStylesProps, Theme, ThemeStyleSheetFactory } from "../../types";
 import { withStyles } from "../../base";
 
