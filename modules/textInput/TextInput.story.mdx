@@ -1,12 +1,12 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import TextInput from "./TextInput";
-import SimpleTextInput from "./SimpleTextInput";
-import ErrorTextInput from "./ErrorTextInput";
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import TextInput from './TextInput';
+import SimpleTextInput from './SimpleTextInput';
+import ErrorTextInput from './ErrorTextInput';
 import {
   TextInputCustomBorder,
   TextInputErrorBorder,
-  TextInputLabelToOutside
-} from "./TextInput.story";
+  TextInputLabelToOutside,
+} from './TextInput.story';
 
 <Meta title="Components| Text Input" />
 
@@ -187,8 +187,8 @@ const TextInputCustomBorder = TextInput.extendStyles((theme) => ({
 ```javascript
 export const SimpleTextInput = TextInput.extendStyles(() => ({
   fieldset: {
-    border: "none"
-  }
+    border: 'none',
+  },
 }));
 ```
 
@@ -201,13 +201,13 @@ export const SimpleTextInput = TextInput.extendStyles(() => ({
 ```javascript
 export const TextInputErrorBorder = TextInput.extendStyles((theme: Theme) => ({
   fieldset: {
-    "@selectors": {
-      "&.error": {
+    '@selectors': {
+      '&.error': {
         border: `2px solid ${theme.colors.alert.alert100}`,
-        borderRadius: "5px"
-      }
-    }
-  }
+        borderRadius: '5px',
+      },
+    },
+  },
 }));
 ```
 
@@ -221,26 +221,26 @@ export const TextInputErrorBorder = TextInput.extendStyles((theme: Theme) => ({
 export const TextInputLabelToOutside = TextInput.extendStyles(
   (theme: Theme) => ({
     fieldset: {
-      border: "2px solid #ccc"
+      border: '2px solid #ccc',
     },
     legend: {
-      "@selectors": {
-        "&.active, &.focus": {
+      '@selectors': {
+        '&.active, &.focus': {
           width: 0,
           maxWidth: 0,
-          padding: 0
-        }
-      }
+          padding: 0,
+        },
+      },
     },
     label: {
-      "@selectors": {
-        "&.active, &.focus": {
-          transform: "translate(0px, -30px)",
-          ...theme.typography.label
-        }
-      }
-    }
-  })
+      '@selectors': {
+        '&.active, &.focus': {
+          transform: 'translate(0px, -30px)',
+          ...theme.typography.label,
+        },
+      },
+    },
+  }),
 );
 ```
 

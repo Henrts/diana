@@ -1,8 +1,8 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { H3 } from "@diana/typography";
-import { RadioGroupExample } from "./RadioGroup.story";
-import { CustomRadio } from "./Radio.story";
-import Radio from "./Radio";
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { H3 } from '@diana/typography';
+import { RadioGroupExample } from './RadioGroup.story';
+import { CustomRadio } from './Radio.story';
+import Radio from './Radio';
 
 <Meta title="Components| Radio" />
 
@@ -65,42 +65,42 @@ Here is an example of a custom radio button using material ui's styles.
 ```javascript
 const styleSheet: ThemeStyleSheetFactory = () => ({
   svg: {
-    fill: "none",
-    verticalAlign: "middle"
+    fill: 'none',
+    verticalAlign: 'middle',
   },
   circle: {
     strokeWidth: 2,
-    stroke: "#C8CCD4"
+    stroke: '#C8CCD4',
   },
   innerPath: {
-    stroke: "#008FFF",
+    stroke: '#008FFF',
     strokeWidth: 6,
     strokeDasharray: 19,
     strokeDashoffset: 19,
-    "@selectors": {
-      "&.checked": {
-        strokeDashoffset: 38
-      }
-    }
+    '@selectors': {
+      '&.checked': {
+        strokeDashoffset: 38,
+      },
+    },
   },
   outerPath: {
-    stroke: "#008FFF",
+    stroke: '#008FFF',
     strokeWidth: 2,
     strokeDasharray: 57,
     strokeDashoffset: 57,
-    "@selectors": {
-      "&.checked": {
-        strokeDashoffset: 0
-      }
-    }
-  }
+    '@selectors': {
+      '&.checked': {
+        strokeDashoffset: 0,
+      },
+    },
+  },
 });
 
 const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
   const StyledRadio = Radio.extendStyles(theme => ({
     input: {
-      marginRight: theme.spaceUnit.xxs
-    }
+      marginRight: theme.spaceUnit.xxs,
+    },
   }));
 
   const [styles, cx] = useStyles(styleSheet);
@@ -116,11 +116,11 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
         <circle cx="10" cy="10" r="9" className={cx(styles.circle)}></circle>
         <path
           d="..."
-          className={cx("inner", styles.innerPath, selectedValue && "checked")}
+          className={cx('inner', styles.innerPath, selectedValue && 'checked')}
         ></path>
         <path
           d="..."
-          className={cx("outer", styles.outerPath, selectedValue && "checked")}
+          className={cx('outer', styles.outerPath, selectedValue && 'checked')}
         ></path>
       </svg>
     </StyledRadio>
@@ -133,7 +133,7 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
     <CustomRadio
       value="radio5"
       label="Example selected custom radio"
-      selectedValue={"radio5"}
+      selectedValue={'radio5'}
     />
   </Story>
   <Story name="Custom radio">
@@ -322,7 +322,7 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
       <td>wrapper</td>
       <td></td>
       <td>
-        This style affects the element that wraps the <i>input</i> and{" "}
+        This style affects the element that wraps the <i>input</i> and{' '}
         <i>label</i> elements
       </td>
     </tr>
@@ -330,7 +330,7 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
       <td></td>
       <td>.disabled</td>
       <td>
-        This style affects the element that wraps the <i>input</i> and{" "}
+        This style affects the element that wraps the <i>input</i> and{' '}
         <i>label</i> elements when the button is disabled
       </td>
     </tr>
@@ -338,7 +338,7 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
       <td></td>
       <td>.error</td>
       <td>
-        This style affects the element that wraps the <i>input</i> and{" "}
+        This style affects the element that wraps the <i>input</i> and{' '}
         <i>label</i> elements when the button has error
       </td>
     </tr>
@@ -442,7 +442,7 @@ const RadioGroupExample: React.FC<IProps> = ({
       <td>name</td>
       <td>string</td>
       <td>
-        This prop is used to group the set of radio buttons that are part of the{" "}
+        This prop is used to group the set of radio buttons that are part of the{' '}
         <i>RadioGroup</i>.
         <br />
         This prop will be injected into each radio button.

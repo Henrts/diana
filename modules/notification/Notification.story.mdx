@@ -1,7 +1,7 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { SuccessNotification } from "./Notification.story";
-import { NotificationStackExample } from "./NotificationStack.story";
-import Notification from "./Notification";
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { SuccessNotification } from './Notification.story';
+import { NotificationStackExample } from './NotificationStack.story';
+import Notification from './Notification';
 
 <Meta title="Components| Notification" />
 
@@ -40,7 +40,7 @@ As of now, the `Notification`'s content/body can only be a string.
 
 <Preview>
   <Story name="Custom notification example">
-    <div style={{ display: "flex ", flexDirection: "column" }}>
+    <div style={{ display: 'flex ', flexDirection: 'column' }}>
       Variation with icon:
       <SuccessNotification icon="check">
         Something good happened!
@@ -169,7 +169,7 @@ Examples of what the application using the design system would have to handle in
 - Allowing the user to close a `Notification`. The `Notification` passed in the template would have to have e.g. an `onClose` callback so that notification could be removed from the `notifications` array.
 
 <Story name="NotificationStack">
-  <NotificationStackExample style={{ marginBottom: "16px" }} />
+  <NotificationStackExample style={{ marginBottom: '16px' }} />
 </Story>
 
 <details>
@@ -179,18 +179,18 @@ Examples of what the application using the design system would have to handle in
 export const NotificationStackExample: React.FC<{}> = () => {
   const [notifications, setNotifications] = useState < any > [];
   const notification1 = {
-    children: "Notificaiton",
-    template: SuccessNotification
+    children: 'Notificaiton',
+    template: SuccessNotification,
   };
   const notification2 = {
-    children: "Icon notificaiton",
-    icon: "check",
-    template: SuccessNotification
+    children: 'Icon notificaiton',
+    icon: 'check',
+    template: SuccessNotification,
   };
   const notification3 = {
-    children: "Title notificaiton",
-    title: "Big Title",
-    template: SuccessNotification
+    children: 'Title notificaiton',
+    title: 'Big Title',
+    template: SuccessNotification,
   };
   const notificationList = [notification1, notification2, notification3];
 
@@ -214,18 +214,18 @@ export const NotificationStackExample: React.FC<{}> = () => {
   };
 
   const handleMouseOver = (id: string) => {
-    console.log("OVER: ", id);
+    console.log('OVER: ', id);
   };
 
   const handleMouseOut = (id: string) => {
-    console.log("OUT: ", id);
+    console.log('OUT: ', id);
   };
 
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         <BaseButton
-          style={{ marginRight: "8px" }}
+          style={{ marginRight: '8px' }}
           disabled={notifications.length === 5}
           onClick={addNotification}
         >

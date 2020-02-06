@@ -1,9 +1,9 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import * as yup from "yup";
-import { Form, FormStory } from "./Form.story";
-import ErrorTextInput from "../TextInput/ErrorTextInput";
-import { Checkbox } from "@diana/checkbox";
-import { BaseButton } from "@diana/button";
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import * as yup from 'yup';
+import { Form, FormStory } from './Form.story';
+import { ErrorTextInput } from '@diana/textinput';
+import { Checkbox } from '@diana/checkbox';
+import { BaseButton } from '@diana/button';
 
 <Meta title="Components | Form" />
 
@@ -15,11 +15,11 @@ import { BaseButton } from "@diana/button";
   <Story name="Simple Form">
     <Form
       schema={yup.object().shape({
-        username: yup.string().required("Username is required"),
+        username: yup.string().required('Username is required'),
         password: yup
           .string()
-          .required("Password is required")
-          .min(12, "Password is too small"),
+          .required('Password is required')
+          .min(12, 'Password is too small'),
         remember: yup.boolean()
       })}
       onSubmit={e => console.log(e)}
