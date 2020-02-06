@@ -1,1 +1,1 @@
-export const useScroll: {} = () => {}
+export const useScroll: {} = () => {};

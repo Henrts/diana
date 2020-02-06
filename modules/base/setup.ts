@@ -4,62 +4,62 @@ import { defaultTheme } from "@diana/tokens";
 import { selfExtension } from "./aphroditeExtensions";
 
 export function initDefaultTheme(aesthetic = aestheticDefault) {
-  if (!aesthetic.themes[defaultTheme.name]) {
-    aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
-      "@global": {},
-      "@font-face": theme.fonts
-    }));
-  }
-  aesthetic.configure({
-    adapter: new AphroditeAdapter([selfExtension]),
-    theme: defaultTheme.name,
-    rtl: false,
-    extendable: true,
-    passThemeProp: true
-  });
+    if (!aesthetic.themes[defaultTheme.name]) {
+        aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
+            "@global": {},
+            "@font-face": theme.fonts,
+        }));
+    }
+    aesthetic.configure({
+        adapter: new AphroditeAdapter([selfExtension]),
+        theme: defaultTheme.name,
+        rtl: false,
+        extendable: true,
+        passThemeProp: true,
+    });
 }
 
 export function initTheme(
-  themeObj = defaultTheme,
-  aesthetic: Aesthetic = aestheticDefault
+    themeObj = defaultTheme,
+    aesthetic: Aesthetic = aestheticDefault,
 ) {
-  if (!aesthetic.themes[defaultTheme.name]) {
-    aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
-      "@global": {},
-      "@font-face": theme.fonts
+    if (!aesthetic.themes[defaultTheme.name]) {
+        aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
+            "@global": {},
+            "@font-face": theme.fonts,
+        }));
+    }
+    const result = aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
+        "@global": {},
+        "@font-face": theme.fonts,
     }));
-  }
-  const result = aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
-    "@global": {},
-    "@font-face": theme.fonts
-  }));
-  aesthetic.configure({
-    adapter: new AphroditeAdapter([selfExtension]),
-    theme: themeObj.name,
-    rtl: false,
-    extendable: true,
-    passThemeProp: true
-  });
-  return result;
+    aesthetic.configure({
+        adapter: new AphroditeAdapter([selfExtension]),
+        theme: themeObj.name,
+        rtl: false,
+        extendable: true,
+        passThemeProp: true,
+    });
+    return result;
 }
 
 export function registerTheme(
-  themeObj = defaultTheme,
-  aesthetic: Aesthetic = aestheticDefault
+    themeObj = defaultTheme,
+    aesthetic: Aesthetic = aestheticDefault,
 ) {
-  aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
-    "@global": {},
-    "@font-face": theme.fonts
-  }));
+    aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
+        "@global": {},
+        "@font-face": theme.fonts,
+    }));
 
-  aesthetic.configure({
-    theme: themeObj.name
-  });
+    aesthetic.configure({
+        theme: themeObj.name,
+    });
 }
 
 export function changeTheme(
-  theme: string,
-  aesthetic: Aesthetic = aestheticDefault
+    theme: string,
+    aesthetic: Aesthetic = aestheticDefault,
 ) {
-  aesthetic.changeTheme(theme);
+    aesthetic.changeTheme(theme);
 }
