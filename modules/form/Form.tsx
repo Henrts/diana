@@ -8,8 +8,7 @@ import {
 } from '@diana/types';
 import { withStyles } from '@diana/base';
 import { Checkbox } from '@diana/checkbox';
-import TextInput from '../textInput/TextInput';
-import ErrorTextInput from '../textInput/ErrorTextInput';
+import { TextInput, ErrorTextInput } from '@diana/textinput';
 
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {

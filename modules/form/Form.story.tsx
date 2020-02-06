@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import { StyleSheetFactory, Theme } from '@diana/types';
 import { useStyles } from '@diana/base';
 import { Checkbox } from '@diana/checkbox';
-import ErrorTextInput from '../textInput/ErrorTextInput';
+import { ErrorTextInput } from '@diana/textinput';
 
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {},

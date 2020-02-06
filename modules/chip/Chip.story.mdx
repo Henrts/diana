@@ -1,16 +1,16 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { H3 } from "@diana/Typography";
-import BaseChip from "./BaseChip";
-import StatusChip from "./StatusChip";
-import CloseableChip from "./CloseableChip";
-import ChipList from "./ChipList";
-import ChipInput from "./ChipInput";
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { H3 } from '@diana/Typography';
+import BaseChip from './BaseChip';
+import StatusChip from './StatusChip';
+import CloseableChip from './CloseableChip';
+import ChipList from './ChipList';
+import ChipInput from './ChipInput';
 import {
   ChipIcon,
   DerivedCloseableChip,
   ChipInputStory,
-  ChipListStory
-} from "./Chip.story";
+  ChipListStory,
+} from './Chip.story';
 
 <Meta title="Components| Chip" />
 
@@ -57,13 +57,13 @@ These are the custom props for the Base Chip
   <Story name="BaseChip">
     <div
       style={{
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center"
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
       }}
     >
       <BaseChip>chip</BaseChip>
-      <BaseChip onClick={() => console.log("click")}>clickable</BaseChip>
+      <BaseChip onClick={() => console.log('click')}>clickable</BaseChip>
       <BaseChip selected>selected</BaseChip>
       <BaseChip disabled>disabled</BaseChip>
     </div>
@@ -78,9 +78,9 @@ The chip can be customized using _renderLeftIcon_ or _renderRightIcon_.
   <Story name="IconChip">
     <div
       style={{
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center"
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
       }}
     >
       <BaseChip renderLeftIcon={() => <ChipIcon type="left" name="add" />}>
@@ -125,9 +125,9 @@ These are the extra props for the Status Chip
   <Story name="StatusChip">
     <div
       style={{
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center"
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
       }}
     >
       <StatusChip type="default">default</StatusChip>
@@ -175,17 +175,17 @@ By default, there will be a close Icon on the right that can be customized by ch
   <Story name="CloseableChip">
     <div
       style={{
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center"
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
       }}
     >
-      <CloseableChip onClose={() => console.log("close fired")}>
+      <CloseableChip onClose={() => console.log('close fired')}>
         with close
       </CloseableChip>
       <CloseableChip
-        onClick={() => console.log("click")}
-        onClose={() => console.log("close custom fired")}
+        onClick={() => console.log('click')}
+        onClose={() => console.log('close custom fired')}
         renderRightIcon={() => <ChipIcon name="arrow" size={8} />}
       >
         with custom close
@@ -239,28 +239,28 @@ The chip list works as uncontrolled state but can be controlled with onListChang
 <Preview>
   <Story name="ChipList">
     <ChipList
-      list={["test", "test2", "test3", "test", "test2", "test3"]}
+      list={['test', 'test2', 'test3', 'test', 'test2', 'test3']}
       onListChange={list => console.log(list)}
     />
   </Story>
 </Preview>
 
 ```javascript
-<ChipList list={["test", "test2", "test3"]} />
+<ChipList list={['test', 'test2', 'test3']} />
 ```
 
 With a list of objects and _displayFn_ function.
 
 <Preview>
   <ChipList
-    list={[{ name: "testObj" }, { name: "testObj2" }, { name: "testObj3" }]}
+    list={[{ name: 'testObj' }, { name: 'testObj2' }, { name: 'testObj3' }]}
     displayFn={item => item.name}
   />
 </Preview>
 
 ```javascript
 <ChipList
-  list={[{ name: "testObj" }, { name: "testObj2" }, { name: "testObj3" }]}
+  list={[{ name: 'testObj' }, { name: 'testObj2' }, { name: 'testObj3' }]}
   displayFn={item => item.name}
 />
 ```
@@ -273,10 +273,10 @@ With a different extended CloseableChip by registering a new CloseableChip. This
 
 ```javascript
 CloseableChip.extendStyles(
-  () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
-  { register: true }
+  () => ({ chip: { backgroundColor: 'grey', borderColor: 'yellow' } }),
+  { register: true },
 );
-<ChipList list={["test", "test2", "test3"]} />;
+<ChipList list={['test', 'test2', 'test3']} />;
 ```
 
 ### ChipInput
@@ -322,7 +322,7 @@ With initial values and a placeholder. This one enables duplicates.
 
 <Preview>
   <ChipInput
-    value={["1", "2"]}
+    value={['1', '2']}
     allowDuplicates={true}
     placeholder="Placeholder"
   />
@@ -330,7 +330,7 @@ With initial values and a placeholder. This one enables duplicates.
 
 ```javascript
 <ChipInput
-  value={["1", "2"]}
+  value={['1', '2']}
   allowDuplicates={true}
   placeholder="Placeholder"
 />
@@ -344,8 +344,8 @@ With a different extended CloseableChip by registering a new CloseableChip. This
 
 ```javascript
 CloseableChip.extendStyles(
-  () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
-  { register: true }
+  () => ({ chip: { backgroundColor: 'steelblue', borderColor: 'red' } }),
+  { register: true },
 );
 <ChipInput value={[]} />;
 ```

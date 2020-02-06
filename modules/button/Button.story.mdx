@@ -1,7 +1,7 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { H3 } from "../Typography/Typography";
-import { DerivedButton } from "./Button.story";
-import BaseButton from "./BaseButton";
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { H3 } from '@diana/typography';
+import { DerivedButton } from './Button.story';
+import BaseButton from './BaseButton';
 
 <Meta title="Components| Button" />
 
@@ -13,7 +13,7 @@ Base Button is used to derive the App Button variants.
 
 <Preview>
   <Story name="BaseButton">
-    <BaseButton onClick={() => console.log("Was clicked")}>Button</BaseButton>
+    <BaseButton onClick={() => console.log('Was clicked')}>Button</BaseButton>
   </Story>
 </Preview>
 
@@ -65,11 +65,11 @@ Advanced Button customization is also available using props like `renderIconLeft
 const DerivedButton: React.FC = ({ children, ...props }) => {
   const AlteredBaseButton = BaseButton.extendStyles((theme: Theme) => ({
     button: {
-      backgroundColor: "steelblue",
-      color: "white",
-      padding: "24px",
-      borderRadius: "10px"
-    }
+      backgroundColor: 'steelblue',
+      color: 'white',
+      padding: '24px',
+      borderRadius: '10px',
+    },
   }));
   const renderLeftIcon = () => <Icon stroke="white" size={10} name="add" />;
   return (

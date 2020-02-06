@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseButton from './BaseButton';
 import { Theme, ThemeStyleSheetFactory } from '@diana/types';
-import { Icon } from '../Icon';
+import { Icon } from '@diana/icon';
 import { useStyles } from '@diana/base';
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
