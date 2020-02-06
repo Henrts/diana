@@ -1,6 +1,6 @@
 .story-content {
   padding: 24px;
-  font: Arial;
+  font-family: Arial;
 }
 body {
   font-family: Arial;
@@ -19,7 +19,6 @@ body {
   }
 }
 .typography-details {
-  font-family: BrandonGrotesque;
   display: flex;
   opacity: 0;
   transition: opacity 0.2s;
@@ -31,7 +30,6 @@ body {
 .typography-detail {
   opacity: 0;
   transition: opacity 0.2s;
-  font-family: BrandonGrotesque;
   margin: 0px 12px;
   display: flex;
   flex-direction: column;
@@ -46,7 +44,6 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  font-family: BrandonGrotesque;
 }
 .typography-spacing > div {
   width: 200px;

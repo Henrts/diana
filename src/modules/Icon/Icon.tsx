@@ -1,26 +1,27 @@
-import React from "react";
-import { ReactSVG } from "react-svg";
-import { useTheme } from "aesthetic-react";
-import { StandardProps, ThemeStyleSheetFactory } from "../../types";
+import React, { useMemo } from "react";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps
+} from "../../types";
 import { useStyles } from "../../base";
+import { defaultIcons } from "../../tokens/icons";
+import withStyles from "../../base/withStyles";
+import useTheme from "../../base/useTheme";
 
 const styleSheet: ThemeStyleSheetFactory = () => ({
-  icon: {
-    display: "block",
-    "> div": {
-      display: "flex"
-    }
-  }
+  icon: {}
 });
 
-export type IconNames = "add" | "arrow" | "arrow-down" | "check" | "close";
+export type IconNames = keyof typeof defaultIcons;
 
 export interface IIconProps extends StandardProps<"svg"> {
-  name: string;
+  name: IconNames;
   src?: string;
   size?: number;
 }
-const Icon: React.FC<IIconProps> = ({
+
+const Icon: React.FC<IIconProps & WithStylesProps> = ({
   name,
   height,
   width,
@@ -32,37 +33,27 @@ const Icon: React.FC<IIconProps> = ({
   size
 }) => {
   const theme = useTheme();
-  const svgIcon = src || (theme && `assets/icons/${theme.icons[name]}`);
   const [styles, cx] = useStyles(styleSheet);
-  return (
-    <ReactSVG
-      src={svgIcon}
-      className={cx(styles.icon)}
-      beforeInjection={svg => {
-        svg.setAttribute("class", "y-icon");
-        svg.setAttribute("class", `${svg.getAttribute("class")} ${className}`);
-        if (size) {
-          svg.setAttribute("height", size.toString());
-          svg.setAttribute("width", size.toString());
-        }
-        if (height) {
-          svg.setAttribute("height", height.toString());
-        }
-        if (width) {
-          svg.setAttribute("width", width.toString());
-        }
-        if (stroke) {
-          svg.setAttribute("stroke", stroke);
-        }
-        if (fill) {
-          svg.setAttribute("fill", fill);
-        }
-        if (color) {
-          svg.setAttribute("fill", color);
-          svg.setAttribute("stroke", color);
-        }
-      }}
-    />
-  );
+
+  const SvgIcon: any = useMemo(() => {
+    return src || theme.icons[name] || "";
+  }, [src, theme, name]);
+
+  const newProps: any = {};
+  if (size || width) {
+    newProps.width = size || width;
+  }
+  if (size || height) {
+    newProps.height = size || height;
+  }
+  if (fill || color) {
+    newProps.fill = fill || color;
+  }
+  if (stroke || color) {
+    newProps.stroke = stroke || color;
+  }
+  newProps.className = `y-icon ${cx(styles.icon)} ${className || ""}`;
+
+  return <SvgIcon {...newProps} />;
 };
-export default Icon;
+export default withStyles(() => ({}))(Icon);

@@ -32,8 +32,8 @@ export const IconGallery: React.FC = () => {
           onChange={e => setSearchString(e.target.value)}
         />
         <div className="icon-gallery">
-          {icons.map((d: string) => (
-            <div className="icon-container">
+          {icons.map((d: any) => (
+            <div className="icon-container" key={d}>
               <Icon name={d} size={20} />
               <ButtonText>{d}</ButtonText>
             </div>

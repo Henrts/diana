@@ -19,7 +19,7 @@ module.exports = {
     "no-trailing-spaces": "error",
     "comma-dangle": ["error", "never"],
     "arrow-parens": ["error", "as-needed"],
-    "import/extensions": [2, { commonjs: true }],
+    "import/extensions": [2, { commonjs: true, svg: "always" }],
     "import/no-unresolved": "off",
     "import/no-named-as-default": "off",
     "import/prefer-default-export": "off",
@@ -37,6 +37,7 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unnecessary-type-assertion": "off",
     "react/no-array-index-key": "off",
+    "import/no-webpack-loader-syntax": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

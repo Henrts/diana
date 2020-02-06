@@ -3,7 +3,6 @@ import external from "rollup-plugin-peer-deps-external";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
-import url from "rollup-plugin-url";
 import copy from "rollup-plugin-copy-assets";
 import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import svgr from "@svgr/rollup";
@@ -31,8 +30,15 @@ export default {
   plugins: [
     sizeSnapshot(),
     external(),
-    url(),
-    svgr(),
+    svgr({
+      svgoConfig: {
+        plugins: [
+          {
+            removeViewBox: false
+          }
+        ]
+      }
+    }),
     resolve({
       browser: true
     }),
@@ -64,7 +70,7 @@ export default {
     }),
     // copy assets into bundle
     copy({
-      assets: ["assets"]
+      assets: ["src/assets"]
     })
   ]
 };
