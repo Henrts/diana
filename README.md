@@ -28,13 +28,13 @@ const styleSheet = theme => ({
   exampleStyle: {
     color: "black",
     fontSize: 23,
-    margin: 16,
-  },
+    margin: 16
+  }
 });
 const ExampleComponent: React.FC<WithStylesProps> = ({
   cx,
   styles,
-  children,
+  children
 }) => <div className={cx(styles.exampleStyle)}>{children}</div>;
 export default withStyles(styleSheet)(ExampleComponent);
 ```
@@ -47,7 +47,7 @@ import { ExampleComponent } from "./ExampleComponent";
 export const DerivedComponent = ExampleComponent.extendStyles(theme => ({
   exampleStyle: {
     /* style override */
-    fontSize: 12,
-  },
+    fontSize: 12
+  }
 }));
 ```

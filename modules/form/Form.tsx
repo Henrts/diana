@@ -4,7 +4,7 @@ import {
   StandardProps,
   WithStylesProps,
   Theme,
-  StyleSheetFactory,
+  StyleSheetFactory
 } from "@diana/types";
 import { withStyles } from "@diana/base";
 import { Checkbox } from "@diana/checkbox";
@@ -13,8 +13,8 @@ import { TextInput, ErrorTextInput } from "@diana/textinput";
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {
     display: "flex",
-    flexDirection: "column",
-  },
+    flexDirection: "column"
+  }
 });
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -43,7 +43,7 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
 }) => {
   const { handleSubmit, errors, control, reset } = useForm({
     validationSchema: schema,
-    defaultValues,
+    defaultValues
   });
 
   const onSubmitCallback = useCallback(
@@ -70,7 +70,7 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
         reset(obj);
       }
     },
-    [defaultValues, schema, clearOnSubmit, reset, onSubmit],
+    [defaultValues, schema, clearOnSubmit, reset, onSubmit]
   );
   return (
     <form
@@ -84,7 +84,7 @@ const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
           return (
             <Controller
               as={React.cloneElement(Child, {
-                error: (error as FieldError)?.message,
+                error: (error as FieldError)?.message
               })}
               value={Child.props.value}
               name={Child.props.name}

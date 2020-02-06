@@ -16,28 +16,28 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
       "&.horizontal": {
         height: "1px",
         margin: `${theme.spaceUnit.md} 0`,
-        width: "100%",
+        width: "100%"
       },
       "&.vertical": {
         height: "100%",
         margin: `0 ${theme.spaceUnit.md}`,
-        width: "1px",
-      },
-    },
-  },
+        width: "1px"
+      }
+    }
+  }
 });
 
 const Divider: React.FC<IProps & WithStylesProps> = ({
   className,
   cx,
   orientation = "horizontal",
-  styles,
+  styles
 }) => {
   const dividerStyles = cx(
     styles.divider,
     orientation === "horizontal" && "horizontal",
     orientation === "vertical" && "vertical",
-    className,
+    className
   );
 
   return <div className={dividerStyles} />;

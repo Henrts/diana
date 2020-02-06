@@ -9,11 +9,11 @@ import CloseableChip from "./CloseableChip";
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   iconLeft: {
-    marginRight: "8px",
+    marginRight: "8px"
   },
   iconRight: {
-    marginLeft: "8px",
-  },
+    marginLeft: "8px"
+  }
 });
 export const ChipIcon: React.FC<{
   name: IconNames;
@@ -26,7 +26,7 @@ export const ChipIcon: React.FC<{
       name={name}
       className={cx(
         type === "left" && styles.iconLeft,
-        type === "right" && styles.iconRight,
+        type === "right" && styles.iconRight
       )}
     />
   );
@@ -35,7 +35,7 @@ export const ChipIcon: React.FC<{
 export const ChipListStory = () => {
   CloseableChip.extendStyles(
     () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
-    { register: true },
+    { register: true }
   );
   return <ChipList list={["test", "test2", "test3"]} />;
 };
@@ -43,7 +43,7 @@ export const ChipListStory = () => {
 export const ChipInputStory = () => {
   CloseableChip.extendStyles(
     () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
-    { register: true },
+    { register: true }
   );
   return <ChipInput value={[]} />;
 };

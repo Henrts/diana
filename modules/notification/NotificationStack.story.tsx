@@ -11,22 +11,22 @@ export const NotificationStackExample: React.FC<{}> = () => {
   const [notifications, setNotifications] = useState<INotification[]>([]);
   const notification1: INotification = {
     children: "Notificaiton",
-    template: SuccessNotification,
+    template: SuccessNotification
   };
   const notification2: INotification = {
     children: "Icon notificaiton",
     icon: "check",
-    template: SuccessNotification,
+    template: SuccessNotification
   };
   const notification3: INotification = {
     children: "Title notificaiton",
     title: "Big Title",
-    template: SuccessNotification,
+    template: SuccessNotification
   };
   const notificationList: INotification[] = [
     notification1,
     notification2,
-    notification3,
+    notification3
   ];
 
   const addNotification = () => {

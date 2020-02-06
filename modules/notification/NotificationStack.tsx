@@ -26,8 +26,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     zIndex: 1000,
     bottom: 0,
     right: 0,
-    margin: theme.spaceUnit.md,
-  },
+    margin: theme.spaceUnit.md
+  }
 });
 
 const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
@@ -36,7 +36,7 @@ const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
   styles,
   timeout = 500,
   handleMouseOver,
-  handleMouseOut,
+  handleMouseOut
 }) => {
   return (
     <TransitionGroup className={cx(styles.notificationStack)}>

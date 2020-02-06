@@ -66,11 +66,11 @@ Here is an example of a custom radio button using material ui's styles.
 const styleSheet: ThemeStyleSheetFactory = () => ({
   svg: {
     fill: "none",
-    verticalAlign: "middle",
+    verticalAlign: "middle"
   },
   circle: {
     strokeWidth: 2,
-    stroke: "#C8CCD4",
+    stroke: "#C8CCD4"
   },
   innerPath: {
     stroke: "#008FFF",
@@ -79,9 +79,9 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
     strokeDashoffset: 19,
     "@selectors": {
       "&.checked": {
-        strokeDashoffset: 38,
-      },
-    },
+        strokeDashoffset: 38
+      }
+    }
   },
   outerPath: {
     stroke: "#008FFF",
@@ -90,17 +90,17 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
     strokeDashoffset: 57,
     "@selectors": {
       "&.checked": {
-        strokeDashoffset: 0,
-      },
-    },
-  },
+        strokeDashoffset: 0
+      }
+    }
+  }
 });
 
 const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
   const StyledRadio = Radio.extendStyles(theme => ({
     input: {
-      marginRight: theme.spaceUnit.xxs,
-    },
+      marginRight: theme.spaceUnit.xxs
+    }
   }));
 
   const [styles, cx] = useStyles(styleSheet);

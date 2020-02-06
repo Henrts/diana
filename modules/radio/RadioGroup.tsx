@@ -15,8 +15,8 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   radioGroup: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
-  },
+    justifyContent: "space-between"
+  }
 });
 
 const RadioGroup: React.FC<IProps & WithStylesProps> = ({
@@ -28,8 +28,8 @@ const RadioGroup: React.FC<IProps & WithStylesProps> = ({
   <div className={cx(styles.radioGroup)}>
     {React.Children.map(children, child =>
       React.cloneElement(child, {
-        ...props,
-      }),
+        ...props
+      })
     )}
   </div>
 );

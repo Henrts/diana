@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory,
+  ThemeStyleSheetFactory
 } from "@diana/types";
 import { withStyles } from "@diana/base";
 import { IProps as IChipListProps } from "./ChipList";
@@ -25,8 +25,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     border: `1px solid ${theme.colors.grey.grey50}`,
     display: "flex",
     ":focus": {
-      backgroundColor: "red",
-    },
+      backgroundColor: "red"
+    }
   },
   input: {
     border: 0,
@@ -35,8 +35,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     flex: 1,
     minWidth: 80,
     outline: "none",
-    minHeight: 40,
-  },
+    minHeight: 40
+  }
 });
 
 function ChipInput({
@@ -54,7 +54,7 @@ function ChipInput({
 
   const ChipListStyle = useRegistryWithStyles<IChipListProps<string>>(
     "ChipList",
-    styleSheet,
+    styleSheet
   );
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function ChipInput({
         setInputValue("");
       }
     },
-    [_list, allowDuplicates, inputValue, onChange],
+    [_list, allowDuplicates, inputValue, onChange]
   );
 
   const handleChange = useCallback(
@@ -86,7 +86,7 @@ function ChipInput({
         onChange(newList);
       }
     },
-    [onChange],
+    [onChange]
   );
 
   return (

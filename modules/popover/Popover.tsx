@@ -3,12 +3,12 @@ import React, {
   useImperativeHandle,
   useState,
   useRef,
-  PropsWithChildren,
+  PropsWithChildren
 } from "react";
 import {
   StandardProps,
   ThemeStyleSheetFactory,
-  WithStylesProps,
+  WithStylesProps
 } from "@diana/types";
 import { withStyles } from "@diana/base";
 import { useOnClickOutside } from "@diana/hooks";
@@ -32,34 +32,34 @@ export interface IPopoverRef {
 
 const styleSheet: ThemeStyleSheetFactory = () => ({
   container: {
-    position: "relative",
+    position: "relative"
   },
   disabled: {
-    pointerEvents: "none",
+    pointerEvents: "none"
   },
   header: {
-    cursor: "pointer",
+    cursor: "pointer"
   },
   popover: {
     position: "absolute",
-    width: "100%",
+    width: "100%"
   },
   bottom: {
-    top: "100%",
+    top: "100%"
   },
   top: {
-    bottom: "100%",
+    bottom: "100%"
   },
   left: {
     top: 0,
     bottom: 0,
-    right: "100%",
+    right: "100%"
   },
   right: {
     top: 0,
     bottom: 0,
-    left: "100%",
-  },
+    left: "100%"
+  }
 });
 
 const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
@@ -72,7 +72,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   disabled = false,
   cx,
   styles,
-  wrappedRef,
+  wrappedRef
 }) => {
   const [visible, _setVisible] = useState(false);
   const setVisible = useCallback(
@@ -83,19 +83,19 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       }
       _setVisible(newVisible);
     },
-    [_setVisible, onShow, onHide],
+    [_setVisible, onShow, onHide]
   );
 
   const divRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(divRef, () => dismissOnClick && setVisible(false));
   const toggleVisible = useCallback(() => setVisible(!visible), [
     visible,
-    setVisible,
+    setVisible
   ]);
   useImperativeHandle<IPopoverRef, IPopoverRef>(wrappedRef, () => ({
     show: () => setVisible(true),
     hide: () => setVisible(false),
-    toggle: () => toggleVisible(),
+    toggle: () => toggleVisible()
   }));
 
   return (

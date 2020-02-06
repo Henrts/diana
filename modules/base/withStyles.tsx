@@ -9,7 +9,7 @@ import {
   WithStylesOptions,
   WithStylesWrapperProps,
   StyledComponent,
-  ThemeSheet,
+  ThemeSheet
 } from "@diana/types";
 import useStyles from "./useStyles";
 import ComponentRegistry from "./Registry";
@@ -19,7 +19,7 @@ import ComponentRegistry from "./Registry";
  */
 function withStyles<Theme = ThemeSheet, T = unknown>(
   styleSheet: ThemeStyleSheetFactory<T>,
-  options: WithStylesOptions = {},
+  options: WithStylesOptions = {}
 ) /* infer */ {
   const {
     cxPropName = aesthetic.options.cxPropName,
@@ -28,13 +28,13 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     passThemeProp = aesthetic.options.passThemeProp,
     stylesPropName = aesthetic.options.stylesPropName,
     themePropName = aesthetic.options.themePropName,
-    register = false,
+    register = false
   } = options;
 
   return function withStylesComposer<Props extends object = {}>(
     WrappedComponent: React.ComponentType<
       Props & WithStylesProps & { parentStylesheet?: typeof styleSheet }
-    >,
+    >
   ): StyledComponent<
     Props & WithStylesWrapperProps & { parentStylesheet?: typeof styleSheet }
   > {
@@ -45,7 +45,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     aesthetic.registerStyleSheet(styleName, styleSheet, extendFrom);
 
     const WithStyles = React.memo(function WithStyles(
-      props: Props & WithStylesProps & { parentStylesheet: typeof styleSheet },
+      props: Props & WithStylesProps & { parentStylesheet: typeof styleSheet }
     ) {
       const themeName: ThemeSheet = aesthetic.getTheme();
       const mergedStylesheet = deepMerge(
@@ -55,7 +55,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         styleSheet(aesthetic.getTheme()),
         props.parentStylesheet
           ? props.parentStylesheet(aesthetic.getTheme())
-          : {},
+          : {}
       );
 
       const [styles, cx] = useStyles(() => mergedStylesheet);
@@ -64,12 +64,12 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         parentStylesheet?: typeof styleSheet;
       } = {
         [cxPropName as "cx"]: cx,
-        [stylesPropName as "styles"]: styles,
+        [stylesPropName as "styles"]: styles
       };
 
       if (passThemeProp) {
         extraProps[themePropName as "theme"] = aesthetic.getTheme(
-          themeName.name,
+          themeName.name
         );
       }
 
@@ -100,7 +100,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         ...options,
         ...extendOptions,
         ...(extendOptions?.register === undefined ? { register: false } : {}),
-        extendFrom: styleName,
+        extendFrom: styleName
       })(WrappedComponent);
     };
 

@@ -3,7 +3,7 @@ import React, {
   PropsWithChildren,
   useImperativeHandle,
   RefObject,
-  useMemo,
+  useMemo
 } from "react";
 import { withStyles } from "@diana/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana/types";
@@ -36,31 +36,31 @@ export const styleSheet: ThemeStyleSheetFactory = () => ({
   text: {
     overflow: "hidden",
     textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
+    whiteSpace: "nowrap"
   },
   list: {
     marginBottom: 0,
     marginTop: 0,
     paddingLeft: 0,
     listStyle: "none",
-    overflowY: "auto",
+    overflowY: "auto"
   },
   item: {
-    cursor: "pointer",
+    cursor: "pointer"
   },
   itemSelected: {},
   itemText: {
     display: "block",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-  },
+    whiteSpace: "nowrap"
+  }
 });
 
 export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   container: {
-    maxWidth: "100%",
-  },
+    maxWidth: "100%"
+  }
 });
 
 export const usePopoverRef = (
@@ -68,14 +68,14 @@ export const usePopoverRef = (
     | ((instance: IPopoverRef) => void)
     | RefObject<IPopoverRef>
     | null
-    | undefined,
+    | undefined
 ) => {
   const ref = useRef<IPopoverRef>(null);
 
   useImperativeHandle<IPopoverRef, IPopoverRef>(wrappedRef, () => ({
     show: () => ref.current?.show(),
     hide: () => ref.current?.hide(),
-    toggle: () => ref.current?.toggle(),
+    toggle: () => ref.current?.toggle()
   }));
   return ref;
 };
@@ -103,12 +103,12 @@ const BaseDropdown: React.FC<PropsWithChildren<
     text,
     renderItem,
     renderHeader,
-    wrappedRef,
+    wrappedRef
   } = props;
   const ref = usePopoverRef(wrappedRef);
   const StyledPopover = useRegistryWithStyles<IPopoverProps>(
     "Popover",
-    styleSheetPopover,
+    styleSheetPopover
   );
 
   const hide = () => ref.current?.hide();
@@ -123,7 +123,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
           styles={styles}
         />
       ),
-    [renderHeader, label, text, selectedItem, placeholder, cx, styles],
+    [renderHeader, label, text, selectedItem, placeholder, cx, styles]
   );
 
   return (
@@ -133,7 +133,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
           <li
             className={cx(
               styles.item,
-              selectedItem?.id === item.id ? styles.itemSelected : {},
+              selectedItem?.id === item.id ? styles.itemSelected : {}
             )}
             key={item.id}
             onClick={() => {
@@ -145,7 +145,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
             {renderItem?.(
               item,
               selectedItem !== undefined && selectedItem.id === item.id,
-              index,
+              index
             ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
           </li>
         ))}

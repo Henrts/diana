@@ -7,5 +7,5 @@ export default create({
   appContentBg: "black",
   brandTitle: "Diana",
   brandUrl: "https://example.com",
-  brandImage: "assets/diana.jpg",
+  brandImage: "assets/diana.jpg"
 });

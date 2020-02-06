@@ -2,7 +2,7 @@ import React from "react";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory,
+  ThemeStyleSheetFactory
 } from "@diana/types";
 import { DescriptionMedium } from "@diana/typography";
 import { withStyles } from "@diana/base";
@@ -24,22 +24,22 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     boxSizing: "border-box",
     display: "flex",
     alignItems: "center",
-    borderColor: theme.colors.grey.grey50,
+    borderColor: theme.colors.grey.grey50
   },
   text: {},
   selected: {
-    backgroundColor: theme.colors.grey.grey100,
+    backgroundColor: theme.colors.grey.grey100
   },
   clickable: {
     cursor: "pointer",
     ":hover": {
-      backgroundColor: theme.colors.grey.grey25,
-    },
+      backgroundColor: theme.colors.grey.grey25
+    }
   },
   disabled: {
     pointerEvents: "none",
-    color: theme.colors.grey.grey50,
-  },
+    color: theme.colors.grey.grey50
+  }
 });
 
 const BaseChip: React.FC<IProps & WithStylesProps> = ({
@@ -61,7 +61,7 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
     onClick && styles.clickable,
     selected && styles.selected,
     disabled && styles.disabled,
-    className,
+    className
   );
   return (
     <div className={styleArray} {...props}>
