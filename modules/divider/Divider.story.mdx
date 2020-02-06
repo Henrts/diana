@@ -1,5 +1,5 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
-import Divider from './Divider';
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import Divider from "./Divider";
 
 <Meta title="Components | Divider" />
 
@@ -8,87 +8,91 @@ import Divider from './Divider';
 The `Divider` is a line that separates content into groups. It can have either a horizontal or vertical alignment.
 
 <Preview>
-  <Story name="Horizontal divider">
-    <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-    >
-      <span>Heaven</span>
-      <Divider />
-      <span>Hell</span>
-    </div>
-  </Story>
+    <Story name="Horizontal divider">
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+            }}
+        >
+            <span>Heaven</span>
+            <Divider />
+            <span>Hell</span>
+        </div>
+    </Story>
 </Preview>
 
 <Preview>
-  <Story name="Vertical divider">
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '30px',
-      }}
-    >
-      <span>West Berlin</span>
-      <Divider orientation="vertical" />
-      <span>East Berlin</span>
-    </div>
-  </Story>
+    <Story name="Vertical divider">
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "30px",
+            }}
+        >
+            <span>West Berlin</span>
+            <Divider orientation="vertical" />
+            <span>East Berlin</span>
+        </div>
+    </Story>
 </Preview>
 
 ### Available props
 
 <table width="100%">
-  <thead>
-    <tr>
-      <th>Prop Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>className</td>
-      <th>string</th>
-      <td>Additional classNames to allow adding custom styles</td>
-    </tr>
-    <tr>
-      <td>orientation</td>
-      <th>string</th>
-      <td>
-        Indicates divider orientation. Either "horizontal" (default) or
-        "vertical".
-      </td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th>Prop Name</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>className</td>
+            <th>string</th>
+            <td>Additional classNames to allow adding custom styles</td>
+        </tr>
+        <tr>
+            <td>orientation</td>
+            <th>string</th>
+            <td>
+                Indicates divider orientation. Either "horizontal" (default) or
+                "vertical".
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 ### Extendable styles
 
 <table width="100%">
-  <thead>
-    <tr>
-      <th>Style Name</th>
-      <th>@selectors</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>divider</td>
-      <td></td>
-      <td>Divider styles</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>&.horizontal</td>
-      <td>Divider styles when orientation is "horizontal"</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>&.vertical</td>
-      <td>Divider styles when orientation is "vertical"</td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th>Style Name</th>
+            <th>@selectors</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>divider</td>
+            <td></td>
+            <td>Divider styles</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>&.horizontal</td>
+            <td>Divider styles when orientation is "horizontal"</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>&.vertical</td>
+            <td>Divider styles when orientation is "vertical"</td>
+        </tr>
+    </tbody>
 </table>

@@ -5,3 +5,5 @@ node_modules
 *.story.tsx
 *.stories.js
 *.stories.tsx
+module
+lib

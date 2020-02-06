@@ -1,23 +1,23 @@
 {
-  "name": "@diana/typography",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "files": [
-    "lib",
-    "module"
-  ],
-  "devDependencies": {
-    "typescript": "^3.7.5"
-  },
-  "dependencies": {
-    "@diana/base": "1.0.0",
-    "@diana/types": "1.0.0",
-    "react": "^16.12.0"
-  },
-  "scripts": {
-    "build": "yarn compile:lib && yarn compile:module",
-    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
-    "compile:module": "tsc --target es6 --module esnext --outDir module"
-  }
+    "name": "@diana/typography",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "files": [
+        "lib",
+        "module"
+    ],
+    "devDependencies": {
+        "typescript": "^3.7.5"
+    },
+    "dependencies": {
+        "@diana/base": "1.0.0",
+        "@diana/types": "1.0.0",
+        "react": "^16.12.0"
+    },
+    "scripts": {
+        "build": "yarn compile:lib && yarn compile:module",
+        "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+        "compile:module": "tsc --target es6 --module esnext --outDir module"
+    }
 }

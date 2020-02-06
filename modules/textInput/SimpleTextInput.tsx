@@ -1,8 +1,8 @@
-import TextInput from './TextInput';
+import TextInput from "./TextInput";
 
 export const SimpleTextInput = TextInput.extendStyles(() => ({
-  fieldset: {
-    border: 'none',
-  },
+    fieldset: {
+        border: "none",
+    },
 }));
 export default SimpleTextInput;

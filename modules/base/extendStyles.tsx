@@ -1,10 +1,10 @@
-import aesthetic from 'aesthetic';
-import { Theme, StyleSheetFactory } from '../types/types';
+import aesthetic from "aesthetic";
+import { Theme, StyleSheetFactory } from "../types/types";
 
 function extendStyles<T = Theme>(
-  ...styleSheets: StyleSheetFactory<T>[]
+    ...styleSheets: StyleSheetFactory<T>[]
 ): StyleSheetFactory<T> {
-  return aesthetic.extendStyles(...styleSheets);
+    return aesthetic.extendStyles(...styleSheets);
 }
 
 export default extendStyles;
