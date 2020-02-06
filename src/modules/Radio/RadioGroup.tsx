@@ -50,14 +50,14 @@ const RadioGroup: React.FC<IProps & WithStylesProps> = ({
   }, [selectedValue]);
 
   const handleValueSelect = useCallback(
-    newTab => {
+    newValue => {
       // state is being controlled internally
       if (selectedValue === undefined) {
-        setSelected(newTab);
+        setSelected(newValue);
       }
 
       if (onValueSelect) {
-        onValueSelect(newTab);
+        onValueSelect(newValue);
       }
     },
     [onValueSelect, selectedValue]
