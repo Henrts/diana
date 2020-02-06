@@ -64,7 +64,7 @@ module.exports = {
             /\.html$/,
             /\.ejs$/,
             /\.json$/,
-            /\.(svg|png)$/
+            /\.(svg)$/
           ],
           loader: require.resolve("file-loader"),
           options: {
