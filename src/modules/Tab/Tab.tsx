@@ -19,7 +19,6 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     cursor: "pointer",
     listStyle: "none",
     marginRight: theme.spaceUnit.md,
-    maxWidth: "50px",
     "@selectors": {
       "&.selected": {
         borderBottom: "1px solid black"
@@ -44,7 +43,7 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
   const handleClick = () => !disabled && onTabClick(index);
   const stylesArray = cx(
     styles.tab,
-    selectedTab === index && "selected",
+    index !== undefined && selectedTab === index && "selected",
     disabled && "disabled",
     className
   );
