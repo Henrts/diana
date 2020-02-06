@@ -67,10 +67,6 @@ export default {
           "Component"
         ]
       }
-    }),
-    // copy assets into bundle
-    copy({
-      assets: ["src/assets"]
     })
   ]
 };

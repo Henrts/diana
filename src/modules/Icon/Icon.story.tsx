@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Icon from "./Icon";
+import Icon, { IconNames } from "./Icon";
 import "../../stories/style.scss";
 import { ButtonText } from "../Typography";
 import { useTheme } from "aesthetic-react";
@@ -32,9 +32,9 @@ export const IconGallery: React.FC = () => {
           onChange={e => setSearchString(e.target.value)}
         />
         <div className="icon-gallery">
-          {icons.map((d: any) => (
+          {icons.map((d: string) => (
             <div className="icon-container" key={d}>
-              <Icon name={d} size={20} />
+              <Icon name={d as IconNames} size={20} />
               <ButtonText>{d}</ButtonText>
             </div>
           ))}

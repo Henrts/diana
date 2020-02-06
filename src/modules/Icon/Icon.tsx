@@ -4,10 +4,8 @@ import {
   ThemeStyleSheetFactory,
   WithStylesProps
 } from "../../types";
-import { useStyles } from "../../base";
+import { useTheme, withStyles } from "../../base";
 import { defaultIcons } from "../../tokens/icons";
-import withStyles from "../../base/withStyles";
-import useTheme from "../../base/useTheme";
 
 const styleSheet: ThemeStyleSheetFactory = () => ({
   icon: {}
@@ -30,16 +28,20 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   color,
   className,
   src,
-  size
+  size,
+  cx,
+  styles
 }) => {
   const theme = useTheme();
-  const [styles, cx] = useStyles(styleSheet);
 
   const SvgIcon: any = useMemo(() => {
     return src || theme.icons[name] || "";
   }, [src, theme, name]);
 
-  const newProps: any = {};
+  // Building props this way to avoid override svg previous values, only if specified.
+  const newProps: any = {
+    className: `y-icon ${cx(styles.icon)} ${className || ""}`
+  };
   if (size || width) {
     newProps.width = size || width;
   }
@@ -52,8 +54,7 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   if (stroke || color) {
     newProps.stroke = stroke || color;
   }
-  newProps.className = `y-icon ${cx(styles.icon)} ${className || ""}`;
 
   return <SvgIcon {...newProps} />;
 };
-export default withStyles(() => ({}))(Icon);
+export default withStyles(styleSheet)(Icon);

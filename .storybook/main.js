@@ -73,7 +73,7 @@ module.exports = {
         }
       ]
     });
-    // Removes old SVG Loader
+    // Removes old SVG Loader from Storybook webpack
     config.module.rules = config.module.rules.map(rule => {
       if (rule.test && rule.test.toString().includes("svg")) {
         const test = rule.test
