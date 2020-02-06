@@ -86,6 +86,13 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
     children && children.props.className
   );
 
+  const labelStyles = cx(
+    styles.label,
+    isChecked && "checked",
+    disabled && "disabled",
+    hasError && "error"
+  );
+
   return (
     <div className={cx(styles.wrapper)}>
       <input
@@ -102,15 +109,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
           className: inputStyles,
           onClick: handleChange
         })}
-      <label
-        htmlFor={id}
-        className={cx(
-          styles.label,
-          isChecked && "checked",
-          disabled && "disabled",
-          hasError && "error"
-        )}
-      >
+      <label htmlFor={id} className={labelStyles}>
         {label}
       </label>
     </div>
