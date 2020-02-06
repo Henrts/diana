@@ -1,3 +1,3 @@
-import { useStyles } from 'aesthetic-react';
+import { useStyles } from "aesthetic-react";
 
 export default useStyles;
