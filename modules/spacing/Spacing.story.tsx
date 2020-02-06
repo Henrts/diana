@@ -37,26 +37,26 @@ export const StretchSpacing = () => {
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   spacingxxs: {
-    boxShadow: `inset 0 0 0 ${theme.spaceUnit.xxs} steelblue`,
+    boxShadow: `inset 0 0 0 ${theme.spaceUnit.xxs} steelblue`
   },
   spacingxs: {
-    boxShadow: `inset 0 0 0 ${theme.spaceUnit.xs} steelblue`,
+    boxShadow: `inset 0 0 0 ${theme.spaceUnit.xs} steelblue`
   },
   spacingsm: {
-    boxShadow: `inset 0 0 0 ${theme.spaceUnit.sm} steelblue`,
+    boxShadow: `inset 0 0 0 ${theme.spaceUnit.sm} steelblue`
   },
   spacingmd: {
-    boxShadow: `inset 0 0 0 ${theme.spaceUnit.md} steelblue`,
+    boxShadow: `inset 0 0 0 ${theme.spaceUnit.md} steelblue`
   },
   spacinglg: {
-    boxShadow: `inset 0 0 0 ${theme.spaceUnit.lg} steelblue`,
+    boxShadow: `inset 0 0 0 ${theme.spaceUnit.lg} steelblue`
   },
   spacingxl: {
-    boxShadow: `inset 0 0 0 ${theme.spaceUnit.xl} steelblue`,
+    boxShadow: `inset 0 0 0 ${theme.spaceUnit.xl} steelblue`
   },
   spacingxxl: {
-    boxShadow: `inset 0 0 0 ${theme.spaceUnit.xxl} steelblue`,
-  },
+    boxShadow: `inset 0 0 0 ${theme.spaceUnit.xxl} steelblue`
+  }
 });
 
 interface IProps {
@@ -76,7 +76,7 @@ export const SpacingDiv: React.FC<IProps> = ({ margin, children }) => {
       style={{
         border: `${spac} solid steelblue`,
         width: 200 - numSpac * 2,
-        height: 200 - numSpac * 2,
+        height: 200 - numSpac * 2
       }}
     >
       <div className="spacing-spec black-spec">{numSpac.toFixed(0)}</div>
@@ -98,7 +98,7 @@ const SquishSpacingDiv: React.FC<IProps> = ({ margin, children }) => {
         padding: `${spacTop} ${spacLeft}`,
         backgroundColor: "steelblue",
         width: 200 - numSpacLeft * 2,
-        height: 80 - numSpacTop * 2,
+        height: 80 - numSpacTop * 2
       }}
     >
       <div className="spacing-spec-top spacing-spec">

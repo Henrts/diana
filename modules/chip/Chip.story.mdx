@@ -9,7 +9,7 @@ import {
   ChipIcon,
   DerivedCloseableChip,
   ChipInputStory,
-  ChipListStory,
+  ChipListStory
 } from "./Chip.story";
 
 <Meta title="Components| Chip" />
@@ -59,7 +59,7 @@ These are the custom props for the Base Chip
       style={{
         display: "flex",
         justifyContent: "space-around",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <BaseChip>chip</BaseChip>
@@ -80,7 +80,7 @@ The chip can be customized using _renderLeftIcon_ or _renderRightIcon_.
       style={{
         display: "flex",
         justifyContent: "space-around",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <BaseChip renderLeftIcon={() => <ChipIcon type="left" name="add" />}>
@@ -127,7 +127,7 @@ These are the extra props for the Status Chip
       style={{
         display: "flex",
         justifyContent: "space-around",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <StatusChip type="default">default</StatusChip>
@@ -177,7 +177,7 @@ By default, there will be a close Icon on the right that can be customized by ch
       style={{
         display: "flex",
         justifyContent: "space-around",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <CloseableChip onClose={() => console.log("close fired")}>
@@ -274,7 +274,7 @@ With a different extended CloseableChip by registering a new CloseableChip. This
 ```javascript
 CloseableChip.extendStyles(
   () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
-  { register: true },
+  { register: true }
 );
 <ChipList list={["test", "test2", "test3"]} />;
 ```
@@ -345,7 +345,7 @@ With a different extended CloseableChip by registering a new CloseableChip. This
 ```javascript
 CloseableChip.extendStyles(
   () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
-  { register: true },
+  { register: true }
 );
 <ChipInput value={[]} />;
 ```

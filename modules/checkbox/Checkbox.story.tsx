@@ -9,7 +9,7 @@ export const CheckboxStory1 = () => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <Checkbox checked readOnly>
@@ -31,16 +31,16 @@ const CustomCheckbox = Checkbox.extendStyles(() => ({
     "@selectors": {
       ":hover .icon:not(.disabled):not(.checked):not(.show-as-checked)": {
         stroke: "pink",
-        backgroundColor: "steelblue",
-      },
-    },
+        backgroundColor: "steelblue"
+      }
+    }
   },
   iconContainer: {
     "@selectors": {
       "&.checked": {
-        backgroundColor: "white",
-      },
-    },
+        backgroundColor: "white"
+      }
+    }
   },
   icon: {
     fill: "none",
@@ -48,10 +48,10 @@ const CustomCheckbox = Checkbox.extendStyles(() => ({
       "&.checked": {
         opacity: 1,
         fill: "none",
-        stroke: "red",
-      },
-    },
-  },
+        stroke: "red"
+      }
+    }
+  }
 }));
 
 export const CheckboxStory2 = () => {
@@ -60,7 +60,7 @@ export const CheckboxStory2 = () => {
       style={{
         display: "flex",
         justifyContent: "space-around",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <Checkbox checkedIcon={<Icon name="add" />}>Custom Checked Icon</Checkbox>
@@ -73,7 +73,7 @@ export const CheckboxStory2 = () => {
             style={{
               height: "100%",
               width: "3px",
-              backgroundColor: "blue",
+              backgroundColor: "blue"
             }}
           />
         }
@@ -91,7 +91,7 @@ export const CheckboxStory3 = () => {
       style={{
         display: "flex",
         justifyContent: "space-around",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <Checkbox wrappedRef={ref}>Default</Checkbox>

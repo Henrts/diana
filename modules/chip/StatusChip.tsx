@@ -13,36 +13,36 @@ export interface IProps extends BaseChipProps {
 const colorMap = (theme: Theme) => ({
   default: {
     chip: {
-      borderColor: theme.colors.grey.grey50,
+      borderColor: theme.colors.grey.grey50
     },
     selected: {
-      backgroundColor: theme.colors.grey.grey50,
-    },
+      backgroundColor: theme.colors.grey.grey50
+    }
   },
   success: {
     chip: {
-      borderColor: theme.colors.success.success100,
+      borderColor: theme.colors.success.success100
     },
     selected: {
-      backgroundColor: theme.colors.success.success100,
-    },
+      backgroundColor: theme.colors.success.success100
+    }
   },
   warning: {
     chip: {
-      borderColor: theme.colors.warning.warning100,
+      borderColor: theme.colors.warning.warning100
     },
     selected: {
-      backgroundColor: theme.colors.warning.warning100,
-    },
+      backgroundColor: theme.colors.warning.warning100
+    }
   },
   danger: {
     chip: {
-      borderColor: theme.colors.alert.alert100,
+      borderColor: theme.colors.alert.alert100
     },
     selected: {
-      backgroundColor: theme.colors.alert.alert100,
-    },
-  },
+      backgroundColor: theme.colors.alert.alert100
+    }
+  }
 });
 
 const StatusChip: React.FC<IProps & WithStylesProps> = ({
@@ -52,9 +52,9 @@ const StatusChip: React.FC<IProps & WithStylesProps> = ({
 }) => {
   const styleSheet2 = extendStyles(
     theme => ({
-      ...colorMap(theme)[type],
+      ...colorMap(theme)[type]
     }),
-    theme => (styleSheet ? styleSheet(theme) : {}),
+    theme => (styleSheet ? styleSheet(theme) : {})
   );
 
   const AlteredBaseChip = BaseChip.extendStyles(styleSheet2);

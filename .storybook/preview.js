@@ -8,6 +8,6 @@ initDefaultTheme();
 addParameters({
   docs: {
     container: DocsContainer,
-    page: DocsPage,
-  },
+    page: DocsPage
+  }
 });

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StandardProps,
   WithStylesProps,
-  ThemeStyleSheetFactory,
+  ThemeStyleSheetFactory
 } from "@diana/types";
 import { withStyles } from "@diana/base";
 import { IProps as ICloseableChipProps } from "./CloseableChip";
@@ -18,16 +18,16 @@ export interface IProps<T> extends StandardProps<"div"> {
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   chipList: {
     display: "flex",
-    overflowX: "auto",
+    overflowX: "auto"
   },
   chipContainer: {
     marginRight: theme.spaceUnit.xxs,
     marginTop: theme.spaceUnit.xs,
     marginBottom: theme.spaceUnit.xs,
     ":last-child": {
-      marginRight: 0,
-    },
-  },
+      marginRight: 0
+    }
+  }
 });
 
 function ChipList<T>({
@@ -65,7 +65,7 @@ function ChipList<T>({
         onDismissChip(item);
       }
     },
-    [_list, onDismissChip, onListChange],
+    [_list, onDismissChip, onListChange]
   );
 
   return (

@@ -5,11 +5,11 @@ export const SuccessNotification = Notification.extendStyles(
   (theme: Theme) => ({
     icon: {
       marginRight: theme.spaceUnit.md,
-      stroke: theme.colors.white,
+      stroke: theme.colors.white
     },
     text: {},
     title: {
-      marginBottom: theme.spaceUnit.md,
+      marginBottom: theme.spaceUnit.md
     },
     wrapper: {
       backgroundColor: theme.colors.primary,
@@ -19,9 +19,9 @@ export const SuccessNotification = Notification.extendStyles(
       width: "200px",
       "@selectors": {
         "&:not(:first-child)": {
-          marginTop: theme.spaceUnit.xs,
-        },
-      },
-    },
-  }),
+          marginTop: theme.spaceUnit.xs
+        }
+      }
+    }
+  })
 );

@@ -13,7 +13,7 @@ const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   chip: {
     borderColor: "green",
     height: 26,
-    border: "10px solid",
+    border: "10px solid"
   },
   deleteIcon: {
     padding: theme.spaceUnit.xxs,
@@ -21,9 +21,9 @@ const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
     cursor: "pointer",
     borderRadius: "50%",
     ":hover": {
-      backgroundColor: "red",
-    },
-  },
+      backgroundColor: "red"
+    }
+  }
 });
 
 const CloseableChip: React.FC<IProps & WithStylesProps> = ({
@@ -35,7 +35,7 @@ const CloseableChip: React.FC<IProps & WithStylesProps> = ({
 }) => {
   const CloseableChipStyle = useRegistryWithStyles<BaseChipProps>(
     "BaseChip",
-    styleSheet,
+    styleSheet
   );
   return (
     <CloseableChipStyle

@@ -19,14 +19,14 @@ export default {
       file: pkg.main,
       format: "cjs",
       exports: "named",
-      sourcemap: true,
+      sourcemap: true
     },
     {
       file: pkg.module,
       format: "es",
       exports: "named",
-      sourcemap: true,
-    },
+      sourcemap: true
+    }
   ],
   plugins: [
     sizeSnapshot(),
@@ -34,19 +34,19 @@ export default {
     url(),
     svgr(),
     resolve({
-      browser: true,
+      browser: true
     }),
     typescript({
       rollupCommonJSResolveHack: true,
       clean: true,
-      exclude: ["**/*.story.tsx"],
+      exclude: ["**/*.story.tsx"]
     }),
     babel({
       babelrc: false,
       exclude: ["node_modules/**", "**/stories/**", "**/**/*.story.tsx"],
       ignore: ["**/*.scss"],
       presets: [["es2015", { modules: false }], "stage-0", "react"],
-      plugins: ["external-helpers"],
+      plugins: ["external-helpers"]
     }),
     commonjs({
       include: "node_modules/**",
@@ -58,13 +58,13 @@ export default {
           "createElement",
           "PropTypes",
           "Children",
-          "Component",
-        ],
-      },
+          "Component"
+        ]
+      }
     }),
     // copy assets into bundle
     copy({
-      assets: ["assets"],
-    }),
-  ],
+      assets: ["assets"]
+    })
+  ]
 };

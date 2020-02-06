@@ -38,17 +38,17 @@ const styleSheet: ThemeStyleSheetFactory = theme => {
     const isObject = typeof t[key] !== "string";
     if (isObject) {
       res[`${key}25`] = {
-        backgroundColor: t[key][`${key}25`],
+        backgroundColor: t[key][`${key}25`]
       };
       res[`${key}50`] = {
-        backgroundColor: t[key][`${key}50`],
+        backgroundColor: t[key][`${key}50`]
       };
       res[`${key}100`] = {
-        backgroundColor: t[key][`${key}100`],
+        backgroundColor: t[key][`${key}100`]
       };
     } else {
       res[key] = {
-        backgroundColor: t[key],
+        backgroundColor: t[key]
       };
     }
   });
