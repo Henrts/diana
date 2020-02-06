@@ -16,6 +16,7 @@ module.exports = {
     'prettier/@typescript-eslint',
   ],
   rules: {
+    'no-underscore-dangle': 'off',
     'no-trailing-spaces': 'error',
     'arrow-parens': ['error', 'as-needed'],
     'import/extensions': [2, { commonjs: true }],

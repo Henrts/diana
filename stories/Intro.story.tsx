@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const IntroBackground: React.FC = () => {
   return <div className="intro-background"></div>;

@@ -6,15 +6,17 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn compile:lib && yarn compile:module",
-    "compile:lib": "tsc --target es5 --module commonjs --outDir lib",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
     "compile:module": "tsc --target es6 --module esnext --outDir module"
   },
   "dependencies": {
     "@diana/base": "1.0.0",
     "@diana/button": "1.0.0",
-    "@diana/types": "1.0.0",
+    "@diana/textinput": "1.0.0",
     "@diana/checkbox": "1.0.0",
+    "@diana/types": "1.0.0",
     "react": "^16.12.0",
-    "react-hook-form": "^4.8.2"
+    "react-hook-form": "^4.8.2",
+    "yup": "^0.28.1"
   }
 }
