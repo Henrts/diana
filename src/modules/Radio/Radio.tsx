@@ -6,7 +6,7 @@ import {
   ThemeStyleSheetFactory
 } from "../../types";
 import { withStyles } from "../../base";
-import { Label } from "../Typography";
+import { Text } from "../Typography";
 
 export interface IProps extends StandardProps<"input"> {
   children?: ReactElement;
@@ -111,7 +111,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
           onClick: handleChange
         })}
       <label htmlFor={id} className={labelStyles}>
-        <Label>{label}</Label>
+        <Text>{label}</Text>
       </label>
     </div>
   );
