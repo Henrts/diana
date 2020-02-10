@@ -3,10 +3,10 @@ import {
   StandardProps,
   WithStylesProps,
   ThemeStyleSheetFactory
-} from "@diana/types";
-import { withStyles } from "@diana/base";
+} from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
+import { useRegistry } from "@diana-ui/hooks";
 import { IProps as ICloseableChipProps } from "./CloseableChip";
-import { useRegistry } from "../hooks/useRegistry";
 
 export interface IProps<T> extends StandardProps<"div"> {
   list: T[];

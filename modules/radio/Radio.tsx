@@ -4,8 +4,8 @@ import {
   StandardProps,
   WithStylesProps,
   ThemeStyleSheetFactory
-} from "@diana/types";
-import { withStyles } from "@diana/base";
+} from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
 
 interface IProps extends StandardProps<"input"> {
   children?: ReactElement;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Icon from "./Icon";
 import "../../stories/style.scss";
-import { ButtonText } from "@diana/typography";
+import { ButtonText } from "@diana-ui/typography";
 import { useTheme } from "aesthetic-react";
-import { TextInput } from "@diana/textinput";
+import { TextInput } from "@diana-ui/textinput";
 
 export const IconGallery: React.FC = () => {
   const theme = useTheme();

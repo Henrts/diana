@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect, PropsWithChildren } from "react";
-import { withStyles } from "@diana/base";
+import { withStyles } from "@diana-ui/base";
 import {
   ThemeStyleSheetFactory,
   StandardProps,
   WithStylesProps
-} from "@diana/types";
+} from "@diana-ui/types";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   fieldset: {

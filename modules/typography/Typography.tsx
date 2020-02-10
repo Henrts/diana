@@ -1,6 +1,6 @@
 import React from "react";
-import { useStyles } from "@diana/base";
-import { StandardProps, ThemeStyleSheetFactory } from "@diana/types";
+import { useStyles } from "@diana-ui/base";
+import { StandardProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 
 export interface IPropsTitle extends StandardProps<"h1"> {}
 export interface IProps extends StandardProps<"span"> {}

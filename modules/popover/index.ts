@@ -1,1 +1,5 @@
-export { default as Popover } from "./Popover";
+export {
+  default as Popover,
+  IProps as IPopoverProps,
+  IPopoverRef
+} from "./Popover";

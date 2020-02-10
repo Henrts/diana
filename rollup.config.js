@@ -11,9 +11,17 @@ import svgr from "@svgr/rollup";
 // eslint-disable-next-line import/extensions
 import pkg from "./package.json";
 
+const dianaAliases = [
+  "@diana-ui-ui/button",
+  "@diana-ui-ui/typography",
+  "@diana-ui-ui/types",
+  "@diana-ui-ui/base",
+  "@diana-ui-ui/tokens"
+];
+
 export default {
-  input: "src/index.ts",
-  external: ["react-svg"],
+  // input: "src/index.ts",
+  // external: ["react-svg"],
   output: [
     {
       file: pkg.main,
@@ -34,7 +42,7 @@ export default {
     url(),
     svgr(),
     resolve({
-      browser: true
+      browser: false
     }),
     typescript({
       rollupCommonJSResolveHack: true,
@@ -43,13 +51,13 @@ export default {
     }),
     babel({
       babelrc: false,
-      exclude: ["node_modules/**", "**/stories/**", "**/**/*.story.tsx"],
+      exclude: ["../../node_modules/**", "**/stories/**", "**/**/*.story.tsx"],
       ignore: ["**/*.scss"],
       presets: [["es2015", { modules: false }], "stage-0", "react"],
       plugins: ["external-helpers"]
     }),
     commonjs({
-      include: "node_modules/**",
+      include: "../../node_modules/**",
       exclude: ["**/*.story.tsx"],
       namedExports: {
         "../../node_modules/react/index.js": [
@@ -66,5 +74,6 @@ export default {
     copy({
       assets: ["assets"]
     })
-  ]
+  ],
+  external: ["react", ...dianaAliases, "aesthetic"]
 };

@@ -1,5 +1,5 @@
 {
-  "name": "@diana/base",
+  "name": "@diana-ui/base",
   "version": "1.0.0",
   "main": "lib/index.js",
   "license": "MIT",
@@ -10,7 +10,9 @@
   "scripts": {
     "build": "yarn compile:lib && yarn compile:module",
     "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
-    "compile:module": "tsc --target es6 --module esnext --outDir module"
+    "compile:module": "tsc --target es6 --module esnext --outDir module",
+    "clean:files": "rimraf lib module",
+    "prepare": "yarn clean:files && yarn build"
   },
   "devDependencies": {
     "typescript": "^3.7.5"
@@ -19,8 +21,8 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana/types": "1.0.0",
-    "@diana/tokens": "1.0.0",
+    "@diana-ui/types": "1.0.0",
+    "@diana-ui/tokens": "1.0.0",
     "aesthetic": "^5.1.0",
     "aesthetic-adapter-aphrodite": "^5.1.0",
     "aesthetic-react": "^2.1.0",
