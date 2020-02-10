@@ -30,5 +30,8 @@
     "hoist-non-react-statics": "^3.3.2",
     "react-registry": "^0.5.0",
     "uuid": "^3.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
