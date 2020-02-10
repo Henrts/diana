@@ -24,5 +24,8 @@
     "react": "^16.12.0",
     "react-hook-form": "^4.8.2",
     "yup": "^0.28.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
