@@ -1,1 +1,1 @@
-export { default as BaseButton } from "./BaseButton";
+export { default as BaseButton, IProps as IButtonProps } from "./BaseButton";
