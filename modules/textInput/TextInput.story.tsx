@@ -1,6 +1,6 @@
 import React from "react";
 import TextInput from "./TextInput";
-import { Theme } from "@diana/types";
+import { Theme } from "@diana-ui/types";
 
 export const TextInputCustomBorder = TextInput.extendStyles(() => ({
   fieldset: {

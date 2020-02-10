@@ -1,7 +1,7 @@
 import React from "react";
-import { Theme, ThemeStyleSheetFactory } from "@diana/types";
+import { Theme, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { H1, H2, H3, ButtonText } from "./Typography";
-import { useStyles, useTheme } from "@diana/base";
+import { useStyles, useTheme } from "@diana-ui/base";
 import "../../stories/style.scss";
 
 export const TypographyTable = () => {

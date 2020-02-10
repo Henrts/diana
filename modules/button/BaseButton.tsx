@@ -1,11 +1,11 @@
 import React from "react";
-import { withStyles } from "@diana/base";
+import { withStyles } from "@diana-ui/base";
 import {
   StandardProps,
   WithStylesProps,
   ThemeStyleSheetFactory
-} from "@diana/types";
-import { ButtonText } from "@diana/typography";
+} from "@diana-ui/types";
+import { ButtonText } from "@diana-ui/typography";
 
 export interface IProps extends StandardProps<"button"> {
   renderLeftIcon?: () => JSX.Element;

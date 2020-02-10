@@ -9,9 +9,9 @@ import {
   StandardProps,
   ThemeStyleSheetFactory,
   WithStylesProps
-} from "@diana/types";
-import { withStyles } from "@diana/base";
-import { useOnClickOutside } from "@diana/hooks";
+} from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
+import { useOnClickOutside } from "@diana-ui/hooks";
 
 type Direction = "bottom" | "left" | "right" | "top";
 

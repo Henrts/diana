@@ -5,10 +5,10 @@ import {
   WithStylesProps,
   Theme,
   StyleSheetFactory
-} from "@diana/types";
-import { withStyles } from "@diana/base";
-import { Checkbox } from "@diana/checkbox";
-import { TextInput, ErrorTextInput } from "@diana/textinput";
+} from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
+import { Checkbox } from "@diana-ui/checkbox";
+import { TextInput, ErrorTextInput } from "@diana-ui/textinput";
 
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {

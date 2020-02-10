@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BaseButton } from "@diana/button";
+import { BaseButton } from "@diana-ui/button";
 import NotificationStack, { INotification } from "./NotificationStack";
 import { SuccessNotification } from "./Notification.story";
 

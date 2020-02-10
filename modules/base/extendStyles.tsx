@@ -1,5 +1,5 @@
 import aesthetic from "aesthetic";
-import { Theme, StyleSheetFactory } from "../types/types";
+import { Theme, StyleSheetFactory } from "@diana-ui/types";
 
 function extendStyles<T = Theme>(
   ...styleSheets: StyleSheetFactory<T>[]

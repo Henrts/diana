@@ -6,13 +6,13 @@ import React, {
   useRef,
   useState
 } from "react";
-import { withStyles } from "@diana/base";
+import { withStyles } from "@diana-ui/base";
 import {
   StandardProps,
   WithStylesProps,
   ThemeStyleSheetFactory
-} from "@diana/types";
-import { Icon } from "@diana/icon";
+} from "@diana-ui/types";
+import { Icon } from "@diana-ui/icon";
 
 export interface ICheckboxRef {
   isChecked: boolean;

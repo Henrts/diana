@@ -1,8 +1,8 @@
 import React from "react";
-import { ThemeStyleSheetFactory } from "@diana/types";
-import { Icon } from "@diana/icon";
-import { useStyles } from "@diana/base";
-import { IconNames } from "@diana/icon";
+import { ThemeStyleSheetFactory } from "@diana-ui/types";
+import { Icon } from "@diana-ui/icon";
+import { useStyles } from "@diana-ui/base";
+import { IconNames } from "@diana-ui/icon";
 import ChipInput from "./ChipInput";
 import ChipList from "./ChipList";
 import CloseableChip from "./CloseableChip";

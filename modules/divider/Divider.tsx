@@ -1,6 +1,6 @@
 import React from "react";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana/types";
-import { withStyles } from "@diana/base";
+import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
 
 type orientations = "horizontal" | "vertical";
 

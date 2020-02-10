@@ -17,9 +17,7 @@
     "modules/*"
   ],
   "scripts": {
-    "build": "rollup -c",
     "watch": "rollup -cw",
-    "prepare": "yarn run build",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -43,8 +41,11 @@
     }
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/plugin-transform-react-jsx": "^7.7.7",
+    "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.8.3",
     "@mdx-js/loader": "^1.5.3",
     "@storybook/addon-actions": "^5.3.8",
     "@storybook/addon-docs": "^5.3.8",
@@ -76,14 +77,16 @@
     "loki": "^0.18.1",
     "node-sass": "^4.13.0",
     "react-docgen-typescript-loader": "^3.6.0",
+    "rimraf": "^3.0.2",
     "rollup": "^1.29.0",
+    "rollup-plugin-auto-external": "^2.0.0",
     "sass-loader": "^8.0.0",
     "typescript": "^3.7.4",
     "typings": "^2.1.1",
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "@babel/core": "^7.7.7",
+    "@babel/core": "^7.8.4",
     "@svgr/rollup": "^5.0.1",
     "@types/extend": "^3.0.1",
     "aesthetic": "^5.0.1",

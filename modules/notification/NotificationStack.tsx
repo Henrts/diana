@@ -2,8 +2,8 @@
 import React from "react";
 import { StyledComponent } from "aesthetic-react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana/types";
-import { withStyles } from "@diana/base";
+import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
 
 export interface INotification {
   children: string;

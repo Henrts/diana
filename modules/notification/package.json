@@ -1,24 +1,31 @@
 {
-  "name": "@diana/notification",
+  "name": "@diana-ui/notification",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "module/index.js",
+  "files": [
+    "lib",
+    "module"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "yarn compile:lib && yarn compile:module",
     "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
-    "compile:module": "tsc --target es6 --module esnext --outDir module"
+    "compile:module": "tsc --target es6 --module esnext --outDir module",
+    "clean:files": "rimraf lib module",
+    "prepare": "yarn clean:files && yarn build"
   },
   "dependencies": {
-    "@diana/base": "1.0.0",
-    "@diana/icon": "1.0.0",
-    "@diana/types": "1.0.0",
-    "@diana/typography": "1.0.0",
+    "@diana-ui/base": "1.0.0",
+    "@diana-ui/icon": "1.0.0",
+    "@diana-ui/types": "1.0.0",
+    "@diana-ui/typography": "1.0.0",
     "aesthetic-react": "^2.1.0",
     "react": "^16.12.0",
     "react-transition-group": "^4.3.0",
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@diana/button": "1.0.0"
+    "@diana-ui/button": "1.0.0"
   }
 }

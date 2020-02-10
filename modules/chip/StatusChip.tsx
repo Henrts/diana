@@ -1,6 +1,6 @@
 import React from "react";
-import { extendStyles } from "@diana/base";
-import { Theme, WithStylesProps } from "@diana/types";
+import { extendStyles } from "@diana-ui/base";
+import { Theme, WithStylesProps } from "@diana-ui/types";
 import BaseChip, { IProps as BaseChipProps } from "./BaseChip";
 
 type ChipTypes = "default" | "success" | "warning" | "danger";

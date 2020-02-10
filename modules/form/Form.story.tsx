@@ -1,11 +1,11 @@
 import React from "react";
 import BaseForm from "./Form";
-import { BaseButton } from "@diana/button";
+import { BaseButton } from "@diana-ui/button";
 import * as yup from "yup";
-import { StyleSheetFactory, Theme } from "@diana/types";
-import { useStyles } from "@diana/base";
-import { Checkbox } from "@diana/checkbox";
-import { ErrorTextInput } from "@diana/textinput";
+import { StyleSheetFactory, Theme } from "@diana-ui/types";
+import { useStyles } from "@diana-ui/base";
+import { Checkbox } from "@diana-ui/checkbox";
+import { ErrorTextInput } from "@diana-ui/textinput";
 
 const stylesheet: StyleSheetFactory<Theme> = () => ({
   form: {},

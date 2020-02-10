@@ -1,6 +1,8 @@
 import React, { PropsWithChildren, useMemo } from "react";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana/types";
-import { extendStyles, withStyles } from "@diana/base";
+import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import { extendStyles, withStyles } from "@diana-ui/base";
+import { IPopoverProps } from "@diana-ui/popover";
+import { useRegistry } from "@diana-ui/hooks";
 import {
   IItem,
   DropdownHeader,
@@ -8,8 +10,6 @@ import {
   IProps,
   usePopoverRef
 } from "./Dropdown";
-import { IProps as IPopoverProps } from "../popover/Popover";
-import { useRegistry } from "../hooks/useRegistry";
 
 interface IMultipleProps<T extends IItem> extends IProps<T> {
   onItemsSelected: (items: T[]) => void;
