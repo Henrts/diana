@@ -1,7 +1,11 @@
 import React from "react";
+import {
+  WithStylesProps,
+  Theme,
+  ThemeStyleSheetFactory
+} from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
 import TextInput, { ITextInputProps } from "./TextInput";
-import { WithStylesProps, Theme, ThemeStyleSheetFactory } from "../types/types";
-import { withStyles } from "../base";
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   errorLabel: {

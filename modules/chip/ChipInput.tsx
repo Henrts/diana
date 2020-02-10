@@ -3,10 +3,10 @@ import {
   StandardProps,
   WithStylesProps,
   ThemeStyleSheetFactory
-} from "@diana/types";
-import { withStyles } from "@diana/base";
+} from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
+import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { IProps as IChipListProps } from "./ChipList";
-import useRegistryWithStyles from "../hooks/useRegistry";
 
 // typescript doesnt allow to override interfaces, don't know why
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

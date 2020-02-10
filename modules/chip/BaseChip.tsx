@@ -3,9 +3,9 @@ import {
   StandardProps,
   WithStylesProps,
   ThemeStyleSheetFactory
-} from "@diana/types";
-import { DescriptionMedium } from "@diana/typography";
-import { withStyles } from "@diana/base";
+} from "@diana-ui/types";
+import { DescriptionMedium } from "@diana-ui/typography";
+import { withStyles } from "@diana-ui/base";
 
 export interface IProps extends StandardProps<"div"> {
   renderLeftIcon?: () => JSX.Element;

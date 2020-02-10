@@ -10,7 +10,7 @@ import {
   WithStylesWrapperProps,
   StyledComponent,
   ThemeSheet
-} from "@diana/types";
+} from "@diana-ui/types";
 import useStyles from "./useStyles";
 import ComponentRegistry from "./Registry";
 

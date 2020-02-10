@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Checkbox, { ICheckboxRef } from "./Checkbox";
-import { Icon } from "@diana/icon";
+import { Icon } from "@diana-ui/icon";
 
 export const CheckboxStory1 = () => {
   const ref = useRef<ICheckboxRef>(null);

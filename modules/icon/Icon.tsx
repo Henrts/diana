@@ -1,8 +1,8 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
 import { useTheme } from "aesthetic-react";
-import { StandardProps, ThemeStyleSheetFactory } from "@diana/types";
-import { useStyles } from "@diana/base";
+import { StandardProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import { useStyles } from "@diana-ui/base";
 
 const styleSheet: ThemeStyleSheetFactory = () => ({
   icon: {

@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import { useStyles } from "@diana/base";
-import { ThemeStyleSheetFactory } from "@diana/types";
+import { useStyles } from "@diana-ui/base";
+import { ThemeStyleSheetFactory } from "@diana-ui/types";
 import Radio from "./Radio";
 
 interface IProps {

@@ -1,9 +1,13 @@
 import React from "react";
-import { Icon } from "@diana/icon";
-import { withStyles } from "@diana/base";
-import { Theme, WithStylesProps, ThemeStyleSheetFactory } from "../types/types";
+import { Icon } from "@diana-ui/icon";
+import { withStyles } from "@diana-ui/base";
+import { useRegistryWithStyles } from "@diana-ui/hooks";
+import {
+  Theme,
+  WithStylesProps,
+  ThemeStyleSheetFactory
+} from "@diana-ui/types";
 import { IProps as BaseChipProps } from "./BaseChip";
-import useRegistryWithStyles from "../hooks/useRegistry";
 
 export interface IProps extends BaseChipProps {
   onClose: () => void;

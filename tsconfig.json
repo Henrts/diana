@@ -12,6 +12,14 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["**/*.js", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "build", "dist"]
+  // "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "**/**.story.*",
+    "lib",
+    "module",
+    "**/**.d.ts"
+  ]
 }

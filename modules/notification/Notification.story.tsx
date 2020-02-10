@@ -1,4 +1,4 @@
-import { Theme } from "@diana/types";
+import { Theme } from "@diana-ui/types";
 import Notification from "./Notification";
 
 export const SuccessNotification = Notification.extendStyles(

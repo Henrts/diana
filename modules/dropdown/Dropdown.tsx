@@ -5,10 +5,10 @@ import React, {
   RefObject,
   useMemo
 } from "react";
-import { withStyles } from "@diana/base";
-import { ThemeStyleSheetFactory, WithStylesProps } from "@diana/types";
-import { IPopoverRef, IProps as IPopoverProps } from "../popover/Popover";
-import useRegistryWithStyles from "../hooks/useRegistry";
+import { withStyles } from "@diana-ui/base";
+import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import { IPopoverRef, IPopoverProps } from "@diana-ui/popover";
+import { useRegistryWithStyles } from "@diana-ui/hooks";
 
 export interface IItem {
   id: string;

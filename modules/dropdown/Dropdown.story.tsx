@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Dropdown, { IItem } from "./Dropdown";
 import MultipleDropdown from "./MultipleDropdown";
-import { Text } from "@diana/typography";
-import { useStyles } from "@diana/base";
-import { ThemeStyleSheetFactory } from "@diana/types";
+import { Text } from "@diana-ui/typography";
+import { useStyles } from "@diana-ui/base";
+import { ThemeStyleSheetFactory } from "@diana-ui/types";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   container: {
