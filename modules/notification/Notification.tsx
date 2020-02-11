@@ -4,12 +4,12 @@ import uuid from "uuid";
 import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { H3 } from "@diana-ui/typography";
-import { Icon } from "@diana-ui/icon";
+import { Icon, IconNames } from "@diana-ui/icon";
 
 export interface IProps {
   id: string;
   children: string;
-  icon?: string;
+  icon?: IconNames;
   title?: string;
   onMouseOver?: (id: string) => void;
   onMouseOut?: (id: string) => void;

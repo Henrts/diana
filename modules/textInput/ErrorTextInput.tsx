@@ -5,7 +5,7 @@ import {
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import TextInput, { ITextInputProps } from "./TextInput";
+import TextInput, { IProps as ITextInputProps } from "./TextInput";
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   errorLabel: {

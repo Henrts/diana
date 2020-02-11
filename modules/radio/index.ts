@@ -1,2 +1,5 @@
-export { default as Radio } from "./Radio";
-export { default as RadioGroup } from "./RadioGroup";
+export { default as RadioIProps, IProps as IRadioProps } from "./Radio";
+export {
+  default as RadioGroup,
+  IProps as IRadioGroupProps
+} from "./RadioGroup";

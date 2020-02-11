@@ -1,0 +1,11 @@
+
+<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip-arrow-down)">
+<path d="M0.859375 2.60547L4.05261 5.7987L7.24584 2.60547" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip-arrow-down">
+<rect width="8" height="8" fill="white"/>
+</clipPath>
+</defs>
+</svg>

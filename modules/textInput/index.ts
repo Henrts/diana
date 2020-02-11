@@ -1,2 +1,5 @@
-export { default as TextInput } from "./TextInput";
-export { default as ErrorTextInput } from "./ErrorTextInput";
+export { default as TextInput, IProps as ITextInputProps } from "./TextInput";
+export {
+  default as ErrorTextInput,
+  IProps as IErrorTextInputProps
+} from "./ErrorTextInput";
