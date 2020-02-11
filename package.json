@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "watch": "rollup -cw",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -77,10 +77,12 @@
     "loki": "^0.18.1",
     "node-sass": "^4.13.0",
     "react-docgen-typescript-loader": "^3.6.0",
+    "react-svg-loader": "^3.0.3",
     "rimraf": "^3.0.2",
     "rollup": "^1.29.0",
     "rollup-plugin-auto-external": "^2.0.0",
     "sass-loader": "^8.0.0",
+    "svg-inline-loader": "^0.8.0",
     "typescript": "^3.7.4",
     "typings": "^2.1.1",
     "webpack-node-externals": "^1.7.2"

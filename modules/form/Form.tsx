@@ -19,7 +19,7 @@ const stylesheet: StyleSheetFactory<Theme> = () => ({
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-export interface IFormProps extends StandardProps<"form"> {
+export interface IProps extends StandardProps<"form"> {
   children: ReactElement[];
   onSubmit: (values: { [key: string]: string | boolean }) => void;
   clearOnSubmit?: boolean;
@@ -30,7 +30,7 @@ export interface IFormProps extends StandardProps<"form"> {
     [key: string]: any;
   };
 }
-const Form: React.FC<PropsWithChildren<IFormProps & WithStylesProps>> = ({
+const Form: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   children,
   cx,
   styles,

@@ -1,10 +1,21 @@
+import {
+  Add,
+  Arrow,
+  ArrowDown,
+  Block,
+  Chart,
+  Check,
+  Checkmark,
+  Close
+} from "@diana-ui/assets";
+
 export default {
-    add: "add.svg",
-    arrow: "arrow.svg",
-    arrowDown: "arrow-down.svg",
-    block: "block.svg",
-    chart: "chart.svg",
-    check: "check.svg",
-    checkmark: "checkmark.svg",
-    close: "close.svg",
+  add: Add,
+  arrow: Arrow,
+  "arrow-down": ArrowDown,
+  block: Block,
+  chart: Chart,
+  check: Check,
+  checkmark: Checkmark,
+  close: Close
 };
