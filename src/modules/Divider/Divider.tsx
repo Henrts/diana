@@ -5,8 +5,8 @@ import { withStyles } from "../../base";
 type orientations = "horizontal" | "vertical";
 
 export interface IProps {
-  className: string;
-  orientation: orientations;
+  className?: string;
+  orientation?: orientations;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
