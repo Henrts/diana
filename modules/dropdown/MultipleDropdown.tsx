@@ -11,7 +11,7 @@ import {
   usePopoverRef
 } from "./Dropdown";
 
-interface IMultipleProps<T extends IItem> extends IProps<T> {
+export interface IMultipleProps<T extends IItem> extends IProps<T> {
   onItemsSelected: (items: T[]) => void;
   selectedItems: T[];
   selectAllText?: string;

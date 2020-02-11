@@ -7,8 +7,8 @@ module.exports = {
   ],
   addons: [
     "@storybook/addon-actions",
-    "@storybook/addon-links"
-    // '@storybook/addon-docs/register',
+    "@storybook/addon-links",
+    "@storybook/addon-docs/register"
   ],
   webpackFinal: async config => {
     config.resolve = {
@@ -59,7 +59,13 @@ module.exports = {
           // its runtime that would otherwise processed through "file" loader.
           // Also exclude `html` and `json` extensions so they get processed
           // by webpacks internal loaders.
-          exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.ejs$/, /\.json$/],
+          exclude: [
+            /\.(js|jsx|mjs)$/,
+            /\.html$/,
+            /\.ejs$/,
+            /\.json$/,
+            /\.(svg)$/
+          ],
           loader: require.resolve("file-loader"),
           options: {
             name: "static/media/[name].[hash:8].[ext]"
@@ -67,6 +73,37 @@ module.exports = {
         }
       ]
     });
+    // Removes old SVG Loader from Storybook webpack
+    config.module.rules = config.module.rules.map(rule => {
+      if (rule.test && rule.test.toString().includes("svg")) {
+        const test = rule.test
+          .toString()
+          .replace("svg|", "")
+          .replace(/\//g, "");
+        return { ...rule, test: new RegExp(test) };
+      } else {
+        return rule;
+      }
+    });
+    // Adds new SVG Loader
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  removeViewBox: false
+                }
+              ]
+            }
+          }
+        }
+      ]
+    });
+
     return config;
   }
 };

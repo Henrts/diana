@@ -32,3 +32,6 @@ vscode-mdx-master
 
 lib/
 module/
+
+packages/assets/index.js
+packages/assets/index.d.ts

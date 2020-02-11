@@ -37,6 +37,7 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unnecessary-type-assertion": "off",
     "react/no-array-index-key": "off",
+    "import/no-webpack-loader-syntax": "off",
     "react/no-unescaped-entities": "off",
     "import/no-extraneous-dependencies": [
       "error",

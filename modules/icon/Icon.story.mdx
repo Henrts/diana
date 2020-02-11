@@ -2,6 +2,8 @@ import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import { H3 } from "@diana-ui/typography";
 import Icon from "./Icon";
 import { IconGallery } from "./Icon.story";
+import { defaultIcons } from "@diana-ui/tokens";
+import ArrowSvg from "../assets/icons/add.svg";
 
 <Meta title="Components| Icon" />
 
@@ -29,7 +31,7 @@ You can also use the `src` prop to load a custom icon not in the system
 
 <Preview>
   <Story name="Custom Icon">
-    <Icon src="assets/icons/arrow.svg" />
+    <Icon src={ArrowSvg} />
   </Story>
 </Preview>
 

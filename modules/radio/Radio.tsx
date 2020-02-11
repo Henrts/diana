@@ -6,8 +6,9 @@ import {
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
+import { Text } from "@diana-ui/typography";
 
-interface IProps extends StandardProps<"input"> {
+export interface IProps extends StandardProps<"input"> {
   children?: ReactElement;
   hasError?: boolean;
   label: string;
@@ -86,6 +87,13 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
     children && children.props.className
   );
 
+  const labelStyles = cx(
+    styles.label,
+    isChecked && "checked",
+    disabled && "disabled",
+    hasError && "error"
+  );
+
   return (
     <div className={cx(styles.wrapper)}>
       <input
@@ -102,16 +110,8 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
           className: inputStyles,
           onClick: handleChange
         })}
-      <label
-        htmlFor={id}
-        className={cx(
-          styles.label,
-          isChecked && "checked",
-          disabled && "disabled",
-          hasError && "error"
-        )}
-      >
-        {label}
+      <label htmlFor={id} className={cx(styles.label)}>
+        <Text>{label}</Text>
       </label>
     </div>
   );
