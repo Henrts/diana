@@ -1,0 +1,1 @@
+export { default as {{packageNameCap}}, IProps as I{{packageNameCap}}Props } from "./{{packageNameCap}}";
