@@ -1,19 +1,20 @@
 {
   "name": "@diana-ui/assets",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "module/index.js",
   "files": [
-    "index.js",
-    "index.d.ts",
     "custom.d.ts",
-    "icons"
+    "lib",
+    "dist"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "yarn compile:module",
-    "compile:lib": "tsc --target es5 --module es2015",
-    "compile:module": "tsc --target es6 --module esnext",
-    "clean:files": "rimraf index.js index.d.ts",
+    "build": "yarn copy:assets && yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module",
+    "copy:assets": "copyfiles custom.d.ts icons/* lib && copyfiles custom.d.ts icons/* module ",
+    "clean:files": "rimraf lib module",
     "prepare": "yarn clean:files && yarn build"
   },
   "publishConfig": {
