@@ -110,7 +110,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
           className: inputStyles,
           onClick: handleChange
         })}
-      <label htmlFor={id} className={cx(styles.label)}>
+      <label htmlFor={id} className={labelStyles}>
         <Text>{label}</Text>
       </label>
     </div>
