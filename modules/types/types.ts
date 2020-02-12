@@ -43,8 +43,10 @@ export interface IFonts {
   buttonText: IFont;
   body: IFont;
   bodyHighlight?: IFont;
+  description?: IFont;
   descriptionMedium?: IFont;
   label: IFont;
+  sectionTitle?: IFont;
 }
 export interface ISpaceUnit {
   xxs: string;
