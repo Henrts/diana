@@ -5,7 +5,9 @@ import inquirer from "inquirer";
 /* eslint-enable import/no-extraneous-dependencies */
 
 const getAllPackagesName = () => {
-  return fs.readdirSync("modules");
+  return fs
+    .readdirSync("modules")
+    .filter(value => !["index.ts"].includes(value));
 };
 
 const getAllPackagesVersions = () => {

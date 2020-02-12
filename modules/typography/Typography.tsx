@@ -30,13 +30,20 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   bodyHighlight: {
     ...theme.typography.bodyHighlight
   },
+  description: {
+    ...theme.typography.description
+  },
   descriptionMedium: {
     ...theme.typography.descriptionMedium
   },
   label: {
     ...theme.typography.label
+  },
+  sectionTitle: {
+    ...theme.typography.sectionTitle
   }
 });
+
 export const H1: React.FC<IPropsTitle> = ({
   children,
   className,
@@ -110,6 +117,19 @@ export const TextHighlight: React.FC<IProps> = ({
   );
 };
 
+export const Description: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.description, className)} {...props}>
+      {children}
+    </span>
+  );
+};
+
 export const DescriptionMedium: React.FC<IProps> = ({
   children,
   className,
@@ -127,6 +147,19 @@ export const Label: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.label, className)} {...props}>
+      {children}
+    </span>
+  );
+};
+
+export const SectionTitle: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.sectionTitle, className)} {...props}>
       {children}
     </span>
   );
