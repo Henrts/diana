@@ -1,5 +1,5 @@
 {
-  "name": "@henrts/diana2",
+  "name": "@henrts/diana",
   "repository": {
     "type": "git",
     "url": "https://github.com/Henrts/diana"
@@ -22,7 +22,8 @@
     "build-storybook": "build-storybook -s public",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "prettier": "prettier '**/*.{js,jsx,tx,tsx,json,md,scss,yaml,yml,mdx}' --write"
+    "prettier": "prettier '**/*.{js,jsx,tx,tsx,json,md,scss,yaml,yml,mdx}' --write",
+    "new-package": "ts-node ./scripts/new-package.ts"
   },
   "lint-staged": {
     "*.{js,jsx,tx,tsx}": [
@@ -55,9 +56,12 @@
     "@storybook/react": "^5.3.8",
     "@testing-library/react": "^9.4.0",
     "@types/hoist-non-react-statics": "^3.3.1",
+    "@types/inquirer": "^6.5.0",
+    "@types/mustache": "^4.0.0",
     "@types/react": "^16.9.17",
     "@types/react-transition-group": "^4.2.3",
     "@types/uuid": "^3.4.6",
+    "@types/yargs": "^15.0.3",
     "@types/yup": "^0.26.28",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.13.0",
@@ -72,9 +76,11 @@
     "eslint-plugin-react": "^7.15.1",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.1.0",
+    "inquirer": "^7.0.4",
     "lerna": "^3.20.2",
     "lint-staged": "^9.5.0",
     "loki": "^0.18.1",
+    "mustache": "^4.0.0",
     "node-sass": "^4.13.0",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-svg-loader": "^3.0.3",
@@ -83,9 +89,11 @@
     "rollup-plugin-auto-external": "^2.0.0",
     "sass-loader": "^8.0.0",
     "svg-inline-loader": "^0.8.0",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.4",
     "typings": "^2.1.1",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "yargs": "^15.1.0"
   },
   "dependencies": {
     "@babel/core": "^7.8.4",

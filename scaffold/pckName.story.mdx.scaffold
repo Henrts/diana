@@ -1,0 +1,13 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import  from "@storybook/addon-links/react";
+import { {{packageNameCap}}Story } from "./{{packageNameCap}}.story.tsx";
+
+<Meta title="Components | {{packageNameCap}}" />
+
+# {{packageNameCap}}
+
+<Preview>
+  <Story name="{{packageNameCap}}">
+    <{{packageNameCap}}Story />
+  </Story>
+</Preview>

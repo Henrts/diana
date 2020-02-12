@@ -1,0 +1,7 @@
+import React from "react";
+
+export interface IProps {}
+
+const {{packageNameCap}} = () => <div>New Component {{packageName}}</div>
+
+export default {{packageNameCap}};
