@@ -67,6 +67,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
   styles,
   wrappedRef,
   onValueSelect,
+  parentStylesheet,
   ...props
 }) => {
   const id = useMemo(() => uuid(), []);
