@@ -169,8 +169,14 @@ export const TextInput: React.FC<PropsWithChildren<
           }
           setHasContent(e.target.value.length > 0);
         }}
-        onBlur={() => setIsFocused(false)}
-        onFocus={() => setIsFocused(true)}
+        onBlur={e => {
+          setIsFocused(false);
+          return props.onBlur?.(e);
+        }}
+        onFocus={e => {
+          setIsFocused(true);
+          return props.onFocus?.(e);
+        }}
       />
     </fieldset>
   );
