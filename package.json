@@ -160,5 +160,10 @@
         "preset": "iPhone 7"
       }
     }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
