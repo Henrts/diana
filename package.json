@@ -167,5 +167,12 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "changelog": {
+    "labels": {
+      "chore": "Chore",
+      "feature": "New Feature",
+      "bug": "Bug Fix"
+    }
   }
 }
