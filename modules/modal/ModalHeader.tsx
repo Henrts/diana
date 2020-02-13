@@ -6,7 +6,7 @@ import { SectionTitle, Description } from "@diana-ui/typography";
 
 export interface IProps {
   title: string;
-  onClose: () => void;
+  onClose?: () => void;
   description?: string;
   icon?: JSX.Element;
 }

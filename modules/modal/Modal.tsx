@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import ReactModal, {
   Props as ReactModalProps,
   setAppElement
@@ -17,24 +17,21 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: theme.colors.background.overlay
+    backgroundColor: theme.colors.background.overlay,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   content: {
     position: "absolute",
-    border: "1px solid rgb(204, 204, 204)",
-    background: "rgb(255, 255, 255)",
+    border: `1px solid ${theme.colors.grey.grey50}`,
+    background: theme.colors.white,
     overflow: "auto",
     outline: "none",
     padding: theme.spaceUnit.lg,
     borderRadius: "10px",
     display: "flex",
-    flexDirection: "column",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    transform: "translate(-50%, -50%)",
-    minWidth: "455px"
+    flexDirection: "column"
   }
 });
 
@@ -46,16 +43,14 @@ const Modal: React.FC<IAllProps> = ({
   styles,
   theme,
   onRequestClose,
+  isOpen,
   ...rest
 }) => {
-  const [isOpen, setIsOpen] = useState(true);
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onClose = (evt: any) => {
     if (onRequestClose) {
       onRequestClose(evt);
     }
-    setIsOpen(false);
   };
 
   return (
@@ -66,9 +61,10 @@ const Modal: React.FC<IAllProps> = ({
       onRequestClose={e => onClose(e)}
       {...rest}
     >
-      {React.Children.map(children, (child, ind) =>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      {React.Children.map(children, (child: any) =>
         React.cloneElement(child, {
-          ...(ind === 0
+          ...(child.type.displayName === "withStyles(ModalHeader)"
             ? {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onClose: (e: any) => onClose(e)
