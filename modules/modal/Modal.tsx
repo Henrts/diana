@@ -58,7 +58,7 @@ const Modal: React.FC<IAllProps> = ({
       isOpen={isOpen}
       className={cx(styles.content)}
       overlayClassName={cx(styles.overlay)}
-      onRequestClose={e => onClose(e)}
+      onRequestClose={onClose}
       {...rest}
     >
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
