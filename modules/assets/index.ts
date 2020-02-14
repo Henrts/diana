@@ -1,5 +1,6 @@
-// eslint-disable-next-line
+/* eslint-disable */
 /// <reference path="./custom.d.ts" />
+/* eslint-enable */
 
 export { default as Add } from "./icons/add.svg";
 export { default as Arrow } from "./icons/arrow.svg";

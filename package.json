@@ -23,7 +23,8 @@
     "prettier": "prettier '**/*.{js,jsx,tx,tsx,json,md,scss,yaml,yml,mdx}' --write",
     "new-package": "ts-node ./scripts/new-package.ts",
     "build:root": "yarn clear:files && tsc -p tsconfig.root.json && copyfiles -f modules/assets/custom.d.ts dist/assets && copyfiles -f modules/assets/icons/* dist/assets/icons",
-    "clear:files": "rimraf dist"
+    "clear:files": "rimraf dist",
+    "generate:icons": "ts-node scripts/update-icons"
   },
   "lint-staged": {
     "*.{js,jsx,tx,tsx}": [
