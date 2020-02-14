@@ -38,7 +38,11 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
     <div className={className}>
       <ExtendedTextInput
         {...props}
-        hasError={error !== null && error !== undefined}
+        hasError={
+          typeof error === "boolean"
+            ? error
+            : error !== null && error !== undefined
+        }
       />
       <div className={cx(styles.errorLabel)}>
         {error && typeof error === "string" ? error : <span>&nbsp;</span>}
