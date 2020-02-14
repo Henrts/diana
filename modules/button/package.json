@@ -1,0 +1,30 @@
+{
+  "name": "@diana-ui/button",
+  "version": "0.0.3",
+  "main": "lib/index.js",
+  "module": "module/index.js",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "module"
+  ],
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module",
+    "build:babel": "babel index.ts --config-file ../../babel.config.js --out-dir build",
+    "build:rollup": "rollup -c ../../rollup.config.js -i index.tsx",
+    "clean:files": "rimraf lib module",
+    "prepare": "yarn clean:files && yarn build"
+  },
+  "dependencies": {
+    "@diana-ui/base": "^0.0.3",
+    "@diana-ui/icon": "^0.0.3",
+    "@diana-ui/types": "^0.0.3",
+    "@diana-ui/typography": "^0.0.3",
+    "react": "^16.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

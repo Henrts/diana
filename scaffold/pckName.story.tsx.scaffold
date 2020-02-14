@@ -1,0 +1,14 @@
+import React, { useState } from "react";
+import {{packageNameCap}} from "./{{packageNameCap}}";
+import { ThemeStyleSheetFactory } from "@diana-ui/types";
+
+const stylesheet: ThemeStyleSheetFactory = theme => ({
+
+});
+
+export const {{packageNameCap}}Story = () => {
+  return (
+    <{{packageNameCap}} />
+  );
+};
+

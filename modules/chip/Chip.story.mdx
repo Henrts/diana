@@ -1,0 +1,351 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { H3 } from "@diana-ui/Typography";
+import BaseChip from "./BaseChip";
+import StatusChip from "./StatusChip";
+import CloseableChip from "./CloseableChip";
+import ChipList from "./ChipList";
+import ChipInput from "./ChipInput";
+import {
+  ChipIcon,
+  DerivedCloseableChip,
+  ChipInputStory,
+  ChipListStory
+} from "./Chip.story";
+
+<Meta title="Components| Chip" />
+
+# Chip
+
+Chips are compact elements that represent an input, attribute, or action.is the
+
+### BaseChip
+
+These are the custom props for the Base Chip
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>disabled</td>
+      <td>Chip is in disabled state</td>
+    </tr>
+    <tr>
+      <td>selected</td>
+      <td>Chip is in selected state</td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>Callback when clicking on the chip</td>
+    </tr>
+    <tr>
+      <td>renderLeftIcon</td>
+      <td>Element to be rendered on the left of the chip</td>
+    </tr>
+    <tr>
+      <td>renderRightIcon</td>
+      <td>Element to be rendered on the right of the chip</td>
+    </tr>
+  </tbody>
+</table>
+
+<Preview>
+  <Story name="BaseChip">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
+      <BaseChip>chip</BaseChip>
+      <BaseChip onClick={() => console.log("click")}>clickable</BaseChip>
+      <BaseChip selected>selected</BaseChip>
+      <BaseChip disabled>disabled</BaseChip>
+    </div>
+  </Story>
+</Preview>
+
+### Left/Right Icons
+
+The chip can be customized using _renderLeftIcon_ or _renderRightIcon_.
+
+<Preview>
+  <Story name="IconChip">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
+      <BaseChip renderLeftIcon={() => <ChipIcon type="left" name="add" />}>
+        with left icon
+      </BaseChip>
+      <BaseChip renderRightIcon={() => <ChipIcon type="right" name="add" />}>
+        with right icon
+      </BaseChip>
+      <BaseChip
+        renderLeftIcon={() => <ChipIcon type="left" name="add" />}
+        renderRightIcon={() => <ChipIcon type="right" name="arrow" />}
+      >
+        with both icons
+      </BaseChip>
+    </div>
+  </Story>
+</Preview>
+
+### StatusChip
+
+These are the extra props for the Status Chip
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>type</td>
+      <td>
+        Can be default, success, warning or danger and will set color of the
+        chip
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<Preview>
+  <Story name="StatusChip">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
+      <StatusChip type="default">default</StatusChip>
+      <StatusChip type="default" selected>
+        default
+      </StatusChip>
+      <StatusChip type="success">success</StatusChip>
+      <StatusChip type="success" selected>
+        success
+      </StatusChip>
+      <StatusChip type="warning">warning</StatusChip>
+      <StatusChip type="warning" selected>
+        warning
+      </StatusChip>
+      <StatusChip type="danger">danger</StatusChip>
+      <StatusChip type="danger" selected>
+        danger
+      </StatusChip>
+    </div>
+  </Story>
+</Preview>
+
+### CloseableChip
+
+These are the extra props for the Status Chip
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onClose</td>
+      <td>Callback when the chip is closed by clicking on the right icon</td>
+    </tr>
+  </tbody>
+</table>
+
+By default, there will be a close Icon on the right that can be customized by changing _renderRightIcon_
+
+<Preview>
+  <Story name="CloseableChip">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}
+    >
+      <CloseableChip onClose={() => console.log("close fired")}>
+        with close
+      </CloseableChip>
+      <CloseableChip
+        onClick={() => console.log("click")}
+        onClose={() => console.log("close custom fired")}
+        renderRightIcon={() => <ChipIcon name="arrow" size={8} />}
+      >
+        with custom close
+      </CloseableChip>
+    </div>
+  </Story>
+</Preview>
+
+### ChipList
+
+The ChipList lists an array of items as closeable chips and will change accordingly.
+
+These are the base props for the Chip List
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>list</td>
+      <td>Array of items to be displayed</td>
+    </tr>
+    <tr>
+      <td>displayFn</td>
+      <td>
+        Function that will change how the item is displayed. Used in case of
+        objects. default: (item:T) => item
+      </td>
+    </tr>
+    <tr>
+      <td>onDismissChip</td>
+      <td>Callback triggered when one chip is closed</td>
+    </tr>
+    <tr>
+      <td>onListChange</td>
+      <td>Callback triggered everytime the list changes. </td>
+    </tr>
+    <tr>
+      <td>Chip</td>
+      <td>Extended CloseableChip to replace default one</td>
+    </tr>
+  </tbody>
+</table>
+
+The chip list works as uncontrolled state but can be controlled with onListChange.
+
+<Preview>
+  <Story name="ChipList">
+    <ChipList
+      list={["test", "test2", "test3", "test", "test2", "test3"]}
+      onListChange={list => console.log(list)}
+    />
+  </Story>
+</Preview>
+
+```javascript
+<ChipList list={["test", "test2", "test3"]} />
+```
+
+With a list of objects and _displayFn_ function.
+
+<Preview>
+  <ChipList
+    list={[{ name: "testObj" }, { name: "testObj2" }, { name: "testObj3" }]}
+    displayFn={item => item.name}
+  />
+</Preview>
+
+```javascript
+<ChipList
+  list={[{ name: "testObj" }, { name: "testObj2" }, { name: "testObj3" }]}
+  displayFn={item => item.name}
+/>
+```
+
+With a different extended CloseableChip by registering a new CloseableChip. This will affect all forward closeable chips used by the registry.
+
+<Preview>
+  <ChipListStory />
+</Preview>
+
+```javascript
+CloseableChip.extendStyles(
+  () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
+  { register: true }
+);
+<ChipList list={["test", "test2", "test3"]} />;
+```
+
+### ChipInput
+
+The ChipInput allows to manipulate a _ChipList_ with the possibility to add new items
+
+These are the base props for the ChipInput
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>Array of strings to be displayed</td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>Callback triggered when the list of chips changes</td>
+    </tr>
+    <tr>
+      <td>allowDuplicates</td>
+      <td>Boolean that enables duplicates. Default is false </td>
+    </tr>
+  </tbody>
+</table>
+
+<Preview>
+  <Story name="ChipInput">
+    <ChipInput onChange={e => console.log(e)} />
+  </Story>
+</Preview>
+
+```javascript
+<ChipInput onChange={e => console.log(e)} />
+```
+
+With initial values and a placeholder. This one enables duplicates.
+
+<Preview>
+  <ChipInput
+    value={["1", "2"]}
+    allowDuplicates={true}
+    placeholder="Placeholder"
+  />
+</Preview>
+
+```javascript
+<ChipInput
+  value={["1", "2"]}
+  allowDuplicates={true}
+  placeholder="Placeholder"
+/>
+```
+
+With a different extended CloseableChip by registering a new CloseableChip. This will affect all forward closeable chips used by the registry.
+
+<Preview>
+  <ChipInputStory />
+</Preview>
+
+```javascript
+CloseableChip.extendStyles(
+  () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
+  { register: true }
+);
+<ChipInput value={[]} />;
+```

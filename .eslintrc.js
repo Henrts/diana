@@ -16,8 +16,8 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   rules: {
+    "no-underscore-dangle": "off",
     "no-trailing-spaces": "error",
-    "comma-dangle": ["error", "never"],
     "arrow-parens": ["error", "as-needed"],
     "import/extensions": [2, { commonjs: true }],
     "import/no-unresolved": "off",
@@ -37,6 +37,8 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unnecessary-type-assertion": "off",
     "react/no-array-index-key": "off",
+    "import/no-webpack-loader-syntax": "off",
+    "react/no-unescaped-entities": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {

@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+node_modules/
 /node_modules
 /.pnp
 .pnp.js
@@ -11,6 +12,7 @@
 # production
 /build
 /dist
+dist/
 
 # misc
 .DS_Store
@@ -27,3 +29,9 @@ yarn-error.log*
 
 .idea
 vscode-mdx-master
+
+lib/
+module/
+
+packages/assets/index.js
+packages/assets/index.d.ts

@@ -1,0 +1,37 @@
+{
+  "name": "@diana-ui/base",
+  "version": "0.0.3",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "module"
+  ],
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module",
+    "clean:files": "rimraf lib module",
+    "prepare": "yarn clean:files && yarn build"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.5"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  },
+  "dependencies": {
+    "@diana-ui/tokens": "^0.0.3",
+    "@diana-ui/types": "^0.0.3",
+    "aesthetic": "^5.1.0",
+    "aesthetic-adapter-aphrodite": "^5.1.0",
+    "aesthetic-react": "^2.1.0",
+    "extend": "^3.0.2",
+    "hoist-non-react-statics": "^3.3.2",
+    "react-registry": "^0.5.0",
+    "uuid": "^3.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
