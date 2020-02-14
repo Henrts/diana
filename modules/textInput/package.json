@@ -1,7 +1,8 @@
 {
   "name": "@diana-ui/textinput",
   "version": "0.0.4",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "module/index.js",
   "license": "MIT",
   "scripts": {
     "build": "yarn compile:lib && yarn compile:module",
