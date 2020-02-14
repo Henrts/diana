@@ -1,7 +1,8 @@
 {
   "name": "@diana-ui/{{packageName}}",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "module/index.js",
   "files": [
     "lib",
     "module"
