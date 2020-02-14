@@ -1,7 +1,7 @@
 {
   "name": "@diana-ui/checkbox",
   "version": "0.0.4",
-  "main": "lib/ndex.js",
+  "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
     "lib",
