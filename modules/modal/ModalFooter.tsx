@@ -6,7 +6,6 @@ export interface IProps {}
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   footer: {
-    height: "64px",
     display: "flex",
     alignItems: "flex-end",
     placeContent: "flex-end",
