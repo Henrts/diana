@@ -7,7 +7,7 @@ import { withStyles } from "@diana-ui/base";
 import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 
 export interface IProps extends ReactModalProps {
-  children: ReactElement[];
+  children: ReactElement[] | ReactElement;
 }
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({

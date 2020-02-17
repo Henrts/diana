@@ -16,6 +16,7 @@
     "prepare": "yarn clean:files && yarn build"
   },
   "dependencies": {
+    "@types/react-modal": "^3.10.4",
     "@diana-ui/base": "^0.0.4",
     "@diana-ui/icon": "^0.0.4",
     "@diana-ui/types": "^0.0.4",
@@ -24,8 +25,7 @@
     "react-modal": "^3.11.1"
   },
   "devDependencies": {
-    "@diana-ui/button": "^0.0.4",
-    "@types/react-modal": "^3.10.4"
+    "@diana-ui/button": "^0.0.4"
   },
   "publishConfig": {
     "access": "public"

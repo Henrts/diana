@@ -7,3 +7,4 @@ node_modules
 *.stories.tsx
 module
 lib
+scripts/*.d.ts
