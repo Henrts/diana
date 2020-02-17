@@ -44,6 +44,8 @@ const Modal: React.FC<IAllProps> = ({
   theme,
   onRequestClose,
   isOpen,
+  shouldCloseOnEsc = false,
+  shouldCloseOnOverlayClick = false,
   ...rest
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,6 +61,8 @@ const Modal: React.FC<IAllProps> = ({
       className={cx(styles.content)}
       overlayClassName={cx(styles.overlay)}
       onRequestClose={onClose}
+      shouldCloseOnEsc={shouldCloseOnEsc}
+      shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
       {...rest}
     >
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
