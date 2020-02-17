@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/icon",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "lib/index.js",
   "module": "module/index.js",
   "license": "MIT",
@@ -12,10 +12,10 @@
     "prepare": "yarn clean:files && yarn build"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.0.4",
-    "@diana-ui/tokens": "^0.0.4",
-    "@diana-ui/types": "^0.0.4",
-    "@diana-ui/typography": "^0.0.4",
+    "@diana-ui/base": "^0.0.5",
+    "@diana-ui/tokens": "^0.0.5",
+    "@diana-ui/types": "^0.0.5",
+    "@diana-ui/typography": "^0.0.5",
     "aesthetic-react": "^2.1.0",
     "react": "^16.12.0",
     "react-svg": "^11.0.9"
