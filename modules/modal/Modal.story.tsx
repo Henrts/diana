@@ -23,14 +23,7 @@ export const ModalComponent: React.FC = () => {
         onRequestClose={() => updateShow(false)}
       >
         <ModalHeader title="Title" description="Subtitle" />
-        <ModalBody>
-          <input type="text" autoFocus />
-          CONTENT
-          <br />
-          <br />
-          <br />
-          <br />
-        </ModalBody>
+        <ModalBody>CONTENT</ModalBody>
         <ModalFooter>
           <BaseButton>Coisas qwew</BaseButton>
           <BaseButton>Outras coisas</BaseButton>

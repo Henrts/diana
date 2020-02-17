@@ -2,17 +2,103 @@ import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import { H3 } from "@diana-ui/typography";
 import { BaseButton } from "@diana-ui/Button";
 import { ModalComponent } from "./Modal.story";
+import ModalHeader from "./ModalHeader";
+import ModalBody from "./ModalBody";
+import ModalFooter from "./ModalFooter";
 
 <Meta title="Components| Modal" />
 
 # Modal
 
-Modal component
+Modal component uses <a href="https://github.com/reactjs/react-modal">react-modal</a>.
 
-### API
+### Demo
 
 <Preview>
   <Story name="Modal">
     <ModalComponent />
   </Story>
 </Preview>
+
+### Using @diana-ui/Modal
+
+Modal is divided into 3 possible children: ModalHeader, ModalBody and ModalFooter.
+
+#### Modal Header
+
+Used to apply Modal title, description, close button.
+
+<Preview>
+  <Story name="ModalHeader">
+    <ModalHeader title="Title" description="Subtitle" />
+  </Story>
+</Preview>
+
+It's possible to extend its styles by doing:
+
+```javascript
+import { ModalHeader as YModalHeader } from '@diana-ui/modal'
+
+const ModalHeader = YModalHeader.extendStyles(theme => {
+  // Header wrapper section
+  header: {},
+  // Whole title row section (without subtitle)
+  titleWrapper: {},
+  // Close icon
+  closeIcon: {},
+  // Icon behind title
+  icon: {},
+  // Title text
+  title: {},
+  // Subtitle text
+  description: {}
+})
+
+```
+
+#### Modal Body
+
+Actual content for the Modal
+
+<Preview>
+  <Story name="ModalBody">
+    <ModalBody>Content</ModalBody>
+  </Story>
+</Preview>
+
+It's possible to extend its styles by doing:
+
+```javascript
+import { ModalBody as YModalBody } from '@diana-ui/modal'
+
+const ModalBody = YModalBody.extendStyles(theme => {
+  // All body section
+  body: {},
+})
+
+```
+
+#### Modal Footer
+
+Footer for the Modal. This will be mainly buttons.
+
+<Preview>
+  <Story name="ModalFooter">
+    <ModalFooter>
+      <BaseButton>Button 1</BaseButton>
+      <BaseButton>Button 2</BaseButton>
+    </ModalFooter>
+  </Story>
+</Preview>
+
+It's possible to extend its styles by doing:
+
+```javascript
+import { ModalFooter as YModalFooter } from '@diana-ui/modal'
+
+const ModalFooter = YModalFooter.extendStyles(theme => {
+  // All footer section
+  footer: {},
+})
+
+```
