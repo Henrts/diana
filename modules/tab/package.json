@@ -21,10 +21,6 @@
     "react": "^16.12.0",
     "uuid": "^3.4.0"
   },
-  "devDependencies": {
-    "@diana-ui/base": "^0.0.3",
-    "@diana-ui/types": "^0.0.3"
-  },
   "publishConfig": {
     "access": "public"
   }
