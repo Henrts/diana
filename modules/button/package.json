@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/button",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "lib/index.js",
   "module": "module/index.js",
   "license": "MIT",
@@ -18,10 +18,10 @@
     "prepare": "yarn clean:files && yarn build"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.0.5",
-    "@diana-ui/icon": "^0.0.5",
-    "@diana-ui/types": "^0.0.5",
-    "@diana-ui/typography": "^0.0.5",
+    "@diana-ui/base": "^0.0.6",
+    "@diana-ui/icon": "^0.0.6",
+    "@diana-ui/types": "^0.0.6",
+    "@diana-ui/typography": "^0.0.6",
     "react": "^16.12.0"
   },
   "publishConfig": {
