@@ -1,12 +1,20 @@
 {
   "name": "@diana-ui/types",
   "version": "0.0.5",
-  "main": "types.ts",
-  "type": "types.ts",
+  "main": "lib/types.ts",
+  "module": "module/types.ts",
   "license": "MIT",
   "files": [
-    "types.ts"
+    "lib",
+    "module"
   ],
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module",
+    "clean:files": "rimraf lib module",
+    "prepare": "yarn clean:files && yarn build"
+  },
   "devDependencies": {
     "typescript": "^3.7.5"
   },
