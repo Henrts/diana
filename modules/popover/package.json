@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/popover",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -11,9 +11,9 @@
     "prepare": "yarn clean:files && yarn build"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.0.7",
-    "@diana-ui/hooks": "^0.0.7",
-    "@diana-ui/types": "^0.0.7",
+    "@diana-ui/base": "^0.0.8",
+    "@diana-ui/hooks": "^0.0.8",
+    "@diana-ui/types": "^0.0.8",
     "react": "^16.12.0"
   },
   "publishConfig": {

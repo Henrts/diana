@@ -63,7 +63,8 @@ export type Theme = {
   colors: typeof defaultPalette;
   typography: IFonts;
   icons: {
-    [key: string]: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any;
   };
   fontFamily: string;
   /* eslint-disable  @typescript-eslint/no-explicit-any */
