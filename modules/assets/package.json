@@ -2,22 +2,26 @@
   "name": "@diana-ui/assets",
   "version": "0.0.3",
   "main": "lib/index.js",
-  "module": "module/index.js",
   "files": [
-    "custom.d.ts",
-    "lib",
-    "dist"
+    "lib"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "yarn copy:assets && yarn compile:lib && yarn compile:module",
-    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
-    "compile:module": "tsc --target es6 --module esnext --outDir module",
-    "copy:assets": "copyfiles custom.d.ts icons/* lib && copyfiles custom.d.ts icons/* module ",
-    "clean:files": "rimraf lib module",
+    "build": "yarn compile:assets && yarn generate:types",
+    "compile:assets": "babel . --out-dir lib --extensions .ts,.tsx --ignore *.d.ts",
+    "generate:types": "tsc lib/index.js --declaration --emitDeclarationOnly --allowJs ",
+    "clean:files": "rimraf lib",
     "prepare": "yarn clean:files && yarn build"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "babel-plugin-inline-react-svg": "^1.1.1"
   }
 }

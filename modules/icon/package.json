@@ -3,6 +3,10 @@
   "version": "0.0.7",
   "main": "lib/index.js",
   "module": "module/index.js",
+  "files": [
+    "lib",
+    "module"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "yarn compile:lib && yarn compile:module",

@@ -19,6 +19,7 @@
     "**/**.story.*",
     "**/lib",
     "**/module",
-    "**/**.d.ts"
+    "**/**.d.ts",
+    "**/babel.config.js"
   ]
 }
