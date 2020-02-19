@@ -1,7 +1,12 @@
+/**
+ * This file was auto-generated! Please do NOT edit directly.
+ * Use yarn generate:icons
+ */
+
 import {
   Add,
-  Arrow,
   ArrowDown,
+  Arrow,
   Block,
   Chart,
   Check,
@@ -11,8 +16,8 @@ import {
 
 export default {
   add: Add,
-  arrow: Arrow,
   "arrow-down": ArrowDown,
+  arrow: Arrow,
   block: Block,
   chart: Chart,
   check: Check,
