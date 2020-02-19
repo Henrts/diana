@@ -8,3 +8,4 @@ node_modules
 module
 lib
 scripts/*.d.ts
+babel.config.js

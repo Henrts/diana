@@ -25,7 +25,7 @@ export interface IProps<T extends IItem>
   placeholder?: string;
 }
 
-interface ISingleProps<T extends IItem> extends IProps<T> {
+export interface ISingleProps<T extends IItem> extends IProps<T> {
   onItemSelected: (item: T) => void;
   selectedItem?: T;
 }
