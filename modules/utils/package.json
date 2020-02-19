@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/utils",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -16,7 +16,7 @@
     "prepare": "yarn clean:files && yarn build"
   },
   "dependencies": {
-    "@diana-ui/tokens": "^0.0.6",
+    "@diana-ui/tokens": "^0.0.7",
     "aesthetic": "^5.1.0"
   },
   "publishConfig": {
