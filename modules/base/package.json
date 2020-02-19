@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/base",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "lib/index.js",
   "license": "MIT",
   "files": [
@@ -15,16 +15,16 @@
     "prepare": "yarn clean:files && yarn build"
   },
   "devDependencies": {
-    "typescript": "^3.7.5",
     "@types/extend": "^3.0.1",
-    "@types/uuid": "^3.4.6"
+    "@types/uuid": "^3.4.6",
+    "typescript": "^3.7.5"
   },
   "peerDependencies": {
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/tokens": "^0.0.7",
-    "@diana-ui/types": "^0.0.9",
+    "@diana-ui/tokens": "^0.0.8",
+    "@diana-ui/types": "^0.0.10",
     "aesthetic": "^5.1.0",
     "aesthetic-adapter-aphrodite": "^5.1.0",
     "aesthetic-react": "^2.1.0",
