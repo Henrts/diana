@@ -51,3 +51,21 @@ export const DerivedComponent = ExampleComponent.extendStyles(theme => ({
   }
 }));
 ```
+
+### Publish
+
+Lerna will publish each package based on changes that happened since last release. For that we can run the following command that'll publish the packages and update others that has them as dependencies inside @diana-ui scope.
+
+```shell
+  $ npx lerna publish
+```
+
+> Note: if you already have lerna installed globally you can omit _npx_
+
+Before run it, be sure that all packages do not contain errors. Try exec the following command in order to check it:
+
+```shell
+  $ npx lerna run prepare
+```
+
+This will run prepare script on each component
