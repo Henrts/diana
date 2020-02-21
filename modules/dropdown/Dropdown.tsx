@@ -31,19 +31,8 @@ export interface ISingleProps<T extends IItem> extends IProps<T> {
 }
 
 export const styleSheet: ThemeStyleSheetFactory = () => ({
-  header: {},
-  label: {},
-  text: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap"
-  },
-  list: {
-    marginBottom: 0,
-    marginTop: 0,
-    paddingLeft: 0,
-    listStyle: "none",
-    overflowY: "auto"
+  header: {
+    padding: "10px 0"
   },
   item: {
     cursor: "pointer"
@@ -54,12 +43,32 @@ export const styleSheet: ThemeStyleSheetFactory = () => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap"
+  },
+  label: {
+    padding: "10px 0"
+  },
+  list: {
+    marginBottom: 0,
+    marginTop: 0,
+    paddingLeft: 0,
+    listStyle: "none",
+    overflowY: "auto"
+  },
+  text: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
+  },
+  wrapper: {
+    display: "flex",
+    alignItems: "flex-start"
   }
 });
 
 export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   container: {
-    maxWidth: "100%"
+    maxWidth: "100%",
+    minWidth: 220
   }
 });
 
@@ -80,11 +89,12 @@ export const usePopoverRef = (
   return ref;
 };
 
-export const DropdownHeader: React.FC<
-  { label?: string; text?: string } & WithStylesProps
-> = ({ label, text, cx, styles }) => (
+export const DropdownHeader: React.FC<{ text?: string } & WithStylesProps> = ({
+  text,
+  cx,
+  styles
+}) => (
   <div className={cx(styles.header)}>
-    {label && <div className={cx(styles.label)}>{label}</div>}
     <div className={cx(styles.text)}>{text}</div>
   </div>
 );
@@ -117,40 +127,42 @@ const BaseDropdown: React.FC<PropsWithChildren<
     () =>
       renderHeader?.() ?? (
         <DropdownHeader
-          label={label}
           text={text ?? (selectedItem ? selectedItem.text : placeholder)}
           cx={cx}
           styles={styles}
         />
       ),
-    [renderHeader, label, text, selectedItem, placeholder, cx, styles]
+    [renderHeader, text, selectedItem, placeholder, cx, styles]
   );
 
   return (
-    <StyledPopover wrappedRef={ref} {...props} header={header}>
-      <ul className={cx(styles.list)}>
-        {items.map((item, index) => (
-          <li
-            className={cx(
-              styles.item,
-              selectedItem?.id === item.id ? styles.itemSelected : {}
-            )}
-            key={item.id}
-            onClick={() => {
-              onItemSelected(item);
-              hide();
-            }}
-            role="presentation"
-          >
-            {renderItem?.(
-              item,
-              selectedItem !== undefined && selectedItem.id === item.id,
-              index
-            ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
-          </li>
-        ))}
-      </ul>
-    </StyledPopover>
+    <div className={cx(styles.wrapper)}>
+      {label && <div className={cx(styles.label)}>{label}</div>}
+      <StyledPopover wrappedRef={ref} {...props} header={header}>
+        <ul className={cx(styles.list, "list")}>
+          {items.map((item, index) => (
+            <li
+              className={cx(
+                styles.item,
+                selectedItem?.id === item.id ? styles.itemSelected : {}
+              )}
+              key={item.id}
+              onClick={() => {
+                onItemSelected(item);
+                hide();
+              }}
+              role="presentation"
+            >
+              {renderItem?.(
+                item,
+                selectedItem !== undefined && selectedItem.id === item.id,
+                index
+              ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
+            </li>
+          ))}
+        </ul>
+      </StyledPopover>
+    </div>
   );
 };
 

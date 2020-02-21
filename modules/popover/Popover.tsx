@@ -37,12 +37,13 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   disabled: {
     pointerEvents: "none"
   },
-  header: {
+  headerWrapper: {
     cursor: "pointer"
   },
   popover: {
     position: "absolute",
-    width: "100%"
+    width: "100%",
+    zIndex: 10
   },
   bottom: {
     top: "100%"
@@ -104,7 +105,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       ref={divRef}
     >
       <div
-        className={cx(styles.header)}
+        className={cx(styles.headerWrapper)}
         onClick={() => {
           if (!disabled) {
             toggleVisible();
