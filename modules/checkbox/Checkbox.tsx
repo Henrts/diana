@@ -146,9 +146,9 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
   const handleClick = useCallback((e?: React.MouseEvent) => {
     const input = inputRef.current;
     if (e) {
-      e.stopPropagation();
       e.preventDefault();
     }
+
     return input?.click();
   }, []);
 
