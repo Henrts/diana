@@ -8,13 +8,12 @@
     "lib",
     "module"
   ],
-  "devDependencies": {
-    "typescript": "^3.7.5"
+  "peerDependencies": {
+    "react": "^16.12.0"
   },
   "dependencies": {
     "@diana-ui/base": "^0.0.10",
-    "@diana-ui/types": "^0.0.10",
-    "react": "^16.12.0"
+    "@diana-ui/types": "^0.0.10"
   },
   "scripts": {
     "build": "yarn compile:lib && yarn compile:module",
