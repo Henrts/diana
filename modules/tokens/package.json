@@ -14,9 +14,6 @@
   "dependencies": {
     "@diana-ui/assets": "^0.0.6"
   },
-  "devDependencies": {
-    "typescript": "^3.7.5"
-  },
   "publishConfig": {
     "access": "public"
   }

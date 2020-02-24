@@ -15,17 +15,16 @@
     "clean:files": "rimraf lib module",
     "prepare": "yarn clean:files && yarn build"
   },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  },
   "dependencies": {
     "@diana-ui/base": "^0.0.10",
     "@diana-ui/tokens": "^0.0.8",
     "@diana-ui/types": "^0.0.10",
     "@diana-ui/typography": "^0.0.10",
     "aesthetic-react": "^2.1.0",
-    "react": "^16.12.0",
     "react-svg": "^11.0.9"
-  },
-  "devDependencies": {
-    "typescript": "^3.7.5"
   },
   "publishConfig": {
     "access": "public"

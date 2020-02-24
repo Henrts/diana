@@ -69,3 +69,13 @@ Before run it, be sure that all packages do not contain errors. Try exec the fol
 ```
 
 This will run prepare script on each component
+
+### Using Commitizen
+
+This repo uses commitizen to help with the commit structure. In order to use it just do as shown below:
+
+```shell
+  $ git add .
+  $ yarn commit
+  ...
+```

@@ -30,7 +30,7 @@ const StyledDropdown = Dropdown.extendStyles(stylesheet);
 const StyledMultipleDropdown = MultipleDropdown.extendStyles(stylesheet);
 
 export const DropdownStory = () => {
-  const [selectedItem, selectItem] = useState();
+  const [selectedItem, selectItem] = useState<IItem>();
   return (
     <StyledDropdown
       placeholder="Dropdown"

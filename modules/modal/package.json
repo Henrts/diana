@@ -15,13 +15,15 @@
     "clean:files": "rimraf lib module",
     "prepare": "yarn clean:files && yarn build"
   },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  },
   "dependencies": {
     "@diana-ui/base": "^0.0.10",
     "@diana-ui/icon": "^0.0.10",
     "@diana-ui/types": "^0.0.10",
     "@diana-ui/typography": "^0.0.10",
     "@types/react-modal": "^3.10.4",
-    "react": "^16.12.0",
     "react-modal": "^3.11.1"
   },
   "devDependencies": {
