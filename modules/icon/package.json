@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/icon",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -19,10 +19,10 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.0.10",
-    "@diana-ui/tokens": "^0.0.8",
-    "@diana-ui/types": "^0.0.10",
-    "@diana-ui/typography": "^0.0.10",
+    "@diana-ui/base": "^0.1.0",
+    "@diana-ui/tokens": "^0.1.0",
+    "@diana-ui/types": "^0.1.0",
+    "@diana-ui/typography": "^0.1.0",
     "aesthetic-react": "^2.1.0",
     "react-svg": "^11.0.9"
   },
