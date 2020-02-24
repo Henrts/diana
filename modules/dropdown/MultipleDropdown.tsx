@@ -43,14 +43,13 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
     renderHeader,
     wrappedRef
   } = props;
+  const isAllSelected = items.length === selectedItems.length;
 
   const ref = usePopoverRef(wrappedRef);
   const StyledPopover = useRegistryWithStyles<IPopoverProps>(
     "Popover",
     styleSheetPopover
   );
-
-  const hide = () => ref.current?.hide();
 
   const header = useMemo(
     () =>
@@ -83,10 +82,9 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
               selectedItems.length === items.length && styles.itemSelected,
               selectedItems.length === items.length && styles.itemAllSelected
             )}
-            onClick={() => {
-              onItemsSelected([...items]);
-              hide();
-            }}
+            onClick={() =>
+              isAllSelected ? onItemsSelected([]) : onItemsSelected([...items])
+            }
             role="presentation"
           >
             {selectAllItem ?? selectAllText}
