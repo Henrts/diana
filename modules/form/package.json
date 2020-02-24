@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/form",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -18,7 +18,7 @@
   "dependencies": {
     "@diana-ui/base": "^0.0.10",
     "@diana-ui/button": "^0.0.10",
-    "@diana-ui/checkbox": "^0.0.11",
+    "@diana-ui/checkbox": "^0.0.12",
     "@diana-ui/textinput": "^0.0.11",
     "@diana-ui/types": "^0.0.10",
     "react": "^16.12.0",
