@@ -15,7 +15,13 @@ export interface IMultipleProps<T extends IItem> extends IProps<T> {
   onItemsSelected: (items: T[]) => void;
   selectedItems: T[];
   selectAllText?: string;
-  selectAllItem?: React.ReactNode;
+  selectAllItem?: (checked: boolean) => React.ReactNode;
+}
+
+export interface IBaseMultipleDropdownOptions {
+  onItemClicked: (item: IItem, selectedItems: IItem[]) => void;
+  onAllButtonClicked: () => void;
+  isAllButtonChecked: boolean;
 }
 
 export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
@@ -25,14 +31,15 @@ export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   }
 });
 
-const BaseMultipleDropdown: React.FC<PropsWithChildren<
-  IMultipleProps<IItem> & WithStylesProps
->> = props => {
+export type IBaseMultipleDropdownProps = PropsWithChildren<
+  IMultipleProps<IItem> & WithStylesProps & IBaseMultipleDropdownOptions
+>;
+
+const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps> = props => {
   const {
     className,
     disabled,
     items,
-    onItemsSelected,
     selectedItems,
     styles,
     cx,
@@ -43,9 +50,11 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
     text,
     renderItem,
     renderHeader,
-    wrappedRef
+    wrappedRef,
+    isAllButtonChecked,
+    onItemClicked,
+    onAllButtonClicked
   } = props;
-  const isAllSelected = items.length === selectedItems.length;
 
   const ref = usePopoverRef(wrappedRef);
   const StyledPopover = useRegistryWithStyles<IPopoverProps>(
@@ -85,15 +94,12 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
             className={cx(
               styles.item,
               styles.itemAll,
-              selectedItems.length === items.length && styles.itemSelected,
-              selectedItems.length === items.length && styles.itemAllSelected
+              isAllButtonChecked && styles.itemSelected
             )}
-            onClick={() =>
-              isAllSelected ? onItemsSelected([]) : onItemsSelected([...items])
-            }
+            onClick={() => onAllButtonClicked()}
             role="presentation"
           >
-            {selectAllItem ?? selectAllText}
+            {selectAllItem?.(isAllButtonChecked) ?? selectAllText}
           </li>
           {items.map((item: IItem, index: number) => (
             <li
@@ -104,22 +110,13 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
                   : {}
               )}
               key={item.id}
-              onClick={() => {
-                let newItems = [...selectedItems];
-                const selected =
-                  newItems.find(i => i.id === item.id) !== undefined;
-                if (selected) {
-                  newItems = newItems.filter(i => i.id !== item.id);
-                } else {
-                  newItems.push(item);
-                }
-                onItemsSelected(newItems);
-              }}
+              onClick={() => onItemClicked(item, selectedItems)}
               role="presentation"
             >
               {renderItem?.(
                 item,
                 selectedItems.find(i => i.id === item.id) !== undefined,
+                isAllButtonChecked,
                 index
               ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
             </li>
@@ -130,7 +127,7 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
   );
 };
 
-const multipleStylesheet: ThemeStyleSheetFactory = extendStyles(
+export const multipleStylesheet: ThemeStyleSheetFactory = extendStyles(
   styleSheet,
   () => ({
     itemAll: {},
@@ -138,7 +135,4 @@ const multipleStylesheet: ThemeStyleSheetFactory = extendStyles(
   })
 );
 
-export const MultipleDropdown = withStyles(multipleStylesheet)(
-  BaseMultipleDropdown
-);
-export default MultipleDropdown;
+export default withStyles(multipleStylesheet)(BaseMultipleDropdown);

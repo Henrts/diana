@@ -7,4 +7,12 @@ export {
 export {
   default as MultipleDropdown,
   IMultipleProps as IMultipleDropdownProps
-} from "./MultipleDropdown";
+} from "./BaseMultipleDropdown";
+export {
+  default as FilterMultipleDropdown,
+  IFilterMultipleDropDownProps
+} from "./FiltersMultipleDropdown";
+export {
+  default as SimpleMultipleDropdown,
+  ISimpleMultipleDropDownProps
+} from "./SimpleMultipleDropdown";

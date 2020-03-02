@@ -1,6 +1,10 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import LinkTo from "@storybook/addon-links/react";
-import { DropdownStory, MultipleDropdownStory } from "./Dropdown.story.tsx";
+import {
+  DropdownStory,
+  SimpleMultipleDropdownStory,
+  FilterMultipleDropdownStory
+} from "./Dropdown.story.tsx";
 
 <Meta title="Components | Dropdown" />
 
@@ -14,11 +18,19 @@ This component can be used to select a value from a list. It uses the `Popover` 
   </Story>
 </Preview>
 
-### Multiple Dropdown
+### Multiple Dropdown (Normal Mode)
 
 <Preview>
-  <Story name="Multiple Dropdown">
-    <MultipleDropdownStory />
+  <Story name="Multiple Dropdown Simple">
+    <SimpleMultipleDropdownStory />
+  </Story>
+</Preview>
+
+### Multiple Dropdown (Filters Mode)
+
+<Preview>
+  <Story name="Multiple Dropdown Filter">
+    <FilterMultipleDropdownStory />
   </Story>
 </Preview>
 

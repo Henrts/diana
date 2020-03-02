@@ -17,7 +17,12 @@ export interface IItem {
 export interface IProps<T extends IItem>
   extends PropsWithChildren<IPopoverProps> {
   items: T[];
-  renderItem?: (item: T, selected: boolean, index?: number) => React.ReactNode;
+  renderItem?: (
+    item: T,
+    selected: boolean,
+    isAllSelected: boolean,
+    index?: number
+  ) => React.ReactNode;
   label?: string;
   text?: string;
   placeholder?: string;
@@ -161,6 +166,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
               {renderItem?.(
                 item,
                 selectedItem !== undefined && selectedItem.id === item.id,
+                false,
                 index
               ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
             </li>
