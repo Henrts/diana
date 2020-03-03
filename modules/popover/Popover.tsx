@@ -16,7 +16,7 @@ import { useOnClickOutside } from "@diana-ui/hooks";
 type Direction = "bottom" | "left" | "right" | "top";
 
 export interface IProps extends StandardProps<"div"> {
-  header?: React.ReactNode;
+  renderHeader?: (visible: boolean) => React.ReactNode;
   direction?: Direction;
   dismissOnClick?: boolean;
   onShow?: () => void;
@@ -67,7 +67,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   direction = "bottom",
   dismissOnClick = true,
   children,
-  header,
+  renderHeader,
   onShow,
   onHide,
   disabled = false,
@@ -84,7 +84,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       }
       _setVisible(newVisible);
     },
-    [_setVisible, onShow, onHide]
+    [onHide, onShow]
   );
 
   const divRef = useRef<HTMLDivElement>(null);
@@ -112,7 +112,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
           }
         }}
       >
-        {header}
+        {renderHeader?.(visible)}
       </div>
       {visible && (
         <div className={cx(styles.popover, styles[direction])}>{children}</div>

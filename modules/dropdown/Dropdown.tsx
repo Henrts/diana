@@ -7,8 +7,7 @@ import React, {
 } from "react";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
-import { IPopoverRef, IPopoverProps } from "@diana-ui/popover";
-import { useRegistryWithStyles } from "@diana-ui/hooks";
+import { Popover, IPopoverRef, IPopoverProps } from "@diana-ui/popover";
 
 export interface IItem {
   id: string;
@@ -18,7 +17,6 @@ export interface IItem {
 export interface IProps<T extends IItem>
   extends PropsWithChildren<IPopoverProps> {
   items: T[];
-  renderHeader?: () => React.ReactNode;
   renderItem?: (item: T, selected: boolean, index?: number) => React.ReactNode;
   label?: string;
   text?: string;
@@ -72,6 +70,8 @@ export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   }
 });
 
+const StyledPopover = Popover.extendStyles(styleSheetPopover);
+
 export const usePopoverRef = (
   wrappedRef:
     | ((instance: IPopoverRef) => void)
@@ -116,29 +116,30 @@ const BaseDropdown: React.FC<PropsWithChildren<
     wrappedRef
   } = props;
   const ref = usePopoverRef(wrappedRef);
-  const StyledPopover = useRegistryWithStyles<IPopoverProps>(
-    "Popover",
-    styleSheetPopover
-  );
 
   const hide = () => ref.current?.hide();
 
-  const header = useMemo(
+  const renderCustomHeader = useMemo(
     () =>
-      renderHeader?.() ?? (
+      renderHeader ||
+      (() => (
         <DropdownHeader
           text={text ?? (selectedItem ? selectedItem.text : placeholder)}
           cx={cx}
           styles={styles}
         />
-      ),
-    [renderHeader, text, selectedItem, placeholder, cx, styles]
+      )),
+    [cx, placeholder, renderHeader, selectedItem, styles, text]
   );
 
   return (
     <div className={cx(styles.wrapper)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
-      <StyledPopover wrappedRef={ref} {...props} header={header}>
+      <StyledPopover
+        wrappedRef={ref}
+        {...props}
+        renderHeader={renderCustomHeader}
+      >
         <ul className={cx(styles.list, "list")}>
           {items.map((item, index) => (
             <li
