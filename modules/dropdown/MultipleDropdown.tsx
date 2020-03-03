@@ -51,11 +51,10 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
     styleSheetPopover
   );
 
-  const header = useMemo(
+  const renderCustomHeader = useMemo(
     () =>
-      renderHeader ? (
-        renderHeader()
-      ) : (
+      renderHeader ||
+      (() => (
         <DropdownHeader
           text={
             text ??
@@ -66,14 +65,18 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
           cx={cx}
           styles={styles}
         />
-      ),
+      )),
     [renderHeader, text, selectedItems, placeholder, cx, styles]
   );
 
   return (
     <div className={cx(styles.wrapper)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
-      <StyledPopover wrappedRef={ref} {...props} header={header}>
+      <StyledPopover
+        wrappedRef={ref}
+        {...props}
+        renderHeader={renderCustomHeader}
+      >
         <ul className={cx(styles.list)}>
           <li
             className={cx(

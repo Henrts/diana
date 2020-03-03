@@ -5,7 +5,7 @@ export const PopoverStory = () => {
   const ref = useRef<IPopoverRef>(null);
   return (
     <Popover
-      header={
+      renderHeader={() => (
         <button
           onClick={event => {
             ref.current?.toggle();
@@ -13,7 +13,7 @@ export const PopoverStory = () => {
         >
           Toggle
         </button>
-      }
+      )}
       wrappedRef={ref}
     >
       Popover content
