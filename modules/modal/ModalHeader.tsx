@@ -14,8 +14,7 @@ export interface IProps {
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   header: {
     display: "flex",
-    flexDirection: "column",
-    marginBottom: "24px"
+    flexDirection: "column"
   },
   titleWrapper: {
     display: "flex",

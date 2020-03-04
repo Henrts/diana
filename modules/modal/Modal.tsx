@@ -29,7 +29,6 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     background: theme.colors.white,
     overflow: "auto",
     outline: "none",
-    padding: theme.spaceUnit.lg,
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column"

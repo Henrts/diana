@@ -15,12 +15,10 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       "&.horizontal": {
         height: "1px",
-        margin: `${theme.spaceUnit.md} 0`,
         width: "100%"
       },
       "&.vertical": {
         height: "100%",
-        margin: `0 ${theme.spaceUnit.md}`,
         width: "1px"
       }
     }
