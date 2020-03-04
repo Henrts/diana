@@ -22,6 +22,7 @@ export interface IBaseMultipleDropdownOptions {
   onItemClicked: (item: IItem, selectedItems: IItem[]) => void;
   onAllButtonClicked: () => void;
   isAllButtonChecked: boolean;
+  onClose?: () => void;
 }
 
 export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
@@ -53,7 +54,8 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps> = props => {
     wrappedRef,
     isAllButtonChecked,
     onItemClicked,
-    onAllButtonClicked
+    onAllButtonClicked,
+    onClose
   } = props;
 
   const ref = usePopoverRef(wrappedRef);
@@ -88,6 +90,7 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps> = props => {
         disabled={disabled || items.length === 0}
         {...props}
         renderHeader={renderCustomHeader}
+        onHide={onClose}
       >
         <ul className={cx(styles.list)}>
           <li
