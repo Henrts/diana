@@ -20,7 +20,8 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     backgroundColor: theme.colors.background.overlay,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    zIndex: 100
   },
   content: {
     position: "absolute",
