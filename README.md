@@ -79,3 +79,21 @@ This repo uses commitizen to help with the commit structure. In order to use it 
   $ yarn commit
   ...
 ```
+
+### Scripts
+
+> Generate Assets:
+
+Looks into the `assets>icons` directory and does the necessary updates in order to get the new icons added to the types and tokens package.
+
+```shell
+  $ yarn generate:assets
+```
+
+> New Package:
+
+Creates a new package based on the most common needed files. The package name does not need the @diana-ui prefix since it'll automatically be added.
+
+```shell
+  $ yarn new-package
+```
