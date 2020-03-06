@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
-import { DescriptionMedium, Label, SectionTitle } from "@diana-ui/typography";
+import { LabelMedium, SectionTitle, Text } from "@diana-ui/typography";
 import { Icon } from "@diana-ui/icon";
 
 export interface IProps {
-  icon?: any;
+  icon?: string;
   label?: string;
   title: JSX.Element | string;
   subtitle?: string;
@@ -56,14 +56,10 @@ const CardHeader: React.FC<IProps & WithStylesProps> = ({
     <header className={cx(styles.header)}>
       <div className={cx(styles.titleWrapper)}>
         {renderTitle()}
-        {subtitle && (
-          <DescriptionMedium className={cx(styles.subtitle)}>
-            {subtitle}
-          </DescriptionMedium>
-        )}
+        {subtitle && <Text className={cx(styles.subtitle)}>{subtitle}</Text>}
       </div>
-      {label && <Label className={cx(styles.label)}>{label}</Label>}
-      {icon && <Icon className={cx(styles.icon)} name={icon} />}
+      {label && <LabelMedium className={cx(styles.label)}>{label}</LabelMedium>}
+      {icon && <Icon className={cx(styles.icon)} name={icon as any} />}
     </header>
   );
 };

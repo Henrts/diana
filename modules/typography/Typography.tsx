@@ -39,6 +39,9 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   label: {
     ...theme.typography.label
   },
+  labelMedium: {
+    ...theme.typography.labelMedium
+  },
   sectionTitle: {
     ...theme.typography.sectionTitle
   }
@@ -147,6 +150,19 @@ export const Label: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.label, className)} {...props}>
+      {children}
+    </span>
+  );
+};
+
+export const LabelMedium: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.labelMedium, className)} {...props}>
       {children}
     </span>
   );

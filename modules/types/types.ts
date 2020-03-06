@@ -46,6 +46,7 @@ export interface IFonts {
   description?: IFont;
   descriptionMedium?: IFont;
   label: IFont;
+  labelMedium: IFont;
   sectionTitle?: IFont;
 }
 export interface ISpaceUnit {
