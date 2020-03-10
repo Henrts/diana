@@ -1,0 +1,68 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import {
+  PortalStory,
+  TopPortalStory,
+  RightPortalStory,
+  LeftPortalStory
+} from "./Portal.story.tsx";
+
+<Meta title="Components | Portal" />
+
+# Portal
+
+The Portal component uses <a href="https://reactjs.org/docs/portals.html">React Portals</a> to render
+a DOM element outside the DOM hierarchy of the parent element, namely as a child of the `<body>`.
+
+This component was implemented for the `Popover` to be able to visibly overflow out of parents that have `overflow-hidden`.
+An example of this can be found when a `Dropdown` (that used the `Popover`) is rendered inside a `Modal`.
+
+<Preview>
+  <Story name="Portal">
+    <PortalStory />
+  </Story>
+</Preview>
+
+The `Portal` is absolutely positioned, and its position can be determined through the `direction` prop.
+To calculate that position, the parent element's position is used via the `parentRef` prop.
+
+<Preview>
+  <Story name="TopPortal">
+    <TopPortalStory />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="RightPortal">
+    <RightPortalStory />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="LeftPortal">
+    <LeftPortalStory />
+  </Story>
+</Preview>
+
+### Available props
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>direction (optional)</td>
+      <td>"bottom" (default) | "left" | "right" | "top"</td>
+      <td>Where to place the portal relative to the parent element</td>
+    </tr>
+    <tr>
+      <td>parentRef</td>
+      <td>{"React.RefObject<HTMLDivElement>"}</td>
+      <td>The parent element's ref</td>
+    </tr>
+  </tbody>
+</table>
