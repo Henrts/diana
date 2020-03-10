@@ -1,0 +1,228 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import LinkTo from "@storybook/addon-links/react";
+import {
+  CardStory,
+  CardHeaderStory,
+  CardHeaderSubtitleStory,
+  CardHeaderLabelStory,
+  CardHeaderIconStory,
+  CardBodyStory,
+  CardFooterStory
+} from "./Card.story.tsx";
+
+<Meta title="Components | Card" />
+
+# Card
+
+The `Card` component is merely a wrapper for the different Card components.
+it is advisable to pass only those components (`CardHeader`, `CardBody`, `CardFooter`) as children, even though
+you can still pass whatever you please as seen in the example below.
+A valid example for a different component would be for instance a `Divider`.
+
+### Simple card
+
+<Preview>
+  <Story name="Card">
+    <CardStory />
+  </Story>
+</Preview>
+
+### Available props
+
+This component has no props
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>card</td>
+      <td></td>
+      <td>
+        This style affects the card element that wraps the card's different
+        components
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+# CardHeader
+
+The `CardHeader` can contain both the `Card`'s title and subtitle.
+It also supports having either a label or an icon on the top right corner.
+
+<Preview>
+  <Story name="CardHeader">
+    <div>
+      <CardHeaderStory />
+      <CardHeaderSubtitleStory />
+      <CardHeaderLabelStory />
+      <CardHeaderIconStory />
+    </div>
+  </Story>
+</Preview>
+
+### Available props
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>icon (optional)</td>
+      <td>string</td>
+      <td>
+        Name of the icon to be displayed in the top right corner
+        <br />
+        icon and label should be mutually exclusive
+      </td>
+    </tr>
+    <tr>
+      <td>label (optional)</td>
+      <td>string</td>
+      <td>
+        A label to be displayed in the top right corner
+        <br />
+        icon and label should be mutually exclusive
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>JSX.Element | string</td>
+      <td>CardHeader's title. It can either be a string or a custom element</td>
+    </tr>
+    <tr>
+      <td>subtitle (optional)</td>
+      <td>string</td>
+      <td>CardHeader's subtitle</td>
+    </tr>
+  </tbody>
+</table>
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>header</td>
+      <td></td>
+      <td>This style affects the CardHeader's wrapper element</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td></td>
+      <td>
+        This style affects the icon element displayed in the top right corner
+      </td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td></td>
+      <td>
+        This style affects the label element displayed in the top right corner
+      </td>
+    </tr>
+    <tr>
+      <td>subtitle</td>
+      <td></td>
+      <td>This style affects the CardHeader's subtitle element</td>
+    </tr>
+    <tr>
+      <td>titleWrapper</td>
+      <td></td>
+      <td>
+        This style affects the wrapper around the title and subtitle elements
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td></td>
+      <td>This style affects the CardHeader's title element</td>
+    </tr>
+  </tbody>
+</table>
+
+# CardBody
+
+The `CardBody` serves as the wrapper for the `Card`'s main content wrapper.
+
+<Preview>
+  <Story name="CardBody">
+    <CardBodyStory />
+  </Story>
+</Preview>
+
+### Available props
+
+This component has no props
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>body</td>
+      <td></td>
+      <td>This style affects the CardBody's wrapper element</td>
+    </tr>
+  </tbody>
+</table>
+
+# CardFooter
+
+The `CardFooter` contains mainly actionable elements like buttons or links.
+
+<Preview>
+  <Story name="CardFooter">
+    <CardFooterStory />
+  </Story>
+</Preview>
+
+### Available props
+
+This component has no props
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>footer</td>
+      <td></td>
+      <td>This style affects the CardFooter's wrapper element</td>
+    </tr>
+  </tbody>
+</table>
