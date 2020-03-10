@@ -11,7 +11,8 @@
     "compile:assets": "babel . --out-dir lib --extensions .ts,.tsx --ignore *.d.ts",
     "generate:types": "tsc lib/index.js --declaration --emitDeclarationOnly --allowJs ",
     "clean:files": "rimraf lib",
-    "prepare": "yarn clean:files && yarn build"
+    "prepare": "yarn clean:files && yarn build",
+    "watch": "npm-watch"
   },
   "publishConfig": {
     "access": "public"
@@ -23,5 +24,19 @@
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "babel-plugin-inline-react-svg": "^1.1.1"
+  },
+  "watch": {
+    "prepare": {
+      "runOnChangeOnly": true,
+      "extensions": "ts,tsx,svg",
+      "ignore": [
+        "lib",
+        "node_modules",
+        "module"
+      ],
+      "patterns": [
+        "."
+      ]
+    }
   }
 }

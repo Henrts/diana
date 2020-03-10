@@ -13,7 +13,8 @@
     "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
     "compile:module": "tsc --target es6 --module esnext --outDir module",
     "clean:files": "rimraf lib module",
-    "prepare": "yarn clean:files && yarn build"
+    "prepare": "yarn clean:files && yarn build",
+    "watch": "npm-watch"
   },
   "dependencies": {
     "@diana-ui/tokens": "^0.1.0",
@@ -21,5 +22,19 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "watch": {
+    "prepare": {
+      "runOnChangeOnly": true,
+      "extensions": "ts,tsx",
+      "ignore": [
+        "lib",
+        "node_modules",
+        "module"
+      ],
+      "patterns": [
+        "."
+      ]
+    }
   }
 }
