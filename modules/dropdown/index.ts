@@ -5,14 +5,10 @@ export {
   IItem as IDropdownItem
 } from "./Dropdown";
 export {
-  default as MultipleDropdown,
-  IMultipleProps as IMultipleDropdownProps
-} from "./BaseMultipleDropdown";
-export {
   default as FilterMultipleDropdown,
   IFilterMultipleDropDownProps
 } from "./FiltersMultipleDropdown";
 export {
-  default as SimpleMultipleDropdown,
-  ISimpleMultipleDropDownProps
+  default as MultipleDropdown,
+  ISimpleMultipleDropdownProps as IMultipleDropdownProps
 } from "./SimpleMultipleDropdown";

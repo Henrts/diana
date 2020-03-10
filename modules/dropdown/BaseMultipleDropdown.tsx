@@ -99,7 +99,7 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps> = props => {
               styles.itemAll,
               isAllButtonChecked && styles.itemSelected
             )}
-            onClick={() => onAllButtonClicked()}
+            onClick={onAllButtonClicked}
             role="presentation"
           >
             {selectAllItem?.(isAllButtonChecked) ?? selectAllText}

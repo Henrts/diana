@@ -7,7 +7,7 @@ import BaseMultipleDropdown, {
 } from "./BaseMultipleDropdown";
 import { IItem } from "./Dropdown";
 
-export interface ISimpleMultipleDropDownProps<T extends IItem>
+export interface ISimpleMultipleDropdownProps<T extends IItem>
   extends IMultipleProps<T> {}
 
 const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(
@@ -15,7 +15,7 @@ const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(
 );
 
 const SimpleMultipleDropdown: React.FC<
-  ISimpleMultipleDropDownProps<IItem> & WithStylesProps
+  ISimpleMultipleDropdownProps<IItem> & WithStylesProps
 > = ({ onItemsSelected, items, selectedItems, ...props }) => {
   const [draftItems, setDraftItems] = useState([...selectedItems]);
   const isAllSelected = items.length === draftItems.length;
@@ -39,11 +39,15 @@ const SimpleMultipleDropdown: React.FC<
   };
 
   const onClose = () => {
+    /**
+     * This dropdown has as feature be able to sort the selected items
+     * And since we don't want the ui to flick while selecting/desselecting elements
+     * Only on close we'll set the new `selectedItems`
+     */
     onItemsSelected([...draftItems]);
   };
 
   const { selected, rest } = React.useMemo(() => {
-    // eslint-disable-next-line consistent-return
     return items.reduce(
       (acc, item) => {
         if (selectedItems.filter(elem => elem.id === item.id).length > 0) {
