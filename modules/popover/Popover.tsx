@@ -12,8 +12,7 @@ import {
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { useOnClickOutside } from "@diana-ui/hooks";
-
-type Direction = "bottom" | "left" | "right" | "top";
+import { Portal, Direction } from "@diana-ui/portal";
 
 export interface IProps extends StandardProps<"div"> {
   renderHeader?: (visible: boolean) => React.ReactNode;
@@ -41,26 +40,12 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
     cursor: "pointer"
   },
   popover: {
-    position: "absolute",
-    width: "100%",
     zIndex: 10
   },
-  bottom: {
-    top: "100%"
-  },
-  top: {
-    bottom: "100%"
-  },
-  left: {
-    top: 0,
-    bottom: 0,
-    right: "100%"
-  },
-  right: {
-    top: 0,
-    bottom: 0,
-    left: "100%"
-  }
+  bottom: {},
+  top: {},
+  left: {},
+  right: {}
 });
 
 const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
@@ -115,7 +100,11 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
         {renderHeader?.(visible)}
       </div>
       {visible && (
-        <div className={cx(styles.popover, styles[direction])}>{children}</div>
+        <Portal parentRef={divRef} direction={direction}>
+          <div className={cx(styles.popover, styles[direction])}>
+            {children}
+          </div>
+        </Portal>
       )}
     </div>
   );
