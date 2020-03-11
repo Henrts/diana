@@ -100,7 +100,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
         {renderHeader?.(visible)}
       </div>
       {visible && (
-        <Portal parentRef={divRef} direction={direction}>
+        <Portal parentRef={divRef} direction={direction} useParentWidth>
           <div className={cx(styles.popover, styles[direction])}>
             {children}
           </div>

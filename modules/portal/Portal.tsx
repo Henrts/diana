@@ -7,17 +7,23 @@ export type Direction = "bottom" | "left" | "right" | "top";
 export interface IProps {
   direction?: Direction;
   parentRef: React.RefObject<HTMLDivElement>;
+  useParentWidth?: boolean;
 }
 
 const getScrollTop = () => document.documentElement.scrollTop;
 
 const getPortalStyles = (
   ref: React.RefObject<HTMLDivElement>,
-  direction: Direction
+  direction: Direction,
+  useParentWidth: boolean
 ) => {
   const dimensions = ref.current?.getBoundingClientRect();
 
-  let styles = "position: absolute; ";
+  let styles = "position: absolute;";
+
+  if (useParentWidth) {
+    styles += `width: ${dimensions?.width}px; `;
+  }
 
   switch (direction) {
     case "top": {
@@ -54,6 +60,7 @@ const getPortalStyles = (
 const Portal: React.FC<IProps> = ({
   direction = "bottom",
   parentRef,
+  useParentWidth = false,
   children
 }) => {
   const windowSize = useWindowSize();
@@ -63,8 +70,11 @@ const Portal: React.FC<IProps> = ({
   // If window size changes, recalculate position based on new parentRef position
   // This effect also sets the initial position
   useEffect(() => {
-    target.setAttribute("style", getPortalStyles(parentRef, direction));
-  }, [direction, parentRef, target, windowSize]);
+    target.setAttribute(
+      "style",
+      getPortalStyles(parentRef, direction, useParentWidth)
+    );
+  }, [direction, parentRef, target, useParentWidth, windowSize]);
 
   useEffect(() => {
     document.body.appendChild(target);
