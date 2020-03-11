@@ -20,8 +20,8 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/hooks": "0.1.0",
-    "@diana-ui/types": "0.1.0"
+    "@diana-ui/hooks": "^0.1.2",
+    "@diana-ui/types": "^0.1.1"
   },
   "publishConfig": {
     "access": "public"
