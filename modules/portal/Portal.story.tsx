@@ -14,7 +14,7 @@ export const PortalStory = () => {
       A Portal into a new dimension...
       <button onClick={onClick}>Click to teleport</button>
       {isPortalOpen && (
-        <Portal parentRef={divRef} direction="left">
+        <Portal parentRef={divRef}>
           This content is a hierarchical desdendant of {"<body>"}!
         </Portal>
       )}
