@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dropdown, { IItem } from "./Dropdown";
-import MultipleDropdown from "./MultipleDropdown";
+import SimpleMultipleDropdown from "./SimpleMultipleDropdown";
+import FilterMultipleDropdown from "./FiltersMultipleDropdown";
 import { Text } from "@diana-ui/typography";
 import { useStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory } from "@diana-ui/types";
@@ -27,7 +28,12 @@ const items = [
 ];
 
 const StyledDropdown = Dropdown.extendStyles(stylesheet);
-const StyledMultipleDropdown = MultipleDropdown.extendStyles(stylesheet);
+const StyledSimpleMultipleDropdown = SimpleMultipleDropdown.extendStyles(
+  stylesheet
+);
+const StyledFilterMultipleDropdown = FilterMultipleDropdown.extendStyles(
+  stylesheet
+);
 
 export const DropdownStory = () => {
   const [selectedItem, selectItem] = useState<IItem>();
@@ -41,11 +47,26 @@ export const DropdownStory = () => {
   );
 };
 
-export const MultipleDropdownStory = () => {
+export const SimpleMultipleDropdownStory = () => {
   const [selectedItems, selectItems] = useState<IItem[]>([]);
   const [styles, cx] = useStyles(stylesheet);
   return (
-    <StyledMultipleDropdown
+    <StyledSimpleMultipleDropdown
+      placeholder="Multiple Dropdown"
+      selectAllText="Select all"
+      selectedItems={selectedItems}
+      onItemsSelected={selectItems}
+      items={items}
+      renderItem={item => <Text className={cx(styles.hover)}>{item.text}</Text>}
+    />
+  );
+};
+
+export const FilterMultipleDropdownStory = () => {
+  const [selectedItems, selectItems] = useState<IItem[]>([]);
+  const [styles, cx] = useStyles(stylesheet);
+  return (
+    <StyledFilterMultipleDropdown
       placeholder="Multiple Dropdown"
       selectAllText="Select all"
       selectedItems={selectedItems}

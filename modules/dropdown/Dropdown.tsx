@@ -17,13 +17,18 @@ export interface IItem {
 export interface IProps<T extends IItem>
   extends PropsWithChildren<IPopoverProps> {
   items: T[];
-  renderItem?: (item: T, selected: boolean, index?: number) => React.ReactNode;
   label?: string;
   text?: string;
   placeholder?: string;
 }
 
-export interface ISingleProps<T extends IItem> extends IProps<T> {
+export interface IRenderItem<T extends IItem> {
+  renderItem?: (item: T, selected: boolean, index?: number) => React.ReactNode;
+}
+
+export interface ISingleProps<T extends IItem>
+  extends IProps<T>,
+    IRenderItem<T> {
   onItemSelected: (item: T) => void;
   selectedItem?: T;
 }

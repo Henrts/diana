@@ -16,6 +16,7 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   rules: {
+    "consistent-return": "off",
     "no-underscore-dangle": "off",
     "no-trailing-spaces": "error",
     "arrow-parens": ["error", "as-needed"],
