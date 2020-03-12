@@ -25,6 +25,15 @@ export interface IBaseMultipleDropdownOptions {
   onClose?: () => void;
 }
 
+export interface IRenderItem<T extends IItem> {
+  renderItem?: (
+    item: T,
+    selected: boolean,
+    isAllSelected: boolean,
+    index?: number
+  ) => React.ReactNode;
+}
+
 export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   container: {
     maxWidth: "100%",
@@ -32,11 +41,16 @@ export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   }
 });
 
-export type IBaseMultipleDropdownProps = PropsWithChildren<
-  IMultipleProps<IItem> & WithStylesProps & IBaseMultipleDropdownOptions
+export type IBaseMultipleDropdownProps<T extends IItem> = PropsWithChildren<
+  IMultipleProps<IItem> &
+    WithStylesProps &
+    IBaseMultipleDropdownOptions &
+    IRenderItem<T>
 >;
 
-const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps> = props => {
+const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<
+  IItem
+>> = props => {
   const {
     className,
     disabled,
