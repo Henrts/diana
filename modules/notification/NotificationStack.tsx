@@ -14,6 +14,7 @@ export interface INotification {
 }
 
 export interface IProps {
+  className?: string;
   notifications: INotification[];
   timeout?: number;
   handleMouseOver?: (id: string) => void;
@@ -31,6 +32,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 });
 
 const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
+  className,
   cx,
   notifications = [],
   styles,
@@ -39,7 +41,7 @@ const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
   handleMouseOut
 }) => {
   return (
-    <TransitionGroup className={cx(styles.notificationStack)}>
+    <TransitionGroup className={cx(styles.notificationStack, className)}>
       {notifications.map((notification: INotification, index) => {
         const { template: Notification } = notification;
 

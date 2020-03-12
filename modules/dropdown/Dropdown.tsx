@@ -46,11 +46,12 @@ export const styleSheet: ThemeStyleSheetFactory = () => ({
     padding: "10px 0"
   },
   list: {
+    listStyle: "none",
     marginBottom: 0,
     marginTop: 0,
-    paddingLeft: 0,
-    listStyle: "none",
-    overflowY: "auto"
+    maxHeight: 300,
+    overflowY: "auto",
+    paddingLeft: 0
   },
   text: {
     overflow: "hidden",
@@ -103,6 +104,8 @@ const BaseDropdown: React.FC<PropsWithChildren<
   ISingleProps<IItem> & WithStylesProps
 >> = props => {
   const {
+    className,
+    disabled,
     items,
     onItemSelected,
     selectedItem,
@@ -133,10 +136,11 @@ const BaseDropdown: React.FC<PropsWithChildren<
   );
 
   return (
-    <div className={cx(styles.wrapper)}>
+    <div className={cx(styles.wrapper, className)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
         wrappedRef={ref}
+        disabled={disabled || items.length === 0}
         {...props}
         renderHeader={renderCustomHeader}
       >

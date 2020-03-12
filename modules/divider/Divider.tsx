@@ -1,11 +1,14 @@
 import React from "react";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory
+} from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 
 type orientations = "horizontal" | "vertical";
 
-export interface IProps {
-  className?: string;
+export interface IProps extends StandardProps<"div"> {
   orientation?: orientations;
 }
 

@@ -1,8 +1,12 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory
+} from "@diana-ui/types";
 
-export interface IProps {}
+export interface IProps extends StandardProps<"section"> {}
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   card: {
@@ -15,8 +19,13 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const Card: React.FC<IProps & WithStylesProps> = ({ cx, styles, children }) => {
-  return <section className={cx(styles.card)}>{children}</section>;
+const Card: React.FC<IProps & WithStylesProps> = ({
+  className,
+  cx,
+  styles,
+  children
+}) => {
+  return <section className={cx(styles.card, className)}>{children}</section>;
 };
 
 export default withStyles(stylesheet)(Card);

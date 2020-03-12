@@ -23,6 +23,7 @@ module.exports = {
     "import/no-unresolved": "off",
     "import/no-named-as-default": "off",
     "import/prefer-default-export": "off",
+    "no-nested-ternary": "off",
     "@typescript-eslint/quotes": ["error", "double"],
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/interface-name-prefix": [
@@ -36,6 +37,7 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unnecessary-type-assertion": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
     "react/no-array-index-key": "off",
     "import/no-webpack-loader-syntax": "off",
     "react/no-unescaped-entities": "off",

@@ -17,7 +17,6 @@ const stylesheet: StyleSheetFactory<Theme> = () => ({
   }
 });
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 export interface IProps extends StandardProps<"form"> {
   children: ReactElement[];
@@ -32,6 +31,7 @@ export interface IProps extends StandardProps<"form"> {
 }
 const Form: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   children,
+  className,
   cx,
   styles,
   onSubmit,
@@ -75,7 +75,7 @@ const Form: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   return (
     <form
       {...props}
-      className={cx(styles.form)}
+      className={cx(styles.form, className)}
       onSubmit={handleSubmit(onSubmitCallback)}
     >
       {React.Children.map(children, (Child: ReactElement) => {

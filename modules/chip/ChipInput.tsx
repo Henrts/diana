@@ -8,8 +8,6 @@ import { withStyles } from "@diana-ui/base";
 import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { IProps as IChipListProps } from "./ChipList";
 
-// typescript doesnt allow to override interfaces, don't know why
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 export interface IProps extends StandardProps<"input"> {
   value: string[];
@@ -42,6 +40,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 function ChipInput({
   styles,
   cx,
+  className,
   value,
   onChange,
   allowDuplicates = false,
@@ -90,7 +89,7 @@ function ChipInput({
   );
 
   return (
-    <div className={cx(styles.chipInput)}>
+    <div className={cx(styles.chipInput, className)}>
       <ChipListStyle list={_list} onListChange={handleChange} />
       <input
         className={cx(styles.input)}

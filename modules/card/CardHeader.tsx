@@ -1,10 +1,15 @@
 import React, { useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
-import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps
+} from "@diana-ui/types";
 import { LabelMedium, SectionTitle, Text } from "@diana-ui/typography";
 import { Icon } from "@diana-ui/icon";
 
-export interface IProps {
+// @ts-ignore
+export interface IProps extends StandardProps<"header"> {
   icon?: string;
   label?: string;
   title: JSX.Element | string;
@@ -35,6 +40,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
 });
 
 const CardHeader: React.FC<IProps & WithStylesProps> = ({
+  className,
   cx,
   icon,
   label,
@@ -53,7 +59,7 @@ const CardHeader: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <header className={cx(styles.header)}>
+    <header className={cx(styles.header, className)}>
       <div className={cx(styles.titleWrapper)}>
         {renderTitle()}
         {subtitle && <Text className={cx(styles.subtitle)}>{subtitle}</Text>}

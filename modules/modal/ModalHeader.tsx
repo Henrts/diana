@@ -1,10 +1,14 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps
+} from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import { SectionTitle, Description } from "@diana-ui/typography";
 
-export interface IProps {
+export interface IProps extends StandardProps<"section"> {
   title: string;
   onClose?: () => void;
   description?: string;
@@ -38,13 +42,14 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
 const ModalHeader: React.FC<IProps & WithStylesProps> = ({
   cx,
   styles,
+  className,
   icon,
   title,
   description,
   onClose
 }) => {
   return (
-    <section className={cx(styles.header)}>
+    <section className={cx(styles.header, className)}>
       <div className={cx(styles.titleWrapper)}>
         {icon && <div className={cx(styles.icon)}>{icon}</div>}
         <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>

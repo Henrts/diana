@@ -39,6 +39,7 @@ type IAllProps = IProps & WithStylesProps;
 
 const Modal: React.FC<IAllProps> = ({
   children,
+  className,
   cx,
   styles,
   theme,
@@ -58,7 +59,7 @@ const Modal: React.FC<IAllProps> = ({
   return (
     <ReactModal
       isOpen={isOpen}
-      className={cx(styles.content)}
+      className={cx(styles.content, className)}
       overlayClassName={cx(styles.overlay)}
       onRequestClose={onClose}
       shouldCloseOnEsc={shouldCloseOnEsc}

@@ -33,6 +33,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 function ChipList<T>({
   styles,
   cx,
+  className,
   list = [],
   displayFn = (item: T) => item,
   onDismissChip,
@@ -69,7 +70,7 @@ function ChipList<T>({
   );
 
   return (
-    <div className={cx(styles.chipList)} {...props} ref={divRef}>
+    <div className={cx(styles.chipList, className)} {...props} ref={divRef}>
       {_list.map((item: T, i) => (
         <div className={cx(styles.chipContainer)} key={i}>
           <CloseableChipStyle onClose={() => handleDismiss(item, i)}>

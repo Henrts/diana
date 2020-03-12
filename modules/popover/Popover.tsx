@@ -49,6 +49,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 });
 
 const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
+  className,
   direction = "bottom",
   dismissOnClick = true,
   children,
@@ -73,7 +74,11 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   );
 
   const divRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(divRef, () => dismissOnClick && setVisible(false));
+  const portalRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(
+    [divRef, portalRef],
+    () => dismissOnClick && setVisible(false)
+  );
   const toggleVisible = useCallback(() => setVisible(!visible), [
     visible,
     setVisible
@@ -86,7 +91,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
 
   return (
     <div
-      className={cx(styles.container, disabled && styles.disabled)}
+      className={cx(styles.container, disabled && styles.disabled, className)}
       ref={divRef}
     >
       <div
@@ -101,7 +106,10 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       </div>
       {visible && (
         <Portal parentRef={divRef} direction={direction} useParentWidth>
-          <div className={cx(styles.popover, styles[direction])}>
+          <div
+            ref={portalRef}
+            className={cx(styles.popover, styles[direction])}
+          >
             {children}
           </div>
         </Portal>

@@ -29,6 +29,8 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
   IMultipleProps<IItem> & WithStylesProps
 >> = props => {
   const {
+    className,
+    disabled,
     items,
     onItemsSelected,
     selectedItems,
@@ -70,10 +72,11 @@ const BaseMultipleDropdown: React.FC<PropsWithChildren<
   );
 
   return (
-    <div className={cx(styles.wrapper)}>
+    <div className={cx(styles.wrapper, className)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
         wrappedRef={ref}
+        disabled={disabled || items.length === 0}
         {...props}
         renderHeader={renderCustomHeader}
       >
