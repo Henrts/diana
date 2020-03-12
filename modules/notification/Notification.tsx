@@ -1,12 +1,17 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useCallback } from "react";
 import uuid from "uuid";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory
+} from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { H3 } from "@diana-ui/typography";
 import { Icon, IconNames } from "@diana-ui/icon";
 
-export interface IProps {
+// @ts-ignore
+export interface IProps extends StandardProps<"div"> {
   id: string;
   children: string;
   icon?: IconNames;
@@ -48,6 +53,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 const Notifcation: React.FC<IProps & WithStylesProps> = ({
   children,
   cx,
+  className,
   icon,
   id = uuid(),
   title,
@@ -69,7 +75,7 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
 
   return (
     <div
-      className={cx(styles.wrapper)}
+      className={cx(styles.wrapper, className)}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >

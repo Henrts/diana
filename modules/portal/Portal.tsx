@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, RefObject } from "react";
 import { createPortal } from "react-dom";
 import { useWindowSize } from "@diana-ui/hooks";
+import { StandardProps } from "@diana-ui/types";
 
 export type Direction = "bottom" | "left" | "right" | "top";
 
-export interface IProps {
+export interface IProps extends StandardProps<"div"> {
   direction?: Direction;
   parentRef: React.RefObject<HTMLDivElement>;
   useParentWidth?: boolean;
@@ -19,7 +20,7 @@ const getPortalStyles = (
 ) => {
   const dimensions = ref.current?.getBoundingClientRect();
 
-  let styles = "position: absolute;";
+  let styles = "position: absolute; z-index: 100; ";
 
   if (useParentWidth) {
     styles += `width: ${dimensions?.width}px; `;

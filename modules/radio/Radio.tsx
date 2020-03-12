@@ -59,6 +59,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 });
 
 const Radio: React.FC<IProps & WithStylesProps> = ({
+  className,
   children,
   cx,
   hasError,
@@ -96,7 +97,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={cx(styles.wrapper)}>
+    <div className={cx(styles.wrapper, className)}>
       <input
         checked={isChecked}
         className={children ? cx({ display: "none" }) : inputStyles}

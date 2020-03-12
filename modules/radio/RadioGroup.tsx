@@ -4,14 +4,18 @@ import React, {
   useImperativeHandle,
   useState
 } from "react";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory
+} from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 
 export interface IRadioGroupGroupRef {
   setSelectedValue: (newValue: string) => void;
 }
 
-export interface IProps {
+export interface IProps extends StandardProps<"div"> {
   children: JSX.Element[];
   disabled?: boolean;
   hasError?: boolean;
@@ -30,6 +34,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 });
 
 const RadioGroup: React.FC<IProps & WithStylesProps> = ({
+  className,
   children,
   cx,
   disabled,
@@ -71,7 +76,7 @@ const RadioGroup: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={cx(styles.radioGroup)}>
+    <div className={cx(styles.radioGroup, className)}>
       {React.Children.map(children, child =>
         React.cloneElement(child, {
           disabled: child.props.disabled ?? disabled,

@@ -1,8 +1,12 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps
+} from "@diana-ui/types";
 
-export interface IProps {}
+export interface IProps extends StandardProps<"section"> {}
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   footer: {
@@ -19,9 +23,10 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
 const ModalFooter: React.FC<IProps & WithStylesProps> = ({
   cx,
   styles,
+  className,
   children
 }) => {
-  return <section className={cx(styles.footer)}>{children}</section>;
+  return <section className={cx(styles.footer, className)}>{children}</section>;
 };
 
 export default withStyles(stylesheet)(ModalFooter);

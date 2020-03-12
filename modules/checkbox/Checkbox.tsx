@@ -95,6 +95,7 @@ const defaultCheckedIcon: JSX.Element = <Icon name="check" />;
 const Checkbox: React.FC<IProps & WithStylesProps> = ({
   styles,
   cx,
+  className,
   checked,
   showAsChecked,
   onChange,
@@ -108,7 +109,11 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
   const { disabled, name } = props;
   const [checkedState, setCheckedState] = useState(!!checked);
 
-  const containerStyle = cx(styles.container, disabled && "disabled");
+  const containerStyle = cx(
+    styles.container,
+    disabled && "disabled",
+    className
+  );
   const iconContainerStyle = cx(
     styles.iconContainer,
     "icon-container",
