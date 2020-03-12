@@ -3,7 +3,8 @@ import { WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import BaseMultipleDropdown, {
   IMultipleProps,
-  multipleStylesheet
+  multipleStylesheet,
+  IRenderItem
 } from "./BaseMultipleDropdown";
 import { IItem } from "./Dropdown";
 
@@ -15,7 +16,7 @@ const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(
 );
 
 const FilterMultipleDropdown: React.FC<
-  IFilterMultipleDropDownProps<IItem> & WithStylesProps
+  IFilterMultipleDropDownProps<IItem> & WithStylesProps & IRenderItem<IItem>
 > = ({ onItemsSelected, items, ...props }) => {
   const [isAllButtonChecked, setIsAllButtonChecked] = useState(false);
 

@@ -3,7 +3,8 @@ import { WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import BaseMultipleDropdown, {
   IMultipleProps,
-  multipleStylesheet
+  multipleStylesheet,
+  IRenderItem
 } from "./BaseMultipleDropdown";
 import { IItem } from "./Dropdown";
 
@@ -15,7 +16,7 @@ const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(
 );
 
 const SimpleMultipleDropdown: React.FC<
-  ISimpleMultipleDropdownProps<IItem> & WithStylesProps
+  ISimpleMultipleDropdownProps<IItem> & WithStylesProps & IRenderItem<IItem>
 > = ({ onItemsSelected, items, selectedItems, ...props }) => {
   const [draftItems, setDraftItems] = useState([...selectedItems]);
   const isAllSelected = items.length === draftItems.length;
