@@ -16,13 +16,13 @@ export interface IMultipleProps<T extends IItem> extends IProps<T> {
   selectedItems: T[];
   selectAllText?: string;
   selectAllItem?: (checked: boolean) => React.ReactNode;
+  onClose?: () => void;
 }
 
 export interface IBaseMultipleDropdownOptions {
   onItemClicked: (item: IItem, selectedItems: IItem[]) => void;
   onAllButtonClicked: () => void;
   isAllButtonChecked: boolean;
-  onClose?: () => void;
 }
 
 export interface IRenderItem<T extends IItem> {

@@ -17,7 +17,7 @@ const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(
 
 const SimpleMultipleDropdown: React.FC<
   ISimpleMultipleDropdownProps<IItem> & WithStylesProps & IRenderItem<IItem>
-> = ({ onItemsSelected, items, selectedItems, ...props }) => {
+> = ({ onItemsSelected, items, selectedItems, onClose, ...props }) => {
   const [draftItems, setDraftItems] = useState([...selectedItems]);
   const isAllSelected = items.length === draftItems.length;
 
@@ -39,7 +39,11 @@ const SimpleMultipleDropdown: React.FC<
     }
   };
 
-  const onClose = () => {
+  const onDropdownClose = () => {
+    if (onClose) {
+      onClose();
+      return;
+    }
     /**
      * This dropdown has as feature be able to sort the selected items
      * And since we don't want the ui to flick while selecting/desselecting elements
@@ -73,7 +77,7 @@ const SimpleMultipleDropdown: React.FC<
       onItemClicked={onItemClicked}
       onAllButtonClicked={onAllButtonClicked}
       isAllButtonChecked={isAllSelected}
-      onClose={onClose}
+      onClose={onDropdownClose}
       {...props}
     />
   );
