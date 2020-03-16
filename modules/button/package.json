@@ -15,7 +15,8 @@
     "build:babel": "babel index.ts --config-file ../../babel.config.js --out-dir build",
     "build:rollup": "rollup -c ../../rollup.config.js -i index.tsx",
     "clean:files": "rimraf lib module",
-    "prepare": "yarn clean:files && yarn build"
+    "prepare": "yarn clean:files && yarn build",
+    "watch": "npm-watch"
   },
   "peerDependencies": {
     "react": "^16.12.0"
@@ -28,5 +29,19 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "watch": {
+    "prepare": {
+      "runOnChangeOnly": true,
+      "extensions": "ts,tsx",
+      "ignore": [
+        "lib",
+        "node_modules",
+        "module"
+      ],
+      "patterns": [
+        "."
+      ]
+    }
   }
 }
