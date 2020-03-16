@@ -57,7 +57,23 @@ export const DisabledExpandablePanelsStory = () => {
 
 export const ExpandedPanelsStory = () => {
   return (
-    <ExpandablePanels initialExpandedPanelIndex={0}>
+    <ExpandablePanels
+      initialExpandedPanelIndex={0}
+      allowMultipleExpandedPanels={false}
+    >
+      <ExpandablePanel header="Toggle me daddy">
+        <p>Just how I like it</p>
+      </ExpandablePanel>
+      <ExpandablePanel initialExpanded header="Toggle me harder">
+        <p>Expanded for you</p>
+      </ExpandablePanel>
+    </ExpandablePanels>
+  );
+};
+
+export const AccordionStory = () => {
+  return (
+    <ExpandablePanels allowMultipleExpandedPanels={false}>
       <ExpandablePanel header="Toggle me daddy">
         <p>Just how I like it</p>
       </ExpandablePanel>

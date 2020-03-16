@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 import { withStyles } from "@diana-ui/base";
 import {
   StandardProps,
@@ -19,16 +25,13 @@ export interface IProps extends StandardProps<"div"> {
 }
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
-  panel: {
-    border: "1px solid black"
-  },
   body: {
     maxHeight: 0,
     overflow: "hidden",
-    // transition: "max-height .5s ease-in-out",
+    transition: "max-height .3s cubic-bezier(.65,.65,.31,.3)",
     "@selectors": {
       "&.expanded": {
-        maxHeight: "1000px"
+        maxHeight: 300
       }
     }
   },
@@ -49,7 +52,10 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
       }
     }
   },
-  headerTitle: {}
+  headerTitle: {},
+  panel: {
+    border: "1px solid black"
+  }
 });
 
 const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
@@ -63,9 +69,28 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
   styles
 }) => {
   const [isExpanded, setIsExpanded] = useState(initialExpanded || false);
+  // const bodyRef = useRef<HTMLDivElement>(null);
 
+  // useEffect(() => {
+  //   if (isExpanded) {
+  //     const cenas = (
+  //       <div
+  //         id="cenas"
+  //         ref={bodyRef}
+  //         className={cx(styles.body, { height: "100%" })}
+  //       >
+  //         {children}
+  //       </div>
+  //     );
+
+  //     // @ts-ignore
+  //     document.body.append(cenas);
+  //   }
+  // }, [children, cx, isExpanded, styles.body]);
+
+  // state is being controlled by the parent component
   useEffect(() => {
-    if (typeof expanded !== "undefined") {
+    if (expanded !== undefined) {
       setIsExpanded(expanded);
     }
   }, [expanded]);

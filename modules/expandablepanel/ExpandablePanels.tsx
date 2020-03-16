@@ -32,7 +32,7 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
   styles
 }) => {
   const [expandedPanelIndex, setExpandedPanelIndex] = useState(
-    initialExpandedPanelIndex || -1
+    initialExpandedPanelIndex === undefined ? -1 : initialExpandedPanelIndex
   );
 
   const handleClick = (index: number) => {
@@ -40,7 +40,8 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
       return;
     }
 
-    if (allowMultipleExpandedPanels) {
+    // Children's state is handled here
+    if (!allowMultipleExpandedPanels) {
       setExpandedPanelIndex(index === expandedPanelIndex ? -1 : index);
     }
 
@@ -52,15 +53,13 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
     <div className={cx(styles.panels)}>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
-          disabled:
-            typeof child.props.disabled !== "undefined"
-              ? child.props.disabled
-              : disabled,
-          isExpanded:
-            allowMultipleExpandedPanels && expandedPanelIndex === index,
+          disabled: disabled || child.props.disabled,
+          expanded: allowMultipleExpandedPanels
+            ? undefined // Children handle their own state
+            : expandedPanelIndex === index,
           initialExpanded: allowMultipleExpandedPanels
-            ? initialExpandedPanelIndex === index
-            : child.props.initialExpanded,
+            ? initialExpandedPanelIndex === index || child.props.initialExpanded
+            : initialExpandedPanelIndex === index,
           onClick: () => handleClick(index)
         })
       )}
