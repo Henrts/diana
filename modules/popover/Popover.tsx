@@ -118,4 +118,6 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   );
 };
 
+Popover.displayName = "Popover";
+
 export default withStyles(styleSheet, { register: true })(Popover);
