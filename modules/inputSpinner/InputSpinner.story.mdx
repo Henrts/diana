@@ -1,0 +1,74 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import {
+  InputSpinnerStory,
+  InputSpinnerStoryWithProps
+} from "./InputSpinner.story.tsx";
+
+<Meta title="Components | InputSpinner" />
+
+# Input Spinner
+
+This component can be used as an input just for numbers
+
+<Preview>
+  <Story name="InputSpinner">
+    <InputSpinnerStory />
+  </Story>
+</Preview>
+
+### Input Spinner with props
+
+<Preview>
+  <Story name="InputSpinnerWithProps">
+    <InputSpinnerStoryWithProps />
+  </Story>
+</Preview>
+
+### Available props
+
+All the props are passed through to the `Popover` element, so refer to its documentation for more customization options.
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <th>number</th>
+      <td>
+        The current value of the input. If not set the input becomes
+        uncontrolled.
+      </td>
+    </tr>
+    <tr>
+      <td>onChange (optional)</td>
+      <th>(value) => void</th>
+      <td>Callback when the input changes number</td>
+    </tr>
+    <tr>
+      <td>disabled (optional)</td>
+      <th>boolean</th>
+      <td>If the input is disabled</td>
+    </tr>
+    <tr>
+      <td>min (optional)</td>
+      <th>number</th>
+      <td>The minimum number the input can have</td>
+    </tr>
+    <tr>
+      <td>max (optional)</td>
+      <th>number</th>
+      <td>The maximum number the input can have</td>
+    </tr>
+    <tr>
+      <td>step (optional)</td>
+      <th>number</th>
+      <td>The value amount that the input can change</td>
+    </tr>
+  </tbody>
+</table>
