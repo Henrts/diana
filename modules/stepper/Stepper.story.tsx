@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import Stepper from "./Stepper";
-import { ThemeStyleSheetFactory } from "@diana-ui/types";
-
-const stylesheet: ThemeStyleSheetFactory = theme => ({});
 
 export const StepperStory = () => {
-  return <Stepper steps={3} activeStep={2} />;
+  const [value, setValue] = useState(0);
+  return (
+    <Stepper
+      steps={6}
+      clickable
+      activeStep={value}
+      onChange={v => setValue(v)}
+    />
+  );
 };
