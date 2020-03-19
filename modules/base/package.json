@@ -28,6 +28,7 @@
     "aesthetic": "^5.1.0",
     "aesthetic-adapter-aphrodite": "^5.1.0",
     "aesthetic-react": "^2.1.0",
+    "aesthetic-utils": "3.0.1",
     "aphrodite": "^2.4.0",
     "extend": "^3.0.2",
     "hoist-non-react-statics": "^3.3.2",

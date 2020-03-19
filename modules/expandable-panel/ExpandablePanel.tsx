@@ -29,7 +29,9 @@ export interface IProps extends StandardProps<"div"> {
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   body: {
-    overflow: "hidden",
+    overflow: "hidden"
+  },
+  bodyWrapper: {
     transition: `height ${SLIDE_ANIMATION_DURATION_MS}ms ease-out`
   },
   header: {
@@ -69,7 +71,7 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
  * Thus, before the animation can be triggered, the body height must be calculated.
  *
  * What happens when a panel is expanded the first time is the following:
- * 1. panel body is rendered in the DOM. It is hidden with opacity: 0, and with the panel's maxHeight
+ * 1. panel body is rendered in the DOM. It is hidden with overflow: hidden, and with the panel's maxHeight
  *    being set to the panel header's height.
  * 2. Once the panel body height is calculated, it is set to 0 so the animation can trigger and the height
  *    can expand from 0 to the actual height. The panel's maxHeight is reset.
@@ -97,12 +99,12 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     number | undefined
   >(0);
   const headerRef = useRef<HTMLDivElement>(null);
+  const bodyWrapperRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
   // calculate header height (once or every time window size changes)
   useEffect(() => {
-    const dimensions = headerRef.current?.getBoundingClientRect();
-    setHeaderHeight(dimensions?.height);
+    setHeaderHeight(headerRef.current?.getBoundingClientRect().height);
   }, [headerRef, windowSize]);
 
   // calculate body height (once or every time window size changes)
@@ -197,10 +199,9 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
   const isBodyHeightReady = bodyHeight && bodyHeight > 0;
   const canAnimate = isBodyHeightReady && (isExpanded || isCollapsing);
   const finalBodyHeight = canAnimate ? currentBodyHeight : "100%";
-  const bodyStyles = {
+  const bodyWrapperStyles = {
     height: finalBodyHeight,
-    maxHeight: finalBodyHeight === 0 && !isCollapsing ? 0 : "unset",
-    opacity: canAnimate ? undefined : 0
+    maxHeight: finalBodyHeight === 0 && !isCollapsing ? 0 : undefined
   };
 
   return (
@@ -212,11 +213,13 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
       {renderHeader()}
       {(isExpanded || isCollapsing) && (
         <div
-          ref={bodyRef}
-          style={bodyStyles}
-          className={cx(styles.body, ...stateClasses)}
+          ref={bodyWrapperRef}
+          style={bodyWrapperStyles}
+          className={cx(styles.bodyWrapper)}
         >
-          {children}
+          <div ref={bodyRef} className={cx(styles.body, ...stateClasses)}>
+            {children}
+          </div>
         </div>
       )}
     </div>

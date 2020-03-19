@@ -3611,6 +3611,11 @@ aesthetic-react@^2.1.0:
     prop-types "^15.7.2"
     uuid "^3.4.0"
 
+aesthetic-utils@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-3.0.1.tgz#1e6698fccfb834de3899ddc1c2613d5633a173fd"
+  integrity sha512-nLJeu0wMsdLwgi4S0hbLbbSlyonhu0BYQqoAj9buj8HO0LtQBGEI+vGjvw5NfmMnxfZ0ukiwNgHM7CXhTCfwMg==
+
 aesthetic-utils@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-3.0.0.tgz#13424234b8f6c025756791c5b3c20ad2e452a055"
