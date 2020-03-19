@@ -11,7 +11,7 @@ import { Text } from "@diana-ui/typography";
 export interface IProps extends StandardProps<"input"> {
   children?: ReactElement;
   hasError?: boolean;
-  label: string;
+  label: string | JSX.Element;
   selectedValue?: string;
   value: string;
   onValueSelect?: (value: string) => void;
@@ -113,7 +113,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
           onClick: handleChange
         })}
       <label htmlFor={id} className={labelStyles}>
-        <Text>{label}</Text>
+        {typeof label === "string" ? <Text>{label}</Text> : label}
       </label>
     </div>
   );
