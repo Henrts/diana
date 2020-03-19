@@ -22,7 +22,7 @@ const SLIDE_ANIMATION_DURATION_MS = 200;
 export interface IProps extends StandardProps<"div"> {
   disabled?: boolean;
   expanded?: boolean;
-  header: string | ((visible: boolean) => React.ReactNode);
+  header?: string | ((visible: boolean) => React.ReactNode);
   initialExpanded?: boolean;
   onClick?: () => void;
 }
@@ -184,7 +184,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
             {header}
           </TextHighlight>
         ) : (
-          header(isExpanded)
+          header?.(isExpanded)
         )}
         <Icon
           className={cx(styles.headerIcon, ...stateClasses)}

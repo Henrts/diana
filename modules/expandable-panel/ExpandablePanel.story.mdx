@@ -121,6 +121,18 @@ Its expanded/collapsed state can either be controlled by the component internall
       <td>Style to be applied if panel is expanded</td>
     </tr>
     <tr>
+      <td>bodyWrapper</td>
+      <td></td>
+      <td>
+        This style affects the body wrapper. Any padding or height styles should
+        not be passed here but in the body style instead, since they will have
+        an impact on the sliding animation. This style should ideally only be
+        used to customize the sliding animation, which is by default:
+        <br />
+        transition: height 200ms ease-out
+      </td>
+    </tr>
+    <tr>
       <td>header</td>
       <td></td>
       <td>This style affects the panel header, which is always visible</td>
