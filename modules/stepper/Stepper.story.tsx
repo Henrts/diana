@@ -5,5 +5,5 @@ import { ThemeStyleSheetFactory } from "@diana-ui/types";
 const stylesheet: ThemeStyleSheetFactory = theme => ({});
 
 export const StepperStory = () => {
-  return <Stepper />;
+  return <Stepper steps={3} activeStep={2} />;
 };

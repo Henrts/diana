@@ -1,11 +1,46 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import  from "@storybook/addon-links/react";
-import { StepperStory } from "./Stepper.story.tsx";
+import Stepper from "./Stepper";
+
 <Meta title="Components | Stepper" />
+
 # Stepper
 
 <Preview>
   <Story name="Stepper">
-    <StepperStory />
+    <Stepper steps={6} />
   </Story>
 </Preview>
+
+### Stepper with activeStep
+
+<Preview>
+  <Story name="StepperWithActiveStep">
+    <Stepper steps={6} activeStep={3} />
+  </Story>
+</Preview>
+
+### Available props
+
+All the props are passed through to the `Stepper` element, so refer to its documentation for more customization options.
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>steps</td>
+      <th>number</th>
+      <td>Number of steps available</td>
+    </tr>
+    <tr>
+      <td>activeStep</td>
+      <th>number</th>
+      <td>Current step active, starting with 0</td>
+    </tr>
+  </tbody>
+</table>
