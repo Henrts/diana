@@ -1,0 +1,226 @@
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
+import { withStyles } from "@diana-ui/base";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory,
+  Theme
+} from "@diana-ui/types";
+import { useWindowSize } from "@diana-ui/hooks";
+import { Icon } from "@diana-ui/icon";
+import { TextHighlight } from "@diana-ui/typography";
+
+const SLIDE_ANIMATION_DURATION_MS = 200;
+
+// @ts-ignore
+export interface IProps extends StandardProps<"div"> {
+  disabled?: boolean;
+  expanded?: boolean;
+  header: string | ((visible: boolean) => React.ReactNode);
+  initialExpanded?: boolean;
+  onClick?: () => void;
+}
+
+const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
+  body: {
+    overflow: "hidden",
+    transition: `height ${SLIDE_ANIMATION_DURATION_MS}ms ease-out`
+  },
+  header: {
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: `${theme.spaceUnit.xl} ${theme.spaceUnit.lg}`,
+    "@selectors": {
+      "&.disabled": {
+        cursor: "default"
+      }
+    }
+  },
+  headerIcon: {
+    flexShrink: 1,
+    transition: "0.2s transform",
+    transform: "rotateZ(0deg)",
+    "@selectors": {
+      "&.expanded": {
+        transform: "rotateZ(-180deg)"
+      }
+    }
+  },
+  headerTitle: {},
+  panel: {
+    overflow: "hidden"
+  }
+});
+
+/**
+ * The ExpandablePanel has a built-in sliding animation when it is expanded/collapsed.
+ *
+ * To be able to achieve this, the body of the panel must have a fixed height so the css
+ * transition works properly.
+ * Since the contents of the panel body are dynamic, the body height will be too.
+ * Thus, before the animation can be triggered, the body height must be calculated.
+ *
+ * What happens when a panel is expanded the first time is the following:
+ * 1. panel body is rendered in the DOM. It is hidden with opacity: 0, and with the panel's maxHeight
+ *    being set to the panel header's height.
+ * 2. Once the panel body height is calculated, it is set to 0 so the animation can trigger and the height
+ *    can expand from 0 to the actual height. The panel's maxHeight is reset.
+ * 3. Immediately after, the body height is set to its proper value and the animation triggers.
+ *
+ * If the panel is initially expanded already, the body height can be immediately calculated and step 1. is skipped.
+ */
+const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
+  children,
+  className,
+  cx,
+  header,
+  disabled,
+  expanded,
+  initialExpanded,
+  onClick,
+  styles
+}) => {
+  const windowSize = useWindowSize();
+  const [isExpanded, setIsExpanded] = useState(initialExpanded || false);
+  const [isCollapsing, setIsCollapsing] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState<number | undefined>(0);
+  const [bodyHeight, setBodyHeight] = useState<number | undefined>(0);
+  const [currentBodyHeight, setCurrentBodyHeight] = useState<
+    number | undefined
+  >(0);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  // calculate header height (once or every time window size changes)
+  useEffect(() => {
+    const dimensions = headerRef.current?.getBoundingClientRect();
+    setHeaderHeight(dimensions?.height);
+  }, [headerRef, windowSize]);
+
+  // calculate body height (once or every time window size changes)
+  useEffect(() => {
+    if (bodyHeight === 0 || bodyHeight === undefined) {
+      setBodyHeight(bodyRef.current?.getBoundingClientRect().height);
+    }
+  }, [bodyHeight, bodyRef, isExpanded, windowSize]);
+
+  const handleCollapse = useCallback(() => {
+    setCurrentBodyHeight(0);
+    setIsCollapsing(true);
+
+    // allow the animation to finish before removing the body from the DOM
+    setTimeout(() => {
+      setIsCollapsing(false);
+    }, SLIDE_ANIMATION_DURATION_MS);
+  }, []);
+
+  // set body height manually to be able to have the sliding animation
+  useEffect(() => {
+    if (isExpanded && bodyHeight && bodyHeight > 0 && currentBodyHeight === 0) {
+      setTimeout(() => {
+        setCurrentBodyHeight(bodyHeight);
+      }, 300);
+    }
+  }, [bodyHeight, currentBodyHeight, isExpanded]);
+
+  // state is being controlled by the parent component
+  useEffect(() => {
+    if (expanded !== undefined) {
+      if (!expanded) {
+        handleCollapse();
+      }
+
+      setIsExpanded(expanded);
+    }
+  }, [expanded, handleCollapse]);
+
+  const handleClick = () => {
+    if (disabled) {
+      return;
+    }
+
+    // state is being controlled internally
+    if (expanded === undefined) {
+      if (isExpanded) {
+        handleCollapse();
+      }
+
+      setIsExpanded(!isExpanded);
+    }
+
+    // eslint-disable-next-line mdx/no-unused-expressions
+    onClick?.();
+  };
+
+  const stateClasses = useMemo(() => {
+    const classes = [];
+
+    if (disabled) {
+      classes.push("disabled");
+    }
+
+    if (isExpanded) {
+      classes.push("expanded");
+    }
+
+    return classes;
+  }, [disabled, isExpanded]);
+
+  const renderHeader = useCallback(
+    () => (
+      <div ref={headerRef} className={cx(styles.header, ...stateClasses)}>
+        {typeof header === "string" ? (
+          <TextHighlight className={cx(styles.headerTitle)}>
+            {header}
+          </TextHighlight>
+        ) : (
+          header(isExpanded)
+        )}
+        <Icon
+          className={cx(styles.headerIcon, ...stateClasses)}
+          name="arrow"
+          size={16}
+        />
+      </div>
+    ),
+    [header, cx, styles, stateClasses, isExpanded]
+  );
+
+  const isBodyHeightReady = bodyHeight && bodyHeight > 0;
+  const canAnimate = isBodyHeightReady && (isExpanded || isCollapsing);
+  const finalBodyHeight = canAnimate ? currentBodyHeight : "100%";
+  const bodyStyles = {
+    height: finalBodyHeight,
+    maxHeight: finalBodyHeight === 0 && !isCollapsing ? 0 : "unset",
+    opacity: canAnimate ? undefined : 0
+  };
+
+  return (
+    <div
+      className={cx(className, styles.panel, ...stateClasses)}
+      style={{ maxHeight: canAnimate ? "initial" : `${headerHeight}px` }}
+      onClick={handleClick}
+    >
+      {renderHeader()}
+      {(isExpanded || isCollapsing) && (
+        <div
+          ref={bodyRef}
+          style={bodyStyles}
+          className={cx(styles.body, ...stateClasses)}
+        >
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default withStyles(stylesheet)(ExpandablePanel);

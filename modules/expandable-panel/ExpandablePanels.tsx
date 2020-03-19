@@ -3,7 +3,6 @@ import { withStyles } from "@diana-ui/base";
 import {
   StandardProps,
   WithStylesProps,
-  Theme,
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
 
@@ -16,15 +15,14 @@ export interface IProps extends StandardProps<"div"> {
   onClick?: (expandedPanelIndex: number) => void;
 }
 
-const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
-  panels: {
-    border: "1px solid black"
-  }
+const stylesheet: ThemeStyleSheetFactory = () => ({
+  panels: {}
 });
 
 const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
   allowMultipleExpandedPanels = true,
   children,
+  className,
   cx,
   disabled,
   initialExpandedPanelIndex,
@@ -40,7 +38,7 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
       return;
     }
 
-    // Children's state is handled here
+    // children's state is handled here
     if (!allowMultipleExpandedPanels) {
       setExpandedPanelIndex(index === expandedPanelIndex ? -1 : index);
     }
@@ -50,12 +48,12 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
   };
 
   return (
-    <div className={cx(styles.panels)}>
+    <div className={cx(className, styles.panels)}>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
           disabled: disabled || child.props.disabled,
           expanded: allowMultipleExpandedPanels
-            ? undefined // Children handle their own state
+            ? undefined // children handle their own state
             : expandedPanelIndex === index,
           initialExpanded: allowMultipleExpandedPanels
             ? initialExpandedPanelIndex === index || child.props.initialExpanded
