@@ -54,10 +54,7 @@ export const DisabledExpandablePanelsStory = () => {
 
 export const ExpandedPanelsStory = () => {
   return (
-    <ExpandablePanels
-      initialExpandedPanelIndex={0}
-      allowMultipleExpandedPanels={false}
-    >
+    <ExpandablePanels initialExpandedPanelIndex={0}>
       <ExpandablePanel header="Expand me!">
         <p>I have been expanded!</p>
       </ExpandablePanel>
