@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.2",
-    "@diana-ui/types": "^0.1.2"
+    "@diana-ui/types": "^0.1.2",
+    "@diana-ui/icon": "^0.1.2"
   },
   "publishConfig": {
     "access": "public"

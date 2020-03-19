@@ -15,6 +15,9 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
     color: theme.colors.alert.alert100,
     ...theme.typography.label
   },
+  hintLabel: {
+    color: theme.colors.black
+  },
   legend: {
     "@selectors": {
       "&.error": {
@@ -25,12 +28,14 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
 });
 export interface IProps extends ITextInputProps {
   error?: string | boolean;
+  hint?: string;
 }
 const ExtendedTextInput = TextInput.extendStyles(stylesheet);
 export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   cx,
   styles,
   error,
+  hint,
   className,
   ...props
 }) => {
@@ -45,7 +50,13 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
         }
       />
       <div className={cx(styles.errorLabel)}>
-        {error && typeof error === "string" ? error : <span>&nbsp;</span>}
+        {error && typeof error === "string" ? (
+          error
+        ) : hint ? (
+          <span className={cx(styles.hintLabel)}>{hint}</span>
+        ) : (
+          <span>&nbsp;</span>
+        )}
       </div>
     </div>
   );

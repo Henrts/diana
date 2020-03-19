@@ -5,6 +5,7 @@ import {
   StandardProps,
   WithStylesProps
 } from "@diana-ui/types";
+import { Icon, IconNames } from "@diana-ui/icon";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   fieldset: {
@@ -22,6 +23,10 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
       "&.focus": {}
     }
   },
+  inputContainer: {
+    display: "flex",
+    alignItems: "center"
+  },
   input: {
     outline: "none",
     border: "none",
@@ -37,9 +42,9 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   },
   labelContainer: {
     position: "absolute",
-    top: "0px",
-    left: "4px",
-    height: "40px",
+    top: 0,
+    left: 4,
+    height: 40,
     pointerEvents: "none",
     display: "flex",
     alignItems: "center"
@@ -50,16 +55,20 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     textOverflow: "ellipsis",
     color: theme.colors.grey.grey100,
     padding: "0px 4px",
-    transition: "transform 0.1s, font-size 0.1s",
+    transition: "transform 0.1s, font-size 0.1s, padding 0.1s",
     transitionTimingFunction: "ease-in",
     pointerEvents: "none",
     ...theme.typography.body,
     "@selectors": {
       "&.active,&.focus": {
         transform: "translate(2px, -21px)",
+        padding: "0px 4px",
         ...theme.typography.label
       }
     }
+  },
+  labelWithPrefix: {
+    paddingLeft: theme.spaceUnit.xl
   },
   hiddenLabel: {
     opacity: "0",
@@ -82,11 +91,20 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
         padding: "0 2px"
       }
     }
+  },
+  prefixIcon: {
+    marginRight: theme.spaceUnit.xs
+  },
+  suffixIcon: {
+    marginLeft: theme.spaceUnit.xs
   }
 });
+
 export interface IProps extends StandardProps<"input"> {
   label?: string;
   hasError?: boolean;
+  prefixIcon?: string;
+  suffixIcon?: string;
 }
 export const TextInput: React.FC<PropsWithChildren<
   IProps & WithStylesProps
@@ -99,6 +117,8 @@ export const TextInput: React.FC<PropsWithChildren<
   label = "",
   onChange,
   disabled,
+  prefixIcon,
+  suffixIcon,
   parentStylesheet,
   ...props
 }) => {
@@ -149,6 +169,7 @@ export const TextInput: React.FC<PropsWithChildren<
         <span
           className={cx(
             styles.label,
+            prefixIcon && styles.labelWithPrefix,
             isFocused && "focus",
             hasContent && "active",
             hasError && "error",
@@ -158,26 +179,42 @@ export const TextInput: React.FC<PropsWithChildren<
           {label}
         </span>
       </div>
-      <input
-        {...props}
-        disabled={disabled}
-        ref={inputRef}
-        className={cx(styles.input, disabled && "disabled")}
-        onChange={e => {
-          if (onChange) {
-            onChange(e);
-          }
-          setHasContent(e.target.value.length > 0);
-        }}
-        onBlur={e => {
-          setIsFocused(false);
-          return props.onBlur?.(e);
-        }}
-        onFocus={e => {
-          setIsFocused(true);
-          return props.onFocus?.(e);
-        }}
-      />
+      <div className={cx(styles.inputContainer)}>
+        {prefixIcon && (
+          <Icon
+            name={prefixIcon as IconNames}
+            size={16}
+            className={cx(styles.prefixIcon)}
+          />
+        )}
+        <input
+          {...props}
+          disabled={disabled}
+          ref={inputRef}
+          className={cx(styles.input, disabled && "disabled")}
+          onChange={e => {
+            if (onChange) {
+              onChange(e);
+            }
+            setHasContent(e.target.value.length > 0);
+          }}
+          onBlur={e => {
+            setIsFocused(false);
+            return props.onBlur?.(e);
+          }}
+          onFocus={e => {
+            setIsFocused(true);
+            return props.onFocus?.(e);
+          }}
+        />
+        {suffixIcon && (
+          <Icon
+            name={suffixIcon as IconNames}
+            size={16}
+            className={cx(styles.suffixIcon)}
+          />
+        )}
+      </div>
     </fieldset>
   );
 };
