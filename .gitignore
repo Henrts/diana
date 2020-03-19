@@ -35,3 +35,6 @@ module/
 
 packages/assets/index.js
 packages/assets/index.d.ts
+
+# lerna
+lerna-debug.log

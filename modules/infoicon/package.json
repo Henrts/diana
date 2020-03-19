@@ -1,0 +1,47 @@
+{
+  "name": "@diana-ui/infoicon",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "module": "module/index.js",
+  "files": [
+    "lib",
+    "module"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module",
+    "clean:files": "rimraf lib module",
+    "prepare": "yarn clean:files && yarn build",
+    "watch": "npm-watch"
+  },
+  "dependencies": {
+    "@diana-ui/avatar": "^0.0.1",
+    "@diana-ui/base": "^0.1.2",
+    "@diana-ui/hooks": "^0.1.5",
+    "@diana-ui/tokens": "^0.1.2",
+    "@diana-ui/types": "^0.1.2",
+    "@diana-ui/typography": "^0.1.2"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "watch": {
+    "prepare": {
+      "runOnChangeOnly": true,
+      "extensions": "ts,tsx,svg",
+      "ignore": [
+        "lib",
+        "node_modules",
+        "module"
+      ],
+      "patterns": [
+        "."
+      ]
+    }
+  }
+}
