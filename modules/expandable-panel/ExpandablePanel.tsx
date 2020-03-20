@@ -127,9 +127,11 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
   // set body height manually to be able to have the sliding animation
   useEffect(() => {
     if (isExpanded && bodyHeight && bodyHeight > 0 && currentBodyHeight === 0) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setCurrentBodyHeight(bodyHeight);
       }, 300);
+
+      return () => clearTimeout(timeout);
     }
   }, [bodyHeight, currentBodyHeight, isExpanded]);
 
