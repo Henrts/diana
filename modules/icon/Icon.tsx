@@ -60,4 +60,6 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
 
   return <SvgIcon {...newProps} />;
 };
-export default withStyles(styleSheet)(Icon);
+
+Icon.displayName = "Icon";
+export default withStyles(styleSheet, { register: true })(Icon);

@@ -8,12 +8,14 @@ import { withStyles } from "@diana-ui/base";
 import TextInput, { IProps as ITextInputProps } from "./TextInput";
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
-  errorLabel: {
+  helperLabel: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
-    color: theme.colors.alert.alert100,
     ...theme.typography.label
+  },
+  errorLabel: {
+    color: theme.colors.alert.alert100
   },
   hintLabel: {
     color: theme.colors.black
@@ -49,9 +51,9 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
             : error !== null && error !== undefined
         }
       />
-      <div className={cx(styles.errorLabel)}>
+      <div className={cx(styles.helperLabel)}>
         {error && typeof error === "string" ? (
-          error
+          <span className={cx(styles.errorLabel)}>{error}</span>
         ) : hint ? (
           <span className={cx(styles.hintLabel)}>{hint}</span>
         ) : (

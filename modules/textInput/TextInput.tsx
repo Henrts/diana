@@ -5,7 +5,8 @@ import {
   StandardProps,
   WithStylesProps
 } from "@diana-ui/types";
-import { Icon, IconNames } from "@diana-ui/icon";
+import { useRegistry } from "@diana-ui/hooks";
+import { IIconProps } from "@diana-ui/icon";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   fieldset: {
@@ -43,7 +44,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   labelContainer: {
     position: "absolute",
     top: 0,
-    left: 4,
+    left: theme.spaceUnit.xxs,
     height: 40,
     pointerEvents: "none",
     display: "flex",
@@ -54,7 +55,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
     color: theme.colors.grey.grey100,
-    padding: "0px 4px",
+    padding: `0 ${theme.spaceUnit.xxs}px`,
     transition: "transform 0.1s, font-size 0.1s, padding 0.1s",
     transitionTimingFunction: "ease-in",
     pointerEvents: "none",
@@ -62,7 +63,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     "@selectors": {
       "&.active,&.focus": {
         transform: "translate(2px, -21px)",
-        padding: "0px 4px",
+        paddingLeft: theme.spaceUnit.xxs,
         ...theme.typography.label
       }
     }
@@ -126,6 +127,7 @@ export const TextInput: React.FC<PropsWithChildren<
   const [hasContent, setHasContent] = useState(false);
   const [legendWidth, setLegendWidth] = useState(0);
   const hiddenLabel = useRef<HTMLSpanElement>(null);
+  const Icon = useRegistry<IIconProps>("Icon");
 
   useEffect(() => {
     const value = props.value as string;
@@ -182,7 +184,7 @@ export const TextInput: React.FC<PropsWithChildren<
       <div className={cx(styles.inputContainer)}>
         {prefixIcon && (
           <Icon
-            name={prefixIcon as IconNames}
+            name={prefixIcon as any}
             size={16}
             className={cx(styles.prefixIcon)}
           />
@@ -209,7 +211,7 @@ export const TextInput: React.FC<PropsWithChildren<
         />
         {suffixIcon && (
           <Icon
-            name={suffixIcon as IconNames}
+            name={suffixIcon as any}
             size={16}
             className={cx(styles.suffixIcon)}
           />
