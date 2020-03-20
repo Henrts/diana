@@ -99,7 +99,6 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     number | undefined
   >(0);
   const headerRef = useRef<HTMLDivElement>(null);
-  const bodyWrapperRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
   // calculate header height (once or every time window size changes)
@@ -214,11 +213,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     >
       {renderHeader()}
       {(isExpanded || isCollapsing) && (
-        <div
-          ref={bodyWrapperRef}
-          style={bodyWrapperStyles}
-          className={cx(styles.bodyWrapper)}
-        >
+        <div style={bodyWrapperStyles} className={cx(styles.bodyWrapper)}>
           <div ref={bodyRef} className={cx(styles.body, ...stateClasses)}>
             {children}
           </div>
