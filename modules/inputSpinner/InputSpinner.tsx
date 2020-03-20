@@ -36,10 +36,23 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   buttonMin: {},
   buttonMax: {},
   value: {
-    boxSizing: "border-box",
     alignItems: "center",
     justifyContent: "center",
+    minWidth: 21,
+    ...theme.typography.body,
     "@selectors": {
+      "&::-webkit-inner-spin-button": {
+        "-webkit-appearance": "none",
+        "-moz-appearance": "none",
+        appearance: "none",
+        margin: 0
+      },
+      "&::-webkit-outer-spin-button": {
+        "-webkit-appearance": "none",
+        "-moz-appearance": "none",
+        appearance: "none",
+        margin: 0
+      },
       "&.disabled": {},
       "&.focus:not(.disabled)": {}
     }
@@ -52,11 +65,10 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   className,
   value,
   onChange,
-  min,
-  max,
-  step,
-  disabled
+  parentStylesheet,
+  ...props
 }) => {
+  const { min, max, step, disabled } = props;
   const [_value, setValue] = useState(0);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -121,7 +133,14 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
       >
         <ButtonText>-</ButtonText>
       </button>
-      <span className={valueStyle}>{fixedValue}</span>
+      <input
+        {...props}
+        className={valueStyle}
+        type="number"
+        value={fixedValue}
+        onChange={e => changeValue(parseInt(e.target.value, 10))}
+        style={{ width: `${fixedValue.toString().length * 10}px` }}
+      />
       <button
         type="button"
         className={cx(buttonStyle, styles.buttonMax)}
