@@ -9,6 +9,7 @@ export interface IProps extends StandardProps<"div"> {
   direction?: Direction;
   parentRef: React.RefObject<HTMLDivElement>;
   useParentWidth?: boolean;
+  scrollableRootElement?: string | HTMLElement;
 }
 
 const getScrollTop = () => document.documentElement.scrollTop;
@@ -62,6 +63,7 @@ const Portal: React.FC<IProps> = ({
   direction = "bottom",
   parentRef,
   useParentWidth = false,
+  scrollableRootElement = "root",
   children
 }) => {
   const windowSize = useWindowSize();
@@ -71,11 +73,34 @@ const Portal: React.FC<IProps> = ({
   // If window size changes, recalculate position based on new parentRef position
   // This effect also sets the initial position
   useEffect(() => {
-    target.setAttribute(
-      "style",
-      getPortalStyles(parentRef, direction, useParentWidth)
-    );
-  }, [direction, parentRef, target, useParentWidth, windowSize]);
+    const updateTargetStyle = () => {
+      target.setAttribute(
+        "style",
+        getPortalStyles(parentRef, direction, useParentWidth)
+      );
+    };
+    updateTargetStyle();
+    if (scrollableRootElement) {
+      const rootElement =
+        typeof scrollableRootElement === "string"
+          ? document.getElementById(scrollableRootElement)
+          : scrollableRootElement;
+
+      if (rootElement) {
+        rootElement.addEventListener("scroll", updateTargetStyle);
+      }
+
+      return () =>
+        rootElement?.removeEventListener("scroll", updateTargetStyle);
+    }
+  }, [
+    direction,
+    parentRef,
+    scrollableRootElement,
+    target,
+    useParentWidth,
+    windowSize
+  ]);
 
   useEffect(() => {
     document.body.appendChild(target);
