@@ -145,7 +145,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     }
   }, [expanded, handleCollapse]);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (disabled) {
       return;
     }
@@ -161,7 +161,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
 
     // eslint-disable-next-line mdx/no-unused-expressions
     onClick?.();
-  };
+  }, [disabled, expanded, handleCollapse, isExpanded, onClick]);
 
   const stateClasses = useMemo(() => {
     const classes = [];
@@ -179,7 +179,11 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
 
   const renderHeader = useCallback(
     () => (
-      <div ref={headerRef} className={cx(styles.header, ...stateClasses)}>
+      <div
+        ref={headerRef}
+        className={cx(styles.header, ...stateClasses)}
+        onClick={handleClick}
+      >
         {typeof header === "string" ? (
           <TextHighlight className={cx(styles.headerTitle)}>
             {header}
@@ -194,7 +198,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
         />
       </div>
     ),
-    [header, cx, styles, stateClasses, isExpanded]
+    [cx, styles, stateClasses, handleClick, header, isExpanded]
   );
 
   const isBodyHeightReady = bodyHeight && bodyHeight > 0;
@@ -209,7 +213,6 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     <div
       className={cx(className, styles.panel, ...stateClasses)}
       style={{ maxHeight: canAnimate ? "initial" : `${headerHeight}px` }}
-      onClick={handleClick}
     >
       {renderHeader()}
       {(isExpanded || isCollapsing) && (
