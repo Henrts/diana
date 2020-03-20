@@ -109,6 +109,12 @@ export default {
       lineHeight: "0.66rem",
       fontFamily
     },
+    labelRegular: {
+      fontSize: "0.66rem",
+      fontWeight: FontWeight.NORMAL,
+      lineHeight: "0.66rem",
+      fontFamily
+    },
     sectionTitle: {
       fontSize: "21px",
       fontWeight: FontWeight.MEDIUM,

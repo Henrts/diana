@@ -9,5 +9,6 @@ export {
   DescriptionMedium,
   Label,
   LabelMedium,
+  LabelRegular,
   SectionTitle
 } from "./Typography";
