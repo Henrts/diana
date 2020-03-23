@@ -6,17 +6,19 @@ import { StepperStory } from "./Stepper.story.tsx";
 
 # Stepper
 
+This element allows the user to track some progress as steps. It can be used just as read-only component, but can also allows the user to click and advance on some steps.0
+
 <Preview>
   <Story name="Stepper">
     <Stepper steps={6} />
   </Story>
 </Preview>
 
-### Stepper with activeStep
+### Stepper with initialActiveStep
 
 <Preview>
-  <Story name="StepperWithActiveStep">
-    <Stepper steps={6} activeStep={3} />
+  <Story name="StepperWithInitialActiveStep">
+    <Stepper steps={6} initialActiveStep={2} />
   </Story>
 </Preview>
 
@@ -57,7 +59,12 @@ All the props are passed through to the `Stepper` element, so refer to its docum
     <tr>
       <td>activeStep (optional)</td>
       <th>number</th>
-      <td>Current step active, starting with 0</td>
+      <td>Current step active.</td>
+    </tr>
+    <tr>
+      <td>iniitalActiveStep (optional)</td>
+      <th>number</th>
+      <td>Initial step active, default to 0</td>
     </tr>
     <tr>
       <td>clickable (optional)</td>

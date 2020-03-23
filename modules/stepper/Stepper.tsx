@@ -10,6 +10,7 @@ import { withStyles } from "@diana-ui/base";
 export interface IProps extends StandardProps<"div"> {
   steps: number;
   activeStep?: number;
+  initialActiveStep?: number;
   clickable?: boolean;
   onChange?: (stepIndex: number) => void;
 }
@@ -77,9 +78,10 @@ const Stepper: React.FC<IProps & WithStylesProps> = ({
   steps,
   clickable = false,
   onChange,
-  activeStep = 0
+  activeStep,
+  initialActiveStep = 0
 }) => {
-  const [_activeStep, setActiveStep] = useState(activeStep);
+  const [_activeStep, setActiveStep] = useState(initialActiveStep);
   const containerStyle = cx(styles.container, className);
 
   const _steps: boolean[] = useMemo(() => {
@@ -88,14 +90,14 @@ const Stepper: React.FC<IProps & WithStylesProps> = ({
   }, [steps, _activeStep]);
 
   useEffect(() => {
-    if (activeStep) {
+    if (activeStep !== undefined) {
       setActiveStep(activeStep);
     }
   }, [activeStep]);
 
   const change = useCallback(
     stepIndex => {
-      if (!activeStep) {
+      if (activeStep === undefined) {
         setActiveStep(stepIndex);
       }
       return onChange?.(stepIndex);
