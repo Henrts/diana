@@ -4,7 +4,13 @@ import { Slider, LockedSlider } from "./";
 export const SliderStory = () => {
   const [value, setValue] = useState(0);
   return (
-    <Slider min={0} max={10000} value={value} step={0.1} onChange={setValue} />
+    <Slider
+      min={0}
+      max={10000}
+      value={value}
+      step={0.1}
+      onValueChange={setValue}
+    />
   );
 };
 
@@ -16,7 +22,7 @@ export const DisabledSliderStory = () => {
       max={10}
       value={6}
       step={0.1}
-      onChange={() => {}}
+      onValueChange={() => {}}
     />
   );
 };
@@ -33,7 +39,7 @@ export const LockedSliderStory = () => {
       max={100}
       value={value}
       step={0.1}
-      onChange={setValue}
+      onValueChange={setValue}
     />
   );
 };

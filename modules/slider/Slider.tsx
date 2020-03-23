@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
-import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
-import { LabelRegular } from "@diana-ui/typography";
+import { useWindowSize } from "@diana-ui/hooks";
+import {
+  ThemeStyleSheetFactory,
+  WithStylesProps,
+  StandardProps
+} from "@diana-ui/types";
+import { Label } from "@diana-ui/typography";
 
-export interface ISliderProps {
+export interface ISliderProps extends StandardProps<"input"> {
   min: number;
   max: number;
   value: number;
   step: number;
-  onChange: any;
   disabled?: boolean;
   className?: string;
-}
-
-export interface ISliderState {
-  leftSpacing: number;
+  inputClassName?: string;
+  onValueChange: (value: number) => void;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -35,13 +37,6 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   value: {}
 });
 
-const calculateLeftSpace = (
-  totalWidth: number,
-  min: number,
-  max: number,
-  value: number
-) => (value * totalWidth) / (max - min) + 13 - (`${max}`.length * 20) / 2;
-
 const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   cx,
   styles,
@@ -49,49 +44,77 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   max,
   value,
   step,
-  onChange,
+  onValueChange,
   disabled = false,
-  className = ""
+  className = "",
+  inputClassName = ""
 }) => {
+  const windowSize = useWindowSize();
   const [size, setSize] = useState(9);
   const ref = React.createRef<HTMLInputElement>();
+
+  /**
+   * This function calculates the left space required
+   * for the label with the value follow the thumb.
+   * The formula is as follows:
+   *
+   * (max - min) + 13
+   * this gives the diference between max and min so we can
+   * use value 0 as the starting point in case min is higher than 0
+   * Having:
+   * 13 - is the sum of half the thumb (which is 11px) plus 2px that
+   * correspond to slider bar that the thumb don't reach. Basically the
+   * thumb do not touch the start / end of the bar, and that is 2px
+   *
+   *
+   * this calculates the width of the span that contains the value
+   * and divides it by 2. This will give us the distance between the
+   * left corner and the middle on
+   * having:
+   * 20px as default size for letter
+   * (`${max}`.length * 20) / 2
+   */
+  const calculateLeftSpace = useCallback(
+    totalWidth =>
+      (value * totalWidth) / (max - min) + 13 - (`${max}`.length * 20) / 2,
+    [max, min, value]
+  );
+
   useEffect(() => {
-    function updateLeftSpacing() {
-      setSize(
-        calculateLeftSpace(
-          ref.current?.clientWidth ? ref.current.clientWidth - 21 : 0,
-          min,
-          max,
-          value
-        )
-      );
-    }
+    setSize(
+      calculateLeftSpace(
+        /**
+         * if ref ins't defined yet the default is 0
+         * in case it exists, at the total width of the input,
+         * we subtract the thumb value since the thumb do not actually
+         * hits the end neither the start
+         * so half from the end + half from the end we get the full with
+         * of the thumb
+         */
+        ref.current?.clientWidth ? ref.current.clientWidth - 21 : 0
+      )
+    );
+  }, [ref, min, max, value, calculateLeftSpace, windowSize]);
 
-    updateLeftSpacing();
-
-    window.addEventListener("resize", updateLeftSpacing);
-
-    return () => window.removeEventListener("resize", updateLeftSpacing);
-  }, [ref, min, max, value]);
   return (
-    <div className={cx(styles.wrapper)}>
+    <div className={cx(styles.wrapper, className)}>
       <div className={cx(styles.valueWrapper)}>
-        <LabelRegular
+        <Label
           style={{ left: size, width: `${max}`.length * 20 }}
           className={cx(styles.value)}
         >
           {value}
-        </LabelRegular>
+        </Label>
       </div>
       <input
         ref={ref}
-        className={cx(styles.input, disabled && "disabled", className)}
+        className={cx(styles.input, disabled && "disabled", inputClassName)}
         type="range"
         min={min}
         max={max}
         value={value}
         step={step}
-        onChange={ev => onChange?.(ev.currentTarget.value)}
+        onChange={ev => onValueChange(Number(ev.currentTarget.value))}
         disabled={disabled}
       />
     </div>

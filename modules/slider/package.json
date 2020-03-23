@@ -20,7 +20,8 @@
     "@diana-ui/base": "^0.1.2",
     "@diana-ui/types": "^0.1.2",
     "@diana-ui/icon": "^0.1.2",
-    "@diana-ui/typography": "^0.1.2"
+    "@diana-ui/typography": "^0.1.2",
+    "@diana-ui/hooks": "^0.1.5"
   },
   "peerDependencies": {
     "react": "^16.12.0"

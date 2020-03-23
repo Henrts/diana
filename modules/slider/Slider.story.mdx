@@ -32,3 +32,117 @@ import {
     <LockedSliderStory />
   </Story>
 </Preview>
+
+## Slider Available Props
+
+```ts
+interface ISliderProps {
+  /**
+   *  Min value
+   */
+  min: number;
+  /**
+   *  Max value
+   */
+  max: number;
+  /**
+   *  Actual value
+   */
+  value: number;
+  /**
+   * Step. f.e. 1 in 1 or 0.1 in 0.1
+   */
+  step: number;
+  /**
+   * Slider disable
+   */
+  disabled?: boolean;
+  /**
+   * Wrapper className
+   */
+  className?: string;
+  /**
+   * html Input classname
+   */
+  inputClassName?: string;
+  /**
+   * On slider value change
+   */
+  onValueChange: (value: number) => void;
+}
+```
+
+## Slider Extendable Styles
+
+```json
+{
+  /**
+   *  component wrapper
+   */
+  "wrapper": {},
+  /**
+   * value span wrapper
+   */
+  "valueWrapper": {},
+  /**
+   *  configs for input
+   * since this isn't a custom slider and actually
+   * uses the input type range from html there's some styles
+   * required to overwride for the various available browser
+   */
+  "input": {
+    "&::-webkit-slider-thumb": {},
+    "@selectors": {
+      "&.disabled::-webkit-slider-thumb": {},
+      "&.disabled::-webkit-slider-runnable-track": {}
+    },
+    "&::-moz-range-thumb": {},
+    "&::-ms-thumb": {},
+    "&:focus": {},
+    "&::-ms-track": {},
+    "&::-webkit-slider-runnable-track": {}
+  },
+  /**
+   * styles for the value
+   */
+  "value": {}
+}
+```
+
+## LockedSlider Available Props
+
+```ts
+interface ILockedSliderProps {
+  /**
+   * Sets if the slider should start locked
+   */
+  startLocked?: boolean;
+  /**
+   * Locked icon (from the ddm icon list)
+   */
+  lockedIcon: string;
+  /**
+   * Unlocked icon (from the ddm icon list)
+   */
+  unlockedIcon: string;
+}
+```
+
+## LockedSlider Extendable Styles
+
+````json
+{
+  /**
+   * Wrapper for the whole component
+   */
+  lockWrapper: {},
+  /**
+   * Wrapper for the icon
+   */
+  iconWrapper: {},
+  /**
+   * styles for the icon
+   */
+  icon: {}
+}```
+````

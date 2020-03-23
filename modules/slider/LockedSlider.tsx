@@ -6,8 +6,8 @@ import Slider, { ISliderProps } from "./Slider";
 
 export interface ILockedSliderProps extends ISliderProps {
   startLocked?: boolean;
-  lockedIcon: string | React.ReactNode;
-  unlockedIcon: string | React.ReactNode;
+  lockedIcon: string;
+  unlockedIcon: string;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -17,13 +17,11 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     alignItems: "flex-end",
     width: "100%"
   },
-  icon: {
-    marginLeft: 16
-  }
+  iconWrapper: {
+    marginLeft: theme.spaceUnit.md
+  },
+  icon: {}
 });
-
-// const LOCKED_THUMB =
-//   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMSAyMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTAuNSIgY3k9IjEwLjUiIHI9IjEwLjUiIGZpbGw9IiMwNzA3MDciLz4KPGxpbmUgeDE9IjguNTc2OSIgeTE9IjUuMzQ2MTkiIHgyPSI4LjU3NjkiIHkyPSIxNS42NTM5IiBzdHJva2U9IndoaXRlIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPGxpbmUgeDE9IjExLjgwNzYiIHkxPSI1LjM0NjE5IiB4Mj0iMTEuODA3NiIgeTI9IjE1LjY1MzkiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K";
 
 const StyledSlider = Slider.extendStyles(theme => ({}));
 
@@ -37,26 +35,19 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   ...props
 }) => {
   const [isLocked, setIsLocked] = useState(startLocked);
+  const icon = isLocked ? lockedIcon : unlockedIcon;
   return (
     <div className={cx(styles.lockWrapper)}>
       <StyledSlider
-        className={cx(isLocked && "locked")}
-        onChange={(!isLocked && onChange) || (() => {})}
+        inputClassName={cx(isLocked && "locked")}
+        onValueChange={(!isLocked && onChange) || (() => {})}
         {...props}
       />
-      <div className={cx(styles.icon)} onClick={() => setIsLocked(!isLocked)}>
-        {isLocked &&
-          (typeof lockedIcon === "string" ? (
-            <Icon className={cx(styles.icon)} name={lockedIcon as any} />
-          ) : (
-            lockedIcon
-          ))}
-        {!isLocked &&
-          (typeof unlockedIcon === "string" ? (
-            <Icon className={cx(styles.icon)} name={unlockedIcon as any} />
-          ) : (
-            unlockedIcon
-          ))}
+      <div
+        className={cx(styles.iconWrapper)}
+        onClick={() => setIsLocked(!isLocked)}
+      >
+        <Icon className={cx(styles.icon)} name={icon as any} />
       </div>
     </div>
   );
