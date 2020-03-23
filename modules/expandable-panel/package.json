@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/expandable-panel",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@diana-ui/base": "0.1.1",
-    "@diana-ui/icon": "0.1.1",
     "@diana-ui/hooks": "0.1.4",
+    "@diana-ui/icon": "0.1.1",
     "@diana-ui/types": "0.1.1",
     "@diana-ui/typography": "0.1.1"
   },
