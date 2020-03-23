@@ -11,12 +11,12 @@ import { Label } from "@diana-ui/typography";
 export interface ISliderProps extends StandardProps<"input"> {
   min: number;
   max: number;
-  value: number;
+  value?: number;
   step: number;
   disabled?: boolean;
   className?: string;
   inputClassName?: string;
-  onValueChange: (value: number) => void;
+  onValueChange?: (value: number) => void;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -51,6 +51,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
 }) => {
   const windowSize = useWindowSize();
   const [size, setSize] = useState(9);
+  const [_value, setValue] = useState(value || 0);
   const ref = React.createRef<HTMLInputElement>();
 
   /**
@@ -76,8 +77,8 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
    */
   const calculateLeftSpace = useCallback(
     totalWidth =>
-      (value * totalWidth) / (max - min) + 13 - (`${max}`.length * 20) / 2,
-    [max, min, value]
+      (_value * totalWidth) / (max - min) + 13 - (`${max}`.length * 20) / 2,
+    [max, min, _value]
   );
 
   useEffect(() => {
@@ -96,6 +97,8 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
     );
   }, [ref, min, max, value, calculateLeftSpace, windowSize]);
 
+  useEffect(() => onValueChange?.(_value), [_value, onValueChange]);
+
   return (
     <div className={cx(styles.wrapper, className)}>
       <div className={cx(styles.valueWrapper)}>
@@ -103,7 +106,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
           style={{ left: size, width: `${max}`.length * 20 }}
           className={cx(styles.value)}
         >
-          {value}
+          {_value}
         </Label>
       </div>
       <input
@@ -112,9 +115,9 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
         type="range"
         min={min}
         max={max}
-        value={value}
+        value={_value}
         step={step}
-        onChange={ev => onValueChange(Number(ev.currentTarget.value))}
+        onChange={ev => setValue(Number(ev.currentTarget.value))}
         disabled={disabled}
       />
     </div>

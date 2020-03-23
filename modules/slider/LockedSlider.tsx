@@ -28,7 +28,7 @@ const StyledSlider = Slider.extendStyles(theme => ({}));
 const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   cx,
   styles,
-  onChange,
+  onValueChange,
   startLocked = false,
   lockedIcon,
   unlockedIcon,
@@ -40,7 +40,7 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
     <div className={cx(styles.lockWrapper)}>
       <StyledSlider
         inputClassName={cx(isLocked && "locked")}
-        onValueChange={(!isLocked && onChange) || (() => {})}
+        onValueChange={(!isLocked && onValueChange) || (() => {})}
         {...props}
       />
       <div
