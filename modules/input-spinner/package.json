@@ -1,5 +1,5 @@
 {
-  "name": "@diana-ui/inputspinner",
+  "name": "@diana-ui/input-spinner",
   "version": "0.0.1",
   "main": "lib/index.js",
   "module": "module/index.js",

@@ -16,6 +16,7 @@ export const InputSpinnerStoryWithProps = () => {
           onChange={v => {
             setValue(v);
           }}
+          initialValue={7}
         />
       </div>
 

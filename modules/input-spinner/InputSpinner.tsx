@@ -13,7 +13,9 @@ export interface IProps extends StandardProps<"input"> {
   max?: number;
   step?: number;
   value?: number;
+  initialValue?: number;
   onChange?: (value: number) => void;
+  displayFormat?: (value: number) => string;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -64,48 +66,65 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   cx,
   className,
   value,
+  initialValue,
   onChange,
+  displayFormat,
   parentStylesheet,
   ...props
 }) => {
   const { min, max, step, disabled } = props;
-  const [_value, setValue] = useState(0);
+  const [_value, setValue] = useState(initialValue || 0);
   const [isFocused, setIsFocused] = useState(false);
 
-  const containerStyle = cx("container", styles.container, className);
-  const buttonStyle = cx("button", styles.button, disabled && "disabled");
+  const containerStyle = cx(
+    "input-spinner-container",
+    styles.container,
+    className
+  );
+  const buttonStyle = cx(
+    "input-spinner-button",
+    styles.button,
+    disabled && "disabled"
+  );
   const valueStyle = cx(
-    "value",
+    "input-spinner-value",
     styles.value,
     disabled && "disabled",
     isFocused && "focus"
   );
 
   useEffect(() => {
-    if (value) {
+    if (value !== undefined) {
       setValue(value);
     }
   }, [value]);
 
   const fixedValue = useMemo(() => {
-    const valueState = value ?? _value;
+    const valueState = _value;
+    if (displayFormat) {
+      return displayFormat(valueState);
+    }
+
+    // default display format
     if (!valueState) {
       return "00";
     }
     if (valueState < 10 && valueState > 0) {
       return `0${valueState}`;
     }
-    return valueState;
-  }, [_value, value]);
+    return valueState.toString();
+  }, [_value, displayFormat]);
 
   const changeValue = useCallback(
     newValue => {
       if (disabled) return;
 
-      setValue(newValue);
+      if (value === undefined) {
+        setValue(newValue);
+      }
       return onChange?.(newValue);
     },
-    [onChange, disabled]
+    [onChange, value, disabled]
   );
 
   const increase = useCallback(() => {

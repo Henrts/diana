@@ -1,8 +1,6 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import {
-  InputSpinnerStory,
-  InputSpinnerStoryWithProps
-} from "./InputSpinner.story.tsx";
+import { InputSpinnerStoryWithProps } from "./InputSpinner.story";
+import InputSpinner from "./InputSpinner";
 
 <Meta title="Components | InputSpinner" />
 
@@ -12,7 +10,15 @@ This component can be used as an input just for numbers
 
 <Preview>
   <Story name="InputSpinner">
-    <InputSpinnerStory />
+    <InputSpinner />
+  </Story>
+</Preview>
+
+### Input Spinner with initial Value
+
+<Preview>
+  <Story name="InputSpinnerWithInitialValue">
+    <InputSpinner initialValue={7} />
   </Story>
 </Preview>
 
@@ -24,9 +30,17 @@ This component can be used as an input just for numbers
   </Story>
 </Preview>
 
+### Input Spinner with display format
+
+<Preview>
+  <Story name="InputSpinnerWithDisplayFormat">
+    <InputSpinner displayFormat={v => "-" + v} min={1} initialValue={2} />
+  </Story>
+</Preview>
+
 ### Available props
 
-All the props are passed through to the `Popover` element, so refer to its documentation for more customization options.
+All the props are passed through to the `InputSpinner` element, so refer to its documentation for more customization options.
 
 <table width="100%">
   <thead>
@@ -38,11 +52,19 @@ All the props are passed through to the `Popover` element, so refer to its docum
   </thead>
   <tbody>
     <tr>
-      <td>value</td>
+      <td>value (optional)</td>
       <th>number</th>
       <td>
         The current value of the input. If not set the input becomes
         uncontrolled.
+      </td>
+    </tr>
+    <tr>
+      <td>initialValue (optional)</td>
+      <th>number</th>
+      <td>
+        The initial value of the input. If not set it will use 0. Only works
+        without value set, otherwise it will be overrided.
       </td>
     </tr>
     <tr>
@@ -69,6 +91,14 @@ All the props are passed through to the `Popover` element, so refer to its docum
       <td>step (optional)</td>
       <th>number</th>
       <td>The value amount that the input can change</td>
+    </tr>
+    <tr>
+      <td>displayFormat (optional)</td>
+      <th>(value: number) => string</th>
+      <td>
+        A function that allows to customize a way of changing the format of the
+        display. Must return a number. Default is "00" / "05" / "10"
+      </td>
     </tr>
   </tbody>
 </table>
