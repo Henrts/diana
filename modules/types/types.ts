@@ -18,7 +18,9 @@ export enum FontWeight {
   REGULAR = 400,
   MEDIUM = 500,
   BOLD = 700,
-  BOLDER = 900
+  BOLDER = 900,
+  NORMAL = "normal"
+
 }
 
 interface IFont {
@@ -27,7 +29,8 @@ interface IFont {
     | FontWeight.REGULAR
     | FontWeight.MEDIUM
     | FontWeight.BOLD
-    | FontWeight.BOLDER;
+    | FontWeight.BOLDER
+    | FontWeight.NORMAL;
   lineHeight: string | number;
   fontFamily: string;
   letterSpacing: string;
