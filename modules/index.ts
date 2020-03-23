@@ -5,6 +5,7 @@ export * from "./checkbox/index";
 export * from "./chip/index";
 export * from "./divider/index";
 export * from "./dropdown/index";
+export * from "./expandable-panel/index";
 export * from "./form/index";
 export * from "./icon/index";
 export * from "./notification/index";

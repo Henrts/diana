@@ -1,6 +1,6 @@
 import aestheticDefault, { Aesthetic } from "aesthetic";
-import AphroditeAdapter from "aesthetic-adapter-aphrodite";
 import { defaultTheme } from "@diana-ui/tokens";
+import AphroditeAdapter from "./aphroditeAdapter";
 import { selfExtension } from "./aphroditeExtensions";
 
 export function initDefaultTheme(aesthetic = aestheticDefault) {

@@ -1,0 +1,308 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import {
+  DdmPanelStory,
+  ExpandablePanelStory,
+  DisabledExpandablePanelStory,
+  ExpandedPanelStory,
+  ExpandablePanelsStory,
+  DisabledExpandablePanelsStory,
+  ExpandedPanelsStory,
+  AccordionStory
+} from "./ExpandablePanel.story.tsx";
+
+<Meta title="Components | ExpandablePanel" />
+
+# ExpandablePanel
+
+The `ExpandablePanel` is very self-explanatory - it is a content panel that expands/collapses when clicked on.
+Its expanded/collapsed state can either be controlled by the component internally or by a parent component.
+
+<Preview>
+  <Story name="ExpandablePanel">
+    <ExpandablePanelStory />
+  </Story>
+</Preview>
+
+### Disabled
+
+<Preview>
+  <Story name="disabled ExpandablePanel">
+    <DisabledExpandablePanelStory />
+  </Story>
+</Preview>
+
+### Initially expanded
+
+<Preview>
+  <Story name="expanded ExpandablePanel">
+    <ExpandedPanelStory />
+  </Story>
+</Preview>
+
+### Available props
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>disabled (optional)</td>
+      <td>boolean</td>
+      <td>Flag indicating whether user can expand/collapse panel</td>
+    </tr>
+    <tr>
+      <td>expanded (optional)</td>
+      <td>boolean</td>
+      <td>
+        Flag indicating whether the panel is expanded.
+        <br />
+        If this prop is passed, the component's state is controlled by the
+        parent component.
+      </td>
+    </tr>
+    <tr>
+      <td>header</td>
+      <td>string | ((visible: boolean) => React.ReactNode)</td>
+      <td>
+        The panel's header, which is always visible and will expand collapse if
+        clicked on (and not disabled).
+        <br />
+        It can either be a string or a function that returns a custom
+        `ReactNode`
+      </td>
+    </tr>
+    <tr>
+      <td>initialExpanded (optional)</td>
+      <td>boolean</td>
+      <td>Flag indicating whether the panel is initially expanded.</td>
+    </tr>
+    <tr>
+      <td>onClick (optional)</td>
+      <td>string</td>
+      <td>
+        Callback that can provide custom behaviour when header is clicked.
+        <br />
+        If inside a ExpandablePanels component, this prop will be injected by
+        that component.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>body</td>
+      <td></td>
+      <td>This style affects the part of the panel that expands/ collapses</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.disabled</td>
+      <td>Style to be applied if panel is disabled</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.expanded</td>
+      <td>Style to be applied if panel is expanded</td>
+    </tr>
+    <tr>
+      <td>bodyWrapper</td>
+      <td></td>
+      <td>
+        This style affects the body wrapper. Any padding or height styles should
+        not be passed here but in the body style instead, since they will have
+        an impact on the sliding animation. This style should ideally only be
+        used to customize the sliding animation, which is by default:
+        <br />
+        transition: height 200ms ease-out
+      </td>
+    </tr>
+    <tr>
+      <td>header</td>
+      <td></td>
+      <td>This style affects the panel header, which is always visible</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.disabled</td>
+      <td>Style to be applied if panel is disabled</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.expanded</td>
+      <td>Style to be applied if panel is expanded</td>
+    </tr>
+    <tr>
+      <td>headerIcon</td>
+      <td></td>
+      <td>
+        This style affects the header's icon (down-arrow) if no custom header
+        renderer is provided
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.disabled</td>
+      <td>Style to be applied if panel is disabled</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.expanded</td>
+      <td>Style to be applied if panel is expanded</td>
+    </tr>
+    <tr>
+      <td>headerTitle</td>
+      <td></td>
+      <td>
+        This style affects the header's title if no custom header renderer is
+        provided
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.disabled</td>
+      <td>Style to be applied if panel is disabled</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.expanded</td>
+      <td>Style to be applied if panel is expanded</td>
+    </tr>
+    <tr>
+      <td>panel</td>
+      <td></td>
+      <td>This style affects the ExpandablePanel's root element</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.disabled</td>
+      <td>Style to be applied if panel is disabled</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>.expanded</td>
+      <td>Style to be applied if panel is expanded</td>
+    </tr>
+  </tbody>
+</table>
+
+# ExpandablePanels
+
+`ExpandablePanel`s can be grouped in an `ExpandablePanels` component. Multiple `ExpandablePanel`s can be opened simultaneously by default.
+However, if the `allowMultipleExpandedPanels` prop is passed as `false`, `ExpandablePanels` can mimic the behaviour of an Accordion, where expanding
+one panel will collapse the other.
+This component also passes other props to its children, e.g. `onClick` or `disabled`.
+
+<Preview>
+  <Story name="ExpandablePanels">
+    <ExpandablePanelsStory />
+  </Story>
+</Preview>
+
+### Disabled
+
+<Preview>
+  <Story name="disabled ExpandablePanels">
+    <DisabledExpandablePanelsStory />
+  </Story>
+</Preview>
+
+### Initially expanded
+
+<Preview>
+  <Story name="expanded ExpandablePanels">
+    <ExpandedPanelsStory />
+  </Story>
+</Preview>
+
+### Accordion behaviour (`allowMultipleExpandedPanels === false`)
+
+<Preview>
+  <Story name="accordion">
+    <AccordionStory />
+  </Story>
+</Preview>
+
+### Available props
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>allowMultipleExpandedPanels (optional)</td>
+      <td>boolean</td>
+      <td>Flag indicating whether there is an error present in radio button</td>
+    </tr>
+    <tr>
+      <td>children (optional)</td>
+      <td>JSX.Element[]</td>
+      <td>A React element to provide a custom input for styling purposes</td>
+    </tr>
+    <tr>
+      <td>disabled (optional)</td>
+      <td>boolean</td>
+      <td>
+        Flag indicating whether user can interact with any of the
+        ExpandablePanel components
+      </td>
+    </tr>
+    <tr>
+      <td>initialExpandedPanelIndex (optional)</td>
+      <td>number</td>
+      <td>
+        The index of the panel that should initially be expanded
+        <br />
+        If more than one panel should be initially open, pass the
+        initialExpanded prop to those panels directly instead.
+      </td>
+    </tr>
+    <tr>
+      <td>onClick</td>
+      <td>(expandedPanelIndex: number) => void</td>
+      <td>
+        Callback that can provide custom behaviour when one of the panels is
+        clicked
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Extendable styles
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Style name</th>
+      <th>@selectors</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>panels</td>
+      <td></td>
+      <td>This style affects the ExpandablePanels' root element</td>
+    </tr>
+  </tbody>
+</table>

@@ -1174,6 +1174,68 @@
     resolve-from "^5.0.0"
     resolve-global "^1.0.0"
 
+"@diana-ui/base@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@diana-ui/base/-/base-0.1.1.tgz#b0e7da270ef2c8d57dd9a6efcd5a215a982e6438"
+  integrity sha512-hdMu6NkzcDJNDL72fshv6Qd3aKD39Olvbnxqbt7zRdma//QKDA+xtov1efAitNuI6hD7lyBiLv7+hbsunp6UTQ==
+  dependencies:
+    "@diana-ui/tokens" "^0.1.1"
+    "@diana-ui/types" "^0.1.1"
+    aesthetic "^5.1.0"
+    aesthetic-react "^2.1.0"
+    aphrodite "^2.4.0"
+    extend "^3.0.2"
+    hoist-non-react-statics "^3.3.2"
+    react-registry "^0.5.0"
+    uuid "^3.4.0"
+
+"@diana-ui/button@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@diana-ui/button/-/button-0.1.1.tgz#d837477c5ffdfd11d9d12d6e7336cb144862e1a4"
+  integrity sha512-BPtI/N61Jms1G18U8iduxMLrRsftxRrONl4Z8MRxcRzNwsKCKYDXhpBNxafYEe19xzggHHgblVe6IhsUjYEq+g==
+  dependencies:
+    "@diana-ui/base" "^0.1.1"
+    "@diana-ui/icon" "^0.1.1"
+    "@diana-ui/types" "^0.1.1"
+    "@diana-ui/typography" "^0.1.1"
+
+"@diana-ui/hooks@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@diana-ui/hooks/-/hooks-0.1.4.tgz#f72ed4594f784ff2a37c7e96f2863922f3b751d2"
+  integrity sha512-cs+8gmhYJXbKpGmhFFHU1+L2gRZgYCiiQFthEjWRbtLHPGUo03kAw5Pf/k58cl4a4L/z4GTk7oQTTTcuWxYkvg==
+  dependencies:
+    "@diana-ui/base" "^0.1.1"
+    "@diana-ui/types" "^0.1.1"
+
+"@diana-ui/icon@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@diana-ui/icon/-/icon-0.1.1.tgz#6fcf27f340258cba2a9b96d24fc9bc4d95e26ee5"
+  integrity sha512-goohCmwD4n7yA8wVbIkpz2r7sOboTG8kUWvMDdPWFIZrgZdnXkcqWCj35rH0Xy0JCRvsaaLa0ZUKK538NbHp3A==
+  dependencies:
+    "@diana-ui/base" "^0.1.1"
+    "@diana-ui/tokens" "^0.1.1"
+    "@diana-ui/types" "^0.1.1"
+    "@diana-ui/typography" "^0.1.1"
+    aesthetic-react "^2.1.0"
+    react-svg "^11.0.9"
+
+"@diana-ui/types@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@diana-ui/types/-/types-0.1.1.tgz#df2d3f8052f986dd885cebaf8d31cbdd4cd83de0"
+  integrity sha512-Q0VpOKU/++ZYLf+hVJkbjx8ylQQkDIXPTHPhV0OoqAKw6sKMovUa3gYdbqkX/7JZDSEQBBhB7KZ2QOOPzbI+Ew==
+  dependencies:
+    "@diana-ui/tokens" "^0.1.1"
+    aesthetic "^5.1.0"
+    aesthetic-react "^2.1.0"
+
+"@diana-ui/typography@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@diana-ui/typography/-/typography-0.1.1.tgz#55ced1f1b92ced9015729af6889c7e28679dee9c"
+  integrity sha512-nGkLje8Ek6GPwTwdZUuAIH7C/lS92o4ieUsc2hi/U2vlQU8fDhKfH0d7LhrfF3zVg/VsNKSJscY347xeTZv5Wg==
+  dependencies:
+    "@diana-ui/base" "^0.1.1"
+    "@diana-ui/types" "^0.1.1"
+
 "@egoist/vue-to-react@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@egoist/vue-to-react/-/vue-to-react-1.1.0.tgz#83c884b8608e8ee62e76c03e91ce9c26063a91ad"
@@ -3592,13 +3654,6 @@ address@1.1.2, address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
-aesthetic-adapter-aphrodite@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-5.1.0.tgz#57e5efbc81860ac808b1c49a8a80f0a7732a284c"
-  integrity sha512-LliNKg/R89EoICJn7GNASUyZ6OjkUeojMgtl81eAXzFZ+9xLJE4e69a+9g4xYqZy1DojKFoczXA0GCxRM2VTUw==
-  dependencies:
-    aesthetic-utils "^3.0.0"
-
 aesthetic-react@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-2.1.0.tgz#90588e910b980e1b3f719bfbfe265df0277d16d2"
@@ -3610,6 +3665,11 @@ aesthetic-react@^2.1.0:
     hoist-non-react-statics "^3.3.2"
     prop-types "^15.7.2"
     uuid "^3.4.0"
+
+aesthetic-utils@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-3.0.1.tgz#1e6698fccfb834de3899ddc1c2613d5633a173fd"
+  integrity sha512-nLJeu0wMsdLwgi4S0hbLbbSlyonhu0BYQqoAj9buj8HO0LtQBGEI+vGjvw5NfmMnxfZ0ukiwNgHM7CXhTCfwMg==
 
 aesthetic-utils@^3.0.0:
   version "3.0.0"
