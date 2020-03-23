@@ -66,14 +66,14 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   cx,
   className,
   value,
-  initialValue,
+  initialValue = 0,
   onChange,
   displayFormat,
   parentStylesheet,
   ...props
 }) => {
   const { min, max, step, disabled } = props;
-  const [_value, setValue] = useState(initialValue || 0);
+  const [_value, setValue] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
 
   const containerStyle = cx(
