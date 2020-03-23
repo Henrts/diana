@@ -8,12 +8,17 @@ import { withStyles } from "@diana-ui/base";
 import TextInput, { IProps as ITextInputProps } from "./TextInput";
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
-  errorLabel: {
+  helperLabel: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
-    color: theme.colors.alert.alert100,
     ...theme.typography.label
+  },
+  errorLabel: {
+    color: theme.colors.alert.alert100
+  },
+  hintLabel: {
+    color: theme.colors.black
   },
   legend: {
     "@selectors": {
@@ -25,12 +30,14 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
 });
 export interface IProps extends ITextInputProps {
   error?: string | boolean;
+  hint?: string;
 }
 const ExtendedTextInput = TextInput.extendStyles(stylesheet);
 export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   cx,
   styles,
   error,
+  hint,
   className,
   ...props
 }) => {
@@ -44,8 +51,14 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
             : error !== null && error !== undefined
         }
       />
-      <div className={cx(styles.errorLabel)}>
-        {error && typeof error === "string" ? error : <span>&nbsp;</span>}
+      <div className={cx(styles.helperLabel)}>
+        {error && typeof error === "string" ? (
+          <span className={cx(styles.errorLabel)}>{error}</span>
+        ) : hint ? (
+          <span className={cx(styles.hintLabel)}>{hint}</span>
+        ) : (
+          <span>&nbsp;</span>
+        )}
       </div>
     </div>
   );

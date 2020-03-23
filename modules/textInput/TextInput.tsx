@@ -5,6 +5,8 @@ import {
   StandardProps,
   WithStylesProps
 } from "@diana-ui/types";
+import { useRegistry } from "@diana-ui/hooks";
+import { IIconProps } from "@diana-ui/icon";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   fieldset: {
@@ -22,6 +24,10 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
       "&.focus": {}
     }
   },
+  inputContainer: {
+    display: "flex",
+    alignItems: "center"
+  },
   input: {
     outline: "none",
     border: "none",
@@ -37,9 +43,9 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   },
   labelContainer: {
     position: "absolute",
-    top: "0px",
-    left: "4px",
-    height: "40px",
+    top: 0,
+    left: theme.spaceUnit.xxs,
+    height: 40,
     pointerEvents: "none",
     display: "flex",
     alignItems: "center"
@@ -49,17 +55,21 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
     color: theme.colors.grey.grey100,
-    padding: "0px 4px",
-    transition: "transform 0.1s, font-size 0.1s",
+    padding: `0 ${theme.spaceUnit.xxs}px`,
+    transition: "transform 0.1s, font-size 0.1s, padding 0.1s",
     transitionTimingFunction: "ease-in",
     pointerEvents: "none",
     ...theme.typography.body,
     "@selectors": {
       "&.active,&.focus": {
         transform: "translate(2px, -21px)",
+        paddingLeft: theme.spaceUnit.xxs,
         ...theme.typography.label
       }
     }
+  },
+  labelWithPrefix: {
+    paddingLeft: theme.spaceUnit.xl
   },
   hiddenLabel: {
     opacity: "0",
@@ -82,11 +92,20 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
         padding: "0 2px"
       }
     }
+  },
+  prefixIcon: {
+    marginRight: theme.spaceUnit.xs
+  },
+  suffixIcon: {
+    marginLeft: theme.spaceUnit.xs
   }
 });
+
 export interface IProps extends StandardProps<"input"> {
   label?: string;
   hasError?: boolean;
+  prefixIcon?: string;
+  suffixIcon?: string;
 }
 export const TextInput: React.FC<PropsWithChildren<
   IProps & WithStylesProps
@@ -99,6 +118,8 @@ export const TextInput: React.FC<PropsWithChildren<
   label = "",
   onChange,
   disabled,
+  prefixIcon,
+  suffixIcon,
   parentStylesheet,
   ...props
 }) => {
@@ -106,6 +127,7 @@ export const TextInput: React.FC<PropsWithChildren<
   const [hasContent, setHasContent] = useState(false);
   const [legendWidth, setLegendWidth] = useState(0);
   const hiddenLabel = useRef<HTMLSpanElement>(null);
+  const Icon = useRegistry<IIconProps>("Icon");
 
   useEffect(() => {
     const value = props.value as string;
@@ -149,6 +171,7 @@ export const TextInput: React.FC<PropsWithChildren<
         <span
           className={cx(
             styles.label,
+            prefixIcon && styles.labelWithPrefix,
             isFocused && "focus",
             hasContent && "active",
             hasError && "error",
@@ -158,26 +181,42 @@ export const TextInput: React.FC<PropsWithChildren<
           {label}
         </span>
       </div>
-      <input
-        {...props}
-        disabled={disabled}
-        ref={inputRef}
-        className={cx(styles.input, disabled && "disabled")}
-        onChange={e => {
-          if (onChange) {
-            onChange(e);
-          }
-          setHasContent(e.target.value.length > 0);
-        }}
-        onBlur={e => {
-          setIsFocused(false);
-          return props.onBlur?.(e);
-        }}
-        onFocus={e => {
-          setIsFocused(true);
-          return props.onFocus?.(e);
-        }}
-      />
+      <div className={cx(styles.inputContainer)}>
+        {prefixIcon && (
+          <Icon
+            name={prefixIcon as any}
+            size={16}
+            className={cx(styles.prefixIcon)}
+          />
+        )}
+        <input
+          {...props}
+          disabled={disabled}
+          ref={inputRef}
+          className={cx(styles.input, disabled && "disabled")}
+          onChange={e => {
+            if (onChange) {
+              onChange(e);
+            }
+            setHasContent(e.target.value.length > 0);
+          }}
+          onBlur={e => {
+            setIsFocused(false);
+            return props.onBlur?.(e);
+          }}
+          onFocus={e => {
+            setIsFocused(true);
+            return props.onFocus?.(e);
+          }}
+        />
+        {suffixIcon && (
+          <Icon
+            name={suffixIcon as any}
+            size={16}
+            className={cx(styles.suffixIcon)}
+          />
+        )}
+      </div>
     </fieldset>
   );
 };

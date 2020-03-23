@@ -44,6 +44,18 @@ This are the available props for the Base Components
         styles to customize an error text input component
       </td>
     </tr>
+    <tr>
+      <td>prefixIcon</td>
+      <td>
+        prefixIcon is a string that will render an Icon before the text input
+      </td>
+    </tr>
+    <tr>
+      <td>suffixIcon</td>
+      <td>
+        suffixIcon is a string that will render an Icon after the text input
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -63,11 +75,27 @@ This are the available props for the Base Components
   </Story>
 </Preview>
 
+### With Prefix / Suffix
+
+<Preview>
+  <Story name="With Prefix / Suffix ">
+    <TextInput label="User Input" prefixIcon="chart" suffixIcon="arrow" />
+  </Story>
+</Preview>
+
 ### ErrorTextInput
 
 <Preview>
   <Story name="Customizing Text With Error">
     <ErrorTextInput label="User Input" error="Error" />
+  </Story>
+</Preview>
+
+### With Hint
+
+<Preview>
+  <Story name="Customizing Text With Hint">
+    <ErrorTextInput label="User Input" hint="this is helpful" />
   </Story>
 </Preview>
 
@@ -114,6 +142,11 @@ This are the available props for the Base Components
       <td>Style to apply to fieldset of a disabled Text Input</td>
     </tr>
     <tr>
+      <td>inputContainer</td>
+      <td></td>
+      <td>Container with input and prefix/suffix</td>
+    </tr>
+    <tr>
       <td>input</td>
       <td></td>
       <td>HTML Input element style</td>
@@ -132,6 +165,26 @@ This are the available props for the Base Components
       <td>label</td>
       <td></td>
       <td>Style of span element containing text defined by the label prop</td>
+    </tr>
+    <tr>
+      <td>labelWithPrefix</td>
+      <td></td>
+      <td>Style of label if has a prefix before</td>
+    </tr>
+    <tr>
+      <td>helperLabel</td>
+      <td></td>
+      <td>Style of the helper text, both for error or hint</td>
+    </tr>
+    <tr>
+      <td>errorLabel</td>
+      <td></td>
+      <td>Style of the error helper label</td>
+    </tr>
+    <tr>
+      <td>hintLabel</td>
+      <td></td>
+      <td>Style of the hint helper label</td>
     </tr>
     <tr>
       <td></td>
@@ -157,6 +210,16 @@ This are the available props for the Base Components
       <td></td>
       <td>&.focus</td>
       <td>Style applied to legend when Component is focused</td>
+    </tr>
+    <tr>
+      <td>prefixIcon</td>
+      <td></td>
+      <td>Style of icon as prefix</td>
+    </tr>
+    <tr>
+      <td>suffixIcon</td>
+      <td></td>
+      <td>Style of icon as suffix</td>
     </tr>
   </tbody>
 </table>
