@@ -26,7 +26,6 @@
     "@diana-ui/tokens": "^0.1.2",
     "@diana-ui/types": "^0.1.2",
     "aesthetic": "^5.1.0",
-    "aesthetic-adapter-aphrodite": "^5.1.0",
     "aesthetic-react": "^2.1.0",
     "aesthetic-utils": "3.0.1",
     "aphrodite": "^2.4.0",

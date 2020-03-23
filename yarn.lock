@@ -1182,7 +1182,6 @@
     "@diana-ui/tokens" "^0.1.1"
     "@diana-ui/types" "^0.1.1"
     aesthetic "^5.1.0"
-    aesthetic-adapter-aphrodite "^5.1.0"
     aesthetic-react "^2.1.0"
     aphrodite "^2.4.0"
     extend "^3.0.2"
@@ -3654,13 +3653,6 @@ address@1.1.2, address@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
-
-aesthetic-adapter-aphrodite@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-5.1.0.tgz#57e5efbc81860ac808b1c49a8a80f0a7732a284c"
-  integrity sha512-LliNKg/R89EoICJn7GNASUyZ6OjkUeojMgtl81eAXzFZ+9xLJE4e69a+9g4xYqZy1DojKFoczXA0GCxRM2VTUw==
-  dependencies:
-    aesthetic-utils "^3.0.0"
 
 aesthetic-react@^2.1.0:
   version "2.1.0"

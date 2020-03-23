@@ -128,7 +128,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     if (isExpanded && bodyHeight && bodyHeight > 0 && currentBodyHeight === 0) {
       const timeout = setTimeout(() => {
         setCurrentBodyHeight(bodyHeight);
-      }, 300);
+      }, 250);
 
       return () => clearTimeout(timeout);
     }
