@@ -98,14 +98,14 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   }, [ref, min, max, value, calculateLeftSpace, windowSize]);
 
   useEffect(() => {
-    if (value) {
+    if (value !== undefined) {
       setValue(value);
     }
   }, [value]);
 
   const changeValue = useCallback(
     newValue => {
-      if (value) {
+      if (value === undefined) {
         setValue(newValue);
       }
       return onValueChange?.(newValue);
