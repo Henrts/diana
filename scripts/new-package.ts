@@ -69,17 +69,22 @@ inquirer
 
     const allModulesVersions = getAllPackagesVersions();
 
+    const dianaPackagesIncludeLastItem = dianaPackagesInclude.length - 1;
     const values = {
       packageName,
       packageNameCap:
         packageName.charAt(0).toUpperCase() + packageName.slice(1),
       reactVersion: checkDependencyVersion("", "react"),
       ...allModulesVersions,
-      dianaPackages: dianaPackagesInclude.map((moduleName: string) => ({
-        name: `@diana-ui/${moduleName}`,
-        version: allModulesVersions[moduleName]
-      }))
+      dianaPackages: dianaPackagesInclude.map(
+        (moduleName: string, index: number) => ({
+          name: `@diana-ui/${moduleName}`,
+          version: allModulesVersions[moduleName],
+          last: dianaPackagesIncludeLastItem === index
+        })
+      )
     };
+
     const processScaffoldFiles = processFiles(values);
 
     const files = fs.readdirSync("./scaffold");

@@ -16,11 +16,13 @@
     "prepare": "yarn clean:files && yarn build",
     "watch": "npm-watch"
   },
+  "peerDependencies": {
+    "react": "^{{reactVersion}}"
+  },
   "dependencies": {
     {{#dianaPackages}}
-    "{{{name}}}": "{{{version}}}",
+    "{{{name}}}": "^{{{version}}}"{{^last}},{{/last}}
     {{/dianaPackages}}
-    "react": "{{reactVersion}}"
   },
   "publishConfig": {
     "access": "public"
@@ -28,7 +30,7 @@
   "watch": {
     "prepare": {
       "runOnChangeOnly": true,
-      "extensions": "ts,tsx,svg",
+      "extensions": "ts,tsx",
       "ignore": [
         "lib",
         "node_modules",
