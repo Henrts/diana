@@ -99,6 +99,12 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
 
   useEffect(() => onValueChange?.(_value), [_value, onValueChange]);
 
+  useEffect(() => {
+    if (value !== undefined) {
+      setValue(value);
+    }
+  }, [value]);
+
   return (
     <div className={cx(styles.wrapper, className)}>
       <div className={cx(styles.valueWrapper)}>
