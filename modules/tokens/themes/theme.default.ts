@@ -49,29 +49,23 @@ export default {
     }
   },
   typography: {
-    h1: {
-      fontSize: "2rem",
+    pageTitle: {
+      fontSize: "43xp",
       fontWeight: FontWeight.BOLD,
       lineHeight: "46px",
-      fontFamily,
-      marginBlockStart: 0,
-      marginBlockEnd: 0
+      fontFamily
     },
-    h2: {
-      fontSize: "1.6rem",
-      fontWeight: FontWeight.REGULAR,
-      lineHeight: "43px",
-      fontFamily,
-      marginBlockStart: 0,
-      marginBlockEnd: 0
+    subtitle: {
+      fontSize: "31xp",
+      fontWeight: FontWeight.MEDIUM,
+      lineHeight: "36px",
+      fontFamily
     },
-    h3: {
-      fontSize: "1.2rem",
-      fontWeight: FontWeight.REGULAR,
-      lineHeight: "39px",
-      fontFamily,
-      marginBlockStart: 0,
-      marginBlockEnd: 0
+    sectionTitle: {
+      fontSize: "21px",
+      fontWeight: FontWeight.MEDIUM,
+      lineHeight: "28px",
+      fontFamily
     },
     buttonText: {
       fontSize: "1.125rem",
@@ -79,10 +73,16 @@ export default {
       lineHeight: "24px",
       fontFamily
     },
-    description: {
-      fontSize: "15px",
+    bodyHighlight: {
+      fontSize: "18px",
       fontWeight: FontWeight.MEDIUM,
-      lineHeight: "20px",
+      lineHeight: "24px",
+      fontFamily
+    },
+    body: {
+      fontSize: "15px",
+      fontWeight: FontWeight.REGULAR,
+      lineHeight: "16px",
       fontFamily
     },
     descriptionMedium: {
@@ -91,16 +91,10 @@ export default {
       lineHeight: "16px",
       fontFamily
     },
-    body: {
-      fontSize: `${fontSize}px`,
+    description: {
+      fontSize: "15px",
       fontWeight: FontWeight.REGULAR,
-      lineHeight: `${fontSize}px`,
-      fontFamily
-    },
-    label: {
-      fontSize: "0.66rem",
-      fontWeight: FontWeight.REGULAR,
-      lineHeight: "0.66rem",
+      lineHeight: "20px",
       fontFamily
     },
     labelMedium: {
@@ -109,10 +103,16 @@ export default {
       lineHeight: "0.66rem",
       fontFamily
     },
-    sectionTitle: {
-      fontSize: "21px",
+    label: {
+      fontSize: "0.66rem",
+      fontWeight: FontWeight.REGULAR,
+      lineHeight: "0.66rem",
+      fontFamily
+    },
+    notificationsNumbers: {
+      fontSize: "10px",
       fontWeight: FontWeight.MEDIUM,
-      lineHeight: "28px",
+      lineHeight: "10px",
       fontFamily
     }
   }

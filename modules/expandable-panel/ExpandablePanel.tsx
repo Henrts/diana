@@ -14,7 +14,7 @@ import {
 } from "@diana-ui/types";
 import { useWindowSize } from "@diana-ui/hooks";
 import { Icon } from "@diana-ui/icon";
-import { TextHighlight } from "@diana-ui/typography";
+import { BodyHighlight } from "@diana-ui/typography";
 
 const SLIDE_ANIMATION_DURATION_MS = 200;
 
@@ -185,9 +185,9 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
         onClick={handleClick}
       >
         {typeof header === "string" ? (
-          <TextHighlight className={cx(styles.headerTitle)}>
+          <BodyHighlight className={cx(styles.headerTitle)}>
             {header}
-          </TextHighlight>
+          </BodyHighlight>
         ) : (
           header?.(isExpanded)
         )}
