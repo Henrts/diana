@@ -97,7 +97,21 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
     );
   }, [ref, min, max, value, calculateLeftSpace, windowSize]);
 
-  useEffect(() => onValueChange?.(_value), [_value, onValueChange]);
+  useEffect(() => {
+    if (value !== undefined) {
+      setValue(value);
+    }
+  }, [value]);
+
+  const changeValue = useCallback(
+    newValue => {
+      if (value) {
+        setValue(newValue);
+      }
+      return onValueChange?.(newValue);
+    },
+    [value, onValueChange]
+  );
 
   return (
     <div className={cx(styles.wrapper, className)}>
@@ -117,7 +131,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
         max={max}
         value={_value}
         step={step}
-        onChange={ev => setValue(Number(ev.currentTarget.value))}
+        onChange={ev => changeValue(Number(ev.currentTarget.value))}
         disabled={disabled}
       />
     </div>
