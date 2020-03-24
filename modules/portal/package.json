@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/portal",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -20,8 +20,8 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/hooks": "^0.1.6",
-    "@diana-ui/types": "^0.1.2"
+    "@diana-ui/hooks": "^0.1.7",
+    "@diana-ui/types": "^0.1.3"
   },
   "publishConfig": {
     "access": "public"
