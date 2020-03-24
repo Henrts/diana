@@ -1182,6 +1182,23 @@
     "@diana-ui/tokens" "^0.1.1"
     "@diana-ui/types" "^0.1.1"
     aesthetic "^5.1.0"
+    aesthetic-adapter-aphrodite "^5.1.0"
+    aesthetic-react "^2.1.0"
+    aphrodite "^2.4.0"
+    extend "^3.0.2"
+    hoist-non-react-statics "^3.3.2"
+    react-registry "^0.5.0"
+    uuid "^3.4.0"
+
+"@diana-ui/base@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@diana-ui/base/-/base-0.1.2.tgz#8a9ebebde33fa509949776241690cc25be6db73d"
+  integrity sha512-WUcRXxprCAPEmPAXvsHY4w9XcxDtAIlnclCD/GU/0lnDhXwo0oiIuBPIPxVKCSXFMRZLDExPDkZItyOnfoCHNA==
+  dependencies:
+    "@diana-ui/tokens" "^0.1.2"
+    "@diana-ui/types" "^0.1.2"
+    aesthetic "^5.1.0"
+    aesthetic-adapter-aphrodite "^5.1.0"
     aesthetic-react "^2.1.0"
     aphrodite "^2.4.0"
     extend "^3.0.2"
@@ -1235,6 +1252,14 @@
   dependencies:
     "@diana-ui/base" "^0.1.1"
     "@diana-ui/types" "^0.1.1"
+
+"@diana-ui/typography@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@diana-ui/typography/-/typography-0.1.2.tgz#138107a07378a17a31ddf9e4cb2f97517d119c3e"
+  integrity sha512-2m+Zu2fhq1skVReneuAJ3JN+Bf4uGMIA/xJBObU9y1w13o/K6wpuRqh4MjzF5QPibu3HHdAfNiGxN4sOISy5Ew==
+  dependencies:
+    "@diana-ui/base" "^0.1.2"
+    "@diana-ui/types" "^0.1.2"
 
 "@egoist/vue-to-react@^1.1.0":
   version "1.1.0"
@@ -3654,6 +3679,13 @@ address@1.1.2, address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
+aesthetic-adapter-aphrodite@^5.1.0:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-5.1.2.tgz#2f6b0405ea2f1c877c4657ff28dcf6bb65f844c3"
+  integrity sha512-DjUTKlKDTJsLyHpIqv4Jvv7ReNC2iVb3KijztXTwLaMUgfq88VC5AwxCk/nzRNGoC+FWzZPUSdyFuQA4TEk0tg==
+  dependencies:
+    aesthetic-utils "^3.0.2"
+
 aesthetic-react@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-2.1.0.tgz#90588e910b980e1b3f719bfbfe265df0277d16d2"
@@ -3675,6 +3707,11 @@ aesthetic-utils@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-3.0.0.tgz#13424234b8f6c025756791c5b3c20ad2e452a055"
   integrity sha512-Z6+0yDsNawEQETorg8u2HFtS6D1iuntFHEiJsamtQOKBOGVXcviWJJuv/QD38Nn+Eoo/OwzfbfzNqPJv2bprEQ==
+
+aesthetic-utils@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-3.0.2.tgz#e74f27538e95bcda3b5419ec851a13968d19c35a"
+  integrity sha512-LwZVjmsom2bjtDVUwyWzhUzu5sKzqGI58iaeI+qWaxBhNYxRybpAQ7QlYoGvv7EN2fS8gGfnUcYh174DtPeyvQ==
 
 aesthetic@^5.1.0:
   version "5.1.0"
@@ -12788,7 +12825,7 @@ prettier@prettier/prettier:
     esutils "2.0.3"
     find-parent-dir "0.3.0"
     find-project-root "1.1.1"
-    flow-parser "0.116.0"
+    flow-parser "0.116.1"
     get-stream "4.1.0"
     globby "6.1.0"
     graphql "14.5.8"
@@ -12820,7 +12857,7 @@ prettier@prettier/prettier:
     resolve "1.14.2"
     semver "6.3.0"
     string-width "4.1.0"
-    typescript "3.7.4"
+    typescript "3.7.5"
     unicode-regex "3.0.0"
     unified "8.4.2"
     vnopts "1.0.2"
