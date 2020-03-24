@@ -1,0 +1,80 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import Stepper from "./Stepper";
+import { StepperStory } from "./Stepper.story.tsx";
+
+<Meta title="Components | Stepper" />
+
+# Stepper
+
+This element allows the user to track some progress as steps. It can be used just as read-only component, but can also allows the user to click and advance on some steps.0
+
+<Preview>
+  <Story name="Stepper">
+    <Stepper steps={6} />
+  </Story>
+</Preview>
+
+### Stepper with initialActiveStep
+
+<Preview>
+  <Story name="StepperWithInitialActiveStep">
+    <Stepper steps={6} initialActiveStep={2} />
+  </Story>
+</Preview>
+
+### Stepper Clickable
+
+<Preview>
+  <Story name="StepperClickableUncontrolled">
+    <Stepper steps={6} clickable />
+  </Story>
+</Preview>
+
+### Stepper Clickable Controlled
+
+<Preview>
+  <Story name="StepperClickableControlled">
+    <StepperStory />
+  </Story>
+</Preview>
+
+### Available props
+
+All the props are passed through to the `Stepper` element, so refer to its documentation for more customization options.
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>steps</td>
+      <th>number</th>
+      <td>Number of steps available</td>
+    </tr>
+    <tr>
+      <td>activeStep (optional)</td>
+      <th>number</th>
+      <td>Current step active.</td>
+    </tr>
+    <tr>
+      <td>iniitalActiveStep (optional)</td>
+      <th>number</th>
+      <td>Initial step active, default to 0</td>
+    </tr>
+    <tr>
+      <td>clickable (optional)</td>
+      <th>boolean </th>
+      <td>Possible to change steps</td>
+    </tr>
+    <tr>
+      <td>onChange (optional)</td>
+      <th>(stepIndex) => void </th>
+      <td>Callback when changing a step with the new step index</td>
+    </tr>
+  </tbody>
+</table>
