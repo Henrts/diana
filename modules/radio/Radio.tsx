@@ -6,7 +6,7 @@ import {
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import { Text } from "@diana-ui/typography";
+import { Body } from "@diana-ui/typography";
 
 export interface IProps extends StandardProps<"input"> {
   children?: ReactElement;
@@ -113,7 +113,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
           onClick: handleChange
         })}
       <label htmlFor={id} className={labelStyles}>
-        {typeof label === "string" ? <Text>{label}</Text> : label}
+        {typeof label === "string" ? <Body>{label}</Body> : label}
       </label>
     </div>
   );

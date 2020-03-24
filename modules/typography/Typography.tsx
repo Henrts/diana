@@ -6,83 +6,77 @@ export interface IPropsTitle extends StandardProps<"h1"> {}
 export interface IProps extends StandardProps<"span"> {}
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
-  h1: {
-    ...theme.typography.h1
+  pageTitle: {
+    ...theme.typography.pageTitle
   },
-  h2: {
-    ...theme.typography.h2
+  subtitle: {
+    ...theme.typography.subtitle
   },
-  h3: {
-    ...theme.typography.h3
-  },
-  h4: {
-    ...theme.typography.h4
-  },
-  h5: {
-    ...theme.typography.h5
+  sectionTitle: {
+    ...theme.typography.sectionTitle
   },
   buttonText: {
     ...theme.typography.buttonText
   },
-  body: {
-    ...theme.typography.body
-  },
   bodyHighlight: {
     ...theme.typography.bodyHighlight
   },
-  description: {
-    ...theme.typography.description
+  body: {
+    ...theme.typography.body
   },
   descriptionMedium: {
     ...theme.typography.descriptionMedium
   },
-  label: {
-    ...theme.typography.label
+  description: {
+    ...theme.typography.description
   },
   labelMedium: {
     ...theme.typography.labelMedium
   },
-  sectionTitle: {
-    ...theme.typography.sectionTitle
+  label: {
+    ...theme.typography.label
+  },
+  notificationsNumbers: {
+    ...theme.typography.notificationsNumbers
   }
 });
 
-export const H1: React.FC<IPropsTitle> = ({
+export const PageTitle: React.FC<IPropsTitle> = ({
   children,
   className,
   ...props
 }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <h1 className={cx(styles.h1, className)} {...props}>
+    <h1 className={cx(styles.pageTitle, className)} {...props}>
       {children}
     </h1>
   );
 };
 
-export const H2: React.FC<IPropsTitle> = ({
+export const Subtitle: React.FC<IPropsTitle> = ({
   children,
   className,
   ...props
 }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <h2 className={cx(styles.h2, className)} {...props}>
+    <h2 className={cx(styles.subtitle, className)} {...props}>
       {children}
     </h2>
   );
 };
 
-export const H3: React.FC<IPropsTitle> = ({
+export const SectionTitle: React.FC<IProps> = ({
   children,
   className,
   ...props
 }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <h3 className={cx(styles.h3, className)} {...props}>
+    <span className={cx(styles.sectionTitle, className)} {...props}>
       {children}
-    </h3>
+    </span>
   );
 };
 
@@ -99,15 +93,7 @@ export const ButtonText: React.FC<IProps> = ({
   );
 };
 
-export const Text: React.FC<IProps> = ({ children, className, ...props }) => {
-  const [styles, cx] = useStyles(styleSheet);
-  return (
-    <span className={cx(styles.body, className)} {...props}>
-      {children}
-    </span>
-  );
-};
-export const TextHighlight: React.FC<IProps> = ({
+export const BodyHighlight: React.FC<IProps> = ({
   children,
   className,
   ...props
@@ -120,14 +106,10 @@ export const TextHighlight: React.FC<IProps> = ({
   );
 };
 
-export const Description: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const Body: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <span className={cx(styles.description, className)} {...props}>
+    <span className={cx(styles.body, className)} {...props}>
       {children}
     </span>
   );
@@ -146,10 +128,14 @@ export const DescriptionMedium: React.FC<IProps> = ({
   );
 };
 
-export const Label: React.FC<IProps> = ({ children, className, ...props }) => {
+export const Description: React.FC<IProps> = ({
+  children,
+  className,
+  ...props
+}) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <span className={cx(styles.label, className)} {...props}>
+    <span className={cx(styles.description, className)} {...props}>
       {children}
     </span>
   );
@@ -168,14 +154,23 @@ export const LabelMedium: React.FC<IProps> = ({
   );
 };
 
-export const SectionTitle: React.FC<IProps> = ({
+export const Label: React.FC<IProps> = ({ children, className, ...props }) => {
+  const [styles, cx] = useStyles(styleSheet);
+  return (
+    <span className={cx(styles.label, className)} {...props}>
+      {children}
+    </span>
+  );
+};
+
+export const NotificationsNumbers: React.FC<IProps> = ({
   children,
   className,
   ...props
 }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
-    <span className={cx(styles.sectionTitle, className)} {...props}>
+    <span className={cx(styles.notificationsNumbers, className)} {...props}>
       {children}
     </span>
   );

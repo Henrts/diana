@@ -7,7 +7,7 @@ import {
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import { H3 } from "@diana-ui/typography";
+import { SectionTitle } from "@diana-ui/typography";
 import { Icon, IconNames } from "@diana-ui/icon";
 
 // @ts-ignore
@@ -79,7 +79,9 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      {title && <H3 className={cx(styles.title)}>{title}</H3>}
+      {title && (
+        <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>
+      )}
       {icon ? (
         <div className={cx(textWithIconStyles)}>
           <Icon className={cx(styles.icon)} name={icon} />

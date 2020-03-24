@@ -35,19 +35,17 @@ interface IFont {
   marginBlockEnd?: number;
 }
 export interface IFonts {
-  h1: IFont;
-  h2: IFont;
-  h3: IFont;
-  h4?: IFont;
-  h5?: IFont;
+  pageTitle: IFont;
+  subtitle: IFont;
+  sectionTitle: IFont;
   buttonText: IFont;
+  bodyHighlight: IFont;
   body: IFont;
-  bodyHighlight?: IFont;
-  description?: IFont;
-  descriptionMedium?: IFont;
+  descriptionMedium: IFont;
+  description: IFont;
   label: IFont;
   labelMedium: IFont;
-  sectionTitle?: IFont;
+  notificationsNumbers: IFont;
 }
 export interface ISpaceUnit {
   xxs: string;

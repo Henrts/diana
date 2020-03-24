@@ -5,7 +5,7 @@ import {
   ThemeStyleSheetFactory,
   WithStylesProps
 } from "@diana-ui/types";
-import { LabelMedium, SectionTitle, Text } from "@diana-ui/typography";
+import { LabelMedium, SectionTitle, Body } from "@diana-ui/typography";
 import { Icon } from "@diana-ui/icon";
 
 // @ts-ignore
@@ -62,7 +62,7 @@ const CardHeader: React.FC<IProps & WithStylesProps> = ({
     <header className={cx(styles.header, className)}>
       <div className={cx(styles.titleWrapper)}>
         {renderTitle()}
-        {subtitle && <Text className={cx(styles.subtitle)}>{subtitle}</Text>}
+        {subtitle && <Body className={cx(styles.subtitle)}>{subtitle}</Body>}
       </div>
       {label && <LabelMedium className={cx(styles.label)}>{label}</LabelMedium>}
       {icon && <Icon className={cx(styles.icon)} name={icon as any} />}
