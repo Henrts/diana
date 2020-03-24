@@ -98,7 +98,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   }, [ref, min, max, value, calculateLeftSpace, windowSize]);
 
   useEffect(() => {
-    if (value !== undefined) {
+    if (value) {
       setValue(value);
     }
   }, [value]);
