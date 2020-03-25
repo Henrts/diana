@@ -10,6 +10,7 @@ export default {
   name: "default_theme",
   colors: defaultPalette,
   fontFamily,
+  fontSize,
   fonts: {},
   icons: defaultIcons,
   spaceUnit: {

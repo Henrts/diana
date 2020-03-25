@@ -87,6 +87,7 @@ export type Theme = {
     [key: string]: any;
   };
   fontFamily: string;
+  fontSize: string | number;
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   fonts: any;
   spaceUnit: ISpaceUnit;

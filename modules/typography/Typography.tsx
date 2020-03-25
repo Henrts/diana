@@ -1,11 +1,11 @@
 import React from "react";
 import { useStyles } from "@diana-ui/base";
-import { StandardProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import { StandardProps, Theme, ThemeStyleSheetFactory } from "@diana-ui/types";
 
 export interface IPropsTitle extends StandardProps<"h1"> {}
 export interface IProps extends StandardProps<"span"> {}
 
-const styleSheet: ThemeStyleSheetFactory = theme => ({
+const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   pageTitle: {
     ...theme.typography.pageTitle
   },
