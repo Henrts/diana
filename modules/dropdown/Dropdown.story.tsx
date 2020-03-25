@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Dropdown, { IItem } from "./Dropdown";
 import SimpleMultipleDropdown from "./SimpleMultipleDropdown";
 import FilterMultipleDropdown from "./FiltersMultipleDropdown";
-import { Text } from "@diana-ui/typography";
+import { Body } from "@diana-ui/typography";
 import { useStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory } from "@diana-ui/types";
 
@@ -57,7 +57,7 @@ export const SimpleMultipleDropdownStory = () => {
       selectedItems={selectedItems}
       onItemsSelected={selectItems}
       items={items}
-      renderItem={item => <Text className={cx(styles.hover)}>{item.text}</Text>}
+      renderItem={item => <Body className={cx(styles.hover)}>{item.text}</Body>}
     />
   );
 };
@@ -72,7 +72,7 @@ export const FilterMultipleDropdownStory = () => {
       selectedItems={selectedItems}
       onItemsSelected={selectItems}
       items={items}
-      renderItem={item => <Text className={cx(styles.hover)}>{item.text}</Text>}
+      renderItem={item => <Body className={cx(styles.hover)}>{item.text}</Body>}
     />
   );
 };

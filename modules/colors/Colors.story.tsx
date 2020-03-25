@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeStyleSheetFactory } from "../types/types";
 import { useStyles, useTheme } from "../base";
-import { H3 } from "../typography/Typography";
+import { SectionTitle } from "../typography/Typography";
 import { defaultPalette } from "../tokens/palettes";
 
 export const Colors = () => {
@@ -17,9 +17,9 @@ export const Colors = () => {
         {colors.map((colorName: any) => (
           <tr key={colorName} className="row">
             <td>
-              <H3>
+              <SectionTitle>
                 {colorName.charAt(0).toUpperCase() + colorName.substring(1)}
-              </H3>
+              </SectionTitle>
             </td>
             <td>
               <ColorDiv color={colorName} />

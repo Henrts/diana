@@ -8,14 +8,16 @@ export interface ILockedSliderProps extends ISliderProps {
   startLocked?: boolean;
   lockedIcon: string;
   unlockedIcon: string;
+  className?: string;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   lockWrapper: {
+    position: "relative",
     display: "flex",
     flexDirection: "row",
-    alignItems: "flex-end",
-    width: "100%"
+    alignItems: "center",
+    flexGrow: 1
   },
   iconWrapper: {
     marginLeft: theme.spaceUnit.md
@@ -32,12 +34,13 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   startLocked = false,
   lockedIcon,
   unlockedIcon,
+  className = "",
   ...props
 }) => {
   const [isLocked, setIsLocked] = useState(startLocked);
   const icon = isLocked ? lockedIcon : unlockedIcon;
   return (
-    <div className={cx(styles.lockWrapper)}>
+    <div className={cx(styles.lockWrapper, className)}>
       <StyledSlider
         inputClassName={cx(isLocked && "locked")}
         onValueChange={(!isLocked && onValueChange) || (() => {})}

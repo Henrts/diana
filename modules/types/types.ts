@@ -48,12 +48,33 @@ export interface IFonts {
   notificationsNumbers: IFont;
 }
 export interface ISpaceUnit {
+  /**
+   * 4px
+   */
   xxs: string;
+  /**
+   * 8px
+   */
   xs: string;
+  /**
+   * 10.(66)px
+   */
   sm: string;
+  /**
+   * 16px
+   */
   md: string;
+  /**
+   * 24px
+   */
   lg: string;
+  /**
+   * 32px
+   */
   xl: string;
+  /**
+   * 48px
+   */
   xxl: string;
 }
 
