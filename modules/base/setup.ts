@@ -7,7 +7,7 @@ export function initDefaultTheme(aesthetic = aestheticDefault) {
   if (!aesthetic.themes[defaultTheme.name]) {
     aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
       "@global": {
-        body: {
+        html: {
           fontSize: theme.fontSize
         }
       },
@@ -30,7 +30,7 @@ export function initTheme(
   if (!aesthetic.themes[defaultTheme.name]) {
     aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
       "@global": {
-        body: {
+        html: {
           fontSize: theme.fontSize
         }
       },
@@ -39,7 +39,7 @@ export function initTheme(
   }
   const result = aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
     "@global": {
-      body: {
+      html: {
         fontSize: theme.fontSize
       }
     },
@@ -61,7 +61,7 @@ export function registerTheme(
 ) {
   aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
     "@global": {
-      body: {
+      html: {
         fontSize: theme.fontSize
       }
     },
