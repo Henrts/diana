@@ -118,28 +118,26 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   const changeValue = useCallback(
     newValue => {
       if (disabled) return;
+      let limitedValue = max ? Math.min(max, newValue) : newValue;
+      limitedValue = min ? Math.max(min, limitedValue) : limitedValue;
 
       if (value === undefined) {
-        setValue(newValue);
+        setValue(limitedValue);
       }
-      return onChange?.(newValue);
+      return onChange?.(limitedValue);
     },
-    [onChange, value, disabled]
+    [onChange, value, disabled, max, min]
   );
 
   const increase = useCallback(() => {
-    const newValue = max
-      ? Math.min(max, _value + (step ?? 1))
-      : _value + (step ?? 1);
+    const newValue = _value + (step ?? 1);
     changeValue(newValue);
-  }, [_value, step, max, changeValue]);
+  }, [_value, step, changeValue]);
 
   const decrease = useCallback(() => {
-    const newValue = min
-      ? Math.max(min, _value - (step ?? 1))
-      : _value - (step ?? 1);
+    const newValue = _value - (step ?? 1);
     changeValue(newValue);
-  }, [_value, step, min, changeValue]);
+  }, [_value, step, changeValue]);
 
   return (
     <div className={containerStyle}>
