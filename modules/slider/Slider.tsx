@@ -17,6 +17,7 @@ export interface ISliderProps extends StandardProps<"input"> {
   className?: string;
   inputClassName?: string;
   onValueChange?: (value: number) => void;
+  thumbSize?: number;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -47,10 +48,11 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   onValueChange,
   disabled = false,
   className = "",
-  inputClassName = ""
+  inputClassName = "",
+  thumbSize = 21
 }) => {
   const windowSize = useWindowSize();
-  const [size, setSize] = useState(9);
+  const [leftSpacing, setLeftSpacing] = useState(9);
   const [_value, setValue] = useState(value || 0);
   const ref = React.createRef<HTMLInputElement>();
 
@@ -63,7 +65,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
    * this gives the diference between max and min so we can
    * use value 0 as the starting point in case min is higher than 0
    * Having:
-   * 13 - is the sum of half the thumb (which is 11px) plus 2px that
+   * (sizes[size] / 2) + 2 - is the sum of half the thumb plus 2px that
    * correspond to slider bar that the thumb don't reach. Basically the
    * thumb do not touch the start / end of the bar, and that is 2px
    *
@@ -77,12 +79,14 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
    */
   const calculateLeftSpace = useCallback(
     totalWidth =>
-      (_value * totalWidth) / (max - min) + 13 - (`${max}`.length * 20) / 2,
-    [max, min, _value]
+      (_value * totalWidth) / (max - min) +
+      (thumbSize / 2 + 2) -
+      (`${max}`.length * 20) / 2,
+    [_value, max, min, thumbSize]
   );
 
   useEffect(() => {
-    setSize(
+    setLeftSpacing(
       calculateLeftSpace(
         /**
          * if ref ins't defined yet the default is 0
@@ -92,10 +96,10 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
          * so half from the end + half from the end we get the full with
          * of the thumb
          */
-        ref.current?.clientWidth ? ref.current.clientWidth - 21 : 0
+        ref.current?.clientWidth ? ref.current.clientWidth - thumbSize : 0
       )
     );
-  }, [ref, min, max, value, calculateLeftSpace, windowSize]);
+  }, [ref, min, max, value, calculateLeftSpace, windowSize, thumbSize]);
 
   useEffect(() => {
     if (value !== undefined) {
@@ -117,7 +121,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
     <div className={cx(styles.wrapper, className)}>
       <div className={cx(styles.valueWrapper)}>
         <Label
-          style={{ left: size, width: `${max}`.length * 20 }}
+          style={{ left: leftSpacing, width: `${max}`.length * 20 }}
           className={cx(styles.value)}
         >
           {_value}

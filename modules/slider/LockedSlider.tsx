@@ -35,6 +35,7 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   lockedIcon,
   unlockedIcon,
   className = "",
+  thumbSize = 21,
   ...props
 }) => {
   const [isLocked, setIsLocked] = useState(startLocked);
@@ -50,7 +51,12 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
         className={cx(styles.iconWrapper)}
         onClick={() => setIsLocked(!isLocked)}
       >
-        <Icon className={cx(styles.icon)} name={icon as any} />
+        <Icon
+          className={cx(styles.icon)}
+          height={thumbSize - 16}
+          width={thumbSize - 16}
+          name={icon as any}
+        />
       </div>
     </div>
   );
