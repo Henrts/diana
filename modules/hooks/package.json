@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/hooks",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -20,7 +20,7 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.7",
+    "@diana-ui/base": "^0.1.8",
     "@diana-ui/types": "^0.1.5"
   },
   "publishConfig": {
