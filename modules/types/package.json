@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/types",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "lib/types.js",
   "module": "module/types.js",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/tokens": "^0.1.4",
+    "@diana-ui/tokens": "^0.1.5",
     "aesthetic": "^5.1.0",
     "aesthetic-react": "^2.1.0"
   },

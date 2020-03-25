@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/stepper",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@diana-ui/base": "0.1.2",
-    "@diana-ui/types": "^0.1.4"
+    "@diana-ui/types": "^0.1.5"
   },
   "peerDependencies": {
     "react": "^16.12.0"
