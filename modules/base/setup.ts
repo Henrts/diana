@@ -6,7 +6,11 @@ import { selfExtension } from "./aphroditeExtensions";
 export function initDefaultTheme(aesthetic = aestheticDefault) {
   if (!aesthetic.themes[defaultTheme.name]) {
     aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
-      "@global": {},
+      "@global": {
+        body: {
+          fontSize: theme.fontSize
+        }
+      },
       "@font-face": theme.fonts
     }));
   }
@@ -25,12 +29,20 @@ export function initTheme(
 ) {
   if (!aesthetic.themes[defaultTheme.name]) {
     aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
-      "@global": {},
+      "@global": {
+        body: {
+          fontSize: theme.fontSize
+        }
+      },
       "@font-face": theme.fonts
     }));
   }
   const result = aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
-    "@global": {},
+    "@global": {
+      body: {
+        fontSize: theme.fontSize
+      }
+    },
     "@font-face": theme.fonts
   }));
   aesthetic.configure({
@@ -48,7 +60,11 @@ export function registerTheme(
   aesthetic: Aesthetic = aestheticDefault
 ) {
   aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
-    "@global": {},
+    "@global": {
+      body: {
+        fontSize: theme.fontSize
+      }
+    },
     "@font-face": theme.fonts
   }));
 
