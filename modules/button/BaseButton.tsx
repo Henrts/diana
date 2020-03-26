@@ -49,7 +49,9 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
       ref={wrappedRef}
     >
       {renderLeftIcon && renderLeftIcon()}
-      <ButtonText className={cx(styles.buttonText)}>{children}</ButtonText>
+      {children && (
+        <ButtonText className={cx(styles.buttonText)}>{children}</ButtonText>
+      )}
       {renderRightIcon && renderRightIcon()}
     </button>
   );
