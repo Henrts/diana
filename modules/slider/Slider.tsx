@@ -20,7 +20,7 @@ export interface ISliderProps extends StandardProps<"input"> {
   thumbSize?: number;
 }
 
-const styleSheet: ThemeStyleSheetFactory = theme => ({
+const styleSheet: ThemeStyleSheetFactory = () => ({
   wrapper: {},
   valueWrapper: {},
   input: {
