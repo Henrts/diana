@@ -108,7 +108,7 @@ const Stepper: React.FC<IProps & WithStylesProps> = ({
   return (
     <div className={containerStyle}>
       {_steps.map((isActive: boolean, i) => (
-        <div className={cx(styles.stepWrapper)}>
+        <div className={cx(styles.stepWrapper)} key={i}>
           {i !== 0 && <div className={cx(styles.line, isActive && "active")} />}
           <div
             key={i}
