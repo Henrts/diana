@@ -4,6 +4,9 @@ import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 
 export interface IProps {
   size?: "sm" | "md" | "lg";
+  backgroundColor?: string;
+  selected?: boolean;
+  className?: string;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -20,17 +23,16 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     width: 96
   },
   wrapper: {
-    border: "1px solid black",
     borderRadius: 10,
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
   },
+  selected: {},
   circle: {
     height: "calc(100% - 16px)",
     width: "calc(100% - 16px)",
-    borderRadius: "50%",
-    border: "1px solid black"
+    borderRadius: "50%"
   }
 });
 
@@ -38,9 +40,20 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps & IProps>> = ({
   cx,
   styles,
   children,
-  size = "md"
+  backgroundColor,
+  selected,
+  size = "md",
+  className = ""
 }) => (
-  <div className={cx(styles.wrapper, styles[size])}>
+  <div
+    className={cx(
+      styles.wrapper,
+      styles[size],
+      selected && styles.selected,
+      className
+    )}
+    style={{ backgroundColor }}
+  >
     <div className={cx(styles.circle)}>{children}</div>
   </div>
 );
