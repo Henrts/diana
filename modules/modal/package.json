@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/modal",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -28,7 +28,7 @@
     "react-modal": "^3.11.1"
   },
   "devDependencies": {
-    "@diana-ui/button": "^0.1.8"
+    "@diana-ui/button": "^0.1.9"
   },
   "publishConfig": {
     "access": "public"
