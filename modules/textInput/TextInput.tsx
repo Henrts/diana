@@ -130,8 +130,8 @@ export const TextInput: React.FC<PropsWithChildren<
   const Icon = useRegistry<IIconProps>("Icon");
 
   useEffect(() => {
-    const value = props.value as string;
-    setHasContent(value?.length > 0);
+    const length = props.value?.toString()?.length || 0;
+    setHasContent(length > 0);
   }, [props.value]);
 
   useEffect(() => {
