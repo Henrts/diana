@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import Slider, { ISliderProps } from "./Slider";
 
 export interface ILockedSliderProps extends ISliderProps {
-  startLocked?: boolean;
+  locked?: boolean;
   lockedIcon?: string;
   unlockedIcon?: string;
   disabledIcon?: string;
@@ -35,7 +35,7 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   styles,
   onValueChange,
   onLockChange,
-  startLocked = false,
+  locked,
   lockedIcon,
   unlockedIcon,
   disabledIcon,
@@ -43,8 +43,28 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   disabled,
   ...props
 }) => {
-  const [isLocked, setIsLocked] = useState(startLocked);
+  const [isLocked, setIsLocked] = useState(false);
   const icon = disabled ? disabledIcon : isLocked ? lockedIcon : unlockedIcon;
+
+  useEffect(() => {
+    if (locked !== undefined) {
+      setIsLocked(locked);
+    }
+  }, [locked]);
+
+  const onLockChangeInternal = useCallback(
+    newValue => {
+      console.log("newValue ", newValue);
+      if (locked === undefined) {
+        setIsLocked(newValue);
+      }
+      return onLockChange?.(newValue);
+    },
+    [locked, onLockChange]
+  );
+
+  console.log("islocked ", isLocked);
+
   return (
     <div className={cx(styles.lockWrapper, className)}>
       <StyledSlider
@@ -55,14 +75,7 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
       />
       <div
         className={cx(styles.iconWrapper, disabled && styles.disabledIcon)}
-        onClick={() => {
-          if (disabled) {
-            return;
-          }
-          // eslint-disable-next-line mdx/no-unused-expressions
-          onLockChange?.(!isLocked);
-          setIsLocked(!isLocked);
-        }}
+        onClick={() => onLockChangeInternal(!isLocked)}
       >
         <Icon className={cx(styles.icon)} name={icon as any} />
       </div>

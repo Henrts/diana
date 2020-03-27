@@ -6,6 +6,7 @@ export interface IProps {
   size?: "sm" | "md" | "lg";
   backgroundColor?: string;
   selected?: boolean;
+  wrapperClassName?: string;
   className?: string;
 }
 
@@ -43,18 +44,19 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps & IProps>> = ({
   backgroundColor,
   selected,
   size = "md",
-  className = ""
+  className = "",
+  wrapperClassName = ""
 }) => (
   <div
     className={cx(
       styles.wrapper,
       styles[size],
       selected && styles.selected,
-      className
+      wrapperClassName
     )}
     style={{ backgroundColor }}
   >
-    <div className={cx(styles.circle)}>{children}</div>
+    <div className={cx(styles.circle, className)}>{children}</div>
   </div>
 );
 

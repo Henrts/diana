@@ -6,7 +6,7 @@ import {
   WithStylesProps,
   StandardProps
 } from "@diana-ui/types";
-import { Label } from "@diana-ui/typography";
+import { Description } from "@diana-ui/typography";
 
 export interface ISliderProps extends StandardProps<"input"> {
   min: number;
@@ -120,12 +120,12 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   return (
     <div className={cx(styles.wrapper, className)}>
       <div className={cx(styles.valueWrapper)}>
-        <Label
+        <Description
           style={{ left: leftSpacing, width: `${max}`.length * 20 }}
           className={cx(styles.value)}
         >
           {_value}
-        </Label>
+        </Description>
       </div>
       <input
         ref={ref}
