@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/textinput",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "main": "lib/index.js",
   "module": "module/index.js",
   "license": "MIT",
