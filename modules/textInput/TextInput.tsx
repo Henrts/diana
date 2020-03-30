@@ -104,8 +104,8 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
 export interface IProps extends StandardProps<"input"> {
   label?: string;
   hasError?: boolean;
-  prefixIcon?: string;
-  suffixIcon?: string;
+  prefixIcon?: string | JSX.Element;
+  suffixIcon?: string | JSX.Element;
 }
 export const TextInput: React.FC<PropsWithChildren<
   IProps & WithStylesProps
@@ -182,12 +182,16 @@ export const TextInput: React.FC<PropsWithChildren<
         </span>
       </div>
       <div className={cx(styles.inputContainer)}>
-        {prefixIcon && (
+        {typeof prefixIcon === "string" ? (
           <Icon
             name={prefixIcon as any}
             size={16}
             className={cx(styles.prefixIcon)}
           />
+        ) : (
+          prefixIcon && (
+            <div className={cx(styles.prefixIcon)}>{prefixIcon}</div>
+          )
         )}
         <input
           {...props}
@@ -209,12 +213,16 @@ export const TextInput: React.FC<PropsWithChildren<
             return props.onFocus?.(e);
           }}
         />
-        {suffixIcon && (
+        {typeof suffixIcon === "string" ? (
           <Icon
             name={suffixIcon as any}
             size={16}
             className={cx(styles.suffixIcon)}
           />
+        ) : (
+          suffixIcon && (
+            <div className={cx(styles.suffixIcon)}>{suffixIcon}</div>
+          )
         )}
       </div>
     </fieldset>
