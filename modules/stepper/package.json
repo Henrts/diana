@@ -17,7 +17,7 @@
     "watch": "npm-watch"
   },
   "dependencies": {
-    "@diana-ui/base": "0.1.2",
+    "@diana-ui/base": "^0.1.8",
     "@diana-ui/types": "^0.1.5"
   },
   "peerDependencies": {

@@ -1,64 +1,60 @@
 import React, { PropsWithChildren } from "react";
 import { withStyles } from "@diana-ui/base";
+import { BodyHighlight } from "@diana-ui/typography";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 
-export interface IProps {
-  size?: "sm" | "md" | "lg";
-  backgroundColor?: string;
+export interface IAvatarProps {
   selected?: boolean;
   wrapperClassName?: string;
   className?: string;
+
+  backgroundColor?: string;
+  borderColor?: string;
+
+  size?: "sm" | "md" | "lg";
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
-  sm: {
-    height: 40,
-    width: 40
-  },
-  md: {
-    height: 46,
-    width: 46
-  },
-  lg: {
-    height: 96,
-    width: 96
-  },
   wrapper: {
+    borderWidth: 1,
     borderRadius: 10,
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
   },
-  selected: {},
-  circle: {
-    height: "calc(100% - 16px)",
-    width: "calc(100% - 16px)",
-    borderRadius: "50%"
-  }
+  sm: {},
+  md: {},
+  lg: {},
+  selected: {}
 });
 
-const Avatar: React.FC<PropsWithChildren<WithStylesProps & IProps>> = ({
+const Avatar: React.FC<PropsWithChildren<WithStylesProps & IAvatarProps>> = ({
   cx,
   styles,
   children,
   backgroundColor,
+  borderColor,
   selected,
-  size = "md",
-  className = "",
-  wrapperClassName = ""
-}) => (
-  <div
-    className={cx(
-      styles.wrapper,
-      styles[size],
-      selected && styles.selected,
-      wrapperClassName
-    )}
-    style={{ backgroundColor }}
-  >
-    <div className={cx(styles.circle, className)}>{children}</div>
-  </div>
-);
+  wrapperClassName = "",
+  size = "md"
+}) => {
+  return (
+    <div
+      className={cx(
+        styles.wrapper,
+        selected && styles.selected,
+        styles[size],
+        wrapperClassName
+      )}
+      style={{ backgroundColor, borderColor: borderColor || backgroundColor }}
+    >
+      {(typeof children === "string" && (
+        <BodyHighlight>{children}</BodyHighlight>
+      )) ||
+        children}
+    </div>
+  );
+};
 
 Avatar.displayName = "Avatar";
 
