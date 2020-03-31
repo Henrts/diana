@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/input-spinner",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@diana-ui/base": "0.1.2",
-    "@diana-ui/types": "^0.1.5",
+    "@diana-ui/types": "^0.1.6",
     "@diana-ui/typography": "0.1.2"
   },
   "peerDependencies": {

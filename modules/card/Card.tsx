@@ -11,7 +11,7 @@ export interface IProps extends StandardProps<"section"> {}
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   card: {
     background: theme.colors.white,
-    border: `1px solid ${theme.colors.grey.grey50}`,
+    border: `1px solid ${theme.colors.grey.greenish}`,
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",

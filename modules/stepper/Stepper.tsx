@@ -40,7 +40,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     minWidth: 12,
     minHeight: 12,
     borderRadius: "50%",
-    backgroundColor: theme.colors.grey.grey50,
+    backgroundColor: theme.colors.grey.greenish,
     padding: 3,
     display: "flex",
     "@selectors": {
@@ -64,7 +64,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     boxSizing: "border-box",
     width: "100%",
     height: 2,
-    backgroundColor: theme.colors.grey.grey50,
+    backgroundColor: theme.colors.grey.greenish,
     "@selectors": {
       "&.active": {}
     }

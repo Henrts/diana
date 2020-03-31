@@ -84,7 +84,11 @@ const ImageAvatar: React.FC<IProps> = ({
     else if (g < 0) g = 0;
 
     // eslint-disable-next-line no-bitwise
-    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
+    let colorHex = (g | (b << 8) | (r << 16)).toString(16);
+    if (colorHex.length === 5) {
+      colorHex = `0${colorHex}`;
+    }
+    return (usePound ? "#" : "") + colorHex;
   }, []);
 
   return (

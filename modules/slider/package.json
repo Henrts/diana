@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/slider",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -17,11 +17,11 @@
     "watch": "npm-watch"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.8",
-    "@diana-ui/hooks": "^0.1.11",
-    "@diana-ui/icon": "^0.1.8",
-    "@diana-ui/types": "^0.1.5",
-    "@diana-ui/typography": "^0.1.8"
+    "@diana-ui/base": "^0.1.9",
+    "@diana-ui/hooks": "^0.1.12",
+    "@diana-ui/icon": "^0.1.9",
+    "@diana-ui/types": "^0.1.6",
+    "@diana-ui/typography": "^0.1.9"
   },
   "peerDependencies": {
     "react": "^16.12.0"
