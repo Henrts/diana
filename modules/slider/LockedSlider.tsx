@@ -28,8 +28,6 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   disabledIcon: {}
 });
 
-const StyledSlider = Slider.extendStyles(theme => ({}));
-
 const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   cx,
   styles,
@@ -54,7 +52,6 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
 
   const onLockChangeInternal = useCallback(
     newValue => {
-      console.log("newValue ", newValue);
       if (locked === undefined) {
         setIsLocked(newValue);
       }
@@ -63,11 +60,9 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
     [locked, onLockChange]
   );
 
-  console.log("islocked ", isLocked);
-
   return (
     <div className={cx(styles.lockWrapper, className)}>
-      <StyledSlider
+      <Slider
         disabled={isLocked || disabled}
         inputClassName={cx(isLocked && !disabled && "locked")}
         onValueChange={(!isLocked && onValueChange) || (() => {})}

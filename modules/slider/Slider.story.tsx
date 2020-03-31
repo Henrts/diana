@@ -32,7 +32,7 @@ export const LockedSliderStory = () => {
 
   return (
     <LockedSlider
-      startLocked
+      locked
       lockedIcon="check"
       unlockedIcon="block"
       min={0}

@@ -17,6 +17,7 @@ export interface IAvatarProps {
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   wrapper: {
     borderWidth: 1,
+    borderStyle: "solid",
     borderRadius: 10,
     display: "flex",
     alignItems: "center",
@@ -46,7 +47,10 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps & IAvatarProps>> = ({
         styles[size],
         wrapperClassName
       )}
-      style={{ backgroundColor, borderColor: borderColor || backgroundColor }}
+      style={{
+        backgroundColor,
+        borderColor: borderColor || backgroundColor
+      }}
     >
       {(typeof children === "string" && (
         <BodyHighlight>{children}</BodyHighlight>

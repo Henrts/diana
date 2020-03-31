@@ -6,7 +6,8 @@ import {
   WithStylesProps,
   StandardProps
 } from "@diana-ui/types";
-import { Description } from "@diana-ui/typography";
+import { Description, Label } from "@diana-ui/typography";
+import calculateSliderStep from "./helpers/calculateSliderStep";
 
 export interface ISliderProps extends StandardProps<"input"> {
   min: number;
@@ -17,23 +18,43 @@ export interface ISliderProps extends StandardProps<"input"> {
   className?: string;
   inputClassName?: string;
   onValueChange?: (value: number) => void;
-  thumbSize?: number;
 }
+
+const thumbSizes = {
+  sm: 21,
+  md: 32
+};
+
+const mixinThumbStyle = (size: "sm" | "md") => ({
+  height: thumbSizes[size],
+  width: thumbSizes[size],
+  backgroundSize: `${thumbSizes[size]}px ${thumbSizes[size]}px`,
+  marginTop: Math.round(thumbSizes[size] / -2)
+});
 
 const styleSheet: ThemeStyleSheetFactory = () => ({
   wrapper: {},
   valueWrapper: {},
   input: {
-    "&::-webkit-slider-thumb": {},
     "@selectors": {
       "&.disabled::-webkit-slider-thumb": {},
       "&.disabled::-webkit-slider-runnable-track": {}
     },
-    "&::-moz-range-thumb": {},
-    "&::-ms-thumb": {},
     "&:focus": {},
     "&::-ms-track": {},
     "&::-webkit-slider-runnable-track": {}
+  },
+  sm: {
+    height: thumbSizes.sm,
+    "&::-webkit-slider-thumb": mixinThumbStyle("sm"),
+    "&::-moz-range-thumb": mixinThumbStyle("sm"),
+    "&::-ms-thumb": mixinThumbStyle("sm")
+  },
+  md: {
+    height: thumbSizes.md,
+    "&::-webkit-slider-thumb": mixinThumbStyle("md"),
+    "&::-moz-range-thumb": mixinThumbStyle("md"),
+    "&::-ms-thumb": mixinThumbStyle("md")
   },
   value: {}
 });
@@ -48,13 +69,16 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   onValueChange,
   disabled = false,
   className = "",
-  inputClassName = "",
-  thumbSize = 21
+  inputClassName = ""
 }) => {
-  const windowSize = useWindowSize();
+  const [width] = useWindowSize();
+  const isMobile = width <= 700;
+  const thumbSize = isMobile ? 21 : 32;
   const [leftSpacing, setLeftSpacing] = useState(9);
   const [_value, setValue] = useState(value || 0);
   const ref = React.createRef<HTMLInputElement>();
+
+  const TextComponent = (isMobile && Label) || Description;
 
   /**
    * This function calculates the left space required
@@ -99,7 +123,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
         ref.current?.clientWidth ? ref.current.clientWidth - thumbSize : 0
       )
     );
-  }, [ref, min, max, value, calculateLeftSpace, windowSize, thumbSize]);
+  }, [ref, min, max, value, calculateLeftSpace, thumbSize]);
 
   useEffect(() => {
     if (value !== undefined) {
@@ -120,21 +144,26 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   return (
     <div className={cx(styles.wrapper, className)}>
       <div className={cx(styles.valueWrapper)}>
-        <Description
+        <TextComponent
           style={{ left: leftSpacing, width: `${max}`.length * 20 }}
           className={cx(styles.value)}
         >
           {_value}
-        </Description>
+        </TextComponent>
       </div>
       <input
         ref={ref}
-        className={cx(styles.input, disabled && "disabled", inputClassName)}
+        className={cx(
+          styles.input,
+          (isMobile && styles.sm) || styles.md,
+          disabled && "disabled",
+          inputClassName
+        )}
         type="range"
         min={min}
         max={max}
         value={_value}
-        step={step}
+        step={step ?? calculateSliderStep(max)}
         onChange={ev => changeValue(Number(ev.currentTarget.value))}
         disabled={disabled}
       />
