@@ -21,7 +21,11 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     borderRadius: 10,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    "@selectors": {
+      "&.selected": {},
+      ":hover": {}
+    }
   },
   sm: {},
   md: {},
@@ -42,8 +46,8 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps & IAvatarProps>> = ({
   return (
     <div
       className={cx(
+        selected && "selected",
         styles.wrapper,
-        selected && styles.selected,
         styles[size],
         wrapperClassName
       )}

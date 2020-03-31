@@ -22,6 +22,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     flexGrow: 1
   },
   iconWrapper: {
+    cursor: "pointer",
     marginLeft: theme.spaceUnit.md
   },
   icon: {},
