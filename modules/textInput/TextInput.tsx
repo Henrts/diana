@@ -91,6 +91,11 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
       "&.active,&.focus": {
         padding: "0 2px"
       }
+    },
+    "@media": {
+      "screen and (max-width: 700px)": {
+        height: 3
+      }
     }
   },
   prefixIcon: {
