@@ -13,7 +13,7 @@ export interface ISliderProps extends StandardProps<"input"> {
   min: number;
   max: number;
   value?: number;
-  step: number;
+  step?: number;
   disabled?: boolean;
   className?: string;
   inputClassName?: string;
