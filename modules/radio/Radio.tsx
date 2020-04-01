@@ -97,20 +97,18 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={cx(styles.wrapper, className)}>
+    <div className={cx(styles.wrapper, className)} onClick={handleChange}>
       <input
         checked={isChecked}
         className={children ? cx({ display: "none" }) : inputStyles}
         id={id}
         ref={wrappedRef}
         type="radio"
-        onChange={handleChange}
         {...props}
       />
       {children &&
         React.cloneElement(children, {
-          className: inputStyles,
-          onClick: handleChange
+          className: inputStyles
         })}
       <label htmlFor={id} className={labelStyles}>
         {typeof label === "string" ? <Body>{label}</Body> : label}
