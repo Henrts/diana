@@ -144,7 +144,11 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
       <button
         type="button"
         className={cx(buttonStyle, styles.buttonMin)}
-        onClick={decrease}
+        onClick={e => {
+          decrease();
+          e.stopPropagation();
+          e.preventDefault();
+        }}
         onBlur={() => setIsFocused(false)}
         onFocus={() => setIsFocused(true)}
       >
@@ -161,7 +165,11 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
       <button
         type="button"
         className={cx(buttonStyle, styles.buttonMax)}
-        onClick={increase}
+        onClick={e => {
+          increase();
+          e.stopPropagation();
+          e.preventDefault();
+        }}
         onBlur={() => setIsFocused(false)}
         onFocus={() => setIsFocused(true)}
       >
