@@ -1,5 +1,5 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { PopoverStory } from "./Popover.story.tsx";
+import { PopoverStory, PopoverHoverStory } from "./Popover.story.tsx";
 
 <Meta title="Components | Popover" />
 
@@ -11,6 +11,12 @@ which is used to toggle the element and show the current state when it is closed
 <Preview>
   <Story name="Popover">
     <PopoverStory />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Popover on hover">
+    <PopoverHoverStory />
   </Story>
 </Preview>
 
@@ -59,6 +65,16 @@ which is used to toggle the element and show the current state when it is closed
       <td>disabled</td>
       <th>boolean</th>
       <td>If the Popover should not be opened.</td>
+    </tr>
+    <tr>
+      <td>showOnHover</td>
+      <th>boolean</th>
+      <td>If the Popover should opened on hover instead of on click.</td>
+    </tr>
+    <tr>
+      <td>useParentWidth</td>
+      <th>boolean</th>
+      <td>If the Popover should be as wide as its parent element.</td>
     </tr>
   </tbody>
 </table>

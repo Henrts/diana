@@ -15,12 +15,14 @@ import { useOnClickOutside } from "@diana-ui/hooks";
 import { Portal, Direction } from "@diana-ui/portal";
 
 export interface IProps extends StandardProps<"div"> {
-  renderHeader?: (visible: boolean) => React.ReactNode;
   direction?: Direction;
+  disabled?: boolean;
   dismissOnClick?: boolean;
+  renderHeader?: (visible: boolean) => React.ReactNode;
+  showOnHover?: boolean;
+  useParentWidth?: boolean;
   onShow?: () => void;
   onHide?: () => void;
-  disabled?: boolean;
 }
 
 export interface IPopoverRef {
@@ -49,17 +51,19 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 });
 
 const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
-  className,
-  direction = "bottom",
-  dismissOnClick = true,
   children,
-  renderHeader,
-  onShow,
-  onHide,
-  disabled = false,
+  className,
   cx,
+  direction = "bottom",
+  disabled = false,
+  dismissOnClick = true,
+  renderHeader,
+  showOnHover = false,
   styles,
-  wrappedRef
+  useParentWidth = false,
+  wrappedRef,
+  onShow,
+  onHide
 }) => {
   const [visible, _setVisible] = useState(false);
   const setVisible = useCallback(
@@ -89,6 +93,22 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
     toggle: () => toggleVisible()
   }));
 
+  const handleClick = showOnHover
+    ? undefined
+    : () => {
+        if (!disabled) {
+          toggleVisible();
+        }
+      };
+
+  const handleMouseEnterLeave = showOnHover
+    ? () => {
+        if (!disabled) {
+          toggleVisible();
+        }
+      }
+    : undefined;
+
   return (
     <div
       className={cx(styles.container, disabled && styles.disabled, className)}
@@ -96,16 +116,18 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
     >
       <div
         className={cx(styles.headerWrapper)}
-        onClick={() => {
-          if (!disabled) {
-            toggleVisible();
-          }
-        }}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnterLeave}
+        onMouseLeave={handleMouseEnterLeave}
       >
         {renderHeader?.(visible)}
       </div>
       {visible && (
-        <Portal parentRef={divRef} direction={direction} useParentWidth>
+        <Portal
+          parentRef={divRef}
+          direction={direction}
+          useParentWidth={useParentWidth}
+        >
           <div
             ref={portalRef}
             className={cx(styles.popover, styles[direction])}

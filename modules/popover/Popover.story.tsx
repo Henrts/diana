@@ -4,16 +4,19 @@ import Popover, { IPopoverRef } from "./Popover";
 export const PopoverStory = () => {
   const ref = useRef<IPopoverRef>(null);
   return (
+    <Popover renderHeader={() => <button>Toggle</button>} wrappedRef={ref}>
+      Popover content
+    </Popover>
+  );
+};
+
+export const PopoverHoverStory = () => {
+  const ref = useRef<IPopoverRef>(null);
+
+  return (
     <Popover
-      renderHeader={() => (
-        <button
-          onClick={event => {
-            ref.current?.toggle();
-          }}
-        >
-          Toggle
-        </button>
-      )}
+      renderHeader={() => <span>Hover</span>}
+      showOnHover
       wrappedRef={ref}
     >
       Popover content

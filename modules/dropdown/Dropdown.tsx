@@ -144,10 +144,11 @@ const BaseDropdown: React.FC<PropsWithChildren<
     <div className={cx(styles.wrapper, className)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
-        wrappedRef={ref}
-        disabled={disabled || items.length === 0}
         {...props}
+        disabled={disabled || items.length === 0}
         renderHeader={renderCustomHeader}
+        useParentWidth
+        wrappedRef={ref}
       >
         <ul className={cx(styles.list, "list")}>
           {items.map((item, index) => (
