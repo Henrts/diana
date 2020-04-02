@@ -3,7 +3,8 @@ import {
   PortalStory,
   TopPortalStory,
   RightPortalStory,
-  LeftPortalStory
+  LeftPortalStory,
+  CenteredPortalStory
 } from "./Portal.story.tsx";
 
 <Meta title="Components | Portal" />
@@ -43,6 +44,12 @@ To calculate that position, the parent element's position is used via the `paren
   </Story>
 </Preview>
 
+<Preview>
+  <Story name="CenteredPortal">
+    <CenteredPortalStory />
+  </Story>
+</Preview>
+
 ### Available props
 
 <table width="100%">
@@ -55,6 +62,11 @@ To calculate that position, the parent element's position is used via the `paren
   </thead>
   <tbody>
     <tr>
+      <td>centered (optional)</td>
+      <td>boolean</td>
+      <td>Whether portal is centered with its parent element</td>
+    </tr>
+    <tr>
       <td>direction (optional)</td>
       <td>"bottom" (default) | "left" | "right" | "top"</td>
       <td>Where to place the portal relative to the parent element</td>
@@ -63,6 +75,19 @@ To calculate that position, the parent element's position is used via the `paren
       <td>parentRef</td>
       <td>{"React.RefObject<HTMLDivElement>"}</td>
       <td>The parent element's ref</td>
+    </tr>
+    <tr>
+      <td>useParentWidth (optional)</td>
+      <td>boolean</td>
+      <td>Whether to set portal's width to its parent element's width</td>
+    </tr>
+    <tr>
+      <td>scrollableRootElement (optional)</td>
+      <td>boolean</td>
+      <td>
+        Necessary for recalculating position if scrollable root element scrolls.
+        "root" by default
+      </td>
     </tr>
   </tbody>
 </table>

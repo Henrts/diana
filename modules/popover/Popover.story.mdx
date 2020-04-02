@@ -32,14 +32,12 @@ which is used to toggle the element and show the current state when it is closed
   </thead>
   <tbody>
     <tr>
-      <td>direction</td>
-      <th>bottom | left | right | top</th>
-      <td>The direction the modal window should take. Defaults to `bottom`.</td>
-    </tr>
-    <tr>
-      <td>dismissOnClick</td>
+      <td>centered (optional)</td>
       <th>boolean</th>
-      <td>If the Popover should close when there is a click outside of it.</td>
+      <td>
+        Whether the Popover should be centered with its anchor. Defaults to
+        false.
+      </td>
     </tr>
     <tr>
       <td>children</td>
@@ -47,9 +45,43 @@ which is used to toggle the element and show the current state when it is closed
       <td>The content of the Popover.</td>
     </tr>
     <tr>
+      <td>direction (optional)</td>
+      <th>"bottom" | "left" | "right" | "top"</th>
+      <td>The direction the modal window should take. Defaults to `bottom`.</td>
+    </tr>
+    <tr>
+      <td>disabled (optional)</td>
+      <th>boolean</th>
+      <td>Whether the Popover should be opened or not. Defaults to false.</td>
+    </tr>
+    <tr>
+      <td>dismissOnClick (optional)</td>
+      <th>boolean</th>
+      <td>
+        Whether the Popover should close when there is a click outside of it.
+        Defaults to true.
+      </td>
+    </tr>
+    <tr>
       <td>renderHeader (optional)</td>
       <th>(visible: boolean) => React.ReactNode</th>
-      <td>Renders the Popover header if it is passed</td>
+      <td>Renders the Popover header if it is passed.</td>
+    </tr>
+    <tr>
+      <td>showOnHover (optional)</td>
+      <th>boolean</th>
+      <td>
+        Whether the Popover should open on hover instead of on click. Defaults
+        to false.
+      </td>
+    </tr>
+    <tr>
+      <td>useParentWidth (optional)</td>
+      <th>boolean</th>
+      <td>
+        Whether the Popover should be as wide as its parent element. Defaults to
+        false.
+      </td>
     </tr>
     <tr>
       <td>onShow</td>
@@ -60,21 +92,6 @@ which is used to toggle the element and show the current state when it is closed
       <td>onHide</td>
       <th>Function</th>
       <td>Called when the Popover content is hidden.</td>
-    </tr>
-    <tr>
-      <td>disabled</td>
-      <th>boolean</th>
-      <td>If the Popover should not be opened.</td>
-    </tr>
-    <tr>
-      <td>showOnHover</td>
-      <th>boolean</th>
-      <td>If the Popover should opened on hover instead of on click.</td>
-    </tr>
-    <tr>
-      <td>useParentWidth</td>
-      <th>boolean</th>
-      <td>If the Popover should be as wide as its parent element.</td>
     </tr>
   </tbody>
 </table>

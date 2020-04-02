@@ -75,3 +75,21 @@ export const LeftPortalStory = () => {
     </div>
   );
 };
+
+export const CenteredPortalStory = () => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{ display: "inline-block", backgroundColor: "burlywood" }}
+        ref={divRef}
+      >
+        Parent component
+        <Portal parentRef={divRef} centered>
+          centered
+        </Portal>
+      </div>
+    </div>
+  );
+};

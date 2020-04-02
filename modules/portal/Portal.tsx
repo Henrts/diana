@@ -6,6 +6,7 @@ import { StandardProps } from "@diana-ui/types";
 export type Direction = "bottom" | "left" | "right" | "top";
 
 export interface IProps extends StandardProps<"div"> {
+  centered?: boolean;
   direction?: Direction;
   parentRef: React.RefObject<HTMLDivElement>;
   useParentWidth?: boolean;
@@ -15,11 +16,14 @@ export interface IProps extends StandardProps<"div"> {
 const getScrollTop = () => document.documentElement.scrollTop;
 
 const getPortalStyles = (
+  target: HTMLDivElement,
   ref: React.RefObject<HTMLDivElement>,
   direction: Direction,
-  useParentWidth: boolean
+  useParentWidth: boolean,
+  centered: boolean
 ) => {
   const dimensions = ref.current?.getBoundingClientRect();
+  const targetDimensions = target.getBoundingClientRect();
 
   let styles = "position: absolute; z-index: 100; ";
 
@@ -27,9 +31,18 @@ const getPortalStyles = (
     styles += `width: ${dimensions?.width}px; `;
   }
 
+  const centeredLeft =
+    dimensions?.left && dimensions?.width
+      ? Math.round(
+          dimensions?.left + dimensions?.width / 2 - targetDimensions.width / 2
+        )
+      : targetDimensions.left;
+
   switch (direction) {
     case "top": {
-      styles += `left: ${dimensions?.left}px; top: ${
+      styles += `left: ${
+        centered && !useParentWidth ? centeredLeft : dimensions?.left
+      }px; top: ${
         dimensions && dimensions?.top - dimensions?.height + getScrollTop()
       }px;`;
       break;
@@ -41,7 +54,9 @@ const getPortalStyles = (
       break;
     }
     case "bottom": {
-      styles += `left: ${dimensions?.left}px; top: ${
+      styles += `left: ${
+        centered && !useParentWidth ? centeredLeft : dimensions?.left
+      }px; top: ${
         dimensions && dimensions?.top + dimensions?.height + getScrollTop()
       }px;`;
       break;
@@ -60,6 +75,7 @@ const getPortalStyles = (
 };
 
 const Portal: React.FC<IProps> = ({
+  centered = false,
   direction = "bottom",
   parentRef,
   useParentWidth = false,
@@ -70,13 +86,21 @@ const Portal: React.FC<IProps> = ({
 
   const target = useMemo(() => document.createElement("div"), []);
 
+  useEffect(() => {
+    document.body.appendChild(target);
+
+    return () => {
+      target.remove();
+    };
+  }, [target]);
+
   // If window size changes, recalculate position based on new parentRef position
   // This effect also sets the initial position
   useEffect(() => {
     const updateTargetStyle = () => {
       target.setAttribute(
         "style",
-        getPortalStyles(parentRef, direction, useParentWidth)
+        getPortalStyles(target, parentRef, direction, useParentWidth, centered)
       );
     };
     updateTargetStyle();
@@ -94,6 +118,7 @@ const Portal: React.FC<IProps> = ({
         rootElement?.removeEventListener("scroll", updateTargetStyle);
     }
   }, [
+    centered,
     direction,
     parentRef,
     scrollableRootElement,
@@ -101,14 +126,6 @@ const Portal: React.FC<IProps> = ({
     useParentWidth,
     windowSize
   ]);
-
-  useEffect(() => {
-    document.body.appendChild(target);
-
-    return () => {
-      target.remove();
-    };
-  }, [target]);
 
   return createPortal(children, target);
 };

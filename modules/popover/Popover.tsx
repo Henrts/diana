@@ -15,6 +15,7 @@ import { useOnClickOutside } from "@diana-ui/hooks";
 import { Portal, Direction } from "@diana-ui/portal";
 
 export interface IProps extends StandardProps<"div"> {
+  centered?: boolean;
   direction?: Direction;
   disabled?: boolean;
   dismissOnClick?: boolean;
@@ -51,6 +52,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 });
 
 const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
+  centered = false,
   children,
   className,
   cx,
@@ -101,10 +103,18 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
         }
       };
 
-  const handleMouseEnterLeave = showOnHover
+  const handleMouseEnter = showOnHover
     ? () => {
         if (!disabled) {
-          toggleVisible();
+          setVisible(true);
+        }
+      }
+    : undefined;
+
+  const handleMouseLeave = showOnHover
+    ? () => {
+        if (!disabled) {
+          setVisible(false);
         }
       }
     : undefined;
@@ -117,15 +127,16 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       <div
         className={cx(styles.headerWrapper)}
         onClick={handleClick}
-        onMouseEnter={handleMouseEnterLeave}
-        onMouseLeave={handleMouseEnterLeave}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         {renderHeader?.(visible)}
       </div>
       {visible && (
         <Portal
-          parentRef={divRef}
+          centered={centered}
           direction={direction}
+          parentRef={divRef}
           useParentWidth={useParentWidth}
         >
           <div
