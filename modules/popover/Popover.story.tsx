@@ -5,7 +5,15 @@ export const PopoverStory = () => {
   const ref = useRef<IPopoverRef>(null);
   return (
     <Popover renderHeader={() => <button>Toggle</button>} wrappedRef={ref}>
-      Popover content
+      <span
+        style={{
+          padding: "16px",
+          backgroundColor: "white",
+          border: "1px solid black"
+        }}
+      >
+        Popover content
+      </span>
     </Popover>
   );
 };
@@ -19,7 +27,15 @@ export const PopoverHoverStory = () => {
       showOnHover
       wrappedRef={ref}
     >
-      Popover content
+      <span
+        style={{
+          padding: "16px",
+          backgroundColor: "white",
+          border: "1px solid black"
+        }}
+      >
+        Popover content
+      </span>
     </Popover>
   );
 };

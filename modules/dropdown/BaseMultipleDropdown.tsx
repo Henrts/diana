@@ -101,9 +101,10 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
         wrappedRef={ref}
-        disabled={disabled || items.length === 0}
         {...props}
+        disabled={disabled || items.length === 0}
         renderHeader={renderCustomHeader}
+        useParentWidth
         onHide={onClose}
       >
         <ul className={cx(styles.list)}>

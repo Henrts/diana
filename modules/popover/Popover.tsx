@@ -43,6 +43,8 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
     cursor: "pointer"
   },
   popover: {
+    display: "flex",
+    width: "100%",
     zIndex: 10
   },
   bottom: {},

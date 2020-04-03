@@ -9,10 +9,11 @@ import { Icon } from "@diana-ui/icon";
 import { SectionTitle, Description } from "@diana-ui/typography";
 
 export interface IProps extends StandardProps<"section"> {
-  title: string;
-  onClose?: () => void;
   description?: string;
   icon?: JSX.Element;
+  showCloseButton?: boolean;
+  title: string;
+  onClose?: () => void;
 }
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
@@ -40,12 +41,13 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
 });
 
 const ModalHeader: React.FC<IProps & WithStylesProps> = ({
-  cx,
-  styles,
   className,
-  icon,
-  title,
+  cx,
   description,
+  icon,
+  showCloseButton = true,
+  styles,
+  title,
   onClose
 }) => {
   return (
@@ -53,9 +55,11 @@ const ModalHeader: React.FC<IProps & WithStylesProps> = ({
       <div className={cx(styles.titleWrapper)}>
         {icon && <div className={cx(styles.icon)}>{icon}</div>}
         <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>
-        <div onClick={onClose} className={cx(styles.closeIcon)}>
-          <Icon size={16} name="close" />
-        </div>
+        {showCloseButton && (
+          <div onClick={onClose} className={cx(styles.closeIcon)}>
+            <Icon size={16} name="close" />
+          </div>
+        )}
       </div>
       {description && (
         <Description className={cx(styles.description)}>

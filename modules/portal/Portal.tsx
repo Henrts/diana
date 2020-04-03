@@ -25,10 +25,10 @@ const getPortalStyles = (
   const dimensions = ref.current?.getBoundingClientRect();
   const targetDimensions = target.getBoundingClientRect();
 
-  let styles = "position: absolute; z-index: 100; ";
+  let styles = "display: flex; position: absolute; z-index: 100; ";
 
   if (useParentWidth) {
-    styles += `width: ${dimensions?.width}px; `;
+    styles += `width: ${ref.current?.offsetWidth}px; `;
   }
 
   const centeredLeft =
@@ -43,7 +43,7 @@ const getPortalStyles = (
       styles += `left: ${
         centered && !useParentWidth ? centeredLeft : dimensions?.left
       }px; top: ${
-        dimensions && dimensions?.top - dimensions?.height + getScrollTop()
+        dimensions && dimensions?.top - target.offsetHeight + getScrollTop()
       }px;`;
       break;
     }

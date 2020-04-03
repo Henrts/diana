@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Portal from "./Portal";
 
 export const PortalStory = () => {
@@ -15,7 +15,15 @@ export const PortalStory = () => {
       <button onClick={onClick}>Click to teleport</button>
       {isPortalOpen && (
         <Portal parentRef={divRef}>
-          This content is a hierarchical desdendant of {"<body>"}!
+          <span
+            style={{
+              padding: "16px",
+              border: "1px solid black",
+              backgroundColor: "white"
+            }}
+          >
+            This content is a hierarchical desdendant of {"<body>"}!
+          </span>
         </Portal>
       )}
     </div>
