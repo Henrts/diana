@@ -9,6 +9,7 @@ export interface IInfoIconProps {
   title?: string;
   children?: string | JSX.Element;
   withPadding?: boolean;
+  vertical?: boolean;
   className?: string;
   avatarComponentName?: string;
   avatarOptions?: any;
@@ -19,6 +20,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     height: "auto",
     display: "flex"
   },
+  vertical: {},
   withpadding: {
     border: "1px solid lightgrey",
     borderRadius: 10,
@@ -30,9 +32,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     flexDirection: "column",
     paddingTop: theme.spaceUnit.xxs
   },
-  title: {
-    color: theme.colors.grey.grey100
-  },
+  textVertical: {},
+  title: {},
   body: {}
 });
 
@@ -44,6 +45,7 @@ const Infoicon: React.FC<IProps> = ({
   title,
   children,
   withPadding = false,
+  vertical = false,
   className,
   avatarComponentName = "Avatar",
   avatarOptions
@@ -55,11 +57,12 @@ const Infoicon: React.FC<IProps> = ({
       className={cx(
         styles.infoicon,
         withPadding && styles.withpadding,
+        vertical && styles.vertical,
         className
       )}
     >
       <StyledAvatar {...avatarOptions} />
-      <div className={cx(styles.text)}>
+      <div className={cx(styles.text, vertical && styles.textVertical)}>
         {title && (
           <DescriptionMedium className={cx(styles.title)}>
             {title}
