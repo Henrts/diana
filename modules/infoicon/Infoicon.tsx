@@ -1,9 +1,8 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { useRegistry } from "@diana-ui/hooks";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { DescriptionMedium, BodyHighlight } from "@diana-ui/typography";
-import { IAvatarProps } from "@diana-ui/avatar";
 
 export interface IInfoIconProps {
   title?: string;
@@ -17,10 +16,11 @@ export interface IInfoIconProps {
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   infoicon: {
-    height: "auto",
-    display: "flex"
+    display: "flex",
+    "@selectors": {
+      "&.vertical": {}
+    }
   },
-  vertical: {},
   withpadding: {
     border: "1px solid lightgrey",
     borderRadius: 10,
@@ -30,11 +30,12 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     display: "flex",
     marginLeft: theme.spaceUnit.md,
     flexDirection: "column",
-    paddingTop: theme.spaceUnit.xxs
+    paddingTop: theme.spaceUnit.xxs,
+    "@selectors": {
+      "&.vertical": {}
+    }
   },
-  textVertical: {},
-  title: {},
-  body: {}
+  title: {}
 });
 
 type IProps = IInfoIconProps & WithStylesProps;
@@ -57,12 +58,12 @@ const Infoicon: React.FC<IProps> = ({
       className={cx(
         styles.infoicon,
         withPadding && styles.withpadding,
-        vertical && styles.vertical,
+        vertical && "vertical",
         className
       )}
     >
       <StyledAvatar {...avatarOptions} />
-      <div className={cx(styles.text, vertical && styles.textVertical)}>
+      <div className={cx(styles.text, vertical && "vertical")}>
         {title && (
           <DescriptionMedium className={cx(styles.title)}>
             {title}
