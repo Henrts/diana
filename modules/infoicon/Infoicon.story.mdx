@@ -10,3 +10,63 @@ import { InfoiconStory } from "./Infoicon.story.tsx";
     <InfoiconStory />
   </Story>
 </Preview>
+
+## Available Props
+
+```typescript
+interface IInfoIconProps {
+  /**
+   * Title for the Infoicon
+   */
+  title?: string;
+  /**
+   * Content for the infoicon
+   */
+  children?: string | JSX.Element;
+  /**
+   * if it should have padding and border
+   */
+  withPadding?: boolean;
+  /**
+   * vertical version of infoicon
+   */
+  vertical?: boolean;
+  /**
+   * className to be applied to the wrapper
+   */
+  className?: string;
+  /**
+   * name to be picked up from registry for the avatar component
+   * usually: 'Avatar' | 'ImageAvatar'
+   * defaults to 'Avatar'
+   */
+  avatarComponentName?: string;
+  /**
+   * Options to be passed to the avatar component
+   */
+  avatarOptions?: any;
+}
+```
+
+## Styles Props
+
+```json
+{
+  /**
+   * InfoIcon component wrapper styles
+   */
+  "infoicon": {},
+  /**
+   * Padding / border styles
+   */
+  "withpadding": {},
+  /**
+   * InfoIcon title styles
+   */
+  "title": {}
+  /**
+   * Content for the component
+   */
+  "text": {},
+}
+```

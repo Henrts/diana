@@ -2,20 +2,24 @@ import React from "react";
 import { useRegistry } from "@diana-ui/hooks";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
-import { DescriptionMedium } from "@diana-ui/typography";
+import { DescriptionMedium, BodyHighlight } from "@diana-ui/typography";
 
-export interface IProps {
-  title: string;
+export interface IInfoIconProps {
+  title?: string;
+  children?: string | JSX.Element;
   withPadding?: boolean;
+  vertical?: boolean;
+  className?: string;
+  avatarComponentName?: string;
+  avatarOptions?: any;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   infoicon: {
-    height: 80,
-    display: "flex"
-  },
-  wrapper: {
-    display: "flex"
+    display: "flex",
+    "@selectors": {
+      "&.vertical": {}
+    }
   },
   withpadding: {
     border: "1px solid lightgrey",
@@ -24,25 +28,51 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   },
   text: {
     display: "flex",
-    marginLeft: 8
-  }
+    marginLeft: theme.spaceUnit.md,
+    flexDirection: "column",
+    paddingTop: theme.spaceUnit.xxs,
+    "@selectors": {
+      "&.vertical": {}
+    }
+  },
+  title: {}
 });
 
-const Infoicon: React.FC<IProps & WithStylesProps> = ({
+type IProps = IInfoIconProps & WithStylesProps;
+
+const Infoicon: React.FC<IProps> = ({
   cx,
   styles,
   title,
-  withPadding = false
+  children,
+  withPadding = false,
+  vertical = false,
+  className,
+  avatarComponentName = "Avatar",
+  avatarOptions
 }) => {
-  const StyledAvatar = useRegistry("Avatar");
+  const StyledAvatar: any = useRegistry(avatarComponentName);
 
   return (
-    <div className={cx(styles.infoicon)}>
-      <div className={cx(styles.wrapper, withPadding && styles.withpadding)}>
-        <StyledAvatar />
-        <div className={cx(styles.text)}>
-          {title && <DescriptionMedium>{title}</DescriptionMedium>}
-        </div>
+    <div
+      className={cx(
+        styles.infoicon,
+        withPadding && styles.withpadding,
+        vertical && "vertical",
+        className
+      )}
+    >
+      <StyledAvatar {...avatarOptions} />
+      <div className={cx(styles.text, vertical && "vertical")}>
+        {title && (
+          <DescriptionMedium className={cx(styles.title)}>
+            {title}
+          </DescriptionMedium>
+        )}
+        {(children && typeof children === "string" && (
+          <BodyHighlight>{children}</BodyHighlight>
+        )) ||
+          children}
       </div>
     </div>
   );

@@ -123,4 +123,6 @@ const ImageAvatar: React.FC<IProps> = ({
   );
 };
 
-export default withStyles(styleSheet)(ImageAvatar);
+ImageAvatar.displayName = "ImageAvatar";
+
+export default withStyles(styleSheet, { register: true })(ImageAvatar);

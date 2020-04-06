@@ -1,1 +1,1 @@
-export { default as Infoicon, IProps as IInfoiconProps } from "./Infoicon";
+export { default as Infoicon, IInfoIconProps } from "./Infoicon";
