@@ -40,7 +40,11 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
     pointerEvents: "none"
   },
   headerWrapper: {
-    cursor: "pointer"
+    "@selectors": {
+      "&.clickable": {
+        cursor: "pointer"
+      }
+    }
   },
   popover: {
     display: "flex",
@@ -127,7 +131,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       ref={divRef}
     >
       <div
-        className={cx(styles.headerWrapper)}
+        className={cx(styles.headerWrapper, !showOnHover && "clickable")}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
