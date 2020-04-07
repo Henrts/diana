@@ -3,6 +3,7 @@ import { useRegistry } from "@diana-ui/hooks";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { DescriptionMedium, BodyHighlight } from "@diana-ui/typography";
+import { IAvatarProps } from "@diana-ui/avatar";
 
 export interface IInfoIconProps {
   title?: string;
@@ -11,7 +12,7 @@ export interface IInfoIconProps {
   vertical?: boolean;
   className?: string;
   avatarComponentName?: string;
-  avatarOptions?: any;
+  avatarOptions?: IAvatarProps;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
