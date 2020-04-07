@@ -29,6 +29,7 @@ export interface IProps extends StandardProps<"div"> {
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   body: {
+    display: "flex",
     overflow: "hidden"
   },
   bodyWrapper: {
@@ -103,13 +104,13 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
 
   // calculate header height (once or every time window size changes)
   useEffect(() => {
-    setHeaderHeight(headerRef.current?.getBoundingClientRect().height);
+    setHeaderHeight(headerRef.current?.offsetHeight);
   }, [headerRef, windowSize]);
 
   // calculate body height (once or every time window size changes)
   useEffect(() => {
     if (bodyHeight === 0 || bodyHeight === undefined) {
-      setBodyHeight(bodyRef.current?.getBoundingClientRect().height);
+      setBodyHeight(bodyRef.current?.offsetHeight);
     }
   }, [bodyHeight, bodyRef, isExpanded, windowSize]);
 
