@@ -56,7 +56,8 @@ export const styleSheet: ThemeStyleSheetFactory = () => ({
     marginTop: 0,
     maxHeight: 300,
     overflowY: "auto",
-    paddingLeft: 0
+    paddingLeft: 0,
+    width: "100%"
   },
   text: {
     overflow: "hidden",
