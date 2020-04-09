@@ -1,0 +1,47 @@
+{
+  "name": "@diana-ui/menu",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "module": "module/index.js",
+  "files": [
+    "lib",
+    "module"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn compile:lib && yarn compile:module",
+    "compile:lib": "tsc --target es5 --module es2015 --outDir lib",
+    "compile:module": "tsc --target es6 --module esnext --outDir module",
+    "clean:files": "rimraf lib module",
+    "prepare": "yarn clean:files && yarn build",
+    "watch": "npm-watch"
+  },
+  "peerDependencies": {
+    "react": "^^16.12.0"
+  },
+  "dependencies": {
+    "@diana-ui/button": "^0.1.12",
+    "@diana-ui/popover": "^0.1.21",
+    "@diana-ui/icon": "^0.2.0",
+    "@diana-ui/types": "^0.1.7",
+    "@diana-ui/base": "^0.1.10",
+    "@diana-ui/typography": "^0.1.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "watch": {
+    "prepare": {
+      "runOnChangeOnly": true,
+      "extensions": "ts,tsx",
+      "ignore": [
+        "lib",
+        "node_modules",
+        "module"
+      ],
+      "patterns": [
+        "."
+      ]
+    }
+  }
+}
