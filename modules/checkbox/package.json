@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/checkbox",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.10",
-    "@diana-ui/icon": "^0.1.10",
+    "@diana-ui/icon": "^0.2.0",
     "@diana-ui/types": "^0.1.7"
   },
   "publishConfig": {
