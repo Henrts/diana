@@ -2,5 +2,5 @@
   "version": "independent",
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "ignoreChanges": ["lib/", "module/"]
+  "ignoreChanges": ["lib/", "module/", "*.story*.tsx", "*.story*.mdx"]
 }
