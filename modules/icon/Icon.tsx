@@ -23,7 +23,7 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   name,
   height,
   width,
-  stroke = "black",
+  stroke,
   fill,
   color,
   className,
