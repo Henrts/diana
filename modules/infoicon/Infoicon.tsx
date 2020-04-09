@@ -5,7 +5,7 @@ import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { DescriptionMedium, BodyHighlight } from "@diana-ui/typography";
 
 export interface IInfoIconProps {
-  title?: string;
+  title?: string | JSX.Element;
   children?: string | JSX.Element;
   withPadding?: boolean;
   vertical?: boolean;
@@ -35,7 +35,15 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
       "&.vertical": {}
     }
   },
-  title: {}
+  title: {},
+  content: {
+    textAlign: "left",
+    "@selectors": {
+      "&.vertical": {
+        textAlign: "center"
+      }
+    }
+  }
 });
 
 type IProps = IInfoIconProps & WithStylesProps;
@@ -64,13 +72,19 @@ const Infoicon: React.FC<IProps> = ({
     >
       <StyledAvatar {...avatarOptions} />
       <div className={cx(styles.text, vertical && "vertical")}>
-        {title && (
-          <DescriptionMedium className={cx(styles.title)}>
+        {title && typeof title === "string" ? (
+          <DescriptionMedium
+            className={cx(styles.title, vertical && "vertical")}
+          >
             {title}
           </DescriptionMedium>
+        ) : (
+          title
         )}
         {(children && typeof children === "string" && (
-          <BodyHighlight>{children}</BodyHighlight>
+          <BodyHighlight className={cx(styles.content, vertical && "vertical")}>
+            {children}
+          </BodyHighlight>
         )) ||
           children}
       </div>

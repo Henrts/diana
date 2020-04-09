@@ -11,14 +11,21 @@ import { InfoiconStory } from "./Infoicon.story.tsx";
   </Story>
 </Preview>
 
+<Preview>
+  <Story name="CustomTitleInfoiconStory">
+    <CustomTitleInfoiconStory />
+  </Story>
+</Preview>
+
 ## Available Props
 
 ```typescript
 interface IInfoIconProps {
   /**
    * Title for the Infoicon
+   * Can also be a React element
    */
-  title?: string;
+  title?: string | JSX.Element;
   /**
    * Content for the infoicon
    */
@@ -61,12 +68,16 @@ interface IInfoIconProps {
    */
   "withpadding": {},
   /**
-   * InfoIcon title styles
-   */
-  "title": {}
-  /**
-   * Content for the component
+   * Styles for the title | content wrapper
    */
   "text": {},
+  /**
+   * InfoIcon title styles
+   */
+  "title": {},
+  /**
+   * Styles for the content
+   */
+  "content": {}
 }
 ```

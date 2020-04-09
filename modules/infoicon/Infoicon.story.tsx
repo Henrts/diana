@@ -3,6 +3,7 @@ import Infoicon from "./Infoicon";
 import { ComponentRegistry } from "@diana-ui/base";
 import { ThemeStyleSheetFactory } from "@diana-ui/types";
 import { Avatar } from "@diana-ui/avatar";
+import { DescriptionMedium } from "@diana-ui/typography";
 
 Avatar.extendStyles(
   theme => ({
@@ -24,6 +25,19 @@ export const InfoiconStory = () => {
   return (
     <Infoicon
       title="title"
+      avatarOptions={{
+        children: "TXT"
+      }}
+    >
+      Body content
+    </Infoicon>
+  );
+};
+
+export const CustomTitleInfoiconStory = () => {
+  return (
+    <Infoicon
+      title={<DescriptionMedium>Test</DescriptionMedium>}
       avatarOptions={{
         children: "TXT"
       }}
