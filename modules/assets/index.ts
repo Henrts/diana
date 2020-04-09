@@ -14,4 +14,8 @@ export { default as Block } from "./icons/block.svg";
 export { default as Chart } from "./icons/chart.svg";
 export { default as Check } from "./icons/check.svg";
 export { default as Checkmark } from "./icons/checkmark.svg";
+export { default as ChevronDown } from "./icons/chevron-down.svg";
+export { default as ChevronLeft } from "./icons/chevron-left.svg";
+export { default as ChevronRight } from "./icons/chevron-right.svg";
+export { default as ChevronUp } from "./icons/chevron-up.svg";
 export { default as Close } from "./icons/close.svg";

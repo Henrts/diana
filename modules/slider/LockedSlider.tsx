@@ -8,7 +8,6 @@ export interface ILockedSliderProps extends ISliderProps {
   locked?: boolean;
   lockedIcon?: string;
   unlockedIcon?: string;
-  disabledIcon?: string;
   className?: string;
   onLockChange?: (locked: boolean) => void;
 }
@@ -25,7 +24,13 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     cursor: "pointer",
     marginLeft: theme.spaceUnit.md
   },
-  icon: {},
+  icon: {
+    "@selectors": {
+      "&.disabled": {
+        fill: theme.colors.grey.grey100
+      }
+    }
+  },
   disabledIcon: {}
 });
 
@@ -35,15 +40,14 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   onValueChange,
   onLockChange,
   locked,
-  lockedIcon,
-  unlockedIcon,
-  disabledIcon,
+  lockedIcon = "locked",
+  unlockedIcon = "unlocked",
   className = "",
   disabled,
   ...props
 }) => {
   const [isLocked, setIsLocked] = useState(false);
-  const icon = disabled ? disabledIcon : isLocked ? lockedIcon : unlockedIcon;
+  const icon = disabled ? lockedIcon : isLocked ? lockedIcon : unlockedIcon;
 
   useEffect(() => {
     if (locked !== undefined) {
@@ -73,7 +77,10 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
         className={cx(styles.iconWrapper, disabled && styles.disabledIcon)}
         onClick={() => onLockChangeInternal(!isLocked)}
       >
-        <Icon className={cx(styles.icon)} name={icon as any} />
+        <Icon
+          className={cx(styles.icon, disabled && "disabled")}
+          name={icon as any}
+        />
       </div>
     </div>
   );

@@ -194,7 +194,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
         )}
         <Icon
           className={cx(styles.headerIcon, ...stateClasses)}
-          name="arrow"
+          name="chevron-down"
           size={16}
         />
       </div>

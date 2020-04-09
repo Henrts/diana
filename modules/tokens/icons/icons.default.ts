@@ -11,6 +11,10 @@ import {
   Chart,
   Check,
   Checkmark,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
   Close
 } from "@diana-ui/assets";
 
@@ -22,5 +26,9 @@ export default {
   chart: Chart,
   check: Check,
   checkmark: Checkmark,
+  "chevron-down": ChevronDown,
+  "chevron-left": ChevronLeft,
+  "chevron-right": ChevronRight,
+  "chevron-up": ChevronUp,
   close: Close
 };
