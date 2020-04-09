@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/tokens",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "lib/index.js",
   "module": "module/index.js",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "watch": "npm-watch"
   },
   "dependencies": {
-    "@diana-ui/assets": "^0.0.7"
+    "@diana-ui/assets": "^0.0.8"
   },
   "publishConfig": {
     "access": "public"

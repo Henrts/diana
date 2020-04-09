@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/radio",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -20,9 +20,9 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.10",
-    "@diana-ui/types": "^0.1.7",
-    "@diana-ui/typography": "^0.1.10",
+    "@diana-ui/base": "^0.1.11",
+    "@diana-ui/types": "^0.1.8",
+    "@diana-ui/typography": "^0.1.11",
     "uuid": "^3.4.0"
   },
   "devDependencies": {

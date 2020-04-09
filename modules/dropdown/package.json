@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/dropdown",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "module/index.js",
@@ -20,13 +20,13 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.10",
-    "@diana-ui/hooks": "^0.1.13",
-    "@diana-ui/popover": "^0.1.21",
-    "@diana-ui/types": "^0.1.7"
+    "@diana-ui/base": "^0.1.11",
+    "@diana-ui/hooks": "^0.1.14",
+    "@diana-ui/popover": "^0.1.22",
+    "@diana-ui/types": "^0.1.8"
   },
   "devDependencies": {
-    "@diana-ui/typography": "^0.1.10"
+    "@diana-ui/typography": "^0.1.11"
   },
   "publishConfig": {
     "access": "public"
