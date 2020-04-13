@@ -3,7 +3,13 @@ import { createPortal } from "react-dom";
 import { useWindowSize } from "@diana-ui/hooks";
 import { StandardProps } from "@diana-ui/types";
 
-export type Direction = "bottom" | "left" | "right" | "top";
+export type Direction =
+  | "bottom"
+  | "left"
+  | "right"
+  | "top"
+  | "bottom-right"
+  | "top-right";
 
 export interface IProps extends StandardProps<"div"> {
   centered?: boolean;
@@ -64,6 +70,18 @@ const getPortalStyles = (
     case "left": {
       styles += `right: ${dimensions?.right}px; top: ${
         dimensions && dimensions?.top + getScrollTop()
+      }px;`;
+      break;
+    }
+    case "bottom-right": {
+      styles += `right: ${dimensions?.left}px; top: ${
+        dimensions && dimensions?.top + dimensions?.height + getScrollTop()
+      }px;`;
+      break;
+    }
+    case "top-right": {
+      styles += `right: ${dimensions?.left}px; top: ${
+        dimensions && dimensions?.top - target.offsetHeight + getScrollTop()
       }px;`;
       break;
     }

@@ -101,3 +101,39 @@ export const CenteredPortalStory = () => {
     </div>
   );
 };
+
+export const BottomRightPortalStory = () => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{ display: "inline-block", backgroundColor: "burlywood" }}
+        ref={divRef}
+      >
+        Parent component
+        <Portal parentRef={divRef} direction="bottom-right">
+          Bottom right text aligned
+        </Portal>
+      </div>
+    </div>
+  );
+};
+
+export const TopRightPortalStory = () => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{ display: "inline-block", backgroundColor: "burlywood" }}
+        ref={divRef}
+      >
+        Parent component
+        <Portal parentRef={divRef} direction="top-right">
+          top right text aligned
+        </Portal>
+      </div>
+    </div>
+  );
+};
