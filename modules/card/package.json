@@ -24,7 +24,7 @@
     "@diana-ui/typography": "^0.1.11"
   },
   "devDependencies": {
-    "@diana-ui/button": "^0.1.0"
+    "@diana-ui/button": "^0.1.13"
   },
   "peerDependencies": {
     "react": "^16.12.0"
