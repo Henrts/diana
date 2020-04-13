@@ -8,7 +8,7 @@ import { withStyles } from "@diana-ui/base";
 import { Body } from "@diana-ui/typography";
 import { Icon, IconNames } from "@diana-ui/icon";
 
-export interface IProps extends StandardProps<"div"> {
+export interface IProps extends StandardProps<"li"> {
   icon?: IconNames;
   onClick?: () => void;
 }
@@ -16,7 +16,8 @@ export interface IProps extends StandardProps<"div"> {
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   menuItem: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    cursor: "pointer"
   },
   icon: {
     marginRight: theme.spaceUnit.xs
@@ -34,14 +35,15 @@ const MenuItem: React.FC<IProps & WithStylesProps> = ({
   ...props
 }) => {
   return (
-    <div
+    <li
       className={cx(styles.menuItem, className)}
+      role="presentation"
       {...props}
       onClick={onClick}
     >
       {icon && <Icon name={icon} className={cx(styles.icon)} size={16} />}
       <Body>{children}</Body>
-    </div>
+    </li>
   );
 };
 
