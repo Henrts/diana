@@ -22,8 +22,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 
 export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   container: {
-    maxWidth: "100%",
-    minWidth: 220
+    // maxWidth: "100%",
+    // minWidth: 220
   }
 });
 
