@@ -1,0 +1,111 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import Menu from "./Menu";
+import MenuItem from "./MenuItem";
+import { Icon } from "@diana-ui/icon";
+
+<Meta title="Components | Menu" />
+
+# Menu
+
+This component can be used to display a popup with a list. It uses the `Popover` component underneath to show the options.
+These options are preferably used with MenuItem
+
+<Preview>
+  <Story name="Menu">
+    <Menu renderHeader={() => <Icon name="add" />}>
+      <MenuItem icon={"add"} onClick={() => console.log("clicked")}>
+        Menu Item 1
+      </MenuItem>
+      <MenuItem>Menu Item 2</MenuItem>
+      <MenuItem>Menu Item 3</MenuItem>
+      <MenuItem>Menu Item 4</MenuItem>
+    </Menu>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="MenuWithElement">
+    <Menu renderHeader={() => <span>element</span>}>
+      <MenuItem icon={"add"} onClick={() => console.log("clicked")}>
+        Menu Item 1
+      </MenuItem>
+      <MenuItem icon={"add"}>Menu Item 2</MenuItem>
+      <MenuItem icon={"add"}>Menu Item 3</MenuItem>
+      <MenuItem icon={"add"}>Menu Item 4</MenuItem>
+    </Menu>
+  </Story>
+</Preview>
+
+### Available props
+
+Some of the props are passed through to the `Popover` element, so refer to its documentation for more customization options.
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>menuIconElement</td>
+      <th>string</th>
+      <td>
+        Name of the icon that will appear to be clickable or an element itself
+      </td>
+    </tr>
+    <tr>
+      <td>onShow (optional)</td>
+      <th>Function</th>
+      <td>Called when the Popover content is shown.</td>
+    </tr>
+    <tr>
+      <td>onHide (optional)</td>
+      <th>Function</th>
+      <td>Called when the Popover content is hidden.</td>
+    </tr>
+    <tr>
+      <td>disabled (optional)</td>
+      <th>boolean</th>
+      <td>If the Popover should not be opened.</td>
+    </tr>
+    <tr>
+      <td>children</td>
+      <th>MenuItem[]</th>
+      <td>List of items to show on the popover</td>
+    </tr>
+  </tbody>
+</table>
+
+#### MenuItem
+
+For each MenuItem these are the possible props
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>icon (optional)</td>
+      <th>string</th>
+      <td>Icon to show on the item</td>
+    </tr>
+    <tr>
+      <td>children</td>
+      <th>string</th>
+      <td>Text to show on the item</td>
+    </tr>
+    <tr>
+      <td>onClick (optional)</td>
+      <th>() => void</th>
+      <td>Callback after clicking an item</td>
+    </tr>
+  </tbody>
+</table>

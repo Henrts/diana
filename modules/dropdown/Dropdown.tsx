@@ -1,13 +1,7 @@
-import React, {
-  useRef,
-  PropsWithChildren,
-  useImperativeHandle,
-  RefObject,
-  useMemo
-} from "react";
+import React, { PropsWithChildren, useMemo } from "react";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
-import { Popover, IPopoverRef, IPopoverProps } from "@diana-ui/popover";
+import { Popover, IPopoverProps, usePopoverRef } from "@diana-ui/popover";
 
 export interface IItem {
   id: string;
@@ -78,23 +72,6 @@ export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
 });
 
 const StyledPopover = Popover.extendStyles(styleSheetPopover);
-
-export const usePopoverRef = (
-  wrappedRef:
-    | ((instance: IPopoverRef) => void)
-    | RefObject<IPopoverRef>
-    | null
-    | undefined
-) => {
-  const ref = useRef<IPopoverRef>(null);
-
-  useImperativeHandle<IPopoverRef, IPopoverRef>(wrappedRef, () => ({
-    show: () => ref.current?.show(),
-    hide: () => ref.current?.hide(),
-    toggle: () => ref.current?.toggle()
-  }));
-  return ref;
-};
 
 export const DropdownHeader: React.FC<{ text?: string } & WithStylesProps> = ({
   text,

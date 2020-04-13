@@ -3,7 +3,8 @@ import React, {
   useImperativeHandle,
   useState,
   useRef,
-  PropsWithChildren
+  PropsWithChildren,
+  RefObject
 } from "react";
 import {
   StandardProps,
@@ -31,6 +32,23 @@ export interface IPopoverRef {
   hide: () => void;
   toggle: () => void;
 }
+
+export const usePopoverRef = (
+  wrappedRef:
+    | ((instance: IPopoverRef) => void)
+    | RefObject<IPopoverRef>
+    | null
+    | undefined
+) => {
+  const ref = useRef<IPopoverRef>(null);
+
+  useImperativeHandle<IPopoverRef, IPopoverRef>(wrappedRef, () => ({
+    show: () => ref.current?.show(),
+    hide: () => ref.current?.hide(),
+    toggle: () => ref.current?.toggle()
+  }));
+  return ref;
+};
 
 const styleSheet: ThemeStyleSheetFactory = () => ({
   container: {
