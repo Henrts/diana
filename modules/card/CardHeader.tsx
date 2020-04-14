@@ -32,7 +32,8 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   titleWrapper: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start"
+    alignItems: "flex-start",
+    flex: 1
   },
   title: {
     flex: 1
