@@ -35,7 +35,14 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
       "&.vertical": {}
     }
   },
-  title: {},
+  title: {
+    textAlign: "left",
+    "@selectors": {
+      "&.vertical": {
+        textAlign: "center"
+      }
+    }
+  },
   content: {
     textAlign: "left",
     "@selectors": {
