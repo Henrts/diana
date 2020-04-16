@@ -30,7 +30,8 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   src,
   size,
   cx,
-  styles
+  styles,
+  ...props
 }) => {
   const theme = useTheme();
 
@@ -58,7 +59,7 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   }
   newProps.className = `y-icon ${cx(styles.icon)} ${className || ""}`;
 
-  return <SvgIcon {...newProps} />;
+  return <SvgIcon {...props} {...newProps} />;
 };
 
 Icon.displayName = "Icon";
