@@ -63,24 +63,28 @@ const getPortalStyles = (
       styles += `left: ${
         centered && !useParentWidth ? centeredLeft : dimensions?.left
       }px; top: ${
-        dimensions && dimensions?.top + dimensions?.height + getScrollTop()
+        dimensions && dimensions?.top + target.offsetHeight + getScrollTop()
       }px;`;
       break;
     }
     case "left": {
-      styles += `right: ${dimensions?.right}px; top: ${
-        dimensions && dimensions?.top + getScrollTop()
-      }px;`;
+      styles += `left: ${
+        (dimensions?.left || 0) - (targetDimensions?.width || 0)
+      }px; top: ${dimensions && dimensions?.top + getScrollTop()}px;`;
       break;
     }
     case "bottom-right": {
-      styles += `right: ${dimensions?.left}px; top: ${
+      styles += `left: ${
+        (dimensions?.right || 0) - (targetDimensions?.width || 0)
+      }px; top: ${
         dimensions && dimensions?.top + dimensions?.height + getScrollTop()
       }px;`;
       break;
     }
     case "top-right": {
-      styles += `right: ${dimensions?.left}px; top: ${
+      styles += `left: ${
+        (dimensions?.right || 0) - (targetDimensions?.width || 0)
+      }px; top: ${
         dimensions && dimensions?.top - target.offsetHeight + getScrollTop()
       }px;`;
       break;
