@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ExpandablePanels from "./ExpandablePanels";
 import ExpandablePanel from "./ExpandablePanel";
 
@@ -28,6 +28,38 @@ export const ExpandedPanelStory = () => {
       <span style={{ padding: "32px", border: "1px solid black" }}>
         I have been expanded!
       </span>
+    </ExpandablePanel>
+  );
+};
+
+export const DynamicExpandedPanelStory = () => {
+  const [numElements, setNumElements] = useState(1);
+
+  const handleContentAdd = () => {
+    setNumElements(numElements + 1);
+  };
+
+  const handleContentRemove = () => {
+    if (numElements > 0) {
+      setNumElements(numElements - 1);
+    }
+  };
+
+  return (
+    <ExpandablePanel header="Expand me!" initialExpanded>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex" }}>
+          <button onClick={handleContentAdd} style={{ marginRight: "32px" }}>
+            Add content
+          </button>
+          <button onClick={handleContentRemove}>Remove content</button>
+        </div>
+        {[...Array(numElements)].map((_, i) => (
+          <span key={i} style={{ padding: "32px", border: "1px solid black" }}>
+            This is a dom element
+          </span>
+        ))}
+      </div>
     </ExpandablePanel>
   );
 };

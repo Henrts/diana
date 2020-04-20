@@ -15,6 +15,7 @@ import {
 import { useWindowSize } from "@diana-ui/hooks";
 import { Icon } from "@diana-ui/icon";
 import { BodyHighlight } from "@diana-ui/typography";
+import { ResizeObserver } from "@juggle/resize-observer";
 
 const SLIDE_ANIMATION_DURATION_MS = 200;
 
@@ -29,10 +30,10 @@ export interface IProps extends StandardProps<"div"> {
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   body: {
-    display: "flex",
-    overflow: "hidden"
+    display: "flex"
   },
   bodyWrapper: {
+    overflow: "auto",
     transition: `height ${SLIDE_ANIMATION_DURATION_MS}ms ease-out`
   },
   header: {
@@ -107,12 +108,35 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     setHeaderHeight(headerRef.current?.offsetHeight);
   }, [headerRef, windowSize]);
 
-  // calculate body height (once or every time window size changes)
+  // observer that keeps track of body height and sets bodyHeight accordingly
+  const bodyResizeObserver = useMemo(
+    () =>
+      new ResizeObserver(entries => {
+        entries.forEach(entry => {
+          const { blockSize: height } = entry.contentBoxSize[0];
+
+          if (height !== bodyHeight) {
+            setBodyHeight(height);
+          }
+        });
+      }),
+    [bodyHeight]
+  );
+
+  // observe body element resizing if panel is expanded
   useEffect(() => {
-    if (bodyHeight === 0 || bodyHeight === undefined) {
-      setBodyHeight(bodyRef.current?.offsetHeight);
+    const bodyEl = bodyRef.current;
+
+    if (bodyEl) {
+      bodyResizeObserver.observe(bodyEl);
     }
-  }, [bodyHeight, bodyRef, isExpanded, windowSize]);
+
+    return () => {
+      if (bodyEl) {
+        bodyResizeObserver.unobserve(bodyEl);
+      }
+    };
+  }, [isExpanded, bodyResizeObserver]);
 
   const handleCollapse = useCallback(() => {
     setCurrentBodyHeight(0);
@@ -126,7 +150,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
 
   // set body height manually to be able to have the sliding animation
   useEffect(() => {
-    if (isExpanded && bodyHeight && bodyHeight > 0 && currentBodyHeight === 0) {
+    if (isExpanded && bodyHeight && bodyHeight > 0) {
       const timeout = setTimeout(() => {
         setCurrentBodyHeight(bodyHeight);
       }, 250);
