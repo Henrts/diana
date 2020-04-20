@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/modal",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -21,14 +21,14 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.11",
-    "@diana-ui/icon": "^0.2.1",
+    "@diana-ui/icon": "^0.2.2",
     "@diana-ui/types": "^0.1.8",
     "@diana-ui/typography": "^0.1.11",
     "@types/react-modal": "^3.10.4",
     "react-modal": "^3.11.1"
   },
   "devDependencies": {
-    "@diana-ui/button": "^0.1.13"
+    "@diana-ui/button": "^0.1.14"
   },
   "publishConfig": {
     "access": "public"

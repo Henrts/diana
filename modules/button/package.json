@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/button",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "main": "lib/index.js",
   "module": "module/index.js",
   "license": "MIT",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.11",
-    "@diana-ui/icon": "^0.2.1",
+    "@diana-ui/icon": "^0.2.2",
     "@diana-ui/types": "^0.1.8",
     "@diana-ui/typography": "^0.1.11"
   },
