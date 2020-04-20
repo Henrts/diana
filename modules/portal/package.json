@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/portal",
-  "version": "0.0.19",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
