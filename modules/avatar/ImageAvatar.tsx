@@ -56,7 +56,7 @@ const ImageAvatar: React.FC<IProps> = ({
     setUseFallback(true);
   }, []);
 
-  const backgroundColorTheme = backgroundColor || theme?.colors.grey.grey50;
+  const backgroundColorTheme = backgroundColor || theme?.colors.grey.grey25;
 
   const lightenDarkenColor = useCallback((col, amt) => {
     let usePound = false;
