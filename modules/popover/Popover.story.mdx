@@ -1,5 +1,9 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { PopoverStory, PopoverHoverStory } from "./Popover.story.tsx";
+import {
+  PopoverStory,
+  PopoverHoverStory,
+  PopoverDirectionsStory
+} from "./Popover.story.tsx";
 
 <Meta title="Components | Popover" />
 
@@ -17,6 +21,12 @@ which is used to toggle the element and show the current state when it is closed
 <Preview>
   <Story name="Popover on hover">
     <PopoverHoverStory />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Popover Directions">
+    <PopoverDirectionsStory />
   </Story>
 </Preview>
 
@@ -46,7 +56,9 @@ which is used to toggle the element and show the current state when it is closed
     </tr>
     <tr>
       <td>direction (optional)</td>
-      <th>"bottom" | "left" | "right" | "top" | "bottom-right" | "top-right"</th>
+      <th>
+        "bottom" | "left" | "right" | "top" | "bottom-right" | "top-right"
+      </th>
       <td>The direction the modal window should take. Defaults to `bottom`.</td>
     </tr>
     <tr>

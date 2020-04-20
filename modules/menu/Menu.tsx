@@ -51,8 +51,6 @@ const Menu: React.FC<IProps & WithStylesProps> = ({
     >
       <ul className={cx(styles.list, "list")}>
         {React.Children.map(children, (child, index) => {
-          console.log(child);
-
           return React.cloneElement(child as any, {
             onClick: () => {
               const element: any = child;
