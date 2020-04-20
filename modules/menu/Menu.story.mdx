@@ -2,6 +2,7 @@ import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import Menu from "./Menu";
 import MenuItem from "./MenuItem";
 import { Icon } from "@diana-ui/icon";
+import { MenuDirectionsStory } from "./Menu.story";
 
 <Meta title="Components | Menu" />
 
@@ -33,6 +34,12 @@ These options are preferably used with MenuItem
       <MenuItem icon={"add"}>Menu Item 3</MenuItem>
       <MenuItem icon={"add"}>Menu Item 4</MenuItem>
     </Menu>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Menu Directions">
+    <MenuDirectionsStory />
   </Story>
 </Preview>
 
