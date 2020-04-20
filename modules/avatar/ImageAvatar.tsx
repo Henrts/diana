@@ -48,12 +48,15 @@ const ImageAvatar: React.FC<IProps> = ({
   children,
   styles,
   cx,
+  theme,
   ...rest
 }) => {
   const [useFallback, setUseFallback] = useState(false);
   const onError = useCallback(() => {
     setUseFallback(true);
   }, []);
+
+  const backgroundColorTheme = backgroundColor || theme?.colors.grey.grey50;
 
   const lightenDarkenColor = useCallback((col, amt) => {
     let usePound = false;
@@ -95,10 +98,13 @@ const ImageAvatar: React.FC<IProps> = ({
     <Avatar
       {...rest}
       backgroundColor={
-        backgroundColor && lightenDarkenColor(backgroundColor, -20)
+        backgroundColorTheme && lightenDarkenColor(backgroundColorTheme, -20)
       }
     >
-      <div className={cx(styles.circle, circleClassName)}>
+      <div
+        className={cx(styles.circle, circleClassName)}
+        style={{ backgroundColor: backgroundColorTheme }}
+      >
         {(src && !useFallback && (
           <img
             className={cx(styles.image, className)}
@@ -107,7 +113,7 @@ const ImageAvatar: React.FC<IProps> = ({
             alt={alt}
           />
         )) ||
-          (useFallback && (
+          ((useFallback || (!src && fallbackText)) && (
             <BodyHighlight className={className}>{fallbackText}</BodyHighlight>
           )) ||
           (icon && (
@@ -125,4 +131,6 @@ const ImageAvatar: React.FC<IProps> = ({
 
 ImageAvatar.displayName = "ImageAvatar";
 
-export default withStyles(styleSheet, { register: true })(ImageAvatar);
+export default withStyles(styleSheet, { register: true, passThemeProp: true })(
+  ImageAvatar
+);
