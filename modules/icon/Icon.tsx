@@ -31,6 +31,7 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   size,
   cx,
   styles,
+  parentStylesheet,
   ...props
 }) => {
   const theme = useTheme();
