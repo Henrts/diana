@@ -12,10 +12,9 @@ import {
   ThemeStyleSheetFactory,
   Theme
 } from "@diana-ui/types";
-import { useWindowSize } from "@diana-ui/hooks";
+import { useResizeObserver, useWindowSize } from "@diana-ui/hooks";
 import { Icon } from "@diana-ui/icon";
 import { BodyHighlight } from "@diana-ui/typography";
-import { ResizeObserver } from "@juggle/resize-observer";
 
 const SLIDE_ANIMATION_DURATION_MS = 200;
 
@@ -109,17 +108,16 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
   }, [headerRef, windowSize]);
 
   // observer that keeps track of body height and sets bodyHeight accordingly
-  const bodyResizeObserver = useMemo(
-    () =>
-      new ResizeObserver(entries => {
-        entries.forEach(entry => {
-          const { blockSize: height } = entry.contentBoxSize[0];
+  const bodyResizeObserver = useResizeObserver(
+    entries => {
+      entries.forEach(entry => {
+        const { height } = entry.contentRect;
 
-          if (height !== bodyHeight) {
-            setBodyHeight(height);
-          }
-        });
-      }),
+        if (height !== bodyHeight) {
+          setBodyHeight(height);
+        }
+      });
+    },
     [bodyHeight]
   );
 
