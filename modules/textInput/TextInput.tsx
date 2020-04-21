@@ -5,7 +5,7 @@ import {
   StandardProps,
   WithStylesProps
 } from "@diana-ui/types";
-import { useRegistry } from "@diana-ui/hooks";
+import { useRegistry, useResizeObserver } from "@diana-ui/hooks";
 import { IIconProps } from "@diana-ui/icon";
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
@@ -139,10 +139,33 @@ export const TextInput: React.FC<PropsWithChildren<
     setHasContent(length > 0);
   }, [props.value]);
 
+  // observer that keeps track of hidden label width and sets legendWidth accordingly
+  const labelResizeObserver = useResizeObserver(
+    entries => {
+      entries.forEach(entry => {
+        const { width } = entry.contentRect;
+
+        if (width !== legendWidth) {
+          setLegendWidth(width);
+        }
+      });
+    },
+    [legendWidth]
+  );
+
   useEffect(() => {
-    const labelNode = hiddenLabel.current;
-    setLegendWidth(labelNode != null ? labelNode.offsetWidth : 0);
-  }, [hiddenLabel]);
+    const hiddenLabelEl = hiddenLabel.current;
+
+    if (hiddenLabelEl) {
+      labelResizeObserver.observe(hiddenLabelEl);
+    }
+
+    return () => {
+      if (hiddenLabelEl) {
+        labelResizeObserver.unobserve(hiddenLabelEl);
+      }
+    };
+  }, [hiddenLabel, labelResizeObserver]);
 
   const inputRef = useRef<HTMLInputElement>(null);
   return (
