@@ -5,13 +5,14 @@ import {
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import { useRegistry } from "@diana-ui/hooks";
+import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { IProps as ICloseableChipProps } from "./CloseableChip";
 
 export interface IProps<T> extends StandardProps<"div"> {
   list: T[];
   displayFn?: (item: T) => T;
   onDismissChip?: (item: T) => void;
+  onChipClick?: (item: T) => void;
   onListChange?: (newList: T[]) => void;
 }
 
@@ -27,7 +28,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     ":last-child": {
       marginRight: 0
     }
-  }
+  },
+  chip: {}
 });
 
 function ChipList<T>({
@@ -37,6 +39,7 @@ function ChipList<T>({
   list = [],
   displayFn = (item: T) => item,
   onDismissChip,
+  onChipClick,
   onListChange,
   wrappedRef,
   parentStylesheet,
@@ -44,7 +47,10 @@ function ChipList<T>({
 }: IProps<T> & WithStylesProps) {
   const [_list, setList] = useState(list);
   const divRef = useRef<HTMLDivElement>(null);
-  const CloseableChipStyle = useRegistry<ICloseableChipProps>("CloseableChip");
+  const CloseableChipStyle = useRegistryWithStyles<ICloseableChipProps>(
+    "CloseableChip",
+    parentStylesheet ?? styleSheet
+  );
 
   useEffect(() => {
     setList(list);
@@ -73,7 +79,14 @@ function ChipList<T>({
     <div className={cx(styles.chipList, className)} {...props} ref={divRef}>
       {_list.map((item: T, i) => (
         <div className={cx(styles.chipContainer)} key={i}>
-          <CloseableChipStyle onClose={() => handleDismiss(item, i)}>
+          <CloseableChipStyle
+            onClose={() => handleDismiss(item, i)}
+            onClick={() => {
+              if (onChipClick) {
+                onChipClick(item);
+              }
+            }}
+          >
             {displayFn(item)}
           </CloseableChipStyle>
         </div>

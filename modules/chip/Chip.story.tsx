@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeStyleSheetFactory } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import { useStyles } from "@diana-ui/base";
@@ -45,5 +45,6 @@ export const ChipInputStory = () => {
     () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
     { register: true }
   );
-  return <ChipInput value={[]} />;
+  const [chips, setChips] = useState<string[]>([]);
+  return <ChipInput chips={chips} onChangeChips={setChips} label="Label" />;
 };

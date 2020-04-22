@@ -28,10 +28,12 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
     }
   }
 });
+
 export interface IProps extends ITextInputProps {
   error?: string | boolean;
   hint?: string;
 }
+
 const ExtendedTextInput = TextInput.extendStyles(stylesheet);
 export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   cx,

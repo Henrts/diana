@@ -167,7 +167,6 @@ export const TextInput: React.FC<PropsWithChildren<
     };
   }, [hiddenLabel, labelResizeObserver]);
 
-  const inputRef = useRef<HTMLInputElement>(null);
   return (
     <fieldset
       className={cx(
@@ -224,7 +223,6 @@ export const TextInput: React.FC<PropsWithChildren<
         <input
           {...props}
           disabled={disabled}
-          ref={inputRef}
           className={cx(styles.input, disabled && "disabled")}
           onChange={e => {
             if (onChange) {
