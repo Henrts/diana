@@ -14,12 +14,7 @@ export interface IProps extends ISingleDropdownProps<IDropdownItem> {
   inputProps?: React.ComponentProps<typeof ChipInput>;
 }
 
-const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
-  select: {
-    cursor: "pointer",
-    display: "flex"
-  }
-});
+const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({});
 
 const StyledDropdown = Dropdown.extendStyles(stylesheet);
 
