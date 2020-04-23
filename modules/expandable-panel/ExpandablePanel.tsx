@@ -12,7 +12,7 @@ import {
   ThemeStyleSheetFactory,
   Theme
 } from "@diana-ui/types";
-import { useResizeObserver, useWindowSize } from "@diana-ui/hooks";
+import { useResizeObserver } from "@diana-ui/hooks";
 import { Icon } from "@diana-ui/icon";
 import { BodyHighlight } from "@diana-ui/typography";
 
@@ -91,7 +91,6 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
   onClick,
   styles
 }) => {
-  const windowSize = useWindowSize();
   const [isExpanded, setIsExpanded] = useState(initialExpanded || false);
   const [isCollapsing, setIsCollapsing] = useState(false);
   const [headerHeight, setHeaderHeight] = useState<number | undefined>(0);
@@ -102,16 +101,27 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
   const headerRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
-  // calculate header height (once or every time window size changes)
-  useEffect(() => {
-    setHeaderHeight(headerRef.current?.offsetHeight);
-  }, [headerRef, windowSize]);
+  // observer that keeps track of body height and sets bodyHeight accordingly
+  const headerResizeObserver = useResizeObserver(
+    entries => {
+      entries.forEach(entry => {
+        const target = entry.target as HTMLElement;
+        const height = target.offsetHeight;
+
+        if (height !== headerHeight) {
+          setHeaderHeight(height);
+        }
+      });
+    },
+    [headerHeight]
+  );
 
   // observer that keeps track of body height and sets bodyHeight accordingly
   const bodyResizeObserver = useResizeObserver(
     entries => {
       entries.forEach(entry => {
-        const { height } = entry.contentRect;
+        const target = entry.target as HTMLElement;
+        const height = target.offsetHeight;
 
         if (height !== bodyHeight) {
           setBodyHeight(height);
@@ -121,7 +131,22 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     [bodyHeight]
   );
 
-  // observe body element resizing if panel is expanded
+  // calculate header height
+  useEffect(() => {
+    const headerEl = headerRef.current;
+
+    if (headerEl) {
+      headerResizeObserver.observe(headerEl);
+    }
+
+    return () => {
+      if (headerEl) {
+        headerResizeObserver.unobserve(headerEl);
+      }
+    };
+  }, [headerResizeObserver]);
+
+  // calculate body height
   useEffect(() => {
     const bodyEl = bodyRef.current;
 
