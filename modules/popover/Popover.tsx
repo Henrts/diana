@@ -166,6 +166,8 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
           <div
             ref={portalRef}
             className={cx(styles.popover, styles[direction])}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             {children}
           </div>
