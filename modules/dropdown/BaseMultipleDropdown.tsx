@@ -11,7 +11,7 @@ export interface IMultipleProps<T extends IItem> extends IProps<T> {
   selectAllText?: string;
   selectAllItem?: (checked: boolean) => React.ReactNode;
   onClose?: () => void;
-  renderCustomHeader?: (
+  renderAllSelectedHeader?: (
     visible: boolean,
     isAllButtonChecked: boolean
   ) => JSX.Element;
@@ -68,7 +68,7 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<
     onItemClicked,
     onAllButtonClicked,
     onClose,
-    renderCustomHeader
+    renderAllSelectedHeader
   } = props;
 
   const ref = usePopoverRef(wrappedRef);
@@ -79,7 +79,6 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<
 
   const renderFinalHeader = useMemo(
     () =>
-      renderCustomHeader ||
       renderHeader ||
       (() => (
         <DropdownHeader
@@ -93,15 +92,7 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<
           styles={styles}
         />
       )),
-    [
-      renderCustomHeader,
-      renderHeader,
-      text,
-      selectedItems,
-      placeholder,
-      cx,
-      styles
-    ]
+    [renderHeader, text, selectedItems, placeholder, cx, styles]
   );
 
   return (
@@ -112,7 +103,9 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<
         {...props}
         disabled={disabled || items.length === 0}
         renderHeader={(isOpen: boolean) =>
-          renderFinalHeader(isOpen, isAllButtonChecked)
+          isAllButtonChecked && renderAllSelectedHeader
+            ? renderAllSelectedHeader(isOpen, isAllButtonChecked)
+            : renderFinalHeader(isOpen)
         }
         useParentWidth
         onHide={onClose}
