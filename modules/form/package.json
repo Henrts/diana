@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/form",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -23,7 +23,7 @@
     "@diana-ui/base": "^0.1.11",
     "@diana-ui/button": "^0.1.15",
     "@diana-ui/checkbox": "^0.1.15",
-    "@diana-ui/textinput": "^0.1.19",
+    "@diana-ui/textinput": "^0.1.20",
     "@diana-ui/types": "^0.1.8",
     "react-hook-form": "^4.8.2",
     "yup": "^0.28.1"
