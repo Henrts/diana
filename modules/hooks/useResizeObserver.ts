@@ -10,9 +10,20 @@ export function useResizeObserver(
   callback: (entries: ResizeObserverEntry[]) => void,
   dependencies: any[]
 ) {
-  return useMemo(() => new ResizeObserver(callback), [
-    callback,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    ...dependencies
-  ]);
+  return useMemo(
+    () =>
+      new ResizeObserver((entries: ResizeObserverEntry[]) => {
+        // avoid ResizeObserver loop limit exceeded error
+        window.requestAnimationFrame(() => {
+          if (Array.isArray(entries) && entries.length) {
+            callback(entries);
+          }
+        });
+      }),
+    [
+      callback,
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      ...dependencies
+    ]
+  );
 }
