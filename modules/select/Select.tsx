@@ -1,27 +1,18 @@
-import React, { useMemo, useState, useRef, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { withStyles } from "@diana-ui/base";
-import { ChipInput } from "@diana-ui/chip";
-import {
-  Dropdown,
-  IDropdownItem,
-  ISingleDropdownProps
-} from "@diana-ui/dropdown";
-import { ThemeStyleSheetFactory, Theme } from "@diana-ui/types";
-import { IPopoverRef } from "@diana-ui/popover";
+import { IChipInputProps } from "@diana-ui/chip";
+import { IDropdownItem, ISingleDropdownProps } from "@diana-ui/dropdown";
+import { useRegistry } from "@diana-ui/hooks";
 
 export interface IProps extends ISingleDropdownProps<IDropdownItem> {
   onFilter?: (option: IDropdownItem, text: string) => boolean;
-  inputProps?: React.ComponentProps<typeof ChipInput>;
+  inputProps?: IChipInputProps;
 }
-
-const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({});
-
-const StyledDropdown = Dropdown.extendStyles(stylesheet);
 
 const defaultFilter = (option: IDropdownItem, text: string) =>
   option.text.toLowerCase().includes(text.toLowerCase());
 
-function BaseSelect(propsT: IProps) {
+function Select(propsT: IProps) {
   const { inputProps, items, selectedItem, onFilter, ...props } = propsT;
   const [values, setValues] = useState(selectedItem ? [selectedItem.text] : []);
   const [text, setText] = useState<string>();
@@ -42,15 +33,15 @@ function BaseSelect(propsT: IProps) {
     [items, text, onFilter]
   );
 
-  const ref = useRef<IPopoverRef>();
-
+  const Dropdown = useRegistry<ISingleDropdownProps<IDropdownItem>>("Dropdown");
+  const ChipInput = useRegistry<IChipInputProps>("ChipInput");
   return (
-    <StyledDropdown
-      wrappedRef={ref}
+    <Dropdown
       items={filteredItems}
       renderHeader={() => (
         <ChipInput
           {...inputProps}
+          singleChip
           chips={values}
           value={text}
           onChange={event => setText(event.target.value)}
@@ -66,7 +57,7 @@ function BaseSelect(propsT: IProps) {
       )}
       selectedItem={selectedItem}
       {...props}
-      onItemSelected={item => {
+      onItemSelected={(item: IDropdownItem) => {
         setValues([item.text]);
         props.onItemSelected(item);
       }}
@@ -74,5 +65,4 @@ function BaseSelect(propsT: IProps) {
   );
 }
 
-export const Select = withStyles(stylesheet)(BaseSelect);
-export default Select;
+export default withStyles(() => ({}), { register: true })(Select);

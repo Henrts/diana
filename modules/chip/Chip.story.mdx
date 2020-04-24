@@ -8,7 +8,8 @@ import {
   ChipIcon,
   DerivedCloseableChip,
   ChipInputStory,
-  ChipListStory
+  ChipListStory,
+  ChipInputDuplicateStory
 } from "./Chip.story";
 
 <Meta title="Components| Chip" />
@@ -309,42 +310,41 @@ These are the base props for the ChipInput
 
 <Preview>
   <Story name="ChipInput">
-    <ChipInput onChange={e => console.log(e)} />
+    <ChipInput />
   </Story>
 </Preview>
 
 ```javascript
-<ChipInput onChange={e => console.log(e)} />
+<ChipInput />
 ```
 
-With initial values and a placeholder. This one enables duplicates.
+With controlled chips and a placeholder. This one allows duplicates.
 
 <Preview>
-  <ChipInput
-    value={["1", "2"]}
-    allowDuplicates={true}
-    placeholder="Placeholder"
-  />
+  <ChipInputDuplicateStory />
 </Preview>
 
 ```javascript
 <ChipInput
-  value={["1", "2"]}
+  chips={chips}
+  onChangeChips={setChips}
   allowDuplicates={true}
   placeholder="Placeholder"
 />
 ```
 
-With a different extended CloseableChip by registering a new CloseableChip. This will affect all forward closeable chips used by the registry.
+With ´singleChip´ only one chip is allowed.
 
 <Preview>
   <ChipInputStory />
 </Preview>
 
 ```javascript
-CloseableChip.extendStyles(
-  () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
-  { register: true }
-);
-<ChipInput value={[]} />;
+<ChipInput
+  singleChip
+  chips={chips}
+  onChangeChips={setChips}
+  allowDuplicates={true}
+  placeholder="Placeholder"
+/>
 ```

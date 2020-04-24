@@ -25,7 +25,8 @@
     "@diana-ui/dropdown": "0.1.33",
     "@diana-ui/icon": "^0.2.3",
     "@diana-ui/popover": "^0.1.27",
-    "@diana-ui/types": "^0.1.8"
+    "@diana-ui/types": "^0.1.8",
+    "@diana-ui/hooks": "^0.1.15"
   },
   "publishConfig": {
     "access": "public"

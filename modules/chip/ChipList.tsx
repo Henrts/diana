@@ -49,7 +49,7 @@ function ChipList<T>({
   const divRef = useRef<HTMLDivElement>(null);
   const CloseableChipStyle = useRegistryWithStyles<ICloseableChipProps>(
     "CloseableChip",
-    parentStylesheet ?? styleSheet
+    () => ({ ...styleSheet, ...parentStylesheet })
   );
 
   useEffect(() => {
@@ -94,4 +94,5 @@ function ChipList<T>({
     </div>
   );
 }
+
 export default withStyles(styleSheet, { register: true })(ChipList);

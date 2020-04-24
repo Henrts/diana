@@ -1,14 +1,15 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import React, { useCallback, useState, useEffect, useMemo } from "react";
 import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { useRegistryWithStyles } from "@diana-ui/hooks";
-import { ErrorTextInput } from "@diana-ui/textinput";
+import { IErrorTextInputProps } from "@diana-ui/textinput";
 import { IProps as IChipListProps } from "./ChipList";
 
-export interface IProps extends React.ComponentProps<typeof ErrorTextInput> {
-  chips: string[];
+export interface IProps extends IErrorTextInputProps {
+  chips?: string[];
   allowDuplicates?: boolean;
-  onChangeChips: (newList: string[]) => void;
+  onChangeChips?: (newList: string[]) => void;
+  singleChip?: boolean;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -28,21 +29,12 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const inputStyleSheet: ThemeStyleSheetFactory = theme => ({
-  prefixIcon: {
-    width: "100%",
-    marginRight: 0
-  }
-});
-
-const ErrorTextInputStyle = ErrorTextInput.extendStyles(inputStyleSheet);
-
 function ChipInput({
   styles,
   cx,
   className,
-  chips,
   onChangeChips,
+  singleChip = false,
   allowDuplicates = false,
   wrappedRef,
   parentStylesheet,
@@ -50,8 +42,30 @@ function ChipInput({
   ...props
 }: IProps & WithStylesProps) {
   const [inputValue, setInputValue] = useState(value?.toString() ?? "");
+  const { chips: propsChips } = props;
+  const [chips, setChips] = useState(props.chips ?? []);
+  const [focus, setFocus] = useState(chips.length > 0);
 
-  const ChipListStyle = useRegistryWithStyles<IChipListProps<string>>(
+  useEffect(() => {
+    setFocus(focus || chips.length > 0);
+  }, [chips, focus]);
+
+  const inputStyleSheet: ThemeStyleSheetFactory = useMemo(
+    () => theme => ({
+      prefixIcon: singleChip
+        ? {
+            width: singleChip ? "100%" : "auto",
+            marginRight: 0
+          }
+        : {}
+    }),
+    [singleChip]
+  );
+  const StyledErrorTextInput = useRegistryWithStyles<IErrorTextInputProps>(
+    "ErrorTextInput",
+    inputStyleSheet
+  );
+  const StyledChipList = useRegistryWithStyles<IChipListProps<string>>(
     "ChipList",
     styleSheet
   );
@@ -60,33 +74,39 @@ function ChipInput({
     setInputValue(value?.toString() ?? "");
   }, [value]);
 
+  useEffect(() => {
+    if (propsChips !== undefined) {
+      setChips(propsChips);
+    }
+  }, [propsChips]);
+
+  const handleChange = useCallback(
+    newValue => {
+      if (propsChips === undefined) {
+        setChips(newValue);
+      }
+      return onChangeChips?.(newValue);
+    },
+    [propsChips, onChangeChips]
+  );
+
   const handleInput = useCallback(
     key => {
       if (key.key === "Enter" && inputValue.trim() !== "") {
-        const isIncluded = chips.includes(inputValue.trim());
+        const trimmedValue = inputValue.trim();
+        const isIncluded = chips.includes(trimmedValue);
         if (allowDuplicates || !isIncluded) {
-          const newList = chips.concat([inputValue.trim()]);
-          if (onChangeChips) {
-            onChangeChips(newList);
-          }
+          const newList = [...chips, trimmedValue];
+          handleChange(newList);
         }
         setInputValue("");
       }
     },
-    [chips, allowDuplicates, inputValue, onChangeChips]
-  );
-
-  const handleChange = useCallback(
-    newList => {
-      if (onChangeChips) {
-        onChangeChips(newList);
-      }
-    },
-    [onChangeChips]
+    [chips, allowDuplicates, inputValue, handleChange]
   );
 
   const handleChipClick = useCallback(
-    (chip: string) => {
+    chip => {
       handleChange(chips.filter(item => item !== chip));
       setInputValue(chip);
     },
@@ -95,11 +115,11 @@ function ChipInput({
 
   return (
     <div className={cx(styles.chipInput, className)}>
-      <ErrorTextInputStyle
+      <StyledErrorTextInput
         {...props}
         prefixIcon={
           chips?.length ? (
-            <ChipListStyle
+            <StyledChipList
               list={chips}
               onListChange={handleChange}
               onChipClick={handleChipClick}
@@ -108,15 +128,32 @@ function ChipInput({
             undefined
           )
         }
+        disabled={singleChip && !!chips.length}
         className={cx(styles.input)}
-        value={chips?.length ? chips[0] : inputValue}
+        value={inputValue}
+        onFocus={e => {
+          setFocus(true);
+          if (props.onFocus) {
+            props.onFocus(e);
+          }
+        }}
+        onBlur={e => {
+          setFocus(false);
+          if (props.onBlur) {
+            props.onBlur(e);
+          }
+        }}
+        hasFocus={focus} // this is need to keep the label on the top
         onChange={e => {
           setInputValue(e.target.value);
-          if (props.onChange) props.onChange(e);
+          if (props.onChange) {
+            props.onChange(e);
+          }
         }}
         onKeyPress={handleInput}
       />
     </div>
   );
 }
-export default withStyles(styleSheet)(ChipInput);
+
+export default withStyles(styleSheet, { register: true })(ChipInput);

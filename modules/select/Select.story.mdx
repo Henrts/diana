@@ -13,6 +13,15 @@ The `Select` component combines a `TextInput` with a `Dropdown`, using the text 
   </Story>
 </Preview>
 
+```javascript
+<Select
+  inputProps={{ label: "Select Option" }}
+  items={items}
+  onItemSelected={selectItem}
+  selectedItem={selectedItem}
+/>
+```
+
 ### Available props
 
 All the props are passed through to the `Dropdown` element, so refer to its documentation for more customization options.

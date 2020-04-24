@@ -111,6 +111,7 @@ export interface IProps extends StandardProps<"input"> {
   hasError?: boolean;
   prefixIcon?: string | JSX.Element;
   suffixIcon?: string | JSX.Element;
+  hasFocus?: boolean;
 }
 export const TextInput: React.FC<PropsWithChildren<
   IProps & WithStylesProps
@@ -120,6 +121,7 @@ export const TextInput: React.FC<PropsWithChildren<
   cx,
   className,
   hasError,
+  hasFocus,
   label = "",
   onChange,
   disabled,
@@ -128,7 +130,7 @@ export const TextInput: React.FC<PropsWithChildren<
   parentStylesheet,
   ...props
 }) => {
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(hasFocus ?? false);
   const [hasContent, setHasContent] = useState(false);
   const [legendWidth, setLegendWidth] = useState(0);
   const hiddenLabel = useRef<HTMLSpanElement>(null);
@@ -138,6 +140,10 @@ export const TextInput: React.FC<PropsWithChildren<
     const length = props.value?.toString()?.length || 0;
     setHasContent(length > 0);
   }, [props.value]);
+
+  useEffect(() => {
+    setIsFocused(hasFocus ?? false);
+  }, [hasFocus]);
 
   // observer that keeps track of hidden label width and sets legendWidth accordingly
   const labelResizeObserver = useResizeObserver(
@@ -231,11 +237,15 @@ export const TextInput: React.FC<PropsWithChildren<
             setHasContent(e.target.value.length > 0);
           }}
           onBlur={e => {
-            setIsFocused(false);
+            if (hasFocus === undefined) {
+              setIsFocused(false);
+            }
             return props.onBlur?.(e);
           }}
           onFocus={e => {
-            setIsFocused(true);
+            if (hasFocus === undefined) {
+              setIsFocused(true);
+            }
             return props.onFocus?.(e);
           }}
         />
@@ -254,4 +264,4 @@ export const TextInput: React.FC<PropsWithChildren<
     </fieldset>
   );
 };
-export default withStyles(stylesheet)(TextInput);
+export default withStyles(stylesheet, { register: true })(TextInput);
