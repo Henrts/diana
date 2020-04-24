@@ -47,7 +47,7 @@ function ChipList<T>({
 }: IProps<T> & WithStylesProps) {
   const [_list, setList] = useState(list);
   const divRef = useRef<HTMLDivElement>(null);
-  const CloseableChipStyle = useRegistryWithStyles<ICloseableChipProps>(
+  const StyledCloseableChip = useRegistryWithStyles<ICloseableChipProps>(
     "CloseableChip",
     () => ({ ...styleSheet, ...parentStylesheet })
   );
@@ -79,7 +79,7 @@ function ChipList<T>({
     <div className={cx(styles.chipList, className)} {...props} ref={divRef}>
       {_list.map((item: T, i) => (
         <div className={cx(styles.chipContainer)} key={i}>
-          <CloseableChipStyle
+          <StyledCloseableChip
             onClose={() => handleDismiss(item, i)}
             onClick={() => {
               if (onChipClick) {
@@ -88,7 +88,7 @@ function ChipList<T>({
             }}
           >
             {displayFn(item)}
-          </CloseableChipStyle>
+          </StyledCloseableChip>
         </div>
       ))}
     </div>

@@ -13,13 +13,11 @@ const items = [
   { id: "5", text: "Option 5 with long text" }
 ];
 
-const StyledSelect = Select.extendStyles(stylesheet);
-
 export const SelectStory = () => {
   const [selectedItem, selectItem] = useState<IDropdownItem>();
   return (
     <div style={{ padding: "24px 300px 300px 24px", backgroundColor: "white" }}>
-      <StyledSelect
+      <Select
         inputProps={{ label: "Select Option" }}
         items={items}
         onItemSelected={selectItem}
