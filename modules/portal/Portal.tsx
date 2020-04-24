@@ -106,7 +106,13 @@ const Portal: React.FC<IProps> = ({
 }) => {
   const windowSize = useWindowSize();
 
-  const target = useMemo(() => document.createElement("div"), []);
+  const target = useMemo(() => {
+    const el = document.createElement("div");
+    // keep element width constant in order to prevent it from jumping around
+    el.setAttribute("style", "display: flex; position: absolute;");
+
+    return el;
+  }, []);
 
   useEffect(() => {
     document.body.appendChild(target);
