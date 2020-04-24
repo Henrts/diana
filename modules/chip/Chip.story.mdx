@@ -221,7 +221,11 @@ These are the base props for the Chip List
     </tr>
     <tr>
       <td>onDismissChip</td>
-      <td>Callback triggered when one chip is closed</td>
+      <td>Callback triggered when a chip is closed</td>
+    </tr>
+    <tr>
+      <td>onChipClick</td>
+      <td>Callback triggered when a chip is clicked</td>
     </tr>
     <tr>
       <td>onListChange</td>
@@ -298,12 +302,19 @@ These are the base props for the ChipInput
       <td>Array of strings to be displayed</td>
     </tr>
     <tr>
-      <td>onChange</td>
+      <td>onChangeChips</td>
       <td>Callback triggered when the list of chips changes</td>
     </tr>
     <tr>
       <td>allowDuplicates</td>
-      <td>Boolean that enables duplicates. Default is false </td>
+      <td>Boolean that enables duplicates. Default is false</td>
+    </tr>
+    <tr>
+      <td>singleChip</td>
+      <td>
+        Boolean that controls if the input should only allow one chip Default is
+        false
+      </td>
     </tr>
   </tbody>
 </table>
