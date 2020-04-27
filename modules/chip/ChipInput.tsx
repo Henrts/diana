@@ -108,7 +108,12 @@ function ChipInput({
 
   const handleChipClick = useCallback(
     chip => {
-      handleChange(chips.filter(item => item !== chip));
+      const chipToRemove = chips.findIndex(item => item === chip);
+      const newChips = [...chips];
+      if (chipToRemove > -1) {
+        newChips.splice(chipToRemove, 1);
+      }
+      handleChange(newChips);
       setInputValue(chip);
       if (onChange) {
         const event = { target: { value: chip } } as React.ChangeEvent<
