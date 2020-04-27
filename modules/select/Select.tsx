@@ -14,10 +14,10 @@ const defaultFilter = (option: IDropdownItem, text: string) =>
 
 function Select(propsT: IProps) {
   const { inputProps, items, selectedItem, onFilter, ...props } = propsT;
-  const [values, setValues] = useState(selectedItem ? [selectedItem.text] : []);
+  const [value, setValue] = useState(selectedItem?.text);
   const [text, setText] = useState<string>();
   useEffect(() => {
-    setValues(selectedItem ? [selectedItem.text] : []);
+    setValue(selectedItem?.text);
     setText("");
   }, [selectedItem]);
 
@@ -35,6 +35,7 @@ function Select(propsT: IProps) {
 
   const Dropdown = useRegistry<ISingleDropdownProps<IDropdownItem>>("Dropdown");
   const ChipInput = useRegistry<IChipInputProps>("ChipInput");
+  const chips = useMemo(() => (value ? [value] : []), [value]);
   return (
     <Dropdown
       items={filteredItems}
@@ -42,15 +43,15 @@ function Select(propsT: IProps) {
         <ChipInput
           {...inputProps}
           singleChip
-          chips={values}
+          chips={chips}
           value={text}
-          onChange={event => setText(event.target.value)}
-          onChangeChips={chips => {
-            setValues(
-              chips.filter(chip =>
-                filteredItems.find(item => item.text === chip)
-              )
-            );
+          onChange={event => {
+            setText(event.target.value);
+          }}
+          onChangeChips={newChips => {
+            const newChip = newChips[0];
+            const item = filteredItems.find(i => i.text === newChip);
+            setValue(item?.text);
             setText("");
           }}
         />
@@ -58,7 +59,7 @@ function Select(propsT: IProps) {
       selectedItem={selectedItem}
       {...props}
       onItemSelected={(item: IDropdownItem) => {
-        setValues([item.text]);
+        setValue(item.text);
         props.onItemSelected(item);
       }}
     />

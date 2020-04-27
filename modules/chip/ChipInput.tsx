@@ -39,6 +39,7 @@ function ChipInput({
   wrappedRef,
   parentStylesheet,
   value,
+  onChange,
   ...props
 }: IProps & WithStylesProps) {
   const [inputValue, setInputValue] = useState(value?.toString() ?? "");
@@ -54,7 +55,7 @@ function ChipInput({
     () => theme => ({
       prefixIcon: singleChip
         ? {
-            width: singleChip ? "100%" : "auto",
+            width: "100%",
             marginRight: 0
           }
         : {}
@@ -109,8 +110,14 @@ function ChipInput({
     chip => {
       handleChange(chips.filter(item => item !== chip));
       setInputValue(chip);
+      if (onChange) {
+        const event = { target: { value: chip } } as React.ChangeEvent<
+          HTMLInputElement
+        >;
+        onChange(event);
+      }
     },
-    [chips, handleChange]
+    [chips, handleChange, onChange]
   );
 
   return (
@@ -143,11 +150,11 @@ function ChipInput({
             props.onBlur(e);
           }
         }}
-        hasFocus={focus} // this is need to keep the label on the top
+        hasFocus={focus} // this is needed to keep the label on the top
         onChange={e => {
           setInputValue(e.target.value);
-          if (props.onChange) {
-            props.onChange(e);
+          if (onChange) {
+            onChange(e);
           }
         }}
         onKeyPress={handleInput}

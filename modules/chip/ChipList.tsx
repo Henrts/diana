@@ -11,7 +11,7 @@ import { IProps as ICloseableChipProps } from "./CloseableChip";
 export interface IProps<T> extends StandardProps<"div"> {
   list: T[];
   displayFn?: (item: T) => T;
-  onDismissChip?: (item: T) => void;
+  onChipDismiss?: (item: T) => void;
   onChipClick?: (item: T) => void;
   onListChange?: (newList: T[]) => void;
 }
@@ -38,7 +38,7 @@ function ChipList<T>({
   className,
   list = [],
   displayFn = (item: T) => item,
-  onDismissChip,
+  onChipDismiss,
   onChipClick,
   onListChange,
   wrappedRef,
@@ -68,11 +68,11 @@ function ChipList<T>({
       if (onListChange) {
         onListChange(newList);
       }
-      if (onDismissChip) {
-        onDismissChip(item);
+      if (onChipDismiss) {
+        onChipDismiss(item);
       }
     },
-    [_list, onDismissChip, onListChange]
+    [_list, onChipDismiss, onListChange]
   );
 
   return (
