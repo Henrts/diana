@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { withStyles } from "@diana-ui/base";
 import { IChipInputProps } from "@diana-ui/chip";
 import { IDropdownItem, ISingleDropdownProps } from "@diana-ui/dropdown";
-import { useRegistry } from "@diana-ui/hooks";
+import { useRegistry, useRegistryWithStyles } from "@diana-ui/hooks";
 
 export interface IProps extends ISingleDropdownProps<IDropdownItem> {
   onFilter?: (option: IDropdownItem, text: string) => boolean;
@@ -34,10 +34,13 @@ function Select(propsT: IProps) {
   );
 
   const Dropdown = useRegistry<ISingleDropdownProps<IDropdownItem>>("Dropdown");
-  const ChipInput = useRegistry<IChipInputProps>("ChipInput");
+  const ChipInput = useRegistryWithStyles<IChipInputProps>("ChipInput", () => ({
+    chipInput: { pointerEvents: "all" }
+  }));
   const chips = useMemo(() => (value ? [value] : []), [value]);
   return (
     <Dropdown
+      disabled={chips.length > 0}
       items={filteredItems}
       renderHeader={() => (
         <ChipInput
