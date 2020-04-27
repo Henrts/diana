@@ -8,7 +8,8 @@ import {
   ChipIcon,
   DerivedCloseableChip,
   ChipInputStory,
-  ChipListStory
+  ChipListStory,
+  ChipInputDuplicateStory
 } from "./Chip.story";
 
 <Meta title="Components| Chip" />
@@ -219,8 +220,12 @@ These are the base props for the Chip List
       </td>
     </tr>
     <tr>
-      <td>onDismissChip</td>
-      <td>Callback triggered when one chip is closed</td>
+      <td>onChipDismiss</td>
+      <td>Callback triggered when a chip is closed</td>
+    </tr>
+    <tr>
+      <td>onChipClick</td>
+      <td>Callback triggered when a chip is clicked</td>
     </tr>
     <tr>
       <td>onListChange</td>
@@ -297,54 +302,60 @@ These are the base props for the ChipInput
       <td>Array of strings to be displayed</td>
     </tr>
     <tr>
-      <td>onChange</td>
+      <td>onChangeChips</td>
       <td>Callback triggered when the list of chips changes</td>
     </tr>
     <tr>
       <td>allowDuplicates</td>
-      <td>Boolean that enables duplicates. Default is false </td>
+      <td>Boolean that enables duplicates. Default is false</td>
+    </tr>
+    <tr>
+      <td>singleChip</td>
+      <td>
+        Boolean that controls if the input should only allow one chip Default is
+        false
+      </td>
     </tr>
   </tbody>
 </table>
 
 <Preview>
   <Story name="ChipInput">
-    <ChipInput onChange={e => console.log(e)} />
+    <ChipInput />
   </Story>
 </Preview>
 
 ```javascript
-<ChipInput onChange={e => console.log(e)} />
+<ChipInput />
 ```
 
-With initial values and a placeholder. This one enables duplicates.
+With controlled chips and a placeholder. This one allows duplicates.
 
 <Preview>
-  <ChipInput
-    value={["1", "2"]}
-    allowDuplicates={true}
-    placeholder="Placeholder"
-  />
+  <ChipInputDuplicateStory />
 </Preview>
 
 ```javascript
 <ChipInput
-  value={["1", "2"]}
+  chips={chips}
+  onChangeChips={setChips}
   allowDuplicates={true}
   placeholder="Placeholder"
 />
 ```
 
-With a different extended CloseableChip by registering a new CloseableChip. This will affect all forward closeable chips used by the registry.
+With ´singleChip´ only one chip is allowed.
 
 <Preview>
   <ChipInputStory />
 </Preview>
 
 ```javascript
-CloseableChip.extendStyles(
-  () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
-  { register: true }
-);
-<ChipInput value={[]} />;
+<ChipInput
+  singleChip
+  chips={chips}
+  onChangeChips={setChips}
+  allowDuplicates={true}
+  placeholder="Placeholder"
+/>
 ```

@@ -5,13 +5,14 @@ import {
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import { useRegistry } from "@diana-ui/hooks";
+import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { IProps as ICloseableChipProps } from "./CloseableChip";
 
 export interface IProps<T> extends StandardProps<"div"> {
   list: T[];
   displayFn?: (item: T) => T;
-  onDismissChip?: (item: T) => void;
+  onChipDismiss?: (item: T) => void;
+  onChipClick?: (item: T) => void;
   onListChange?: (newList: T[]) => void;
 }
 
@@ -27,7 +28,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     ":last-child": {
       marginRight: 0
     }
-  }
+  },
+  chip: {}
 });
 
 function ChipList<T>({
@@ -36,7 +38,8 @@ function ChipList<T>({
   className,
   list = [],
   displayFn = (item: T) => item,
-  onDismissChip,
+  onChipDismiss,
+  onChipClick,
   onListChange,
   wrappedRef,
   parentStylesheet,
@@ -44,7 +47,10 @@ function ChipList<T>({
 }: IProps<T> & WithStylesProps) {
   const [_list, setList] = useState(list);
   const divRef = useRef<HTMLDivElement>(null);
-  const CloseableChipStyle = useRegistry<ICloseableChipProps>("CloseableChip");
+  const StyledCloseableChip = useRegistryWithStyles<ICloseableChipProps>(
+    "CloseableChip",
+    () => ({ ...styleSheet, ...parentStylesheet })
+  );
 
   useEffect(() => {
     setList(list);
@@ -62,23 +68,31 @@ function ChipList<T>({
       if (onListChange) {
         onListChange(newList);
       }
-      if (onDismissChip) {
-        onDismissChip(item);
+      if (onChipDismiss) {
+        onChipDismiss(item);
       }
     },
-    [_list, onDismissChip, onListChange]
+    [_list, onChipDismiss, onListChange]
   );
 
   return (
     <div className={cx(styles.chipList, className)} {...props} ref={divRef}>
       {_list.map((item: T, i) => (
         <div className={cx(styles.chipContainer)} key={i}>
-          <CloseableChipStyle onClose={() => handleDismiss(item, i)}>
+          <StyledCloseableChip
+            onClose={() => handleDismiss(item, i)}
+            onClick={() => {
+              if (onChipClick) {
+                onChipClick(item);
+              }
+            }}
+          >
             {displayFn(item)}
-          </CloseableChipStyle>
+          </StyledCloseableChip>
         </div>
       ))}
     </div>
   );
 }
+
 export default withStyles(styleSheet, { register: true })(ChipList);

@@ -4,8 +4,9 @@ import {
   Theme,
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
+import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { withStyles } from "@diana-ui/base";
-import TextInput, { IProps as ITextInputProps } from "./TextInput";
+import { IProps as ITextInputProps } from "./TextInput";
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   helperLabel: {
@@ -28,11 +29,12 @@ const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
     }
   }
 });
+
 export interface IProps extends ITextInputProps {
   error?: string | boolean;
   hint?: string;
 }
-const ExtendedTextInput = TextInput.extendStyles(stylesheet);
+
 export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   cx,
   styles,
@@ -41,6 +43,10 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   className,
   ...props
 }) => {
+  const ExtendedTextInput = useRegistryWithStyles<ITextInputProps>(
+    "TextInput",
+    stylesheet
+  );
   return (
     <div className={className}>
       <ExtendedTextInput
@@ -63,4 +69,4 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
     </div>
   );
 };
-export default withStyles(stylesheet)(ErrorTextInput);
+export default withStyles(stylesheet, { register: true })(ErrorTextInput);

@@ -1,0 +1,52 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { SelectStory } from "./Select.story.tsx";
+
+<Meta title="Components | Select" />
+
+The `Select` component combines a `TextInput` with a `Dropdown`, using the text from the Input to filter the dropdown options.
+
+# Select
+
+<Preview>
+  <Story name="Select">
+    <SelectStory />
+  </Story>
+</Preview>
+
+```javascript
+<Select
+  inputProps={{ label: "Select Option" }}
+  items={items}
+  onItemSelected={selectItem}
+  selectedItem={selectedItem}
+/>
+```
+
+### Available props
+
+All the props are passed through to the `Dropdown` element, so refer to its documentation for more customization options.
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Prop Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onFilter (optional)</td>
+      <th>(option: IDropdownItem, text: string) => boolean</th>
+      <td>Called to filter an option according to the current text</td>
+    </tr>
+    <tr>
+      <td>inputProps</td>
+      <th>Object</th>
+      <td>
+        Props to be passed to the TextInput, refer to the `ErrorTextInput`
+        documentation for more information.
+      </td>
+    </tr>
+  </tbody>
+</table>

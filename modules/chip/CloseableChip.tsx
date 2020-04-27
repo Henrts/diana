@@ -17,7 +17,8 @@ const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   chip: {
     borderColor: "green",
     height: 26,
-    border: "10px solid"
+    border: "10px solid",
+    justifyContent: "space-between"
   },
   deleteIcon: {
     padding: theme.spaceUnit.xxs,

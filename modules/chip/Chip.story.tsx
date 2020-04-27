@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeStyleSheetFactory } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import { useStyles } from "@diana-ui/base";
@@ -40,10 +40,26 @@ export const ChipListStory = () => {
   return <ChipList list={["test", "test2", "test3"]} />;
 };
 
-export const ChipInputStory = () => {
-  CloseableChip.extendStyles(
-    () => ({ chip: { backgroundColor: "steelblue", borderColor: "red" } }),
-    { register: true }
+export const ChipInputDuplicateStory = () => {
+  const [chips, setChips] = useState<string[]>(["1", "2"]);
+  return (
+    <ChipInput
+      chips={chips}
+      onChangeChips={setChips}
+      allowDuplicates={true}
+      placeholder="Placeholder"
+    />
   );
-  return <ChipInput value={[]} />;
+};
+
+export const ChipInputStory = () => {
+  const [chips, setChips] = useState<string[]>([]);
+  return (
+    <ChipInput
+      chips={chips}
+      onChangeChips={setChips}
+      label="Label"
+      singleChip
+    />
+  );
 };

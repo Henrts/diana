@@ -155,5 +155,9 @@ const BaseDropdown: React.FC<PropsWithChildren<
   );
 };
 
-export const Dropdown = withStyles(styleSheet)(BaseDropdown);
+BaseDropdown.displayName = "Dropdown";
+
+export const Dropdown = withStyles(styleSheet, { register: true })(
+  BaseDropdown
+);
 export default Dropdown;

@@ -24,7 +24,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     boxSizing: "border-box",
     display: "flex",
     alignItems: "center",
-    borderColor: theme.colors.grey.grey50
+    borderColor: theme.colors.grey.grey50,
+    justifyContent: "space-between"
   },
   text: {},
   selected: {
