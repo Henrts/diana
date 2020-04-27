@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/select",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -21,12 +21,12 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.11",
-    "@diana-ui/chip": "^0.1.18",
+    "@diana-ui/chip": "^0.2.0",
     "@diana-ui/dropdown": "0.1.33",
+    "@diana-ui/hooks": "^0.1.15",
     "@diana-ui/icon": "^0.2.3",
     "@diana-ui/popover": "^0.1.27",
-    "@diana-ui/types": "^0.1.8",
-    "@diana-ui/hooks": "^0.1.15"
+    "@diana-ui/types": "^0.1.8"
   },
   "publishConfig": {
     "access": "public"
