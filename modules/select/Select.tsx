@@ -53,7 +53,6 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
       <ChipInput
         {...inputProps}
         singleChip
-        error="AASADA"
         chips={chips}
         value={text}
         onChange={event => {
