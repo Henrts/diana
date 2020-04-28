@@ -29,20 +29,20 @@ export interface ISingleProps<T extends IItem>
 
 export const styleSheet: ThemeStyleSheetFactory = () => ({
   header: {
-    padding: "10px 0",
+    padding: "10px 0"
   },
   item: {
-    cursor: "pointer",
+    cursor: "pointer"
   },
   itemSelected: {},
   itemText: {
     display: "block",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
+    whiteSpace: "nowrap"
   },
   label: {
-    padding: "10px 0",
+    padding: "10px 0"
   },
   list: {
     listStyle: "none",
@@ -51,24 +51,24 @@ export const styleSheet: ThemeStyleSheetFactory = () => ({
     maxHeight: 300,
     overflowY: "auto",
     paddingLeft: 0,
-    width: "100%",
+    width: "100%"
   },
   text: {
     overflow: "hidden",
     textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
+    whiteSpace: "nowrap"
   },
   wrapper: {
     display: "flex",
-    alignItems: "flex-start",
-  },
+    alignItems: "flex-start"
+  }
 });
 
 export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   container: {
     maxWidth: "100%",
-    minWidth: 220,
-  },
+    minWidth: 220
+  }
 });
 
 const StyledPopover = Popover.extendStyles(styleSheetPopover);
@@ -76,7 +76,7 @@ const StyledPopover = Popover.extendStyles(styleSheetPopover);
 export const DropdownHeader: React.FC<{ text?: string } & WithStylesProps> = ({
   text,
   cx,
-  styles,
+  styles
 }) => (
   <div className={cx(styles.header)}>
     <div className={cx(styles.text)}>{text}</div>
@@ -85,7 +85,7 @@ export const DropdownHeader: React.FC<{ text?: string } & WithStylesProps> = ({
 
 const BaseDropdown: React.FC<PropsWithChildren<
   ISingleProps<IItem> & WithStylesProps
->> = (props) => {
+>> = props => {
   const {
     className,
     disabled,
@@ -99,7 +99,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
     text,
     renderItem,
     renderHeader,
-    wrappedRef,
+    wrappedRef
   } = props;
   const ref = usePopoverRef(wrappedRef);
 

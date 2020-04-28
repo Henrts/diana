@@ -14,7 +14,7 @@ const defaultFilter = (option: IDropdownItem, text: string) =>
   option.text.toLowerCase().includes(text.toLowerCase());
 
 const InputStylesheet: ThemeStyleSheetFactory = () => ({
-  chipInput: { pointerEvents: "all" },
+  chipInput: { pointerEvents: "all" }
 });
 
 const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
@@ -28,7 +28,7 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
 
   const filteredItems = useMemo(
     () =>
-      items.filter((item) => {
+      items.filter(item => {
         if (!text) {
           return true;
         }
@@ -51,12 +51,12 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
         singleChip
         chips={chips}
         value={text}
-        onChange={(event) => {
+        onChange={event => {
           setText(event.target.value);
         }}
-        onChangeChips={(newChips) => {
+        onChangeChips={newChips => {
           const newChip = newChips[0];
-          const item = filteredItems.find((i) => i.text === newChip);
+          const item = filteredItems.find(i => i.text === newChip);
           setValue(item?.text);
           setText("");
         }}
