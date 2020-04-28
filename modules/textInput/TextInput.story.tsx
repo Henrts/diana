@@ -20,30 +20,28 @@ export const TextInputErrorBorder = TextInput.extendStyles((theme: Theme) => ({
   }
 }));
 
-export const TextInputLabelToOutside = TextInput.extendStyles(
-  (theme: Theme) => ({
-    fieldset: {
-      border: "2px solid #ccc"
-    },
-    legend: {
-      "@selectors": {
-        "&.active, &.focus": {
-          width: 0,
-          maxWidth: 0,
-          padding: 0
-        }
-      }
-    },
-    label: {
-      "@selectors": {
-        "&.active, &.focus": {
-          transform: "translate(0px, -30px)",
-          ...theme.typography.label
-        }
+export const TextInputLabelToOutside = TextInput.extendStyles((theme: Theme) => ({
+  fieldset: {
+    border: "2px solid #ccc"
+  },
+  legend: {
+    "@selectors": {
+      "&.active, &.focus": {
+        width: 0,
+        maxWidth: 0,
+        padding: 0
       }
     }
-  })
-);
+  },
+  label: {
+    "@selectors": {
+      "&.active, &.focus": {
+        transform: "translate(0px, -30px)",
+        ...theme.typography.label
+      }
+    }
+  }
+}));
 
 export const TextInputStory = () => {
   return <TextInput label="label" />;

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  WithStylesProps,
-  Theme,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { WithStylesProps, Theme, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { withStyles } from "@diana-ui/base";
 import { IProps as ITextInputProps } from "./TextInput";
@@ -43,19 +39,12 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   className,
   ...props
 }) => {
-  const ExtendedTextInput = useRegistryWithStyles<ITextInputProps>(
-    "TextInput",
-    stylesheet
-  );
+  const ExtendedTextInput = useRegistryWithStyles<ITextInputProps>("TextInput", stylesheet);
   return (
     <div className={className}>
       <ExtendedTextInput
         {...props}
-        hasError={
-          typeof error === "boolean"
-            ? error
-            : error !== null && error !== undefined
-        }
+        hasError={typeof error === "boolean" ? error : error !== null && error !== undefined}
       />
       <div className={cx(styles.helperLabel)}>
         {error && typeof error === "string" ? (

@@ -23,11 +23,7 @@ export const NotificationStackExample: React.FC<{}> = () => {
     title: "Big Title",
     template: SuccessNotification
   };
-  const notificationList: INotification[] = [
-    notification1,
-    notification2,
-    notification3
-  ];
+  const notificationList: INotification[] = [notification1, notification2, notification3];
 
   const addNotification = () => {
     if (notifications.length < 5) {
@@ -66,10 +62,7 @@ export const NotificationStackExample: React.FC<{}> = () => {
         >
           Add Notification
         </BaseButton>
-        <BaseButton
-          disabled={notifications.length === 0}
-          onClick={removeNotification}
-        >
+        <BaseButton disabled={notifications.length === 0} onClick={removeNotification}>
           Remove Notification
         </BaseButton>
       </div>

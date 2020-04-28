@@ -1,11 +1,6 @@
 import React, { PropsWithChildren, ReactElement, useCallback } from "react";
 import { useForm, Controller, FieldError, DeepPartial } from "react-hook-form";
-import {
-  StandardProps,
-  WithStylesProps,
-  Theme,
-  StyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, Theme, StyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { Checkbox } from "@diana-ui/checkbox";
 import { TextInput, ErrorTextInput } from "@diana-ui/textinput";

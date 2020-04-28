@@ -1,10 +1,6 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import {
-  StandardProps,
-  ThemeStyleSheetFactory,
-  WithStylesProps
-} from "@diana-ui/types";
+import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 
 export interface IProps extends StandardProps<"section"> {}
 
@@ -20,12 +16,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const ModalFooter: React.FC<IProps & WithStylesProps> = ({
-  cx,
-  styles,
-  className,
-  children
-}) => {
+const ModalFooter: React.FC<IProps & WithStylesProps> = ({ cx, styles, className, children }) => {
   return <section className={cx(styles.footer, className)}>{children}</section>;
 };
 

@@ -83,9 +83,7 @@ The chip can be customized using _renderLeftIcon_ or _renderRightIcon_.
         alignItems: "center"
       }}
     >
-      <BaseChip renderLeftIcon={() => <ChipIcon type="left" name="add" />}>
-        with left icon
-      </BaseChip>
+      <BaseChip renderLeftIcon={() => <ChipIcon type="left" name="add" />}>with left icon</BaseChip>
       <BaseChip renderRightIcon={() => <ChipIcon type="right" name="add" />}>
         with right icon
       </BaseChip>
@@ -113,10 +111,7 @@ These are the extra props for the Status Chip
   <tbody>
     <tr>
       <td>type</td>
-      <td>
-        Can be default, success, warning or danger and will set color of the
-        chip
-      </td>
+      <td>Can be default, success, warning or danger and will set color of the chip</td>
     </tr>
   </tbody>
 </table>
@@ -180,9 +175,7 @@ By default, there will be a close Icon on the right that can be customized by ch
         alignItems: "center"
       }}
     >
-      <CloseableChip onClose={() => console.log("close fired")}>
-        with close
-      </CloseableChip>
+      <CloseableChip onClose={() => console.log("close fired")}>with close</CloseableChip>
       <CloseableChip
         onClick={() => console.log("click")}
         onClose={() => console.log("close custom fired")}
@@ -215,8 +208,8 @@ These are the base props for the Chip List
     <tr>
       <td>displayFn</td>
       <td>
-        Function that will change how the item is displayed. Used in case of
-        objects. default: (item:T) => item
+        Function that will change how the item is displayed. Used in case of objects. default:
+        (item:T) => item
       </td>
     </tr>
     <tr>
@@ -276,10 +269,9 @@ With a different extended CloseableChip by registering a new CloseableChip. This
 </Preview>
 
 ```javascript
-CloseableChip.extendStyles(
-  () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
-  { register: true }
-);
+CloseableChip.extendStyles(() => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }), {
+  register: true
+});
 <ChipList list={["test", "test2", "test3"]} />;
 ```
 
@@ -311,10 +303,7 @@ These are the base props for the ChipInput
     </tr>
     <tr>
       <td>singleChip</td>
-      <td>
-        Boolean that controls if the input should only allow one chip Default is
-        false
-      </td>
+      <td>Boolean that controls if the input should only allow one chip Default is false</td>
     </tr>
   </tbody>
 </table>
@@ -351,11 +340,5 @@ With ´singleChip´ only one chip is allowed.
 </Preview>
 
 ```javascript
-<ChipInput
-  singleChip
-  chips={chips}
-  onChangeChips={setChips}
-  allowDuplicates={true}
-  placeholder="Placeholder"
-/>
+<ChipInput singleChip chips={chips} onChangeChips={setChips} allowDuplicates={true} label="Label" />
 ```

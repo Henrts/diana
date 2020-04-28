@@ -33,28 +33,24 @@ This are the available props for the Base Components
     <tr>
       <td>label</td>
       <td>
-        This props enables a span element that, by default, slides to the
-        fieldset/border of the input when in focus.
+        This props enables a span element that, by default, slides to the fieldset/border of the
+        input when in focus.
       </td>
     </tr>
     <tr>
       <td>hasError</td>
       <td>
-        hasError signals to the TextInput component to activate the necessary
-        styles to customize an error text input component
+        hasError signals to the TextInput component to activate the necessary styles to customize an
+        error text input component
       </td>
     </tr>
     <tr>
       <td>prefixIcon</td>
-      <td>
-        prefixIcon is a string that will render an Icon before the text input
-      </td>
+      <td>prefixIcon is a string that will render an Icon before the text input</td>
     </tr>
     <tr>
       <td>suffixIcon</td>
-      <td>
-        suffixIcon is a string that will render an Icon after the text input
-      </td>
+      <td>suffixIcon is a string that will render an Icon after the text input</td>
     </tr>
   </tbody>
 </table>
@@ -79,11 +75,7 @@ This are the available props for the Base Components
 
 <Preview>
   <Story name="With Prefix / Suffix ">
-    <TextInput
-      label="User Input"
-      prefixIcon="chart"
-      suffixIcon={<span>€</span>}
-    />
+    <TextInput label="User Input" prefixIcon="chart" suffixIcon={<span>€</span>} />
   </Story>
 </Preview>
 
@@ -118,8 +110,8 @@ This are the available props for the Base Components
       <td>fieldset</td>
       <td></td>
       <td>
-        This style affects the main fieldset element that contains the input
-        element. Apply custom border styles here
+        This style affects the main fieldset element that contains the input element. Apply custom
+        border styles here
       </td>
     </tr>
     <tr>
@@ -130,10 +122,7 @@ This are the available props for the Base Components
     <tr>
       <td></td>
       <td>&.active</td>
-      <td>
-        Style to apply to fieldset element when component has content (is
-        active)
-      </td>
+      <td>Style to apply to fieldset element when component has content (is active)</td>
     </tr>
     <tr>
       <td></td>
@@ -285,30 +274,28 @@ export const TextInputErrorBorder = TextInput.extendStyles((theme: Theme) => ({
 ### Label to Outside
 
 ```javascript
-export const TextInputLabelToOutside = TextInput.extendStyles(
-  (theme: Theme) => ({
-    fieldset: {
-      border: "2px solid #ccc"
-    },
-    legend: {
-      "@selectors": {
-        "&.active, &.focus": {
-          width: 0,
-          maxWidth: 0,
-          padding: 0
-        }
-      }
-    },
-    label: {
-      "@selectors": {
-        "&.active, &.focus": {
-          transform: "translate(0px, -30px)",
-          ...theme.typography.label
-        }
+export const TextInputLabelToOutside = TextInput.extendStyles((theme: Theme) => ({
+  fieldset: {
+    border: "2px solid #ccc"
+  },
+  legend: {
+    "@selectors": {
+      "&.active, &.focus": {
+        width: 0,
+        maxWidth: 0,
+        padding: 0
       }
     }
-  })
-);
+  },
+  label: {
+    "@selectors": {
+      "&.active, &.focus": {
+        transform: "translate(0px, -30px)",
+        ...theme.typography.label
+      }
+    }
+  }
+}));
 ```
 
 <Preview>

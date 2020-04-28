@@ -1,14 +1,5 @@
-import React, {
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useState
-} from "react";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import React, { useCallback, useEffect, useImperativeHandle, useState } from "react";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { Flipper } from "react-flip-toolkit";
 

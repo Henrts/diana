@@ -12,9 +12,7 @@ As of now, the `Notification`'s content/body can only be a string.
 
 <Preview>
   <Story name="Notification">
-    <Notification>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    </Notification>
+    <Notification>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Notification>
   </Story>
 </Preview>
 
@@ -42,14 +40,10 @@ As of now, the `Notification`'s content/body can only be a string.
   <Story name="Custom notification example">
     <div style={{ display: "flex ", flexDirection: "column" }}>
       Variation with icon:
-      <SuccessNotification icon="check">
-        Something good happened!
-      </SuccessNotification>
+      <SuccessNotification icon="check">Something good happened!</SuccessNotification>
       <br />
       Variation with title:
-      <SuccessNotification title="Success!">
-        Something good happened!
-      </SuccessNotification>
+      <SuccessNotification title="Success!">Something good happened!</SuccessNotification>
     </div>
   </Story>
 </Preview>
@@ -76,8 +70,7 @@ As of now, the `Notification`'s content/body can only be a string.
       <td>
         The name of the icon to be shown.
         <br />
-        If this prop is passed, an icon will be displayed on the left of the
-        Notification body.
+        If this prop is passed, an icon will be displayed on the left of the Notification body.
       </td>
     </tr>
     <tr>
@@ -86,8 +79,7 @@ As of now, the `Notification`'s content/body can only be a string.
       <td>
         The title of the Notification
         <br />
-        If this prop is passed, the Notification will have a title with the
-        given content.
+        If this prop is passed, the Notification will have a title with the given content.
       </td>
     </tr>
   </tbody>
@@ -132,10 +124,7 @@ As of now, the `Notification`'s content/body can only be a string.
     <tr>
       <td></td>
       <td>.enter-active</td>
-      <td>
-        Style of the wrapper element immediately (1 tick) after ".enter" is
-        added.
-      </td>
+      <td>Style of the wrapper element immediately (1 tick) after ".enter" is added.</td>
     </tr>
     <tr>
       <td></td>
@@ -145,10 +134,7 @@ As of now, the `Notification`'s content/body can only be a string.
     <tr>
       <td></td>
       <td>.exit-active</td>
-      <td>
-        Style of the wrapper element immediately (1 tick) after ".exit" is
-        added.
-      </td>
+      <td>Style of the wrapper element immediately (1 tick) after ".exit" is added.</td>
     </tr>
   </tbody>
 </table>
@@ -231,10 +217,7 @@ export const NotificationStackExample: React.FC<{}> = () => {
         >
           Add Notification
         </BaseButton>
-        <BaseButton
-          disabled={notifications.length === 0}
-          onClick={removeNotification}
-        >
+        <BaseButton disabled={notifications.length === 0} onClick={removeNotification}>
           Remove Notification
         </BaseButton>
       </div>
@@ -267,9 +250,8 @@ export const NotificationStackExample: React.FC<{}> = () => {
       <td>notifications</td>
       <td>INotification[]</td>
       <td>
-        An array of the notifications to display. A notification contains a
-        template of its Notification component, as well as all the props to be
-        passed to that component
+        An array of the notifications to display. A notification contains a template of its
+        Notification component, as well as all the props to be passed to that component
       </td>
     </tr>
     <tr>
@@ -283,19 +265,17 @@ export const NotificationStackExample: React.FC<{}> = () => {
       <td>
         Callback for when the user hovers over a notification.
         <br />
-        It takes a single argument that is the id of the Notification being
-        hovered over.
+        It takes a single argument that is the id of the Notification being hovered over.
       </td>
     </tr>
     <tr>
       <td>handleMouseOut (optional)</td>
       <td>function</td>
       <td>
-        Callback for when the user removes his/her mouse from over a
-        notification.
+        Callback for when the user removes his/her mouse from over a notification.
         <br />
-        It takes a single argument that is the id of the Notification not being
-        hovered over any longer.
+        It takes a single argument that is the id of the Notification not being hovered over any
+        longer.
       </td>
     </tr>
   </tbody>

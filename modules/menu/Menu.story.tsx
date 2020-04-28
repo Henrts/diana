@@ -22,10 +22,7 @@ export const MenuDirectionsStory = () => {
       </Menu>
       <br />
       <br />
-      <Menu
-        renderHeader={() => <button>Toggle Right</button>}
-        direction={"right"}
-      >
+      <Menu renderHeader={() => <button>Toggle Right</button>} direction={"right"}>
         <MenuItem icon={"add"} onClick={() => console.log("clicked")}>
           Menu Item 1
         </MenuItem>
@@ -35,10 +32,7 @@ export const MenuDirectionsStory = () => {
       </Menu>
       <br />
       <br />
-      <Menu
-        renderHeader={() => <button>Toggle Left</button>}
-        direction={"left"}
-      >
+      <Menu renderHeader={() => <button>Toggle Left</button>} direction={"left"}>
         <MenuItem icon={"add"} onClick={() => console.log("clicked")}>
           Menu Item 1
         </MenuItem>
@@ -58,10 +52,7 @@ export const MenuDirectionsStory = () => {
       </Menu>
       <br />
       <br />
-      <Menu
-        renderHeader={() => <button>Bottom Right</button>}
-        direction={"bottom-right"}
-      >
+      <Menu renderHeader={() => <button>Bottom Right</button>} direction={"bottom-right"}>
         <MenuItem icon={"add"} onClick={() => console.log("clicked")}>
           Menu Item 1
         </MenuItem>
@@ -71,10 +62,7 @@ export const MenuDirectionsStory = () => {
       </Menu>
       <br />
       <br />
-      <Menu
-        renderHeader={() => <button>Top Right</button>}
-        direction={"top-right"}
-      >
+      <Menu renderHeader={() => <button>Top Right</button>} direction={"top-right"}>
         <MenuItem icon={"add"} onClick={() => console.log("clicked")}>
           Menu Item 1
         </MenuItem>

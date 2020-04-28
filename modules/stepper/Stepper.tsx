@@ -1,9 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 
 // @ts-ignore
@@ -112,11 +108,7 @@ const Stepper: React.FC<IProps & WithStylesProps> = ({
           {i !== 0 && <div className={cx(styles.line, isActive && "active")} />}
           <div
             key={i}
-            className={cx(
-              styles.step,
-              isActive && "active",
-              clickable && "clickable"
-            )}
+            className={cx(styles.step, isActive && "active", clickable && "clickable")}
             onClick={() => clickable && change(i)}
           >
             <div className={cx(styles.innerStep, isActive && "active")} />

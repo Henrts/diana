@@ -62,12 +62,7 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
       }}
       {...props}
     >
-      <svg
-        width="20px"
-        height="20px"
-        viewBox="0 0 20 20"
-        className={cx(styles.svg)}
-      >
+      <svg width="20px" height="20px" viewBox="0 0 20 20" className={cx(styles.svg)}>
         <circle cx="10" cy="10" r="9" className={cx(styles.circle)}></circle>
         <path
           d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"

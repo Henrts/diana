@@ -1,9 +1,5 @@
-import React, { useMemo } from "react";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import React from "react";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { Flipped } from "react-flip-toolkit";
 import { SectionTitle } from "@diana-ui/typography";

@@ -35,9 +35,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     WrappedComponent: React.ComponentType<
       Props & WithStylesProps & { parentStylesheet?: typeof styleSheet }
     >
-  ): StyledComponent<
-    Props & WithStylesWrapperProps & { parentStylesheet?: typeof styleSheet }
-  > {
+  ): StyledComponent<Props & WithStylesWrapperProps & { parentStylesheet?: typeof styleSheet }> {
     const baseName = WrappedComponent.displayName || WrappedComponent.name;
     const styleName = `${baseName}-${uuid()}`;
 
@@ -53,9 +51,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         {},
         aesthetic.getStyleSheet(styleName, themeName.name || "default_theme"),
         styleSheet(aesthetic.getTheme()),
-        props.parentStylesheet
-          ? props.parentStylesheet(aesthetic.getTheme())
-          : {}
+        props.parentStylesheet ? props.parentStylesheet(aesthetic.getTheme()) : {}
       );
 
       const [styles, cx] = useStyles(() => mergedStylesheet);
@@ -68,9 +64,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
       };
 
       if (passThemeProp) {
-        extraProps[themePropName as "theme"] = aesthetic.getTheme(
-          themeName.name
-        );
+        extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName.name);
       }
 
       extraProps.parentStylesheet = styleSheet;

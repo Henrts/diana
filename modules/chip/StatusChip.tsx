@@ -45,11 +45,7 @@ const colorMap = (theme: Theme) => ({
   }
 });
 
-const StatusChip: React.FC<IProps & WithStylesProps> = ({
-  styleSheet,
-  type,
-  ...props
-}) => {
+const StatusChip: React.FC<IProps & WithStylesProps> = ({ styleSheet, type, ...props }) => {
   const styleSheet2 = extendStyles(
     theme => ({
       ...colorMap(theme)[type]

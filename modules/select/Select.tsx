@@ -1,8 +1,9 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
 import { IChipInputProps } from "@diana-ui/chip";
 import { IDropdownItem, ISingleDropdownProps } from "@diana-ui/dropdown";
 import { useRegistry, useRegistryWithStyles } from "@diana-ui/hooks";
+import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 
 export interface IProps extends ISingleDropdownProps<IDropdownItem> {
   onFilter?: (option: IDropdownItem, text: string) => boolean;
@@ -12,7 +13,18 @@ export interface IProps extends ISingleDropdownProps<IDropdownItem> {
 const defaultFilter = (option: IDropdownItem, text: string) =>
   option.text.toLowerCase().includes(text.toLowerCase());
 
-function Select(propsT: IProps) {
+const InputStylesheet: ThemeStyleSheetFactory = theme => ({
+  chipInput: { pointerEvents: "all" },
+  input: { width: "100%" },
+  fieldset: { margin: 0 },
+  helperLabel: {
+    position: "absolute",
+    paddingTop: theme.spaceUnit.xxs,
+    zIndex: 0
+  }
+});
+
+const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
   const { inputProps, items, selectedItem, onFilter, ...props } = propsT;
   const [value, setValue] = useState(selectedItem?.text);
   const [text, setText] = useState<string>();
@@ -34,31 +46,33 @@ function Select(propsT: IProps) {
   );
 
   const Dropdown = useRegistry<ISingleDropdownProps<IDropdownItem>>("Dropdown");
-  const ChipInput = useRegistryWithStyles<IChipInputProps>("ChipInput", () => ({
-    chipInput: { pointerEvents: "all" }
-  }));
+  const ChipInput = useRegistryWithStyles<IChipInputProps>("ChipInput", InputStylesheet);
   const chips = useMemo(() => (value ? [value] : []), [value]);
+  const renderInput = useCallback(() => {
+    return (
+      <ChipInput
+        {...inputProps}
+        singleChip
+        chips={chips}
+        value={text}
+        onChange={event => {
+          setText(event.target.value);
+        }}
+        onChangeChips={newChips => {
+          const newChip = newChips[0];
+          const item = filteredItems.find(i => i.text === newChip);
+          setValue(item?.text);
+          setText("");
+        }}
+      />
+    );
+  }, [chips, filteredItems, inputProps, text]);
+
   return (
     <Dropdown
       disabled={chips.length > 0}
       items={filteredItems}
-      renderHeader={() => (
-        <ChipInput
-          {...inputProps}
-          singleChip
-          chips={chips}
-          value={text}
-          onChange={event => {
-            setText(event.target.value);
-          }}
-          onChangeChips={newChips => {
-            const newChip = newChips[0];
-            const item = filteredItems.find(i => i.text === newChip);
-            setValue(item?.text);
-            setText("");
-          }}
-        />
-      )}
+      renderHeader={renderInput}
       selectedItem={selectedItem}
       {...props}
       onItemSelected={(item: IDropdownItem) => {
@@ -67,6 +81,8 @@ function Select(propsT: IProps) {
       }}
     />
   );
-}
+};
 
-export default withStyles(() => ({}), { register: true })(Select);
+BaseSelect.displayName = "Select";
+const Select = withStyles(() => ({}), { register: true })(BaseSelect);
+export default Select;

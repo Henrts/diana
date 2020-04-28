@@ -16,6 +16,7 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   rules: {
+    "comma-dangle": ["error", "never"],
     "consistent-return": "off",
     "no-underscore-dangle": "off",
     "no-trailing-spaces": "error",
@@ -27,10 +28,7 @@ module.exports = {
     "no-nested-ternary": "off",
     "@typescript-eslint/quotes": ["error", "double"],
     "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/interface-name-prefix": [
-      "error",
-      { prefixWithI: "always" }
-    ],
+    "@typescript-eslint/interface-name-prefix": ["error", { prefixWithI: "always" }],
     "react/prop-types": [0],
     "react/destructuring-assignment": "off",
     "react/jsx-props-no-spreading": "off",

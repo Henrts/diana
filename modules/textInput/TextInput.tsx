@@ -1,10 +1,6 @@
 import React, { useState, useRef, useEffect, PropsWithChildren } from "react";
 import { withStyles } from "@diana-ui/base";
-import {
-  ThemeStyleSheetFactory,
-  StandardProps,
-  WithStylesProps
-} from "@diana-ui/types";
+import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "@diana-ui/types";
 import { useRegistry, useResizeObserver } from "@diana-ui/hooks";
 import { IIconProps } from "@diana-ui/icon";
 
@@ -113,9 +109,7 @@ export interface IProps extends StandardProps<"input"> {
   suffixIcon?: string | JSX.Element;
   hasFocus?: boolean;
 }
-export const TextInput: React.FC<PropsWithChildren<
-  IProps & WithStylesProps
->> = ({
+export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   styles,
   wrappedRef,
   cx,
@@ -216,15 +210,9 @@ export const TextInput: React.FC<PropsWithChildren<
       </div>
       <div className={cx(styles.inputContainer)}>
         {typeof prefixIcon === "string" ? (
-          <Icon
-            name={prefixIcon as any}
-            size={16}
-            className={cx(styles.prefixIcon)}
-          />
+          <Icon name={prefixIcon as any} size={16} className={cx(styles.prefixIcon)} />
         ) : (
-          prefixIcon && (
-            <div className={cx(styles.prefixIcon)}>{prefixIcon}</div>
-          )
+          prefixIcon && <div className={cx(styles.prefixIcon)}>{prefixIcon}</div>
         )}
         <input
           {...props}
@@ -250,15 +238,9 @@ export const TextInput: React.FC<PropsWithChildren<
           }}
         />
         {typeof suffixIcon === "string" ? (
-          <Icon
-            name={suffixIcon as any}
-            size={16}
-            className={cx(styles.suffixIcon)}
-          />
+          <Icon name={suffixIcon as any} size={16} className={cx(styles.suffixIcon)} />
         ) : (
-          suffixIcon && (
-            <div className={cx(styles.suffixIcon)}>{suffixIcon}</div>
-          )
+          suffixIcon && <div className={cx(styles.suffixIcon)}>{suffixIcon}</div>
         )}
       </div>
     </fieldset>

@@ -53,6 +53,7 @@ function ChipInput({
 
   const inputStyleSheet: ThemeStyleSheetFactory = useMemo(
     () => theme => ({
+      ...parentStylesheet?.(theme),
       prefixIcon: singleChip
         ? {
             width: "100%",
@@ -60,16 +61,13 @@ function ChipInput({
           }
         : {}
     }),
-    [singleChip]
+    [parentStylesheet, singleChip]
   );
   const StyledErrorTextInput = useRegistryWithStyles<IErrorTextInputProps>(
     "ErrorTextInput",
     inputStyleSheet
   );
-  const StyledChipList = useRegistryWithStyles<IChipListProps<string>>(
-    "ChipList",
-    styleSheet
-  );
+  const StyledChipList = useRegistryWithStyles<IChipListProps<string>>("ChipList", styleSheet);
 
   useEffect(() => {
     setInputValue(value?.toString() ?? "");
@@ -116,9 +114,7 @@ function ChipInput({
       handleChange(newChips);
       setInputValue(chip);
       if (onChange) {
-        const event = { target: { value: chip } } as React.ChangeEvent<
-          HTMLInputElement
-        >;
+        const event = { target: { value: chip } } as React.ChangeEvent<HTMLInputElement>;
         onChange(event);
       }
     },
@@ -136,9 +132,7 @@ function ChipInput({
               onListChange={handleChange}
               onChipClick={handleChipClick}
             />
-          ) : (
-            undefined
-          )
+          ) : undefined
         }
         disabled={singleChip && !!chips.length}
         className={cx(styles.input)}

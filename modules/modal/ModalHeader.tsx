@@ -1,10 +1,6 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import {
-  StandardProps,
-  ThemeStyleSheetFactory,
-  WithStylesProps
-} from "@diana-ui/types";
+import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import { SectionTitle, Description } from "@diana-ui/typography";
 
@@ -61,11 +57,7 @@ const ModalHeader: React.FC<IProps & WithStylesProps> = ({
           </div>
         )}
       </div>
-      {description && (
-        <Description className={cx(styles.description)}>
-          {description}
-        </Description>
-      )}
+      {description && <Description className={cx(styles.description)}>{description}</Description>}
     </section>
   );
 };

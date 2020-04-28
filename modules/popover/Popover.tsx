@@ -6,11 +6,7 @@ import React, {
   PropsWithChildren,
   RefObject
 } from "react";
-import {
-  StandardProps,
-  ThemeStyleSheetFactory,
-  WithStylesProps
-} from "@diana-ui/types";
+import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { useOnClickOutside } from "@diana-ui/hooks";
 import { Portal, Direction } from "@diana-ui/portal";
@@ -34,11 +30,7 @@ export interface IPopoverRef {
 }
 
 export const usePopoverRef = (
-  wrappedRef:
-    | ((instance: IPopoverRef) => void)
-    | RefObject<IPopoverRef>
-    | null
-    | undefined
+  wrappedRef: ((instance: IPopoverRef) => void) | RefObject<IPopoverRef> | null | undefined
 ) => {
   const ref = useRef<IPopoverRef>(null);
 
@@ -105,14 +97,8 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
 
   const divRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(
-    [divRef, portalRef],
-    () => dismissOnClick && setVisible(false)
-  );
-  const toggleVisible = useCallback(() => setVisible(!visible), [
-    visible,
-    setVisible
-  ]);
+  useOnClickOutside([divRef, portalRef], () => dismissOnClick && setVisible(false));
+  const toggleVisible = useCallback(() => setVisible(!visible), [visible, setVisible]);
   useImperativeHandle<IPopoverRef, IPopoverRef>(wrappedRef, () => ({
     show: () => setVisible(true),
     hide: () => setVisible(false),
@@ -144,10 +130,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
     : undefined;
 
   return (
-    <div
-      className={cx(styles.container, disabled && styles.disabled, className)}
-      ref={divRef}
-    >
+    <div className={cx(styles.container, disabled && styles.disabled, className)} ref={divRef}>
       <div
         className={cx(styles.headerWrapper, !showOnHover && "clickable")}
         onClick={handleClick}

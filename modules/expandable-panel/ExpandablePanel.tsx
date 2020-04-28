@@ -1,17 +1,6 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { withStyles } from "@diana-ui/base";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory,
-  Theme
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory, Theme } from "@diana-ui/types";
 import { useResizeObserver } from "@diana-ui/hooks";
 import { Icon } from "@diana-ui/icon";
 import { BodyHighlight } from "@diana-ui/typography";
@@ -24,7 +13,7 @@ export interface IProps extends StandardProps<"div"> {
   expanded?: boolean;
   header?: string | ((visible: boolean) => React.ReactNode);
   initialExpanded?: boolean;
-  onClick?: () => void;
+  onClick?: (isExpanded: boolean) => void;
 }
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
@@ -95,9 +84,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
   const [isCollapsing, setIsCollapsing] = useState(false);
   const [headerHeight, setHeaderHeight] = useState<number | undefined>(0);
   const [bodyHeight, setBodyHeight] = useState<number | undefined>(0);
-  const [currentBodyHeight, setCurrentBodyHeight] = useState<
-    number | undefined
-  >(0);
+  const [currentBodyHeight, setCurrentBodyHeight] = useState<number | undefined>(0);
   const headerRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
 
@@ -208,7 +195,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     }
 
     // eslint-disable-next-line mdx/no-unused-expressions
-    onClick?.();
+    onClick?.(!isExpanded);
   }, [disabled, expanded, handleCollapse, isExpanded, onClick]);
 
   const stateClasses = useMemo(() => {
@@ -227,23 +214,13 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
 
   const renderHeader = useCallback(
     () => (
-      <div
-        ref={headerRef}
-        className={cx(styles.header, ...stateClasses)}
-        onClick={handleClick}
-      >
+      <div ref={headerRef} className={cx(styles.header, ...stateClasses)} onClick={handleClick}>
         {typeof header === "string" ? (
-          <BodyHighlight className={cx(styles.headerTitle)}>
-            {header}
-          </BodyHighlight>
+          <BodyHighlight className={cx(styles.headerTitle)}>{header}</BodyHighlight>
         ) : (
           header?.(isExpanded)
         )}
-        <Icon
-          className={cx(styles.headerIcon, ...stateClasses)}
-          name="chevron-down"
-          size={16}
-        />
+        <Icon className={cx(styles.headerIcon, ...stateClasses)} name="chevron-down" size={16} />
       </div>
     ),
     [cx, styles, stateClasses, handleClick, header, isExpanded]

@@ -8,12 +8,9 @@ import BaseMultipleDropdown, {
 } from "./BaseMultipleDropdown";
 import { IItem } from "./Dropdown";
 
-export interface ISimpleMultipleDropdownProps<T extends IItem>
-  extends IMultipleProps<T> {}
+export interface ISimpleMultipleDropdownProps<T extends IItem> extends IMultipleProps<T> {}
 
-const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(
-  multipleStylesheet
-);
+const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(multipleStylesheet);
 
 const SimpleMultipleDropdown: React.FC<
   ISimpleMultipleDropdownProps<IItem> & WithStylesProps & IRenderItem<IItem>

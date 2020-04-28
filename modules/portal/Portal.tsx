@@ -3,13 +3,7 @@ import { createPortal } from "react-dom";
 import { useWindowSize } from "@diana-ui/hooks";
 import { StandardProps } from "@diana-ui/types";
 
-export type Direction =
-  | "bottom"
-  | "left"
-  | "right"
-  | "top"
-  | "bottom-right"
-  | "top-right";
+export type Direction = "bottom" | "left" | "right" | "top" | "bottom-right" | "top-right";
 
 export interface IProps extends StandardProps<"div"> {
   centered?: boolean;
@@ -39,52 +33,40 @@ const getPortalStyles = (
 
   const centeredLeft =
     dimensions?.left && dimensions?.width
-      ? Math.round(
-          dimensions?.left + dimensions?.width / 2 - targetDimensions.width / 2
-        )
+      ? Math.round(dimensions?.left + dimensions?.width / 2 - targetDimensions.width / 2)
       : targetDimensions.left;
 
   switch (direction) {
     case "top": {
-      styles += `left: ${
-        centered && !useParentWidth ? centeredLeft : dimensions?.left
-      }px; top: ${
+      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
         (dimensions?.top || 0) - target.offsetHeight + getScrollTop()
       }px;`;
       break;
     }
     case "right": {
-      styles += `left: ${dimensions?.right}px; top: ${
-        (dimensions?.top || 0) + getScrollTop()
-      }px;`;
+      styles += `left: ${dimensions?.right}px; top: ${(dimensions?.top || 0) + getScrollTop()}px;`;
       break;
     }
     case "bottom": {
-      styles += `left: ${
-        centered && !useParentWidth ? centeredLeft : dimensions?.left
-      }px; top: ${
+      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
         (dimensions?.top || 0) + (dimensions?.height || 0) + getScrollTop()
       }px;`;
       break;
     }
     case "left": {
-      styles += `left: ${
-        (dimensions?.left || 0) - (targetDimensions?.width || 0)
-      }px; top: ${dimensions && dimensions?.top + getScrollTop()}px;`;
+      styles += `left: ${(dimensions?.left || 0) - (targetDimensions?.width || 0)}px; top: ${
+        dimensions && dimensions?.top + getScrollTop()
+      }px;`;
       break;
     }
     case "bottom-right": {
-      styles += `left: ${
-        (dimensions?.right || 0) - (targetDimensions?.width || 0)
-      }px; top: ${
+      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
         (dimensions?.top || 0) + (dimensions?.height || 0) + getScrollTop()
       }px;`;
       break;
     }
     case "top-right": {
-      styles += `left: ${
-        (dimensions?.right || 0) - (targetDimensions?.width || 0)
-      }px; top: ${
+      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
         (dimensions?.top || 0) - target.offsetHeight + getScrollTop()
       }px;`;
       break;
@@ -142,18 +124,9 @@ const Portal: React.FC<IProps> = ({
         rootElement.addEventListener("scroll", updateTargetStyle);
       }
 
-      return () =>
-        rootElement?.removeEventListener("scroll", updateTargetStyle);
+      return () => rootElement?.removeEventListener("scroll", updateTargetStyle);
     }
-  }, [
-    centered,
-    direction,
-    parentRef,
-    scrollableRootElement,
-    target,
-    useParentWidth,
-    windowSize
-  ]);
+  }, [centered, direction, parentRef, scrollableRootElement, target, useParentWidth, windowSize]);
 
   return createPortal(children, target);
 };

@@ -1,8 +1,5 @@
 import React, { ReactElement } from "react";
-import ReactModal, {
-  Props as ReactModalProps,
-  setAppElement
-} from "react-modal";
+import ReactModal, { Props as ReactModalProps, setAppElement } from "react-modal";
 import { withStyles } from "@diana-ui/base";
 import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 

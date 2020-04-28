@@ -1,10 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { Icon, IconNames } from "@diana-ui/icon";
-import {
-  ThemeStyleSheetFactory,
-  Theme,
-  WithStylesProps
-} from "@diana-ui/types";
+import { ThemeStyleSheetFactory, Theme, WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { BodyHighlight } from "@diana-ui/typography";
 import Avatar, { IAvatarProps } from "./Avatar";
@@ -97,31 +93,20 @@ const ImageAvatar: React.FC<IProps> = ({
   return (
     <Avatar
       {...rest}
-      backgroundColor={
-        backgroundColorTheme && lightenDarkenColor(backgroundColorTheme, -20)
-      }
+      backgroundColor={backgroundColorTheme && lightenDarkenColor(backgroundColorTheme, -20)}
     >
       <div
         className={cx(styles.circle, circleClassName)}
         style={{ backgroundColor: backgroundColorTheme }}
       >
         {(src && !useFallback && (
-          <img
-            className={cx(styles.image, className)}
-            onError={onError}
-            src={src}
-            alt={alt}
-          />
+          <img className={cx(styles.image, className)} onError={onError} src={src} alt={alt} />
         )) ||
           ((useFallback || (!src && fallbackText)) && (
             <BodyHighlight className={className}>{fallbackText}</BodyHighlight>
           )) ||
           (icon && (
-            <Icon
-              className={cx(styles.icon, className)}
-              name={icon as IconNames}
-              size={iconSize}
-            />
+            <Icon className={cx(styles.icon, className)} name={icon as IconNames} size={iconSize} />
           )) ||
           children}
       </div>
@@ -131,6 +116,4 @@ const ImageAvatar: React.FC<IProps> = ({
 
 ImageAvatar.displayName = "ImageAvatar";
 
-export default withStyles(styleSheet, { register: true, passThemeProp: true })(
-  ImageAvatar
-);
+export default withStyles(styleSheet, { register: true, passThemeProp: true })(ImageAvatar);

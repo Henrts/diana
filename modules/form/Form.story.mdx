@@ -16,10 +16,7 @@ import { BaseButton } from "@diana-ui/button";
     <Form
       schema={yup.object().shape({
         username: yup.string().required("Username is required"),
-        password: yup
-          .string()
-          .required("Password is required")
-          .min(12, "Password is too small"),
+        password: yup.string().required("Password is required").min(12, "Password is too small"),
         remember: yup.boolean()
       })}
       onSubmit={e => console.log(e)}
@@ -42,10 +39,7 @@ import { BaseButton } from "@diana-ui/button";
   <tbody>
     <tr>
       <td>schema</td>
-      <td>
-        If you would like to centralize your validation rules with external
-        validation schema
-      </td>
+      <td>If you would like to centralize your validation rules with external validation schema</td>
     </tr>
     <tr>
       <td>onSubmit</td>
@@ -53,15 +47,11 @@ import { BaseButton } from "@diana-ui/button";
     </tr>
     <tr>
       <td>defaultValues (optional)</td>
-      <td>
-        Object of values following the schema rules to initialize the form
-      </td>
+      <td>Object of values following the schema rules to initialize the form</td>
     </tr>
     <tr>
       <td>clearOnSubmit (default: true)</td>
-      <td>
-        Resets the form to its initial state (uses defaultValues if specified)
-      </td>
+      <td>Resets the form to its initial state (uses defaultValues if specified)</td>
     </tr>
   </tbody>
 </table>
@@ -81,8 +71,8 @@ import { BaseButton } from "@diana-ui/button";
       <td>form</td>
       <td></td>
       <td>
-        This style affects the main container element that contains all the
-        children fields and inputs of the form
+        This style affects the main container element that contains all the children fields and
+        inputs of the form
       </td>
     </tr>
   </tbody>

@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
 import { useWindowSize } from "@diana-ui/hooks";
-import {
-  ThemeStyleSheetFactory,
-  WithStylesProps,
-  StandardProps
-} from "@diana-ui/types";
+import { ThemeStyleSheetFactory, WithStylesProps, StandardProps } from "@diana-ui/types";
 import { Description, Label } from "@diana-ui/typography";
 import calculateSliderStep from "./helpers/calculateSliderStep";
 
@@ -103,9 +99,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
    */
   const calculateLeftSpace = useCallback(
     totalWidth =>
-      (_value * totalWidth) / (max - min) +
-      (thumbSize / 2 + 2) -
-      (`${max}`.length * 20) / 2,
+      (_value * totalWidth) / (max - min) + (thumbSize / 2 + 2) - (`${max}`.length * 20) / 2,
     [_value, max, min, thumbSize]
   );
 

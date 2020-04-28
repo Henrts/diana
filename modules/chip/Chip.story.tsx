@@ -24,17 +24,16 @@ export const ChipIcon: React.FC<{
     <Icon
       size={16}
       name={name}
-      className={cx(
-        type === "left" && styles.iconLeft,
-        type === "right" && styles.iconRight
-      )}
+      className={cx(type === "left" && styles.iconLeft, type === "right" && styles.iconRight)}
     />
   );
 };
 
 export const ChipListStory = () => {
   CloseableChip.extendStyles(
-    () => ({ chip: { backgroundColor: "grey", borderColor: "yellow" } }),
+    () => ({
+      chip: { borderColor: "yellow" }
+    }),
     { register: true }
   );
   return <ChipList list={["test", "test2", "test3"]} />;
@@ -54,12 +53,5 @@ export const ChipInputDuplicateStory = () => {
 
 export const ChipInputStory = () => {
   const [chips, setChips] = useState<string[]>([]);
-  return (
-    <ChipInput
-      chips={chips}
-      onChangeChips={setChips}
-      label="Label"
-      singleChip
-    />
-  );
+  return <ChipInput chips={chips} onChangeChips={setChips} label="Label" singleChip />;
 };

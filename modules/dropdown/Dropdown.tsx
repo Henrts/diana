@@ -8,8 +8,7 @@ export interface IItem {
   text: string;
 }
 
-export interface IProps<T extends IItem>
-  extends PropsWithChildren<IPopoverProps> {
+export interface IProps<T extends IItem> extends PropsWithChildren<IPopoverProps> {
   items: T[];
   label?: string;
   text?: string;
@@ -20,9 +19,7 @@ export interface IRenderItem<T extends IItem> {
   renderItem?: (item: T, selected: boolean, index?: number) => React.ReactNode;
 }
 
-export interface ISingleProps<T extends IItem>
-  extends IProps<T>,
-    IRenderItem<T> {
+export interface ISingleProps<T extends IItem> extends IProps<T>, IRenderItem<T> {
   onItemSelected: (item: T) => void;
   selectedItem?: T;
 }
@@ -83,9 +80,7 @@ export const DropdownHeader: React.FC<{ text?: string } & WithStylesProps> = ({
   </div>
 );
 
-const BaseDropdown: React.FC<PropsWithChildren<
-  ISingleProps<IItem> & WithStylesProps
->> = props => {
+const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesProps>> = props => {
   const {
     className,
     disabled,
@@ -123,7 +118,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
         {...props}
-        disabled={disabled || items.length === 0}
+        disabled={disabled ?? items.length === 0}
         renderHeader={renderCustomHeader}
         useParentWidth
         wrappedRef={ref}
@@ -131,10 +126,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
         <ul className={cx(styles.list, "list")}>
           {items.map((item, index) => (
             <li
-              className={cx(
-                styles.item,
-                selectedItem?.id === item.id ? styles.itemSelected : {}
-              )}
+              className={cx(styles.item, selectedItem?.id === item.id ? styles.itemSelected : {})}
               key={item.id}
               onClick={() => {
                 onItemSelected(item);
@@ -157,7 +149,5 @@ const BaseDropdown: React.FC<PropsWithChildren<
 
 BaseDropdown.displayName = "Dropdown";
 
-export const Dropdown = withStyles(styleSheet, { register: true })(
-  BaseDropdown
-);
+export const Dropdown = withStyles(styleSheet, { register: true })(BaseDropdown);
 export default Dropdown;
