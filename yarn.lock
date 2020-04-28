@@ -1174,6 +1174,16 @@
     resolve-from "^5.0.0"
     resolve-global "^1.0.0"
 
+"@diana-ui/dropdown@0.1.33":
+  version "0.1.33"
+  resolved "https://registry.yarnpkg.com/@diana-ui/dropdown/-/dropdown-0.1.33.tgz#cdd94ba5d8fe1d419d93bb63e6dedcaeb45af0d6"
+  integrity sha512-EXq9bNLoZIBSvDBOy2mJy3BXMh3aHazPSot7I+BqeH0wNeKwQfyiEOC7XecmnHNnMPjDOB+yEgNUoR/1kPj9Zw==
+  dependencies:
+    "@diana-ui/base" "^0.1.11"
+    "@diana-ui/hooks" "^0.1.15"
+    "@diana-ui/popover" "^0.1.27"
+    "@diana-ui/types" "^0.1.8"
+
 "@egoist/vue-to-react@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@egoist/vue-to-react/-/vue-to-react-1.1.0.tgz#83c884b8608e8ee62e76c03e91ce9c26063a91ad"
@@ -5694,7 +5704,18 @@ chownr@^1.1.1, chownr@^1.1.2:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.3.tgz#42d837d5239688d55f303003a508230fa6727142"
   integrity sha512-i70fVHhmV3DtTl6nqvZOnIjbY0Pe4kAUjwHj8z0zAdgBtYrJyYwLKCCuRBQ5ppkyL0AkN7HKRnETdmdp1zqNXw==
 
-chrome-launcher@^0.10.5, chrome-launcher@^0.12.0:
+chrome-launcher@^0.10.5:
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.10.7.tgz#5e2a9e99f212e0501d9c7024802acd01a812f5d5"
+  integrity sha512-IoQLp64s2n8OQuvKZwt77CscVj3UlV2Dj7yZtd1EBMld9mSdGcsGy9fN5hd/r4vJuWZR09it78n1+A17gB+AIQ==
+  dependencies:
+    "@types/node" "*"
+    is-wsl "^1.1.0"
+    lighthouse-logger "^1.0.0"
+    mkdirp "0.5.1"
+    rimraf "^2.6.1"
+
+chrome-launcher@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.12.0.tgz#08db81ef0f7b283c331df2c350e780c38bd0ce3a"
   integrity sha512-rBUP4tvWToiileDi3UR0SbWKoUoDCYTRmVND2sdoBL1xANBgVz8V9h1yQluj3MEQaBJg0fRw7hW82uOPrJus7A==
@@ -12731,7 +12752,7 @@ prettier@prettier/prettier:
     esutils "2.0.3"
     find-parent-dir "0.3.0"
     find-project-root "1.1.1"
-    flow-parser "0.116.1"
+    flow-parser "0.116.0"
     get-stream "4.1.0"
     globby "6.1.0"
     graphql "14.5.8"
@@ -12763,7 +12784,7 @@ prettier@prettier/prettier:
     resolve "1.14.2"
     semver "6.3.0"
     string-width "4.1.0"
-    typescript "3.7.5"
+    typescript "3.7.4"
     unicode-regex "3.0.0"
     unified "8.4.2"
     vnopts "1.0.2"
@@ -13300,7 +13321,7 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@16.12.0, react-dom@^16.12.0, react-dom@^16.8.3:
+react-dom@^16.12.0, react-dom@^16.8.3:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -13335,6 +13356,13 @@ react-fast-compare@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-flip-toolkit@^7.0.9:
+  version "7.0.9"
+  resolved "https://registry.yarnpkg.com/react-flip-toolkit/-/react-flip-toolkit-7.0.9.tgz#d10cd1d3dea8e6d8d0cf90929cf70ccd2eba76f5"
+  integrity sha512-YQd/N9Bt0Kia3eOpO8R7XqHt0bNC8POzidkzM1ATnogKK4h08IwsBk8YmRaybpKbSHKIwgR/UVT0wTwoyNZUVw==
+  dependencies:
+    rematrix "0.2.2"
 
 react-focus-lock@^2.1.0:
   version "2.2.1"
@@ -13477,7 +13505,7 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@16.12.0, react@^16.12.0, react@^16.8.3:
+react@^16.12.0, react@^16.8.3:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
@@ -13980,6 +14008,11 @@ remark-stringify@^7.0.4:
     stringify-entities "^2.0.0"
     unherit "^1.0.4"
     xtend "^4.0.1"
+
+rematrix@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/rematrix/-/rematrix-0.2.2.tgz#c96a050260782db9908904885991256e23beda5d"
+  integrity sha512-agFFS3RzrLXJl5LY5xg/xYyXvUuVAnkhgKO7RaO9J1Ssth6yvbO+PIiV67V59MB5NCdAK2flvGvNT4mdKVniFA==
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"

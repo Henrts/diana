@@ -10,6 +10,7 @@ import {
   ThemeStyleSheetFactory
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
+import { Flipper } from "react-flip-toolkit";
 
 export interface ITabGroupRef {
   setTab: (newTab: number) => void;
@@ -21,13 +22,22 @@ export interface IProps extends StandardProps<"ul"> {
   initialTab?: number;
   selectedTab?: number;
   onTabClick?: (id: string) => void;
+  animate?: boolean;
 }
 
 const styleSheet: ThemeStyleSheetFactory = () => ({
   tabGroup: {
     display: "flex",
     margin: "0",
-    padding: "0"
+    padding: "0",
+    overflowX: "auto",
+    "@selectors": {
+      "&::-webkit-scrollbar": {
+        display: "none"
+      }
+    },
+    "-ms-overflow-style": "none",
+    scrollbarWidth: "none"
   },
   tabPanel: {}
 });
@@ -41,7 +51,8 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
   selectedTab,
   styles,
   wrappedRef,
-  onTabClick
+  onTabClick,
+  animate = true
 }) => {
   const [selected, setSelected] = useState(initialTab);
 
@@ -72,19 +83,21 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
 
   return (
     <>
-      <ul className={cx(className, styles.tabGroup)}>
-        {React.Children.map(children, (tab, index) =>
-          React.cloneElement(tab, {
-            disabled: tab.props.disabled ?? disabled,
-            index,
-            selectedTab: selected,
-            onTabClick: handleTabClick
-          })
-        )}
-      </ul>
-      <section className={cx(styles.tabPanel)}>
-        {children[selected].props.children}
-      </section>
+      <Flipper flipKey={animate && selected}>
+        <ul className={cx(className, styles.tabGroup)}>
+          {React.Children.map(children, (tab, index) =>
+            React.cloneElement(tab, {
+              disabled: tab.props.disabled ?? disabled,
+              index,
+              selectedTab: selected,
+              onTabClick: handleTabClick
+            })
+          )}
+        </ul>
+        <section className={cx(styles.tabPanel)}>
+          {children[selected].props.children}
+        </section>
+      </Flipper>
     </>
   );
 };
