@@ -4,7 +4,10 @@ import ExpandablePanel from "./ExpandablePanel";
 
 export const ExpandablePanelStory = () => {
   return (
-    <ExpandablePanel header="Expand me!">
+    <ExpandablePanel
+      header="Expand me!"
+      onClick={(isExpanded: boolean) => console.log("I am expanded: ", isExpanded)}
+    >
       <span style={{ padding: "32px", border: "1px solid black" }}>I have been expanded!</span>
     </ExpandablePanel>
   );
@@ -60,7 +63,11 @@ export const DynamicExpandedPanelStory = () => {
 
 export const ExpandablePanelsStory = () => {
   return (
-    <ExpandablePanels>
+    <ExpandablePanels
+      onClick={(index: number, isExpanded: boolean) =>
+        console.log("panel ", index, " is expanded: ", isExpanded)
+      }
+    >
       <ExpandablePanel header="Expand me!">
         <span style={{ padding: "32px", border: "1px solid black" }}>I have been expanded!</span>
       </ExpandablePanel>

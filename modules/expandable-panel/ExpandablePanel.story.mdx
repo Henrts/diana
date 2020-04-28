@@ -90,7 +90,7 @@ Its expanded/collapsed state can either be controlled by the component internall
     </tr>
     <tr>
       <td>onClick (optional)</td>
-      <td>string</td>
+      <td>(isExpanded: boolean) => void</td>
       <td>
         Callback that can provide custom behaviour when header is clicked.
         <br />
@@ -277,7 +277,7 @@ This component also passes other props to its children, e.g. `onClick` or `disab
     </tr>
     <tr>
       <td>onClick</td>
-      <td>(expandedPanelIndex: number) => void</td>
+      <td>(expandedPanelIndex: number, isExpanded: boolean) => void</td>
       <td>Callback that can provide custom behaviour when one of the panels is clicked</td>
     </tr>
   </tbody>

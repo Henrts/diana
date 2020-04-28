@@ -13,7 +13,7 @@ export interface IProps extends StandardProps<"div"> {
   expanded?: boolean;
   header?: string | ((visible: boolean) => React.ReactNode);
   initialExpanded?: boolean;
-  onClick?: () => void;
+  onClick?: (isExpanded: boolean) => void;
 }
 
 const stylesheet: ThemeStyleSheetFactory = (theme: Theme) => ({
@@ -195,7 +195,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
     }
 
     // eslint-disable-next-line mdx/no-unused-expressions
-    onClick?.();
+    onClick?.(!isExpanded);
   }, [disabled, expanded, handleCollapse, isExpanded, onClick]);
 
   const stateClasses = useMemo(() => {

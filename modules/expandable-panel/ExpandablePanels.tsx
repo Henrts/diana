@@ -8,7 +8,7 @@ export interface IProps extends StandardProps<"div"> {
   children: JSX.Element[];
   disabled?: boolean;
   initialExpandedPanelIndex?: number;
-  onClick?: (expandedPanelIndex: number) => void;
+  onClick?: (expandedPanelIndex: number, isExpanded: boolean) => void;
 }
 
 const stylesheet: ThemeStyleSheetFactory = () => ({
@@ -29,7 +29,7 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
     initialExpandedPanelIndex === undefined ? -1 : initialExpandedPanelIndex
   );
 
-  const handleClick = (index: number) => {
+  const handleClick = (index: number, isExpanded: boolean) => {
     if (disabled) {
       return;
     }
@@ -40,7 +40,7 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
     }
 
     // eslint-disable-next-line mdx/no-unused-expressions
-    onClick?.(index);
+    onClick?.(index, isExpanded);
   };
 
   return (
@@ -54,7 +54,7 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
           initialExpanded: allowMultipleExpandedPanels
             ? initialExpandedPanelIndex === index || child.props.initialExpanded
             : initialExpandedPanelIndex === index,
-          onClick: () => handleClick(index)
+          onClick: (isExpanded: boolean) => handleClick(index, isExpanded)
         })
       )}
     </div>
