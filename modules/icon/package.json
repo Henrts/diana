@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/icon",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
