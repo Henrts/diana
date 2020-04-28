@@ -8,12 +8,9 @@ import BaseMultipleDropdown, {
 } from "./BaseMultipleDropdown";
 import { IItem } from "./Dropdown";
 
-export interface IFilterMultipleDropDownProps<T extends IItem>
-  extends IMultipleProps<T> {}
+export interface IFilterMultipleDropDownProps<T extends IItem> extends IMultipleProps<T> {}
 
-const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(
-  multipleStylesheet
-);
+const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(multipleStylesheet);
 
 const FilterMultipleDropdown: React.FC<
   IFilterMultipleDropDownProps<IItem> & WithStylesProps & IRenderItem<IItem>

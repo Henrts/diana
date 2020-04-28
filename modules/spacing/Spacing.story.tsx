@@ -101,12 +101,8 @@ const SquishSpacingDiv: React.FC<IProps> = ({ margin, children }) => {
         height: 80 - numSpacTop * 2
       }}
     >
-      <div className="spacing-spec-top spacing-spec">
-        {numSpacTop.toFixed(0)}
-      </div>
-      <div className="spacing-spec-left spacing-spec">
-        {numSpacLeft.toFixed(0)}
-      </div>
+      <div className="spacing-spec-top spacing-spec">{numSpacTop.toFixed(0)}</div>
+      <div className="spacing-spec-left spacing-spec">{numSpacLeft.toFixed(0)}</div>
       <div className="spacing-inside">{children}</div>
     </div>
   );

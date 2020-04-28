@@ -1,9 +1,5 @@
 import React, { useMemo } from "react";
-import {
-  StandardProps,
-  ThemeStyleSheetFactory,
-  WithStylesProps
-} from "@diana-ui/types";
+import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { withStyles, useTheme } from "@diana-ui/base";
 import { defaultIcons } from "@diana-ui/tokens";
 

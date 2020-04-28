@@ -8,8 +8,7 @@ export interface IItem {
   text: string;
 }
 
-export interface IProps<T extends IItem>
-  extends PropsWithChildren<IPopoverProps> {
+export interface IProps<T extends IItem> extends PropsWithChildren<IPopoverProps> {
   items: T[];
   label?: string;
   text?: string;
@@ -20,29 +19,27 @@ export interface IRenderItem<T extends IItem> {
   renderItem?: (item: T, selected: boolean, index?: number) => React.ReactNode;
 }
 
-export interface ISingleProps<T extends IItem>
-  extends IProps<T>,
-    IRenderItem<T> {
+export interface ISingleProps<T extends IItem> extends IProps<T>, IRenderItem<T> {
   onItemSelected: (item: T) => void;
   selectedItem?: T;
 }
 
 export const styleSheet: ThemeStyleSheetFactory = () => ({
   header: {
-    padding: "10px 0",
+    padding: "10px 0"
   },
   item: {
-    cursor: "pointer",
+    cursor: "pointer"
   },
   itemSelected: {},
   itemText: {
     display: "block",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
+    whiteSpace: "nowrap"
   },
   label: {
-    padding: "10px 0",
+    padding: "10px 0"
   },
   list: {
     listStyle: "none",
@@ -51,24 +48,24 @@ export const styleSheet: ThemeStyleSheetFactory = () => ({
     maxHeight: 300,
     overflowY: "auto",
     paddingLeft: 0,
-    width: "100%",
+    width: "100%"
   },
   text: {
     overflow: "hidden",
     textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
+    whiteSpace: "nowrap"
   },
   wrapper: {
     display: "flex",
-    alignItems: "flex-start",
-  },
+    alignItems: "flex-start"
+  }
 });
 
 export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
   container: {
     maxWidth: "100%",
-    minWidth: 220,
-  },
+    minWidth: 220
+  }
 });
 
 const StyledPopover = Popover.extendStyles(styleSheetPopover);
@@ -76,16 +73,14 @@ const StyledPopover = Popover.extendStyles(styleSheetPopover);
 export const DropdownHeader: React.FC<{ text?: string } & WithStylesProps> = ({
   text,
   cx,
-  styles,
+  styles
 }) => (
   <div className={cx(styles.header)}>
     <div className={cx(styles.text)}>{text}</div>
   </div>
 );
 
-const BaseDropdown: React.FC<PropsWithChildren<
-  ISingleProps<IItem> & WithStylesProps
->> = (props) => {
+const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesProps>> = props => {
   const {
     className,
     disabled,
@@ -99,7 +94,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
     text,
     renderItem,
     renderHeader,
-    wrappedRef,
+    wrappedRef
   } = props;
   const ref = usePopoverRef(wrappedRef);
 
@@ -131,10 +126,7 @@ const BaseDropdown: React.FC<PropsWithChildren<
         <ul className={cx(styles.list, "list")}>
           {items.map((item, index) => (
             <li
-              className={cx(
-                styles.item,
-                selectedItem?.id === item.id ? styles.itemSelected : {}
-              )}
+              className={cx(styles.item, selectedItem?.id === item.id ? styles.itemSelected : {})}
               key={item.id}
               onClick={() => {
                 onItemSelected(item);
@@ -157,7 +149,5 @@ const BaseDropdown: React.FC<PropsWithChildren<
 
 BaseDropdown.displayName = "Dropdown";
 
-export const Dropdown = withStyles(styleSheet, { register: true })(
-  BaseDropdown
-);
+export const Dropdown = withStyles(styleSheet, { register: true })(BaseDropdown);
 export default Dropdown;

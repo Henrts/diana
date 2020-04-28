@@ -22,11 +22,7 @@ export const PopoverHoverStory = () => {
   const ref = useRef<IPopoverRef>(null);
 
   return (
-    <Popover
-      renderHeader={() => <span>Hover</span>}
-      showOnHover
-      wrappedRef={ref}
-    >
+    <Popover renderHeader={() => <span>Hover</span>} showOnHover wrappedRef={ref}>
       <span
         style={{
           padding: "16px",
@@ -51,10 +47,7 @@ export const PopoverDirectionsStory = () => {
         flexDirection: "column"
       }}
     >
-      <Popover
-        renderHeader={() => <button>Toggle Bottom</button>}
-        wrappedRef={ref}
-      >
+      <Popover renderHeader={() => <button>Toggle Bottom</button>} wrappedRef={ref}>
         <span
           style={{
             padding: "16px",
@@ -101,11 +94,7 @@ export const PopoverDirectionsStory = () => {
       </Popover>
       <br />
       <br />
-      <Popover
-        renderHeader={() => <button>Toggle Top</button>}
-        wrappedRef={ref}
-        direction={"top"}
-      >
+      <Popover renderHeader={() => <button>Toggle Top</button>} wrappedRef={ref} direction={"top"}>
         <span
           style={{
             padding: "16px",

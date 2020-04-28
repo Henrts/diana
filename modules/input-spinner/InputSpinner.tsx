@@ -1,9 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  ThemeStyleSheetFactory,
-  StandardProps,
-  WithStylesProps
-} from "@diana-ui/types";
+import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { ButtonText } from "@diana-ui/typography";
 
@@ -76,16 +72,8 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   const [_value, setValue] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
 
-  const containerStyle = cx(
-    "input-spinner-container",
-    styles.container,
-    className
-  );
-  const buttonStyle = cx(
-    "input-spinner-button",
-    styles.button,
-    disabled && "disabled"
-  );
+  const containerStyle = cx("input-spinner-container", styles.container, className);
+  const buttonStyle = cx("input-spinner-button", styles.button, disabled && "disabled");
   const valueStyle = cx(
     "input-spinner-value",
     styles.value,

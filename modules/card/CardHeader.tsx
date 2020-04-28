@@ -1,10 +1,6 @@
 import React, { useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
-import {
-  StandardProps,
-  ThemeStyleSheetFactory,
-  WithStylesProps
-} from "@diana-ui/types";
+import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { LabelMedium, SectionTitle, Body } from "@diana-ui/typography";
 import { Icon } from "@diana-ui/icon";
 

@@ -28,12 +28,8 @@ const items = [
 ];
 
 const StyledDropdown = Dropdown.extendStyles(stylesheet);
-const StyledSimpleMultipleDropdown = SimpleMultipleDropdown.extendStyles(
-  stylesheet
-);
-const StyledFilterMultipleDropdown = FilterMultipleDropdown.extendStyles(
-  stylesheet
-);
+const StyledSimpleMultipleDropdown = SimpleMultipleDropdown.extendStyles(stylesheet);
+const StyledFilterMultipleDropdown = FilterMultipleDropdown.extendStyles(stylesheet);
 
 export const DropdownStory = () => {
   const [selectedItem, selectItem] = useState<IItem>();

@@ -15,11 +15,7 @@ export const IconGallery: React.FC = () => {
       if (!searchString || searchString.length === 0) {
         setIcons(Object.keys(theme.icons));
       } else {
-        setIcons(
-          Object.keys(theme.icons).filter((f: string) =>
-            f.includes(searchString)
-          )
-        );
+        setIcons(Object.keys(theme.icons).filter((f: string) => f.includes(searchString)));
       }
     }
   }, [theme.icons, searchString]);
@@ -27,10 +23,7 @@ export const IconGallery: React.FC = () => {
   return (
     icons && (
       <>
-        <TextInput
-          label="Search Icons"
-          onChange={e => setSearchString(e.target.value)}
-        />
+        <TextInput label="Search Icons" onChange={e => setSearchString(e.target.value)} />
         <div className="icon-gallery">
           {icons.map((d: string) => (
             <div className="icon-container" key={d as IconNames}>

@@ -35,10 +35,7 @@ export const TopPortalStory = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div
-        style={{ display: "inline-block", backgroundColor: "burlywood" }}
-        ref={divRef}
-      >
+      <div style={{ display: "inline-block", backgroundColor: "burlywood" }} ref={divRef}>
         Parent component
         <Portal parentRef={divRef} direction="top">
           Top aligned
@@ -53,10 +50,7 @@ export const RightPortalStory = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div
-        style={{ display: "inline-block", backgroundColor: "burlywood" }}
-        ref={divRef}
-      >
+      <div style={{ display: "inline-block", backgroundColor: "burlywood" }} ref={divRef}>
         Parent component
         <Portal parentRef={divRef} direction="right">
           Right aligned
@@ -71,10 +65,7 @@ export const LeftPortalStory = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div
-        style={{ display: "inline-block", backgroundColor: "burlywood" }}
-        ref={divRef}
-      >
+      <div style={{ display: "inline-block", backgroundColor: "burlywood" }} ref={divRef}>
         Parent component
         <Portal parentRef={divRef} direction="left">
           Left aligned
@@ -89,10 +80,7 @@ export const CenteredPortalStory = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div
-        style={{ display: "inline-block", backgroundColor: "burlywood" }}
-        ref={divRef}
-      >
+      <div style={{ display: "inline-block", backgroundColor: "burlywood" }} ref={divRef}>
         Parent component
         <Portal parentRef={divRef} centered>
           centered
@@ -107,10 +95,7 @@ export const BottomRightPortalStory = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div
-        style={{ display: "inline-block", backgroundColor: "burlywood" }}
-        ref={divRef}
-      >
+      <div style={{ display: "inline-block", backgroundColor: "burlywood" }} ref={divRef}>
         Parent component
         <Portal parentRef={divRef} direction="bottom-right">
           Bottom right text aligned
@@ -125,10 +110,7 @@ export const TopRightPortalStory = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <div
-        style={{ display: "inline-block", backgroundColor: "burlywood" }}
-        ref={divRef}
-      >
+      <div style={{ display: "inline-block", backgroundColor: "burlywood" }} ref={divRef}>
         Parent component
         <Portal parentRef={divRef} direction="top-right">
           top right text aligned

@@ -80,9 +80,7 @@ const Infoicon: React.FC<IProps> = ({
       <StyledAvatar {...avatarOptions} />
       <div className={cx(styles.text, vertical && "vertical")}>
         {title && typeof title === "string" ? (
-          <DescriptionMedium
-            className={cx(styles.title, vertical && "vertical")}
-          >
+          <DescriptionMedium className={cx(styles.title, vertical && "vertical")}>
             {title}
           </DescriptionMedium>
         ) : (

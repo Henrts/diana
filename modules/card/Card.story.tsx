@@ -37,10 +37,7 @@ export const CardHeaderStory = () => {
 export const CardHeaderSubtitleStory = () => {
   return (
     <StyledCard>
-      <StyledCardHeader
-        title="Card with subtitle"
-        subtitle="This is the subtitle"
-      />
+      <StyledCardHeader title="Card with subtitle" subtitle="This is the subtitle" />
     </StyledCard>
   );
 };

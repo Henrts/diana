@@ -1,10 +1,6 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { ButtonText } from "@diana-ui/typography";
 
 export interface IProps extends StandardProps<"button"> {
@@ -50,9 +46,7 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
       ref={wrappedRef}
     >
       {renderLeftIcon && renderLeftIcon()}
-      {children && (
-        <ButtonText className={cx(styles.buttonText)}>{children}</ButtonText>
-      )}
+      {children && <ButtonText className={cx(styles.buttonText)}>{children}</ButtonText>}
       {renderRightIcon && renderRightIcon()}
     </button>
   );

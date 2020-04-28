@@ -31,11 +31,9 @@ const styleSheet = theme => ({
     margin: 16
   }
 });
-const ExampleComponent: React.FC<WithStylesProps> = ({
-  cx,
-  styles,
-  children
-}) => <div className={cx(styles.exampleStyle)}>{children}</div>;
+const ExampleComponent: React.FC<WithStylesProps> = ({ cx, styles, children }) => (
+  <div className={cx(styles.exampleStyle)}>{children}</div>
+);
 export default withStyles(styleSheet)(ExampleComponent);
 ```
 

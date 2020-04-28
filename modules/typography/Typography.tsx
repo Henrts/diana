@@ -41,11 +41,7 @@ const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
   }
 });
 
-export const PageTitle: React.FC<IPropsTitle> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const PageTitle: React.FC<IPropsTitle> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <h1 className={cx(styles.pageTitle, className)} {...props}>
@@ -54,11 +50,7 @@ export const PageTitle: React.FC<IPropsTitle> = ({
   );
 };
 
-export const Subtitle: React.FC<IPropsTitle> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const Subtitle: React.FC<IPropsTitle> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <h2 className={cx(styles.subtitle, className)} {...props}>
@@ -67,11 +59,7 @@ export const Subtitle: React.FC<IPropsTitle> = ({
   );
 };
 
-export const SectionTitle: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const SectionTitle: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.sectionTitle, className)} {...props}>
@@ -80,11 +68,7 @@ export const SectionTitle: React.FC<IProps> = ({
   );
 };
 
-export const ButtonText: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const ButtonText: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.buttonText, className)} {...props}>
@@ -93,11 +77,7 @@ export const ButtonText: React.FC<IProps> = ({
   );
 };
 
-export const BodyHighlight: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const BodyHighlight: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.bodyHighlight, className)} {...props}>
@@ -115,11 +95,7 @@ export const Body: React.FC<IProps> = ({ children, className, ...props }) => {
   );
 };
 
-export const DescriptionMedium: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const DescriptionMedium: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.descriptionMedium, className)} {...props}>
@@ -128,11 +104,7 @@ export const DescriptionMedium: React.FC<IProps> = ({
   );
 };
 
-export const Description: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const Description: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.description, className)} {...props}>
@@ -141,11 +113,7 @@ export const Description: React.FC<IProps> = ({
   );
 };
 
-export const LabelMedium: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const LabelMedium: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.labelMedium, className)} {...props}>
@@ -163,11 +131,7 @@ export const Label: React.FC<IProps> = ({ children, className, ...props }) => {
   );
 };
 
-export const NotificationsNumbers: React.FC<IProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+export const NotificationsNumbers: React.FC<IProps> = ({ children, className, ...props }) => {
   const [styles, cx] = useStyles(styleSheet);
   return (
     <span className={cx(styles.notificationsNumbers, className)} {...props}>

@@ -1,14 +1,5 @@
-import React, {
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useState
-} from "react";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import React, { useCallback, useEffect, useImperativeHandle, useState } from "react";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 
 export interface IRadioGroupGroupRef {
@@ -68,12 +59,9 @@ const RadioGroup: React.FC<IProps & WithStylesProps> = ({
     [onValueSelect, selectedValue]
   );
 
-  useImperativeHandle<IRadioGroupGroupRef, IRadioGroupGroupRef>(
-    wrappedRef,
-    () => ({
-      setSelectedValue: newValue => setSelected(newValue)
-    })
-  );
+  useImperativeHandle<IRadioGroupGroupRef, IRadioGroupGroupRef>(wrappedRef, () => ({
+    setSelectedValue: newValue => setSelected(newValue)
+  }));
 
   return (
     <div className={cx(styles.radioGroup, className)}>

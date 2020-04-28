@@ -1,11 +1,7 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useCallback } from "react";
 import uuid from "uuid";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { SectionTitle } from "@diana-ui/typography";
 import { Icon, IconNames } from "@diana-ui/icon";
@@ -68,10 +64,11 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
   const handleMouseOver = () => onMouseOver?.(id);
   const handleMouseOut = () => onMouseOut?.(id);
 
-  const renderText = useCallback(
-    () => <span className={cx(styles.text)}>{children}</span>,
-    [children, cx, styles.text]
-  );
+  const renderText = useCallback(() => <span className={cx(styles.text)}>{children}</span>, [
+    children,
+    cx,
+    styles.text
+  ]);
 
   return (
     <div
@@ -79,9 +76,7 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      {title && (
-        <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>
-      )}
+      {title && <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>}
       {icon ? (
         <div className={cx(textWithIconStyles)}>
           <Icon className={cx(styles.icon)} name={icon} />

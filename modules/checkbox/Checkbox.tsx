@@ -7,11 +7,7 @@ import React, {
   useState
 } from "react";
 import { withStyles } from "@diana-ui/base";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 
 export interface ICheckboxRef {
@@ -109,11 +105,7 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
   const { disabled, name } = props;
   const [checkedState, setCheckedState] = useState(!!checked);
 
-  const containerStyle = cx(
-    styles.container,
-    disabled && "disabled",
-    className
-  );
+  const containerStyle = cx(styles.container, disabled && "disabled", className);
   const iconContainerStyle = cx(
     styles.iconContainer,
     "icon-container",

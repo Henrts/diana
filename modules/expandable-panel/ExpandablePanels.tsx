@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { withStyles } from "@diana-ui/base";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 
 // @ts-ignore
 export interface IProps extends StandardProps<"div"> {

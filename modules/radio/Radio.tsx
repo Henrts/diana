@@ -1,10 +1,6 @@
 import React, { useCallback, useMemo, ReactElement } from "react";
 import uuid from "uuid/v4";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { Body } from "@diana-ui/typography";
 

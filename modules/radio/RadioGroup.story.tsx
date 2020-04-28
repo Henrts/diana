@@ -9,11 +9,7 @@ interface IProps {
   selectedValue?: string;
 }
 
-const RadioGroupExample: React.FC<IProps> = ({
-  name,
-  selectedValue,
-  ...props
-}) => {
+const RadioGroupExample: React.FC<IProps> = ({ name, selectedValue, ...props }) => {
   const [selected, setSelected] = useState(selectedValue);
 
   return (

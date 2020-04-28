@@ -13,8 +13,15 @@ export interface IProps extends ISingleDropdownProps<IDropdownItem> {
 const defaultFilter = (option: IDropdownItem, text: string) =>
   option.text.toLowerCase().includes(text.toLowerCase());
 
-const InputStylesheet: ThemeStyleSheetFactory = () => ({
+const InputStylesheet: ThemeStyleSheetFactory = theme => ({
   chipInput: { pointerEvents: "all" },
+  input: { width: "100%" },
+  fieldset: { margin: 0 },
+  helperLabel: {
+    position: "absolute",
+    paddingTop: theme.spaceUnit.xxs,
+    zIndex: 0
+  }
 });
 
 const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
@@ -28,7 +35,7 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
 
   const filteredItems = useMemo(
     () =>
-      items.filter((item) => {
+      items.filter(item => {
         if (!text) {
           return true;
         }
@@ -39,24 +46,22 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
   );
 
   const Dropdown = useRegistry<ISingleDropdownProps<IDropdownItem>>("Dropdown");
-  const ChipInput = useRegistryWithStyles<IChipInputProps>(
-    "ChipInput",
-    InputStylesheet
-  );
+  const ChipInput = useRegistryWithStyles<IChipInputProps>("ChipInput", InputStylesheet);
   const chips = useMemo(() => (value ? [value] : []), [value]);
   const renderInput = useCallback(() => {
     return (
       <ChipInput
         {...inputProps}
         singleChip
+        error="AASADA"
         chips={chips}
         value={text}
-        onChange={(event) => {
+        onChange={event => {
           setText(event.target.value);
         }}
-        onChangeChips={(newChips) => {
+        onChangeChips={newChips => {
           const newChip = newChips[0];
-          const item = filteredItems.find((i) => i.text === newChip);
+          const item = filteredItems.find(i => i.text === newChip);
           setValue(item?.text);
           setText("");
         }}

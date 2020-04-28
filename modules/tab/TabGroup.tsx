@@ -1,14 +1,5 @@
-import React, {
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useState
-} from "react";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import React, { useCallback, useEffect, useImperativeHandle, useState } from "react";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 
 export interface ITabGroupRef {
@@ -82,9 +73,7 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
           })
         )}
       </ul>
-      <section className={cx(styles.tabPanel)}>
-        {children[selected].props.children}
-      </section>
+      <section className={cx(styles.tabPanel)}>{children[selected].props.children}</section>
     </>
   );
 };

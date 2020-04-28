@@ -77,10 +77,7 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
         className={cx(styles.iconWrapper, disabled && styles.disabledIcon)}
         onClick={() => onLockChangeInternal(!isLocked)}
       >
-        <Icon
-          className={cx(styles.icon, disabled && "disabled")}
-          name={icon as any}
-        />
+        <Icon className={cx(styles.icon, disabled && "disabled")} name={icon as any} />
       </div>
     </div>
   );

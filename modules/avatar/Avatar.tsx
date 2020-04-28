@@ -45,21 +45,13 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps & IAvatarProps>> = ({
 }) => {
   return (
     <div
-      className={cx(
-        selected && "selected",
-        styles.wrapper,
-        styles[size],
-        wrapperClassName
-      )}
+      className={cx(selected && "selected", styles.wrapper, styles[size], wrapperClassName)}
       style={{
         backgroundColor,
         borderColor: borderColor || backgroundColor
       }}
     >
-      {(typeof children === "string" && (
-        <BodyHighlight>{children}</BodyHighlight>
-      )) ||
-        children}
+      {(typeof children === "string" && <BodyHighlight>{children}</BodyHighlight>) || children}
     </div>
   );
 };

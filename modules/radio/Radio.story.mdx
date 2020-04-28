@@ -29,11 +29,7 @@ Where multiple controls exist, radio buttons allow one to be selected out of the
 
 <Preview>
   <Story name="Radio with selected value">
-    <Radio
-      value="radio2"
-      label="Example selected radio"
-      selectedValue="radio2"
-    />
+    <Radio value="radio2" label="Example selected radio" selectedValue="radio2" />
   </Story>
 </Preview>
 
@@ -106,21 +102,10 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
 
   return (
     <StyledRadio selectedValue={selectedValue} {...props}>
-      <svg
-        width="20px"
-        height="20px"
-        viewBox="0 0 20 20"
-        className={cx(styles.svg)}
-      >
+      <svg width="20px" height="20px" viewBox="0 0 20 20" className={cx(styles.svg)}>
         <circle cx="10" cy="10" r="9" className={cx(styles.circle)}></circle>
-        <path
-          d="..."
-          className={cx("inner", styles.innerPath, selectedValue && "checked")}
-        ></path>
-        <path
-          d="..."
-          className={cx("outer", styles.outerPath, selectedValue && "checked")}
-        ></path>
+        <path d="..." className={cx("inner", styles.innerPath, selectedValue && "checked")}></path>
+        <path d="..." className={cx("outer", styles.outerPath, selectedValue && "checked")}></path>
       </svg>
     </StyledRadio>
   );
@@ -129,11 +114,7 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
 
 <Preview>
   <Story name="Custom selected radio">
-    <CustomRadio
-      value="radio5"
-      label="Example selected custom radio"
-      selectedValue={"radio5"}
-    />
+    <CustomRadio value="radio5" label="Example selected custom radio" selectedValue={"radio5"} />
   </Story>
   <Story name="Custom radio">
     <CustomRadio value="radio6" label="Example custom radio" />
@@ -175,30 +156,28 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
       <td>name</td>
       <td>string</td>
       <td>
-        This prop is used to group a set of radio buttons that share the same
-        name prop.
+        This prop is used to group a set of radio buttons that share the same name prop.
         <br />
-        This prop should not be passed manually, as it is injected by the radio
-        button's <i>RadioGroup</i>.
+        This prop should not be passed manually, as it is injected by the radio button's{" "}
+        <i>RadioGroup</i>.
       </td>
     </tr>
     <tr>
       <td>selectedValue (optional)</td>
       <td>string</td>
       <td>
-        The radio button compares <i>selectedValue</i> to its own value to
-        determine whether it is selected.
+        The radio button compares <i>selectedValue</i> to its own value to determine whether it is
+        selected.
         <br />
-        This prop should not be passed manually, as it is injected by the radio
-        button's <i>RadioGroup</i>.
+        This prop should not be passed manually, as it is injected by the radio button's{" "}
+        <i>RadioGroup</i>.
       </td>
     </tr>
     <tr>
       <td>value</td>
       <td>string</td>
       <td>
-        This <i>value</i> is used to determine whether the radio button is
-        selected.
+        This <i>value</i> is used to determine whether the radio button is selected.
       </td>
     </tr>
     <tr>
@@ -234,40 +213,37 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
       <td></td>
       <td>:hover</td>
       <td>
-        This style affects the radio button's <i>input</i> element when the user
-        hovers over the button
+        This style affects the radio button's <i>input</i> element when the user hovers over the
+        button
       </td>
     </tr>
     <tr>
       <td></td>
       <td>:active</td>
       <td>
-        This style affects the radio button's <i>input</i> element when the
-        button is active (being clicked on)
+        This style affects the radio button's <i>input</i> element when the button is active (being
+        clicked on)
       </td>
     </tr>
     <tr>
       <td></td>
       <td>.checked</td>
       <td>
-        This style affects the radio button's <i>input</i> element when the
-        button is selected
+        This style affects the radio button's <i>input</i> element when the button is selected
       </td>
     </tr>
     <tr>
       <td></td>
       <td>.disabled</td>
       <td>
-        This style affects the radio button's <i>input</i> element when the
-        button is disabled
+        This style affects the radio button's <i>input</i> element when the button is disabled
       </td>
     </tr>
     <tr>
       <td></td>
       <td>.error</td>
       <td>
-        This style affects the radio button's <i>input</i> element when the
-        button has an error
+        This style affects the radio button's <i>input</i> element when the button has an error
       </td>
     </tr>
     <tr>
@@ -281,64 +257,60 @@ const CustomRadio: React.FC<IProps> = ({ selectedValue, ...props }) => {
       <td></td>
       <td>:hover</td>
       <td>
-        This style affects the radio button's <i>label</i> element when the user
-        hovers over the button
+        This style affects the radio button's <i>label</i> element when the user hovers over the
+        button
       </td>
     </tr>
     <tr>
       <td></td>
       <td>:active</td>
       <td>
-        This style affects the radio button's <i>label</i> element when the
-        button is active (being clicked on)
+        This style affects the radio button's <i>label</i> element when the button is active (being
+        clicked on)
       </td>
     </tr>
     <tr>
       <td></td>
       <td>.checked</td>
       <td>
-        This style affects the radio button's <i>label</i> element when the
-        button is selected
+        This style affects the radio button's <i>label</i> element when the button is selected
       </td>
     </tr>
     <tr>
       <td></td>
       <td>.disabled</td>
       <td>
-        This style affects the radio button's <i>label</i> element when the
-        button is disabled
+        This style affects the radio button's <i>label</i> element when the button is disabled
       </td>
     </tr>
     <tr>
       <td></td>
       <td>.error</td>
       <td>
-        This style affects the radio button's <i>label</i> element when the
-        button has an error
+        This style affects the radio button's <i>label</i> element when the button has an error
       </td>
     </tr>
     <tr>
       <td>wrapper</td>
       <td></td>
       <td>
-        This style affects the element that wraps the <i>input</i> and{" "}
-        <i>label</i> elements
+        This style affects the element that wraps the <i>input</i> and <i>label</i> elements
       </td>
     </tr>
     <tr>
       <td></td>
       <td>.disabled</td>
       <td>
-        This style affects the element that wraps the <i>input</i> and{" "}
-        <i>label</i> elements when the button is disabled
+        This style affects the element that wraps the <i>input</i> and <i>label</i> elements when
+        the button is disabled
       </td>
     </tr>
     <tr>
       <td></td>
       <td>.error</td>
       <td>
-        This style affects the element that wraps the <i>input</i> and{" "}
-        <i>label</i> elements when the button has error
+        This style affects the element that wraps the <i>input</i> and <i>label</i> elements when
+        the button has error
       </td>
     </tr>
   </tbody>
@@ -368,10 +340,7 @@ If the `selectedValue` prop is passed, it will be the responsibility of the pare
 
 <Preview>
   <Story name="Radio group with given selected value">
-    <RadioGroup
-      name="selectedRadioExample"
-      initialValue="selectedRadioExample1"
-    >
+    <RadioGroup name="selectedRadioExample" initialValue="selectedRadioExample1">
       <Radio value="selectedRadioExample1" label="Example Radio 1" />
       <Radio value="selectedRadioExample2" label="Example Radio 2" />
       <Radio value="selectedRadioExample3" label="Example Radio 3" />
@@ -418,8 +387,8 @@ If the `selectedValue` prop is passed, it will be the responsibility of the pare
       <td>disabled (optional)</td>
       <td>boolean</td>
       <td>
-        Flag indicating whether user can interact with any radio button that is
-        part of the <i>RadioGroup</i>
+        Flag indicating whether user can interact with any radio button that is part of the{" "}
+        <i>RadioGroup</i>
       </td>
     </tr>
     <tr>
@@ -442,8 +411,7 @@ If the `selectedValue` prop is passed, it will be the responsibility of the pare
       <td>name</td>
       <td>string</td>
       <td>
-        This prop is used to group the set of radio buttons that are part of the{" "}
-        <i>RadioGroup</i>.
+        This prop is used to group the set of radio buttons that are part of the <i>RadioGroup</i>.
         <br />
         This prop will be injected into each radio button.
       </td>
@@ -452,8 +420,8 @@ If the `selectedValue` prop is passed, it will be the responsibility of the pare
       <td>selectedValue (optional)</td>
       <td>string</td>
       <td>
-        This prop contains the value of the selected radio button (it may also
-        be undefined if no option is selected). <br />
+        This prop contains the value of the selected radio button (it may also be undefined if no
+        option is selected). <br />
         This prop will be injected into each radio button.
       </td>
     </tr>
@@ -461,9 +429,8 @@ If the `selectedValue` prop is passed, it will be the responsibility of the pare
       <td>onValueSelect (optional)</td>
       <td>function</td>
       <td>
-        Callback that is passed on to each child <i>Radio</i> and is invoked
-        whenever a radio button inside the <i>RadioGroup</i> is clicked on
-        (given <i> disabled</i> is <i>false</i>).
+        Callback that is passed on to each child <i>Radio</i> and is invoked whenever a radio button
+        inside the <i>RadioGroup</i> is clicked on (given <i> disabled</i> is <i>false</i>).
         <br />
         This callback receives the newly selected value as its only parameter.
       </td>

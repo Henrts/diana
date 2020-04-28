@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { DescriptionMedium } from "@diana-ui/typography";
 import { withStyles } from "@diana-ui/base";
 
@@ -17,7 +13,8 @@ export interface IProps extends StandardProps<"div"> {
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   chip: {
-    padding: theme.spaceUnit.xs,
+    height: theme.spaceUnit.lg,
+    padding: `0 ${theme.spaceUnit.xs}`,
     outlineStyle: "none",
     border: "1px solid",
     borderRadius: "4px",
@@ -67,9 +64,7 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
   return (
     <div className={styleArray} {...props}>
       {renderLeftIcon && renderLeftIcon()}
-      <DescriptionMedium className={cx(styles.text)}>
-        {children}
-      </DescriptionMedium>
+      <DescriptionMedium className={cx(styles.text)}>{children}</DescriptionMedium>
       {renderRightIcon && renderRightIcon()}
     </div>
   );

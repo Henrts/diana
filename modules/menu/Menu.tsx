@@ -43,12 +43,7 @@ const Menu: React.FC<IProps & WithStylesProps> = ({
   const hide = () => ref.current?.hide();
 
   return (
-    <StyledPopover
-      {...props}
-      className={className}
-      wrappedRef={ref}
-      renderHeader={renderHeader}
-    >
+    <StyledPopover {...props} className={className} wrappedRef={ref} renderHeader={renderHeader}>
       <ul className={cx(styles.list, "list")}>
         {React.Children.map(children, (child, index) => {
           return React.cloneElement(child as any, {

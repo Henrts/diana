@@ -1,11 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  StandardProps,
-  WithStylesProps,
-  ThemeStyleSheetFactory
-} from "@diana-ui/types";
+import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import { useRegistryWithStyles } from "@diana-ui/hooks";
+import { useRegistry } from "@diana-ui/hooks";
 import { IProps as ICloseableChipProps } from "./CloseableChip";
 
 export interface IProps<T> extends StandardProps<"div"> {
@@ -28,8 +24,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     ":last-child": {
       marginRight: 0
     }
-  },
-  chip: {}
+  }
 });
 
 function ChipList<T>({
@@ -47,10 +42,7 @@ function ChipList<T>({
 }: IProps<T> & WithStylesProps) {
   const [_list, setList] = useState(list);
   const divRef = useRef<HTMLDivElement>(null);
-  const StyledCloseableChip = useRegistryWithStyles<ICloseableChipProps>(
-    "CloseableChip",
-    () => ({ ...styleSheet, ...parentStylesheet })
-  );
+  const StyledCloseableChip = useRegistry<ICloseableChipProps>("CloseableChip");
 
   useEffect(() => {
     setList(list);
