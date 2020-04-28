@@ -19,7 +19,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     cursor: "pointer",
     outlineStyle: "none",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   },
   danger: {},
   disabled: {},

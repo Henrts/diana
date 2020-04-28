@@ -55,8 +55,8 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   if (fill || color) {
     newProps.fill = fill || color;
   }
-  if (stroke || color) {
-    newProps.stroke = stroke || color;
+  if (stroke) {
+    newProps.stroke = stroke;
   }
   newProps.className = `y-icon ${cx(styles.icon)} ${className || ""}`;
 
