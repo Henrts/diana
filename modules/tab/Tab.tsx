@@ -1,7 +1,7 @@
 import React from "react";
+import { Flipped } from "react-flip-toolkit";
 import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import { Flipped } from "react-flip-toolkit";
 import { SectionTitle } from "@diana-ui/typography";
 
 export interface IProps extends StandardProps<"li"> {
@@ -21,7 +21,6 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     flexDirection: "column",
     position: "relative",
     textAlign: "center",
-    padding: `0 ${theme.spaceUnit.xxs}`,
     margin: `0 ${theme.spaceUnit.xs}`,
     "@selectors": {
       "&:first-child": {
@@ -30,9 +29,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
       "&:last-child": {
         marginRight: 0
       },
-      "&.selected": {
-        // borderBottom: "1px solid black"
-      },
+      "&.selected": {},
       "&.disabled": {
         cursor: "default"
       }
@@ -45,9 +42,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     position: "absolute",
     bottom: 0,
     left: 0,
-    height: 2,
+    height: 1,
     width: "100%",
-    borderRadius: 10,
     backgroundColor: theme.colors.black
   }
 });
