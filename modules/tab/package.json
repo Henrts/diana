@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/tab",
-  "version": "0.1.12",
+  "version": "0.1.16",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -22,7 +22,8 @@
   "dependencies": {
     "@diana-ui/base": "^0.1.12",
     "@diana-ui/types": "^0.1.8",
-    "uuid": "^3.4.0"
+    "@diana-ui/typography": "^0.1.11",
+    "react-flip-toolkit": "^7.0.9"
   },
   "publishConfig": {
     "access": "public"
