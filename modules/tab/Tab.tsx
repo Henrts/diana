@@ -63,7 +63,13 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
     selectedTab,
     index
   ]);
-  const stylesArray = cx(styles.tab, isSelected && "selected", disabled && "disabled", className);
+  const stylesArray = cx(
+    "diana-tab",
+    styles.tab,
+    isSelected && "selected",
+    disabled && "disabled",
+    className
+  );
 
   return (
     <li className={stylesArray} role="menuitem" onClick={handleClick}>

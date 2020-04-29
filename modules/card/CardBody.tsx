@@ -11,7 +11,7 @@ const stylesheet: ThemeStyleSheetFactory = () => ({
 });
 
 const CardBody: React.FC<IProps & WithStylesProps> = ({ className, cx, styles, children }) => {
-  return <div className={cx(styles.body, className)}>{children}</div>;
+  return <div className={cx("diana-card-body", styles.body, className)}>{children}</div>;
 };
 
 export default withStyles(stylesheet)(CardBody);

@@ -78,7 +78,7 @@ const Stepper: React.FC<IProps & WithStylesProps> = ({
   initialActiveStep = 0
 }) => {
   const [_activeStep, setActiveStep] = useState(initialActiveStep);
-  const containerStyle = cx(styles.container, className);
+  const containerStyle = cx("diana-stepper", styles.container, className);
 
   const _steps: boolean[] = useMemo(() => {
     const arraySteps = Array(steps).fill("");

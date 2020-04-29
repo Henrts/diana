@@ -136,7 +136,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={cx(styles.wrapper, className)}>
+    <div className={cx("diana-slider", styles.wrapper, className)}>
       <div className={cx(styles.valueWrapper)}>
         <TextComponent
           style={{ left: leftSpacing, width: `${max}`.length * 20 }}

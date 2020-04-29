@@ -40,7 +40,7 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
 
   return (
     <button
-      className={cx(styles.button, ...styleArray, className)}
+      className={cx("diana-button", styles.button, ...styleArray, className)}
       type="submit"
       {...props}
       ref={wrappedRef}

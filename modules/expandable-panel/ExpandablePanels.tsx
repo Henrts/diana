@@ -44,7 +44,7 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
   };
 
   return (
-    <div className={cx(className, styles.panels)}>
+    <div className={cx("diana-expandable-panels", className, styles.panels)}>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
           disabled: disabled || child.props.disabled,

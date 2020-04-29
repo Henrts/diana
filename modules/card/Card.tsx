@@ -16,7 +16,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
 });
 
 const Card: React.FC<IProps & WithStylesProps> = ({ className, cx, styles, children }) => {
-  return <section className={cx(styles.card, className)}>{children}</section>;
+  return <section className={cx("diana-card", styles.card, className)}>{children}</section>;
 };
 
 export default withStyles(stylesheet)(Card);

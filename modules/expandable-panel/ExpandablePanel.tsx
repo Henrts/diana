@@ -236,7 +236,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
 
   return (
     <div
-      className={cx(className, styles.panel, ...stateClasses)}
+      className={cx("diana-expandable-panel", className, styles.panel, ...stateClasses)}
       style={{ maxHeight: canAnimate ? "initial" : `${headerHeight}px` }}
     >
       {renderHeader()}

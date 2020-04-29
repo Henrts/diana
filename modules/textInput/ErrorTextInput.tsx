@@ -47,7 +47,7 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={className}>
+    <div className={cx("diana-error-textinput", className)}>
       <ExtendedTextInput
         {...props}
         hasError={typeof error === "boolean" ? error : error !== null && error !== undefined}

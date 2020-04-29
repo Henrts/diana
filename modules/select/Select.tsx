@@ -84,6 +84,7 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
 
   return (
     <Dropdown
+      className="diana-select"
       disabled={chips.length > 0}
       items={filteredItems}
       renderHeader={renderInput}

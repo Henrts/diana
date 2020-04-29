@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/input-spinner",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
