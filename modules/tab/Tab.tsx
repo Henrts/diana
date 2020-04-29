@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Flipped } from "react-flip-toolkit";
 import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
@@ -59,16 +59,11 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
   onTabClick = () => {}
 }) => {
   const handleClick = () => !disabled && onTabClick(index);
-  const isSelected = useMemo(
-    () => index !== undefined && selectedTab === index,
-    [selectedTab, index]
-  );
-  const stylesArray = cx(
-    styles.tab,
-    isSelected && "selected",
-    disabled && "disabled",
-    className
-  );
+  const isSelected = useMemo(() => index !== undefined && selectedTab === index, [
+    selectedTab,
+    index
+  ]);
+  const stylesArray = cx(styles.tab, isSelected && "selected", disabled && "disabled", className);
 
   return (
     <li className={stylesArray} role="menuitem" onClick={handleClick}>
