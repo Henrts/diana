@@ -38,7 +38,7 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
   className,
   cx,
   disabled,
-  initialTab = 0,
+  initialTab = disabled ? undefined : 0,
   selectedTab,
   styles,
   wrappedRef,
@@ -86,7 +86,7 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
           )}
         </ul>
         <section className={cx(styles.tabPanel)}>
-          {children[selected].props.children}
+          {selected !== undefined && children[selected].props.children}
         </section>
       </Flipper>
     </>
