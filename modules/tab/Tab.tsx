@@ -71,7 +71,7 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
 
       {isSelected && (
         <Flipped flipId="tab-header-border">
-          <div className={cx(styles.tabBorder)} />
+          <div className={cx(styles.tabBorder, disabled && "disabled")} />
         </Flipped>
       )}
     </li>
