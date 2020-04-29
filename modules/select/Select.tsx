@@ -39,7 +39,7 @@ const InputStylesheet: ThemeStyleSheetFactory = theme => ({
 });
 
 const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
-  const { inputProps, items, selectedItem, onFilter, ...props } = propsT;
+  const { inputProps, items, selectedItem, onFilter, parentStylesheet, ...props } = propsT;
   const [value, setValue] = useState(selectedItem?.text);
   const [text, setText] = useState<string>();
   useEffect(() => {
@@ -60,7 +60,11 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
   );
 
   const Dropdown = useRegistry<ISingleDropdownProps<IDropdownItem>>("Dropdown");
-  const ChipInput = useRegistryWithStyles<IChipInputProps>("ChipInput", InputStylesheet);
+  const BaseChipInput = useRegistryWithStyles<IChipInputProps>("ChipInput", InputStylesheet);
+  const ChipInput = useMemo(
+    () => (parentStylesheet ? BaseChipInput.extendStyles(parentStylesheet) : BaseChipInput),
+    [BaseChipInput, parentStylesheet]
+  );
   const chips = useMemo(() => (value ? [value] : []), [value]);
   const renderInput = useCallback(() => {
     return (

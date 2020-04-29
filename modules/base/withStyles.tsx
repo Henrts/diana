@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import aesthetic from "aesthetic";
 import hoistNonReactStatics from "hoist-non-react-statics";
 import uuid from "uuid/v4";
@@ -54,6 +54,11 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         props.parentStylesheet ? props.parentStylesheet(aesthetic.getTheme()) : {}
       );
 
+      const parentStylesheetMemo = useMemo(() => {
+        return () => mergedStylesheet;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
+
       const [styles, cx] = useStyles(() => mergedStylesheet);
 
       const extraProps: WithStylesProps & {
@@ -67,7 +72,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName.name);
       }
 
-      extraProps.parentStylesheet = () => mergedStylesheet;
+      extraProps.parentStylesheet = parentStylesheetMemo;
       return <WrappedComponent {...props} {...extraProps} />;
     }) as StyledComponent<
       Props &
