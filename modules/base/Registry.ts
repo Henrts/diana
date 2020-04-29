@@ -19,9 +19,7 @@ class ComponentRegistry {
     const component = Registry.get(getParams) as StyledComponent<T>;
     if (!component) {
       // eslint-disable-next-line no-console
-      console.error(
-        `There is no component registered with name ${componentRegistryId}`
-      );
+      console.error(`There is no component registered with name ${componentRegistryId}`);
     }
 
     return component;

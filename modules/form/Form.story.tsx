@@ -32,7 +32,10 @@ export const FormStory: React.FC = () => {
       <Form
         schema={yup.object().shape({
           username: yup.string().required("Username is required"),
-          password: yup.string().required("Password is required").min(12, "Password is too small"),
+          password: yup
+            .string()
+            .required("Password is required")
+            .min(12, "Password is too small"),
           remember: yup.boolean()
         })}
         onSubmit={e => console.log(e)}
