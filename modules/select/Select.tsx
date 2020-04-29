@@ -15,8 +15,22 @@ const defaultFilter = (option: IDropdownItem, text: string) =>
 
 const InputStylesheet: ThemeStyleSheetFactory = theme => ({
   chipInput: { pointerEvents: "all" },
-  input: { width: "100%" },
-  fieldset: { margin: 0 },
+  input: {
+    width: "100%",
+    "@selectors": {
+      ":disabled": {
+        backgroundColor: "unset"
+      }
+    }
+  },
+  fieldset: {
+    margin: 0,
+    "@selectors": {
+      "&.disabled": {
+        backgroundColor: "unset"
+      }
+    }
+  },
   helperLabel: {
     position: "absolute",
     paddingTop: theme.spaceUnit.xxs,
