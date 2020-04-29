@@ -11,7 +11,7 @@ const stylesheet: ThemeStyleSheetFactory = () => ({
 });
 
 const ModalBody: React.FC<IProps & WithStylesProps> = ({ cx, styles, className, children }) => {
-  return <section className={cx(styles.body, className)}>{children}</section>;
+  return <section className={cx("diana-modal-body", styles.body, className)}>{children}</section>;
 };
 
 export default withStyles(stylesheet)(ModalBody);

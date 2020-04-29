@@ -66,7 +66,7 @@ const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={cx(styles.lockWrapper, className)}>
+    <div className={cx("diana-locked-slider", styles.lockWrapper, className)}>
       <Slider
         disabled={isLocked || disabled}
         inputClassName={cx(isLocked && !disabled && "locked")}

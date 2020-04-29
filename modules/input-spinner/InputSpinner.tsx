@@ -72,10 +72,10 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   const [_value, setValue] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
 
-  const containerStyle = cx("input-spinner-container", styles.container, className);
-  const buttonStyle = cx("input-spinner-button", styles.button, disabled && "disabled");
+  const containerStyle = cx("diana-input-spinner", styles.container, className);
+  const buttonStyle = cx("diana-input-spinner-button", styles.button, disabled && "disabled");
   const valueStyle = cx(
-    "input-spinner-value",
+    "diana-input-spinner-value",
     styles.value,
     disabled && "disabled",
     isFocused && "focus"

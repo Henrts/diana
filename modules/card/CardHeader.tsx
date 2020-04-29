@@ -56,7 +56,7 @@ const CardHeader: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <header className={cx(styles.header, className)}>
+    <header className={cx("diana-card-header", styles.header, className)}>
       <div className={cx(styles.titleWrapper)}>
         {renderTitle()}
         {subtitle && <Body className={cx(styles.subtitle)}>{subtitle}</Body>}

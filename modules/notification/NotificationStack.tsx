@@ -41,7 +41,9 @@ const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
   handleMouseOut
 }) => {
   return (
-    <TransitionGroup className={cx(styles.notificationStack, className)}>
+    <TransitionGroup
+      className={cx("diana-notification-stack", styles.notificationStack, className)}
+    >
       {notifications.map((notification: INotification, index) => {
         const { template: Notification } = notification;
 

@@ -55,6 +55,7 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
 }) => {
   const { onClick } = props;
   const styleArray = cx(
+    "diana-chip",
     styles.chip,
     onClick && styles.clickable,
     selected && styles.selected,

@@ -45,7 +45,13 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps & IAvatarProps>> = ({
 }) => {
   return (
     <div
-      className={cx(selected && "selected", styles.wrapper, styles[size], wrapperClassName)}
+      className={cx(
+        "diana-avatar",
+        selected && "selected",
+        styles.wrapper,
+        styles[size],
+        wrapperClassName
+      )}
       style={{
         backgroundColor,
         borderColor: borderColor || backgroundColor

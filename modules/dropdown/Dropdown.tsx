@@ -114,7 +114,7 @@ const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesP
   );
 
   return (
-    <div className={cx(styles.wrapper, className)}>
+    <div className={cx("diana-dropdown", styles.wrapper, className)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
         {...props}

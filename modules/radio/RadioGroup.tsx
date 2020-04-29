@@ -64,7 +64,7 @@ const RadioGroup: React.FC<IProps & WithStylesProps> = ({
   }));
 
   return (
-    <div className={cx(styles.radioGroup, className)}>
+    <div className={cx("diana-radio-group", styles.radioGroup, className)}>
       {React.Children.map(children, child =>
         React.cloneElement(child, {
           disabled: child.props.disabled ?? disabled,

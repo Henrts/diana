@@ -70,7 +70,7 @@ const Form: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   return (
     <form
       {...props}
-      className={cx(styles.form, className)}
+      className={cx("diana-form", styles.form, className)}
       onSubmit={handleSubmit(onSubmitCallback)}
     >
       {React.Children.map(children, (Child: ReactElement) => {

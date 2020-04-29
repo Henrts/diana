@@ -105,7 +105,7 @@ const Checkbox: React.FC<IProps & WithStylesProps> = ({
   const { disabled, name } = props;
   const [checkedState, setCheckedState] = useState(!!checked);
 
-  const containerStyle = cx(styles.container, disabled && "disabled", className);
+  const containerStyle = cx("diana-checkbox", styles.container, disabled && "disabled", className);
   const iconContainerStyle = cx(
     styles.iconContainer,
     "icon-container",

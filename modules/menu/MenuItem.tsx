@@ -31,7 +31,12 @@ const MenuItem: React.FC<IProps & WithStylesProps> = ({
   ...props
 }) => {
   return (
-    <li className={cx(styles.menuItem, className)} role="presentation" {...props} onClick={onClick}>
+    <li
+      className={cx("diana-menu-item", styles.menuItem, className)}
+      role="presentation"
+      {...props}
+      onClick={onClick}
+    >
       {icon && <Icon name={icon} className={cx(styles.icon)} size={16} />}
       <Body>{children}</Body>
     </li>

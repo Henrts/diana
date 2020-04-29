@@ -93,7 +93,7 @@ const Radio: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={cx(styles.wrapper, className)} onClick={handleChange}>
+    <div className={cx("diana-radio", styles.wrapper, className)} onClick={handleChange}>
       <input
         checked={isChecked}
         className={children ? cx({ display: "none" }) : inputStyles}

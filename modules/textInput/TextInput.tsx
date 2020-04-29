@@ -170,6 +170,7 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
   return (
     <fieldset
       className={cx(
+        "diana-textinput",
         styles.fieldset,
         isFocused && "focus",
         hasContent && "active",

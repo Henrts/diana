@@ -72,7 +72,7 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
 
   return (
     <div
-      className={cx(styles.wrapper, className)}
+      className={cx("diana-notification", styles.wrapper, className)}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >

@@ -40,7 +40,7 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   // Building props this way to avoid override svg previous values, only if specified.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const newProps: any = {
-    className: `y-icon ${cx(styles.icon)} ${className || ""}`
+    className: `diana-icon ${cx(styles.icon)} ${className || ""}`
   };
   if (size || width) {
     newProps.width = size || width;
@@ -54,7 +54,7 @@ const Icon: React.FC<IProps & WithStylesProps> = ({
   if (stroke) {
     newProps.stroke = stroke;
   }
-  newProps.className = `y-icon ${cx(styles.icon)} ${className || ""}`;
+  newProps.className = `diana-icon ${cx(styles.icon)} ${className || ""}`;
 
   return <SvgIcon {...props} {...newProps} />;
 };

@@ -68,7 +68,7 @@ function ChipList<T>({
   );
 
   return (
-    <div className={cx(styles.chipList, className)} {...props} ref={divRef}>
+    <div className={cx("diana-chip-list", styles.chipList, className)} {...props} ref={divRef}>
       {_list.map((item: T, i) => (
         <div className={cx(styles.chipContainer)} key={i}>
           <StyledCloseableChip
