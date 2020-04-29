@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { WithStylesProps, Theme, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { withStyles } from "@diana-ui/base";
@@ -37,9 +37,15 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
   error,
   hint,
   className,
+  parentStylesheet,
   ...props
 }) => {
-  const ExtendedTextInput = useRegistryWithStyles<ITextInputProps>("TextInput", stylesheet);
+  const BaseTextInput = useRegistryWithStyles<ITextInputProps>("TextInput", stylesheet);
+  const ExtendedTextInput = useMemo(
+    () => (parentStylesheet ? BaseTextInput.extendStyles(parentStylesheet) : BaseTextInput),
+    [parentStylesheet, BaseTextInput]
+  );
+
   return (
     <div className={className}>
       <ExtendedTextInput

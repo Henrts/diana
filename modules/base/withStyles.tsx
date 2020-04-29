@@ -67,7 +67,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
         extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName.name);
       }
 
-      extraProps.parentStylesheet = styleSheet;
+      extraProps.parentStylesheet = () => mergedStylesheet;
       return <WrappedComponent {...props} {...extraProps} />;
     }) as StyledComponent<
       Props &

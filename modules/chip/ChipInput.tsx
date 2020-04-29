@@ -63,11 +63,15 @@ function ChipInput({
     }),
     [parentStylesheet, singleChip]
   );
+
   const StyledErrorTextInput = useRegistryWithStyles<IErrorTextInputProps>(
     "ErrorTextInput",
     inputStyleSheet
   );
-  const StyledChipList = useRegistryWithStyles<IChipListProps<string>>("ChipList", styleSheet);
+  const StyledChipList = useRegistryWithStyles<IChipListProps<string>>("ChipList", theme => ({
+    ...styleSheet?.(theme),
+    ...parentStylesheet?.(theme)
+  }));
 
   useEffect(() => {
     setInputValue(value?.toString() ?? "");
