@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/tab",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
