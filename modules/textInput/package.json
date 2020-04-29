@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/textinput",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "main": "lib/index.js",
   "module": "module/index.js",
   "license": "MIT",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@diana-ui/base": "^0.1.12",
     "@diana-ui/hooks": "^0.1.17",
-    "@diana-ui/icon": "^0.2.5",
+    "@diana-ui/icon": "^0.2.6",
     "@diana-ui/types": "^0.1.8"
   },
   "publishConfig": {

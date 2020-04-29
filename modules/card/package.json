@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/card",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -17,9 +17,9 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.12",
-    "@diana-ui/button": "^0.1.17",
-    "@diana-ui/divider": "^0.1.14",
-    "@diana-ui/icon": "^0.2.5",
+    "@diana-ui/button": "^0.1.18",
+    "@diana-ui/divider": "^0.1.15",
+    "@diana-ui/icon": "^0.2.6",
     "@diana-ui/types": "^0.1.8",
     "@diana-ui/typography": "^0.1.12"
   },
