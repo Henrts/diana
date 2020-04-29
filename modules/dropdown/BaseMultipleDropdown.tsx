@@ -82,7 +82,7 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<IItem>> = props 
   );
 
   return (
-    <div className={cx(styles.wrapper, className)}>
+    <div className={cx("diana-multiple-dropdown", styles.wrapper, className)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
         wrappedRef={ref}

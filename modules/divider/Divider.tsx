@@ -31,6 +31,7 @@ const Divider: React.FC<IProps & WithStylesProps> = ({
   styles
 }) => {
   const dividerStyles = cx(
+    "diana-divider",
     styles.divider,
     orientation === "horizontal" && "horizontal",
     orientation === "vertical" && "vertical",

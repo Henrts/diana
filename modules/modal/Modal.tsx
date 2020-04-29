@@ -56,7 +56,7 @@ const Modal: React.FC<IAllProps> = ({
   return (
     <ReactModal
       isOpen={isOpen}
-      className={cx(styles.content, className)}
+      className={cx("diana-modal", styles.content, className)}
       overlayClassName={cx(styles.overlay)}
       onRequestClose={onClose}
       shouldCloseOnEsc={shouldCloseOnEsc}

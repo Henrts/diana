@@ -92,6 +92,7 @@ const Portal: React.FC<IProps> = ({
     const el = document.createElement("div");
     // keep element width constant in order to prevent it from jumping around
     el.setAttribute("style", "display: flex; position: absolute;");
+    el.className = "diana-portal";
 
     return el;
   }, []);

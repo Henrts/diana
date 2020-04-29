@@ -122,7 +122,7 @@ function ChipInput({
   );
 
   return (
-    <div className={cx(styles.chipInput, className)}>
+    <div className={cx("diana-chip-input", styles.chipInput, className)}>
       <StyledErrorTextInput
         {...props}
         prefixIcon={
@@ -132,7 +132,9 @@ function ChipInput({
               onListChange={handleChange}
               onChipClick={handleChipClick}
             />
-          ) : undefined
+          ) : (
+            undefined
+          )
         }
         disabled={singleChip && !!chips.length}
         className={cx(styles.input)}

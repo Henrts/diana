@@ -130,7 +130,10 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
     : undefined;
 
   return (
-    <div className={cx(styles.container, disabled && styles.disabled, className)} ref={divRef}>
+    <div
+      className={cx("diana-popover", styles.container, disabled && styles.disabled, className)}
+      ref={divRef}
+    >
       <div
         className={cx(styles.headerWrapper, !showOnHover && "clickable")}
         onClick={handleClick}

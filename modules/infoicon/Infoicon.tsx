@@ -71,6 +71,7 @@ const Infoicon: React.FC<IProps> = ({
   return (
     <div
       className={cx(
+        "diana-infoicon",
         styles.infoicon,
         withPadding && styles.withpadding,
         vertical && "vertical",
