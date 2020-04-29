@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/divider",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -20,7 +20,7 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.12",
+    "@diana-ui/base": "^0.1.13",
     "@diana-ui/types": "^0.1.8"
   },
   "publishConfig": {

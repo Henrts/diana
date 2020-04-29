@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/input-spinner",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -17,9 +17,9 @@
     "watch": "npm-watch"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.12",
+    "@diana-ui/base": "^0.1.13",
     "@diana-ui/types": "^0.1.8",
-    "@diana-ui/typography": "^0.1.12"
+    "@diana-ui/typography": "^0.1.13"
   },
   "peerDependencies": {
     "react": "^16.12.0"
