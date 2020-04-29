@@ -22,7 +22,7 @@ The `Tab` component allows the user to navigate to a specific section of the app
 
 <Preview>
   <Story name="Selected tab">
-    <div style={{ width: "45px" }}>
+    <div style={{ width: "60px" }}>
       <Tab label="Tab" index={0} selectedTab={0} />
     </div>
   </Story>
@@ -145,7 +145,16 @@ Aside from the `Tab`s themselves, the `TabGroup` also renders a tab panel. This 
     <TabGroup initialTab={2}>
       <Tab label="Tab 1" />
       <Tab label="Tab 2" />
-      <Tab label="Tab 3" />
+      <Tab label="Tab 3 with text" />
+      <Tab label="Tab 1" />
+      <Tab label="Tab 2" />
+      <Tab label="Tab 3 with text" />
+      <Tab label="Tab 1" />
+      <Tab label="Tab 2" />
+      <Tab label="Tab 3 with text" />
+      <Tab label="Tab 1" />
+      <Tab label="Tab 2" />
+      <Tab label="Tab 3 with text" />
     </TabGroup>
   </Story>
 </Preview>
@@ -162,12 +171,24 @@ Aside from the `Tab`s themselves, the `TabGroup` also renders a tab panel. This 
   </Story>
 </Preview>
 
+### Without animation
+
+<Preview>
+  <Story name="Without animation">
+    <TabGroup animate={false}>
+      <Tab label="Tab 1" />
+      <Tab label="Tab 2" />
+      <Tab label="Tab 3" />
+    </TabGroup>
+  </Story>
+</Preview>
+
 ### TabGroup with section for selected tab's content
 
 <Preview>
   <Story name="TabGroup with section for selected tab content">
-    <TabGroup>
-      <Tab label="Tab 1">Simpe text</Tab>
+    <TabGroup >
+      <Tab label="Tab 1">Simple text</Tab>
       <Tab label="Tab 2">
         <p>A cheeky paragraph</p>
       </Tab>
@@ -234,6 +255,13 @@ The `TabGroup`'s selected tab can alternatively be changed via `ref`, although t
         <i> disabled</i> is <i>false</i>).
         <br />
         This callback receives the newly selected tab's index as its only parameter.
+      </td>
+    </tr>
+    <tr>
+      <td>animate (optional) : default true</td>
+      <td>boolean</td>
+      <td>
+        It will animate the element when selecting a tab
       </td>
     </tr>
   </tbody>

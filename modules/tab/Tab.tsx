@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { Flipped } from "react-flip-toolkit";
 import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
+import { SectionTitle } from "@diana-ui/typography";
 
 export interface IProps extends StandardProps<"li"> {
   disabled?: boolean;
@@ -12,17 +14,37 @@ export interface IProps extends StandardProps<"li"> {
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   tab: {
+    boxSizing: "border-box",
     cursor: "pointer",
     listStyle: "none",
-    marginRight: theme.spaceUnit.md,
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    textAlign: "center",
+    margin: `0 ${theme.spaceUnit.xs}`,
     "@selectors": {
-      "&.selected": {
-        borderBottom: "1px solid black"
+      "&:first-child": {
+        marginLeft: 0
       },
+      "&:last-child": {
+        marginRight: 0
+      },
+      "&.selected": {},
       "&.disabled": {
         cursor: "default"
       }
     }
+  },
+  label: {
+    whiteSpace: "nowrap"
+  },
+  tabBorder: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    height: 1,
+    width: "100%",
+    backgroundColor: theme.colors.black
   }
 });
 
@@ -37,16 +59,21 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
   onTabClick = () => {}
 }) => {
   const handleClick = () => !disabled && onTabClick(index);
-  const stylesArray = cx(
-    styles.tab,
-    index !== undefined && selectedTab === index && "selected",
-    disabled && "disabled",
-    className
-  );
+  const isSelected = useMemo(() => index !== undefined && selectedTab === index, [
+    selectedTab,
+    index
+  ]);
+  const stylesArray = cx(styles.tab, isSelected && "selected", disabled && "disabled", className);
 
   return (
     <li className={stylesArray} role="menuitem" onClick={handleClick}>
-      {label}
+      <SectionTitle className={cx(styles.label)}>{label}</SectionTitle>
+
+      {isSelected && (
+        <Flipped flipId="tab-header-border">
+          <div className={cx(styles.tabBorder)} />
+        </Flipped>
+      )}
     </li>
   );
 };
