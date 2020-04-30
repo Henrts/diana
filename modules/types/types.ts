@@ -7,12 +7,15 @@ import {
   WithStylesOptions as AesWithStylesOptions
 } from "aesthetic-react";
 import {
-  StyleSheetFactory as AesStyleSheetFactory,
   StyleSheet as AesStyleSheet,
   ThemeSheet as AesThemeSheet,
-  StyleName as AesStyleName
+  StyleName as AesStyleName,
+  StyleSheetNeverize as AesStyleSheetNeverize,
+  StyleBlock as AesStyleBlock
 } from "aesthetic";
 import { defaultPalette } from "@diana-ui/tokens";
+
+export { StyleSheetFactory as AesStyleSheetFactory } from "aesthetic";
 
 export enum FontWeight {
   REGULAR = 400,
@@ -23,11 +26,7 @@ export enum FontWeight {
 
 interface IFont {
   fontSize: string | number;
-  fontWeight:
-    | FontWeight.REGULAR
-    | FontWeight.MEDIUM
-    | FontWeight.BOLD
-    | FontWeight.BOLDER;
+  fontWeight: FontWeight.REGULAR | FontWeight.MEDIUM | FontWeight.BOLD | FontWeight.BOLDER;
   lineHeight: string | number;
   fontFamily: string;
   letterSpacing: string;
@@ -46,6 +45,7 @@ export interface IFonts {
   label: IFont;
   labelMedium: IFont;
   notificationsNumbers: IFont;
+  [key: string]: IFont | object;
 }
 export interface ISpaceUnit {
   /**
@@ -57,7 +57,7 @@ export interface ISpaceUnit {
    */
   xs: string;
   /**
-   * 10.(66)px
+   * 12px
    */
   sm: string;
   /**
@@ -76,19 +76,21 @@ export interface ISpaceUnit {
    * 48px
    */
   xxl: string;
+
+  [key: string]: string;
 }
 
 export type Theme = {
   name: string;
-  colors: typeof defaultPalette;
+  colors: typeof defaultPalette & { [key: string]: object | string };
   typography: IFonts;
   icons: {
-    [key: string]: any;
+    [key: string]: object | string;
   };
   fontFamily: string;
   fontSize: string | number;
-  fonts: any;
-  animations?: any;
+  fonts: object;
+  animations?: object;
   spaceUnit: ISpaceUnit;
   spacing: {
     [key: string]: { top: string; left: string };
@@ -102,38 +104,38 @@ export type StyleSheet = AesStyleSheet;
 export type StyleName = AesStyleName;
 
 // eslint-disable-next-line @typescript-eslint/interface-name-prefix
-export interface StyledComponent<Props>
-  extends React.NamedExoticComponent<Props> {
+export interface StyledComponent<Props, T = Theme> extends React.NamedExoticComponent<Props> {
   displayName: string;
   styleName: StyleName;
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   WrappedComponent: React.ComponentType<any>;
-  extendStyles<T>(
+  extendStyles(
     styleSheet: ThemeStyleSheetFactory<T>,
     extendOptions?: Omit<WithStylesOptions, "extendFrom">
-  ): StyledComponent<Props>;
+  ): StyledComponent<Props, T>;
 }
 
 export type WithStylesOptions = AesWithStylesOptions & { register?: boolean };
 
-export type StyleSheetFactory<
-  ThemeSheet = Theme,
-  T = unknown
-> = AesStyleSheetFactory<ThemeSheet, T>;
-export type ThemeStyleSheetFactory<T = unknown> = StyleSheetFactory<Theme, T>;
+export type StyleSheetFactory<ThemeSheet = Theme, T = unknown> = (
+  theme: Theme
+) => StyleSheet & AesStyleSheetNeverize<T>;
+export type ThemeStyleSheetFactory<BaseTheme = Theme, T = unknown> = StyleSheetFactory<
+  BaseTheme,
+  T
+>;
 
-export type WithStylesProps = WithStylesWrappedProps<Theme> &
+export type WithStylesProps<T extends Theme = Theme> = WithStylesWrappedProps<T> &
   WithStylesWrapperProps;
-export type WithThemeProps = WithThemeWrappedProps<Theme> &
+export type WithThemeProps<T extends Theme = Theme> = WithThemeWrappedProps<T> &
   WithThemeWrapperProps;
 
 export type WithStylesWrapperProps = AesWithStylesWrapperProps;
 
-export type StandardProps<
-  C extends keyof JSX.IntrinsicElements
-> = JSX.IntrinsicElements[C] & {
-  // children?: any;
+export type StandardProps<C extends keyof JSX.IntrinsicElements> = JSX.IntrinsicElements[C] & {
   className?: string;
   style?: React.CSSProperties;
   parentStylesheet?: ThemeStyleSheetFactory;
 };
+
+export type StyleBlock = AesStyleBlock | undefined;

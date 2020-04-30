@@ -4,23 +4,34 @@ import hoistNonReactStatics from "hoist-non-react-statics";
 import uuid from "uuid/v4";
 import deepMerge from "extend";
 import {
-  ThemeStyleSheetFactory,
   WithStylesProps,
   WithStylesOptions,
   WithStylesWrapperProps,
   StyledComponent,
-  ThemeSheet
+  ThemeSheet,
+  ThemeStyleSheetFactory,
+  Theme,
+  AesStyleSheetFactory
 } from "@diana-ui/types";
 import useStyles from "./useStyles";
 import ComponentRegistry from "./Registry";
 
+export type ParentStylesheet<Props extends object = {}, StyleSheet = {}> = Props &
+  WithStylesWrapperProps & {
+    parentStylesheet?: StyleSheet;
+  };
+
+export type WithStylesType<T = Theme> = <Props extends object = {}>(
+  WrappedComponent: React.ComponentType<ParentStylesheet<Props, ThemeStyleSheetFactory<T>>>
+) => StyledComponent<ParentStylesheet<Props>, T>;
+
 /**
  * Wrap a React component with an HOC that injects the defined style sheet as a prop.
  */
-function withStyles<Theme = ThemeSheet, T = unknown>(
-  styleSheet: ThemeStyleSheetFactory<T>,
+function withStyles<Theme = ThemeSheet>(
+  styleSheet: ThemeStyleSheetFactory<Theme>,
   options: WithStylesOptions = {}
-) /* infer */ {
+): WithStylesType<Theme> {
   const {
     cxPropName = aesthetic.options.cxPropName,
     extendable = true,
@@ -32,18 +43,16 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
   } = options;
 
   return function withStylesComposer<Props extends object = {}>(
-    WrappedComponent: React.ComponentType<
-      Props & WithStylesProps & { parentStylesheet?: typeof styleSheet }
-    >
-  ): StyledComponent<Props & WithStylesWrapperProps & { parentStylesheet?: typeof styleSheet }> {
+    WrappedComponent: React.ComponentType<ParentStylesheet<Props, typeof styleSheet>>
+  ) {
     const baseName = WrappedComponent.displayName || WrappedComponent.name;
     const styleName = `${baseName}-${uuid()}`;
 
     // We must register earlier so that extending styles works correctly
-    aesthetic.registerStyleSheet(styleName, styleSheet, extendFrom);
+    aesthetic.registerStyleSheet<Theme>(styleName, styleSheet as AesStyleSheetFactory, extendFrom);
 
     const WithStyles = React.memo(function WithStyles(
-      props: Props & WithStylesProps & { parentStylesheet: typeof styleSheet }
+      props: ParentStylesheet<Props, typeof styleSheet>
     ) {
       const themeName: ThemeSheet = aesthetic.getTheme();
       const mergedStylesheet = deepMerge(
@@ -74,12 +83,7 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
 
       extraProps.parentStylesheet = parentStylesheetMemo;
       return <WrappedComponent {...props} {...extraProps} />;
-    }) as StyledComponent<
-      Props &
-        WithStylesWrapperProps & {
-          parentStylesheet?: typeof styleSheet;
-        }
-    >;
+    }) as StyledComponent<ParentStylesheet<Props, typeof styleSheet>, Theme>;
 
     hoistNonReactStatics(WithStyles, WrappedComponent);
 
@@ -90,7 +94,10 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     WithStyles.WrappedComponent = WrappedComponent;
 
     // eslint-disable-next-line @typescript-eslint/unbound-method
-    WithStyles.extendStyles = (customStyleSheet, extendOptions) => {
+    WithStyles.extendStyles = (
+      customStyleSheet: ThemeStyleSheetFactory<Theme>,
+      extendOptions: WithStylesOptions = {}
+    ) => {
       if (!extendable) {
         throw new Error(`${baseName} is not extendable.`);
       }
@@ -110,5 +117,10 @@ function withStyles<Theme = ThemeSheet, T = unknown>(
     return WithStyles;
   };
 }
+
+export const withStylesHOC = <T extends unknown>() => (
+  styleSheet: ThemeStyleSheetFactory<T>,
+  options: WithStylesOptions = {}
+): WithStylesType<T> => withStyles<T>(styleSheet, options);
 
 export default withStyles;

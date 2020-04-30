@@ -1,5 +1,11 @@
 import React from "react";
-import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import {
+  StandardProps,
+  WithStylesProps,
+  Theme,
+  ThemeStyleSheetFactory,
+  StyleBlock
+} from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { Body } from "@diana-ui/typography";
 import { Icon, IconNames } from "@diana-ui/icon";
@@ -9,7 +15,20 @@ export interface IProps extends StandardProps<"li"> {
   onClick?: () => void;
 }
 
-const styleSheet: ThemeStyleSheetFactory = theme => ({
+export interface IMenuItemStyles {
+  /**
+   * Styles the li
+   */
+  menuItem?: StyleBlock;
+  /**
+   * Styles the icon if it has one
+   */
+  icon?: StyleBlock;
+}
+
+type IMenuItemStylesheet<T extends Theme = Theme> = ThemeStyleSheetFactory<T, IMenuItemStyles>;
+
+export const styleSheet: IMenuItemStylesheet = theme => ({
   menuItem: {
     display: "flex",
     alignItems: "center",
@@ -45,4 +64,4 @@ const MenuItem: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-export default withStyles(styleSheet)(MenuItem);
+export default withStyles<Theme>(styleSheet)(MenuItem);

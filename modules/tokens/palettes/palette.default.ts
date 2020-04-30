@@ -27,7 +27,6 @@ export default {
   grey: {
     grey25: "#f6f6f6",
     grey50: "#CCCCCC",
-    grey100: "#808080",
-    greenish: "E5EBE8"
+    grey100: "#808080"
   }
 };

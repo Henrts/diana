@@ -24,7 +24,9 @@ export interface ISingleProps<T extends IItem> extends IProps<T>, IRenderItem<T>
   selectedItem?: T;
 }
 
-export const styleSheet: ThemeStyleSheetFactory = () => ({
+export const styleSheet: ThemeStyleSheetFactory<{
+  cenas: string;
+}> = () => ({
   header: {
     padding: "10px 0"
   },

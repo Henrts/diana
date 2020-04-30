@@ -25,7 +25,8 @@
     "new-package": "ts-node ./scripts/new-package.ts",
     "build:root": "yarn clear:files && tsc -p tsconfig.root.json && copyfiles -f modules/assets/custom.d.ts dist/assets && copyfiles -f modules/assets/icons/* dist/assets/icons",
     "clear:files": "rimraf dist",
-    "generate:icons": "ts-node scripts/update-icons"
+    "generate:icons": "ts-node scripts/update-icons",
+    "generate:styles": "ts-node scripts/generate-styles"
   },
   "lint-staged": {
     "*.{js,jsx,tx,tsx}": [

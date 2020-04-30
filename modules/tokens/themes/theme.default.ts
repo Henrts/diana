@@ -3,7 +3,7 @@ import { defaultIcons } from "../icons";
 import { defaultAnimations } from "../animations";
 import { FontWeight } from "./theme.default.types";
 
-const spaceUnit = 16;
+export const spaceUnit = 16;
 const fontSize = 18;
 const fontFamily = "Arial";
 
@@ -16,9 +16,9 @@ export default {
   animations:defaultAnimations,
   icons: defaultIcons,
   spaceUnit: {
-    xxs: `${spaceUnit / 4}px`,
-    xs: `${spaceUnit / 2}px`,
-    sm: `${spaceUnit / 1.5}px`,
+    xxs: `${spaceUnit * 0.25}px`,
+    xs: `${spaceUnit * 0.5}px`,
+    sm: `${spaceUnit / 0.75}px`,
     md: `${spaceUnit}px`,
     lg: `${spaceUnit * 1.5}px`,
     xl: `${spaceUnit * 2}px`,
