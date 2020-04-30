@@ -12,7 +12,7 @@ export interface IProps extends StandardProps<"ul"> {
   disabled?: boolean;
   initialTab?: number;
   selectedTab?: number;
-  onTabClick?: (id: string) => void;
+  onTabClick?: (id: string | number) => void;
   animate?: boolean;
 }
 
