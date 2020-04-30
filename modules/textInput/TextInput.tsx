@@ -107,7 +107,7 @@ export interface IProps extends StandardProps<"input"> {
   hasError?: boolean;
   prefixIcon?: string | JSX.Element;
   suffixIcon?: string | JSX.Element;
-  hasFocus?: boolean;
+  focusLabel?: boolean;
 }
 export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   styles,
@@ -115,7 +115,7 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
   cx,
   className,
   hasError,
-  hasFocus,
+  focusLabel,
   label = "",
   onChange,
   disabled,
@@ -124,7 +124,7 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
   parentStylesheet,
   ...props
 }) => {
-  const [isFocused, setIsFocused] = useState(hasFocus ?? false);
+  const [isFocused, setIsFocused] = useState(false);
   const [hasContent, setHasContent] = useState(false);
   const [legendWidth, setLegendWidth] = useState(0);
   const hiddenLabel = useRef<HTMLSpanElement>(null);
@@ -134,10 +134,6 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
     const length = props.value?.toString()?.length || 0;
     setHasContent(length > 0);
   }, [props.value]);
-
-  useEffect(() => {
-    setIsFocused(hasFocus ?? false);
-  }, [hasFocus]);
 
   // observer that keeps track of hidden label width and sets legendWidth accordingly
   const labelResizeObserver = useResizeObserver(
@@ -182,9 +178,9 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
       <legend
         className={cx(
           styles.legend,
-          isFocused && label && "focus",
+          (focusLabel || isFocused) && label && "focus",
           hasContent && label && "active",
-          (isFocused || hasContent) && {
+          (focusLabel || isFocused || hasContent) && {
             width: legendWidth
           },
           disabled && "disabled"
@@ -200,7 +196,7 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
           className={cx(
             styles.label,
             prefixIcon && styles.labelWithPrefix,
-            isFocused && "focus",
+            (focusLabel || isFocused) && "focus",
             hasContent && "active",
             hasError && "error",
             disabled && "disabled"
@@ -226,15 +222,11 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
             setHasContent(e.target.value.length > 0);
           }}
           onBlur={e => {
-            if (hasFocus === undefined) {
-              setIsFocused(false);
-            }
+            setIsFocused(false);
             return props.onBlur?.(e);
           }}
           onFocus={e => {
-            if (hasFocus === undefined) {
-              setIsFocused(true);
-            }
+            setIsFocused(true);
             return props.onFocus?.(e);
           }}
         />

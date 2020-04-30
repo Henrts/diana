@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import Select from "./Select";
-import { ThemeStyleSheetFactory } from "@diana-ui/types";
 import { IDropdownItem } from "@diana-ui/dropdown";
-
-const stylesheet: ThemeStyleSheetFactory = theme => ({});
 
 const items = [
   { id: "1", text: "Option 1" },

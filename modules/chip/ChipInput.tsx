@@ -159,7 +159,7 @@ function ChipInput({
             props.onBlur(e);
           }
         }}
-        hasFocus={focus} // this is needed to keep the label on the top
+        focusLabel={focus} // this is needed to keep the label on the top
         onChange={e => {
           setInputValue(e.target.value);
           if (onChange) {
