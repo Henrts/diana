@@ -87,4 +87,6 @@ function ChipList<T>({
   );
 }
 
+ChipList.displayName = "ChipList";
+
 export default withStyles(styleSheet, { register: true })(ChipList);

@@ -51,4 +51,6 @@ const CloseableChip: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
+CloseableChip.displayName = "CloseableChip";
+
 export default withStyles(styleSheet, { register: true })(CloseableChip);

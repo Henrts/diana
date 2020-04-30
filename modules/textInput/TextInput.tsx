@@ -240,4 +240,7 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
     </fieldset>
   );
 };
+
+TextInput.displayName = "TextInput";
+
 export default withStyles(stylesheet, { register: true })(TextInput);

@@ -74,4 +74,7 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
     </div>
   );
 };
+
+BaseChip.displayName = "BaseChip";
+
 export default withStyles(styleSheet, { register: true })(BaseChip);
