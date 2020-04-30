@@ -9,6 +9,7 @@ export interface IProps extends ISingleDropdownProps<IDropdownItem> {
   onFilter?: (option: IDropdownItem, text: string) => boolean;
   inputProps?: IChipInputProps;
   onTextChange?: (text?: string) => void;
+  onItemSelected: (item?: IDropdownItem) => void;
 }
 
 const defaultFilter = (option: IDropdownItem, text: string) =>
@@ -44,6 +45,7 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
     inputProps,
     items,
     selectedItem,
+    onItemSelected,
     onFilter,
     onTextChange,
     parentStylesheet,
@@ -99,10 +101,19 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
           const item = filteredItems.find(i => i.text === newChip);
           setValue(item?.text);
           setText("");
+          if (!item) {
+            onItemSelected(undefined);
+          }
+        }}
+        onBlur={event => {
+          setText("");
+          if (inputProps?.onBlur) {
+            inputProps.onBlur(event);
+          }
         }}
       />
     );
-  }, [chips, filteredItems, inputProps, text]);
+  }, [chips, filteredItems, inputProps, text, onItemSelected]);
 
   return (
     <Dropdown
@@ -114,7 +125,7 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
       {...props}
       onItemSelected={(item: IDropdownItem) => {
         setValue(item.text);
-        props.onItemSelected(item);
+        onItemSelected(item);
       }}
     />
   );
