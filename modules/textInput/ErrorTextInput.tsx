@@ -64,4 +64,7 @@ export const ErrorTextInput: React.FC<IProps & WithStylesProps> = ({
     </div>
   );
 };
+
+ErrorTextInput.displayName = "ErrorTextInput";
+
 export default withStyles(stylesheet, { register: true })(ErrorTextInput);

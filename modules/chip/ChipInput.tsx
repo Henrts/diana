@@ -172,4 +172,6 @@ function ChipInput({
   );
 }
 
+ChipInput.displayName = "ChipInput";
+
 export default withStyles(styleSheet, { register: true })(ChipInput);
