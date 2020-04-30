@@ -1,6 +1,6 @@
 import React from "react";
 import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
-import { DescriptionMedium } from "@diana-ui/typography";
+import { Body } from "@diana-ui/typography";
 import { withStyles } from "@diana-ui/base";
 
 export interface IProps extends StandardProps<"div"> {
@@ -24,7 +24,11 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     borderColor: theme.colors.grey.grey50,
     justifyContent: "space-between"
   },
-  text: {},
+  text: {
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    overflow: "hidden"
+  },
   selected: {
     backgroundColor: theme.colors.grey.grey100
   },
@@ -65,7 +69,7 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
   return (
     <div className={styleArray} {...props}>
       {renderLeftIcon && renderLeftIcon()}
-      <DescriptionMedium className={cx(styles.text)}>{children}</DescriptionMedium>
+      <Body className={cx(styles.text)}>{children}</Body>
       {renderRightIcon && renderRightIcon()}
     </div>
   );

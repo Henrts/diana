@@ -10,6 +10,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
     height: 38,
     display: "flex",
     padding: "2px 8px",
+    minInlineSize: "auto",
     "@selectors": {
       "&.error": {
         borderColor: theme.colors.alert.alert100

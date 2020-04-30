@@ -8,6 +8,7 @@ import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 export interface IProps extends ISingleDropdownProps<IDropdownItem> {
   onFilter?: (option: IDropdownItem, text: string) => boolean;
   inputProps?: IChipInputProps;
+  onTextChange?: (text?: string) => void;
 }
 
 const defaultFilter = (option: IDropdownItem, text: string) =>
@@ -39,13 +40,27 @@ const InputStylesheet: ThemeStyleSheetFactory = theme => ({
 });
 
 const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
-  const { inputProps, items, selectedItem, onFilter, parentStylesheet, ...props } = propsT;
+  const {
+    inputProps,
+    items,
+    selectedItem,
+    onFilter,
+    onTextChange,
+    parentStylesheet,
+    ...props
+  } = propsT;
   const [value, setValue] = useState(selectedItem?.text);
   const [text, setText] = useState<string>();
   useEffect(() => {
     setValue(selectedItem?.text);
     setText("");
   }, [selectedItem]);
+
+  useEffect(() => {
+    if (onTextChange) {
+      onTextChange(text);
+    }
+  }, [onTextChange, text]);
 
   const filteredItems = useMemo(
     () =>
@@ -75,6 +90,9 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
         value={text}
         onChange={event => {
           setText(event.target.value);
+          if (inputProps?.onChange) {
+            inputProps.onChange(event);
+          }
         }}
         onChangeChips={newChips => {
           const newChip = newChips[0];
