@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  WithStylesWrappedProps,
+  WithStylesWrappedProps as AesWithStylesWrappedProps,
   WithThemeWrappedProps,
   WithThemeWrapperProps,
   WithStylesWrapperProps as AesWithStylesWrapperProps,
@@ -125,7 +125,20 @@ export type ThemeStyleSheetFactory<BaseTheme = Theme, T = unknown> = StyleSheetF
   T
 >;
 
-export type WithStylesProps<T extends Theme = Theme> = WithStylesWrappedProps<T> &
+export interface ICustomWithStylesWrappedProps<OwnStyles = {}> {
+  styles?: OwnStyles;
+}
+
+export type WithStylesWrappedProps<T = Theme, OwnStyles = {}> = Extract<
+  AesWithStylesWrappedProps<T>,
+  ICustomWithStylesWrappedProps
+> &
+  ICustomWithStylesWrappedProps<OwnStyles>;
+
+export type WithStylesProps<T extends Theme = Theme, OwnStyles = {}> = WithStylesWrappedProps<
+  T,
+  OwnStyles
+> &
   WithStylesWrapperProps;
 export type WithThemeProps<T extends Theme = Theme> = WithThemeWrappedProps<T> &
   WithThemeWrapperProps;
@@ -135,7 +148,7 @@ export type WithStylesWrapperProps = AesWithStylesWrapperProps;
 export type StandardProps<C extends keyof JSX.IntrinsicElements> = JSX.IntrinsicElements[C] & {
   className?: string;
   style?: React.CSSProperties;
-  parentStylesheet?: ThemeStyleSheetFactory;
+  parentStylesheet?: StyleSheet | {} | any;
 };
 
 export type StyleBlock = AesStyleBlock | undefined;

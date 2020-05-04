@@ -6,7 +6,7 @@ import { DescriptionMedium } from "@diana-ui/typography";
 Avatar.extendStyles(
   theme => ({
     wrapper: {
-      borderColor: theme.colors.grey.greenish,
+      borderColor: theme.colors.grey.grey25,
       borderStyle: "solid",
       boxSizing: "border-box",
       flexShrink: 0,

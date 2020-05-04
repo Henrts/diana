@@ -39,7 +39,7 @@ export const styleSheet: IMenuItemStylesheet = theme => ({
   }
 });
 
-const MenuItem: React.FC<IProps & WithStylesProps> = ({
+const MenuItem: React.FC<IProps & WithStylesProps<Theme, IMenuItemStyles>> = ({
   className,
   children,
   cx,

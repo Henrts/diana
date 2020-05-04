@@ -4,4 +4,6 @@ export interface IProps {}
 
 const {{packageNameCap}} = () => <div>New Component {{packageName}}</div>
 
+{{packageNameCap}}.displayName = "{{packageNameCap}}";
+
 export default {{packageNameCap}};

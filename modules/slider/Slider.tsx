@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { withStyles } from "@diana-ui/base";
 import { useWindowSize } from "@diana-ui/hooks";
-import { ThemeStyleSheetFactory, WithStylesProps, StandardProps } from "@diana-ui/types";
+import {
+  ThemeStyleSheetFactory,
+  WithStylesProps,
+  StandardProps,
+  StyleBlock,
+  Theme
+} from "@diana-ui/types";
 import { Description, Label } from "@diana-ui/typography";
 import calculateSliderStep from "./helpers/calculateSliderStep";
 
@@ -16,6 +22,15 @@ export interface ISliderProps extends StandardProps<"input"> {
   onValueChange?: (value: number) => void;
 }
 
+export interface ISliderStyles {
+  wrapper: StyleBlock;
+  valueWrapper: StyleBlock;
+  input: StyleBlock;
+  sm: StyleBlock;
+  md: StyleBlock;
+  value: StyleBlock;
+}
+
 const thumbSizes = {
   sm: 21,
   md: 32
@@ -28,7 +43,7 @@ const mixinThumbStyle = (size: "sm" | "md") => ({
   marginTop: Math.round(thumbSizes[size] / -2)
 });
 
-const styleSheet: ThemeStyleSheetFactory = () => ({
+const styleSheet: ThemeStyleSheetFactory<Theme, ISliderStyles> = () => ({
   wrapper: {},
   valueWrapper: {},
   input: {
@@ -55,7 +70,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   value: {}
 });
 
-const Slider: React.FC<ISliderProps & WithStylesProps> = ({
+const Slider: React.FC<ISliderProps & WithStylesProps<Theme, ISliderStyles>> = ({
   cx,
   styles,
   min,
@@ -170,5 +185,9 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
     </div>
   );
 };
+
+const Test = withStyles(styleSheet)(Slider);
+
+const Tesst = <Test min={2} max={2} disabled inputClassName="" onValueChange={() => {}} />;
 
 export default withStyles(styleSheet)(Slider);

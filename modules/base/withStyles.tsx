@@ -17,21 +17,28 @@ import useStyles from "./useStyles";
 import ComponentRegistry from "./Registry";
 
 export type ParentStylesheet<Props extends object = {}, StyleSheet = {}> = Props &
-  WithStylesWrapperProps & {
+  WithStylesProps & {
     parentStylesheet?: StyleSheet;
   };
 
+export type StyledParentStylesheet<Props extends object = {}, StyleSheet = {}> = StyledComponent<
+  Props &
+    WithStylesWrapperProps & {
+      parentStylesheet?: StyleSheet;
+    }
+>;
+
 export type WithStylesType<T = Theme> = <Props extends object = {}>(
   WrappedComponent: React.ComponentType<ParentStylesheet<Props, ThemeStyleSheetFactory<T>>>
-) => StyledComponent<ParentStylesheet<Props>, T>;
+) => StyledParentStylesheet<Props, T>;
 
 /**
  * Wrap a React component with an HOC that injects the defined style sheet as a prop.
  */
-function withStyles<Theme = ThemeSheet>(
-  styleSheet: ThemeStyleSheetFactory<Theme>,
+function withStyles<BaseTheme = Theme>(
+  styleSheet: ThemeStyleSheetFactory<BaseTheme>,
   options: WithStylesOptions = {}
-): WithStylesType<Theme> {
+): WithStylesType<BaseTheme> {
   const {
     cxPropName = aesthetic.options.cxPropName,
     extendable = true,
@@ -44,46 +51,50 @@ function withStyles<Theme = ThemeSheet>(
 
   return function withStylesComposer<Props extends object = {}>(
     WrappedComponent: React.ComponentType<ParentStylesheet<Props, typeof styleSheet>>
-  ) {
+  ): StyledParentStylesheet<Props, typeof styleSheet> {
     const baseName = WrappedComponent.displayName || WrappedComponent.name;
     const styleName = `${baseName}-${uuid()}`;
 
     // We must register earlier so that extending styles works correctly
-    aesthetic.registerStyleSheet<Theme>(styleName, styleSheet as AesStyleSheetFactory, extendFrom);
+    aesthetic.registerStyleSheet<BaseTheme>(
+      styleName,
+      styleSheet as AesStyleSheetFactory,
+      extendFrom
+    );
 
-    const WithStyles = React.memo(function WithStyles(
-      props: ParentStylesheet<Props, typeof styleSheet>
-    ) {
-      const themeName: ThemeSheet = aesthetic.getTheme();
-      const mergedStylesheet = deepMerge(
-        true,
-        {},
-        aesthetic.getStyleSheet(styleName, themeName.name || "default_theme"),
-        styleSheet(aesthetic.getTheme()),
-        props.parentStylesheet ? props.parentStylesheet(aesthetic.getTheme()) : {}
-      );
+    const WithStyles: StyledParentStylesheet<Props, typeof styleSheet> = React.memo(
+      function WithStyles(props: ParentStylesheet<Props, typeof styleSheet>) {
+        const themeName: ThemeSheet = aesthetic.getTheme();
+        const mergedStylesheet = deepMerge(
+          true,
+          {},
+          aesthetic.getStyleSheet(styleName, themeName.name || "default_theme"),
+          styleSheet(aesthetic.getTheme()),
+          props.parentStylesheet ? props.parentStylesheet(aesthetic.getTheme()) : {}
+        );
 
-      const parentStylesheetMemo = useMemo(() => {
-        return () => mergedStylesheet;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
+        const parentStylesheetMemo = useMemo(() => {
+          return () => mergedStylesheet;
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
 
-      const [styles, cx] = useStyles(() => mergedStylesheet);
+        const [styles, cx] = useStyles(() => mergedStylesheet);
 
-      const extraProps: WithStylesProps & {
-        parentStylesheet?: typeof styleSheet;
-      } = {
-        [cxPropName as "cx"]: cx,
-        [stylesPropName as "styles"]: styles
-      };
+        const extraProps: WithStylesProps & {
+          parentStylesheet?: typeof styleSheet;
+        } = {
+          [cxPropName as "cx"]: cx,
+          [stylesPropName as "styles"]: styles
+        };
 
-      if (passThemeProp) {
-        extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName.name);
+        if (passThemeProp) {
+          extraProps[themePropName as "theme"] = aesthetic.getTheme(themeName.name);
+        }
+
+        extraProps.parentStylesheet = parentStylesheetMemo;
+        return <WrappedComponent {...props} {...extraProps} />;
       }
-
-      extraProps.parentStylesheet = parentStylesheetMemo;
-      return <WrappedComponent {...props} {...extraProps} />;
-    }) as StyledComponent<ParentStylesheet<Props, typeof styleSheet>, Theme>;
+    ) as StyledParentStylesheet<Props, typeof styleSheet>;
 
     hoistNonReactStatics(WithStyles, WrappedComponent);
 
@@ -95,14 +106,14 @@ function withStyles<Theme = ThemeSheet>(
 
     // eslint-disable-next-line @typescript-eslint/unbound-method
     WithStyles.extendStyles = (
-      customStyleSheet: ThemeStyleSheetFactory<Theme>,
+      customStyleSheet: ThemeStyleSheetFactory<BaseTheme>,
       extendOptions: WithStylesOptions = {}
     ) => {
       if (!extendable) {
         throw new Error(`${baseName} is not extendable.`);
       }
 
-      return withStyles<Theme>(customStyleSheet, {
+      return withStyles<BaseTheme>(customStyleSheet, {
         ...options,
         ...extendOptions,
         ...(extendOptions?.register === undefined ? { register: false } : {}),
