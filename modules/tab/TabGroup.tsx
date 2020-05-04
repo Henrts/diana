@@ -86,7 +86,7 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
           )}
         </ul>
         <section className={cx(styles.tabPanel)}>
-          {selected !== undefined && children[selected].props.children}
+          {selected !== undefined && children[selected]?.props.children}
         </section>
       </Flipper>
     </>
