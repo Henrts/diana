@@ -6,31 +6,16 @@ import deepMerge from "extend";
 import {
   WithStylesProps,
   WithStylesOptions,
-  WithStylesWrapperProps,
-  StyledComponent,
   ThemeSheet,
   ThemeStyleSheetFactory,
   Theme,
-  AesStyleSheetFactory
+  AesStyleSheetFactory,
+  ParentStylesheet,
+  StyledParentStylesheet,
+  WithStylesType
 } from "@diana-ui/types";
 import useStyles from "./useStyles";
 import ComponentRegistry from "./Registry";
-
-export type ParentStylesheet<Props extends object = {}, StyleSheet = {}> = Props &
-  WithStylesProps & {
-    parentStylesheet?: StyleSheet;
-  };
-
-export type StyledParentStylesheet<Props extends object = {}, StyleSheet = {}> = StyledComponent<
-  Props &
-    WithStylesWrapperProps & {
-      parentStylesheet?: StyleSheet;
-    }
->;
-
-export type WithStylesType<T = Theme> = <Props extends object = {}>(
-  WrappedComponent: React.ComponentType<ParentStylesheet<Props, ThemeStyleSheetFactory<T>>>
-) => StyledParentStylesheet<Props, T>;
 
 /**
  * Wrap a React component with an HOC that injects the defined style sheet as a prop.

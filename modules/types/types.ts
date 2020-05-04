@@ -152,3 +152,19 @@ export type StandardProps<C extends keyof JSX.IntrinsicElements> = JSX.Intrinsic
 };
 
 export type StyleBlock = AesStyleBlock | undefined;
+
+export type ParentStylesheet<Props extends object = {}, StyleSheet = {}> = Props &
+  WithStylesProps & {
+    parentStylesheet?: StyleSheet;
+  };
+
+export type StyledParentStylesheet<Props extends object = {}, StyleSheet = {}> = StyledComponent<
+  Props &
+    WithStylesWrapperProps & {
+      parentStylesheet?: StyleSheet;
+    }
+>;
+
+export type WithStylesType<T = Theme> = <Props extends object = {}>(
+  WrappedComponent: React.ComponentType<ParentStylesheet<Props, ThemeStyleSheetFactory<T>>>
+) => StyledParentStylesheet<Props, T>;

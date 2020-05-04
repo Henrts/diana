@@ -1,8 +1,7 @@
 /* eslint-disable array-callback-return */
 import fs from "fs";
-import themeTokens, {
-  spaceUnit as baseSpace
-} from "../modules/tokens/themes/theme.default";
+import { exec } from "child_process";
+import themeTokens, { spaceUnit as baseSpace } from "../modules/tokens/themes/theme.default";
 
 let outputText = `
   :root {
@@ -18,12 +17,14 @@ const { colors, fontSize, spaceUnit }: any = themeTokens;
 Object.keys(colors).map(colorKey => {
   if (typeof colors[colorKey] === "object") {
     Object.keys(colors[colorKey]).map(subColorKey => {
-      outputText += `
-    --color-${colorKey}-${subColorKey}: ${colors[colorKey][subColorKey]};`;
+      if (colors[colorKey] && colors[colorKey][subColorKey]) {
+        outputText += `
+      --color-${colorKey}-${subColorKey}: ${colors[colorKey][subColorKey]};`;
+      }
     });
-  } else {
+  } else if (colors[colorKey]) {
     outputText += `
-    --color-${colorKey}: ${colors[colorKey]};`;
+      --color-${colorKey}: ${colors[colorKey]};`;
   }
 });
 
@@ -53,3 +54,12 @@ outputText += `
 }`;
 
 fs.writeFileSync("modules/tokens/index.scss", outputText);
+
+exec("npx prettier modules/tokens/index.scss --write", (err, stdout, stderr) => {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  } else {
+    process.exit(0);
+  }
+});

@@ -23,12 +23,33 @@ export interface ISliderProps extends StandardProps<"input"> {
 }
 
 export interface ISliderStyles {
+  /**
+   *  component wrapper
+   */
   wrapper: StyleBlock;
+  /**
+   * value span wrapper
+   */
   valueWrapper: StyleBlock;
+  /**
+   *  configs for input
+   * since this isn't a custom slider and actually
+   * uses the input type range from html there's some styles
+   * required to overwride for the various available browser
+   */
   input: StyleBlock;
-  sm: StyleBlock;
-  md: StyleBlock;
+  /**
+   * styles for the value
+   */
   value: StyleBlock;
+  /**
+   * styles for sm size
+   */
+  sm: StyleBlock;
+  /**
+   * styles for md size
+   */
+  md: StyleBlock;
 }
 
 const thumbSizes = {

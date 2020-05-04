@@ -18,7 +18,7 @@ export default {
   spaceUnit: {
     xxs: `${spaceUnit * 0.25}px`,
     xs: `${spaceUnit * 0.5}px`,
-    sm: `${spaceUnit / 0.75}px`,
+    sm: `${spaceUnit * 0.75}px`,
     md: `${spaceUnit}px`,
     lg: `${spaceUnit * 1.5}px`,
     xl: `${spaceUnit * 2}px`,

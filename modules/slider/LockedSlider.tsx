@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps, StyleBlock, Theme } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
-import Slider, { ISliderProps, ISliderStyles } from "./Slider";
+import Slider, { ISliderProps } from "./Slider";
 
 export interface ILockedSliderProps extends ISliderProps {
   locked?: boolean;
@@ -13,9 +13,21 @@ export interface ILockedSliderProps extends ISliderProps {
 }
 
 export interface ILockedSliderStyles {
+  /**
+   * Wrapper for the whole component
+   */
   lockWrapper: StyleBlock;
+  /**
+   * Wrapper for the icon
+   */
   iconWrapper: StyleBlock;
+  /**
+   * styles for the icon
+   */
   icon: StyleBlock;
+  /**
+   * styles for disabled Icon
+   */
   disabledIcon: StyleBlock;
 }
 
