@@ -118,7 +118,7 @@ export interface StyledComponent<Props, T = Theme> extends React.NamedExoticComp
 export type WithStylesOptions = AesWithStylesOptions & { register?: boolean };
 
 export type StyleSheetFactory<ThemeSheet = Theme, T = unknown> = (
-  theme: Theme
+  theme: ThemeSheet
 ) => StyleSheet & AesStyleSheetNeverize<T>;
 export type ThemeStyleSheetFactory<BaseTheme = Theme, T = unknown> = StyleSheetFactory<
   BaseTheme,

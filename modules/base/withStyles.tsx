@@ -91,7 +91,7 @@ function withStyles<BaseTheme = Theme>(
 
     // eslint-disable-next-line @typescript-eslint/unbound-method
     WithStyles.extendStyles = (
-      customStyleSheet: ThemeStyleSheetFactory<BaseTheme>,
+      customStyleSheet: ThemeStyleSheetFactory<BaseTheme | any>,
       extendOptions: WithStylesOptions = {}
     ) => {
       if (!extendable) {
