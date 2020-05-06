@@ -5,7 +5,7 @@ import {
   ThemeStyleSheetFactory,
   WithStylesProps,
   StandardProps,
-  StyleBlock,
+  BaseStylesheet,
   Theme
 } from "@diana-ui/types";
 import { Description, Label } from "@diana-ui/typography";
@@ -26,30 +26,30 @@ export interface ISliderStyles {
   /**
    *  component wrapper
    */
-  wrapper: StyleBlock;
+  wrapper: BaseStylesheet;
   /**
    * value span wrapper
    */
-  valueWrapper: StyleBlock;
+  valueWrapper: BaseStylesheet;
   /**
    *  configs for input
    * since this isn't a custom slider and actually
    * uses the input type range from html there's some styles
    * required to overwride for the various available browser
    */
-  input: StyleBlock;
+  input: BaseStylesheet;
   /**
    * styles for the value
    */
-  value: StyleBlock;
+  value: BaseStylesheet;
   /**
    * styles for sm size
    */
-  sm: StyleBlock;
+  sm: BaseStylesheet;
   /**
    * styles for md size
    */
-  md: StyleBlock;
+  md: BaseStylesheet;
 }
 
 const thumbSizes = {

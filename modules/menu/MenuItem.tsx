@@ -4,7 +4,7 @@ import {
   WithStylesProps,
   Theme,
   ThemeStyleSheetFactory,
-  StyleBlock
+  BaseStylesheet
 } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { Body } from "@diana-ui/typography";
@@ -19,16 +19,14 @@ export interface IMenuItemStyles {
   /**
    * Styles the li
    */
-  menuItem?: StyleBlock;
+  menuItem?: BaseStylesheet;
   /**
    * Styles the icon if it has one
    */
-  icon?: StyleBlock;
+  icon?: BaseStylesheet;
 }
 
-type IMenuItemStylesheet<T extends Theme = Theme> = ThemeStyleSheetFactory<T, IMenuItemStyles>;
-
-export const styleSheet: IMenuItemStylesheet = theme => ({
+export const styleSheet: ThemeStyleSheetFactory<Theme, IMenuItemStyles> = theme => ({
   menuItem: {
     display: "flex",
     alignItems: "center",
@@ -39,7 +37,7 @@ export const styleSheet: IMenuItemStylesheet = theme => ({
   }
 });
 
-const MenuItem: React.FC<IProps & WithStylesProps<Theme, IMenuItemStyles>> = ({
+const MenuItem: React.FC<IProps & WithStylesProps<Theme>> = ({
   className,
   children,
   cx,
@@ -64,4 +62,4 @@ const MenuItem: React.FC<IProps & WithStylesProps<Theme, IMenuItemStyles>> = ({
   );
 };
 
-export default withStyles<Theme>(styleSheet)(MenuItem);
+export default withStyles(styleSheet)(MenuItem);

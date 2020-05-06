@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
-import { ThemeStyleSheetFactory, WithStylesProps, StyleBlock, Theme } from "@diana-ui/types";
+import { ThemeStyleSheetFactory, WithStylesProps, Theme, BaseStylesheet } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import Slider, { ISliderProps } from "./Slider";
 
@@ -16,26 +16,26 @@ export interface ILockedSliderStyles {
   /**
    * Wrapper for the whole component
    */
-  lockWrapper: StyleBlock;
+  lockWrapper?: BaseStylesheet;
   /**
    * Wrapper for the icon
    */
-  iconWrapper: StyleBlock;
+  iconWrapper?: BaseStylesheet;
   /**
    * styles for the icon
    */
-  icon: StyleBlock;
+  icon?: BaseStylesheet;
   /**
    * styles for disabled Icon
    */
-  disabledIcon: StyleBlock;
+  disabledIcon?: BaseStylesheet;
 }
 
 const styleSheet: ThemeStyleSheetFactory<Theme, ILockedSliderStyles> = theme => ({
   lockWrapper: {
     position: "relative",
-    display: "flex",
     flexDirection: "row",
+    display: "flex",
     alignItems: "center",
     flexGrow: 1
   },
