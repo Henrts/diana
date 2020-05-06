@@ -16,9 +16,17 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const ModalFooter: React.FC<IProps & WithStylesProps> = ({ cx, styles, className, children }) => {
+const ModalFooter: React.FC<IProps & WithStylesProps> = ({
+  cx,
+  styles,
+  className,
+  children,
+  wrappedRef
+}) => {
   return (
-    <section className={cx("diana-modal-footer", styles.footer, className)}>{children}</section>
+    <section className={cx("diana-modal-footer", styles.footer, className)} ref={wrappedRef}>
+      {children}
+    </section>
   );
 };
 

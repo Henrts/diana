@@ -56,7 +56,8 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
   label,
   selectedTab,
   styles,
-  onTabClick = () => {}
+  onTabClick = () => {},
+  wrappedRef
 }) => {
   const handleClick = () => !disabled && onTabClick(index);
   const isSelected = useMemo(() => index !== undefined && selectedTab === index, [
@@ -72,7 +73,7 @@ const Tab: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <li className={stylesArray} role="menuitem" onClick={handleClick}>
+    <li className={stylesArray} role="menuitem" onClick={handleClick} ref={wrappedRef}>
       <SectionTitle className={cx(styles.label)}>{label}</SectionTitle>
 
       {isSelected && (

@@ -10,8 +10,18 @@ const stylesheet: ThemeStyleSheetFactory = () => ({
   }
 });
 
-const CardFooter: React.FC<IProps & WithStylesProps> = ({ className, cx, styles, children }) => {
-  return <footer className={cx("diana-card-footer", styles.footer, className)}>{children}</footer>;
+const CardFooter: React.FC<IProps & WithStylesProps> = ({
+  className,
+  cx,
+  styles,
+  children,
+  wrappedRef
+}) => {
+  return (
+    <footer className={cx("diana-card-footer", styles.footer, className)} ref={wrappedRef}>
+      {children}
+    </footer>
+  );
 };
 
 export default withStyles(stylesheet)(CardFooter);

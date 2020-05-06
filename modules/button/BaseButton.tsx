@@ -52,10 +52,4 @@ const BaseButton: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-// const ForwardedButton = React.forwardRef<
-//   IProps & WithStylesProps,
-//   HTMLButtonElement
-// >((props: any, ref) => <BaseButton wrappedRef={ref} {...props} />);
-// ForwardedButton.displayName = "BaseButton";
-
 export default withStyles(styleSheet)(BaseButton);

@@ -41,7 +41,8 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps & IAvatarProps>> = ({
   borderColor,
   selected,
   wrapperClassName = "",
-  size = "md"
+  size = "md",
+  wrappedRef
 }) => {
   return (
     <div
@@ -56,6 +57,7 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps & IAvatarProps>> = ({
         backgroundColor,
         borderColor: borderColor || backgroundColor
       }}
+      ref={wrappedRef}
     >
       {(typeof children === "string" && <BodyHighlight>{children}</BodyHighlight>) || children}
     </div>

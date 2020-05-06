@@ -23,7 +23,8 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
   disabled,
   initialExpandedPanelIndex,
   onClick,
-  styles
+  styles,
+  wrappedRef
 }) => {
   const [expandedPanelIndex, setExpandedPanelIndex] = useState(
     initialExpandedPanelIndex === undefined ? -1 : initialExpandedPanelIndex
@@ -44,7 +45,7 @@ const ExpandablePanels: React.FC<IProps & WithStylesProps> = ({
   };
 
   return (
-    <div className={cx("diana-expandable-panels", className, styles.panels)}>
+    <div className={cx("diana-expandable-panels", className, styles.panels)} ref={wrappedRef}>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
           disabled: disabled || child.props.disabled,

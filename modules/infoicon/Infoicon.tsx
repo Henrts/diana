@@ -64,7 +64,8 @@ const Infoicon: React.FC<IProps> = ({
   vertical = false,
   className,
   avatarComponentName = "Avatar",
-  avatarOptions
+  avatarOptions,
+  wrappedRef
 }) => {
   const StyledAvatar: any = useRegistry(avatarComponentName);
 
@@ -77,6 +78,7 @@ const Infoicon: React.FC<IProps> = ({
         vertical && "vertical",
         className
       )}
+      ref={wrappedRef}
     >
       <StyledAvatar {...avatarOptions} />
       <div className={cx(styles.text, vertical && "vertical")}>

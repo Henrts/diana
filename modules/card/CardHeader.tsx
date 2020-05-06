@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
 import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { LabelMedium, SectionTitle, Body } from "@diana-ui/typography";
-import { Icon } from "@diana-ui/icon";
+import { Icon, IIconProps } from "@diana-ui/icon";
 
 // @ts-ignore
 export interface IProps extends StandardProps<"header"> {
@@ -43,7 +43,8 @@ const CardHeader: React.FC<IProps & WithStylesProps> = ({
   label,
   styles,
   subtitle,
-  title
+  title,
+  wrappedRef
 }) => {
   const renderTitle = useCallback(
     () =>
@@ -56,13 +57,13 @@ const CardHeader: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <header className={cx("diana-card-header", styles.header, className)}>
+    <header className={cx("diana-card-header", styles.header, className)} ref={wrappedRef}>
       <div className={cx(styles.titleWrapper)}>
         {renderTitle()}
         {subtitle && <Body className={cx(styles.subtitle)}>{subtitle}</Body>}
       </div>
       {label && <LabelMedium className={cx(styles.label)}>{label}</LabelMedium>}
-      {icon && <Icon className={cx(styles.icon)} name={icon as any} />}
+      {icon && <Icon className={cx(styles.icon)} name={icon as IIconProps["name"]} />}
     </header>
   );
 };

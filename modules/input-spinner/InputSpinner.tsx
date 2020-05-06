@@ -66,6 +66,7 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   onChange,
   displayFormat,
   parentStylesheet,
+  wrappedRef,
   ...props
 }) => {
   const { min, max, step, disabled } = props;
@@ -128,7 +129,7 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   }, [_value, step, changeValue]);
 
   return (
-    <div className={containerStyle}>
+    <div className={containerStyle} ref={wrappedRef}>
       <button
         type="button"
         className={cx(buttonStyle, styles.buttonMin)}

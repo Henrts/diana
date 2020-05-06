@@ -208,12 +208,17 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
       </div>
       <div className={cx(styles.inputContainer)}>
         {typeof prefixIcon === "string" ? (
-          <Icon name={prefixIcon as any} size={16} className={cx(styles.prefixIcon)} />
+          <Icon
+            name={prefixIcon as IIconProps["name"]}
+            size={16}
+            className={cx(styles.prefixIcon)}
+          />
         ) : (
           prefixIcon && <div className={cx(styles.prefixIcon)}>{prefixIcon}</div>
         )}
         <input
           {...props}
+          ref={wrappedRef}
           disabled={disabled}
           className={cx(styles.input, disabled && "disabled")}
           onChange={e => {
@@ -232,7 +237,11 @@ export const TextInput: React.FC<PropsWithChildren<IProps & WithStylesProps>> = 
           }}
         />
         {typeof suffixIcon === "string" ? (
-          <Icon name={suffixIcon as any} size={16} className={cx(styles.suffixIcon)} />
+          <Icon
+            name={suffixIcon as IIconProps["name"]}
+            size={16}
+            className={cx(styles.suffixIcon)}
+          />
         ) : (
           suffixIcon && <div className={cx(styles.suffixIcon)}>{suffixIcon}</div>
         )}

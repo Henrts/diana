@@ -130,7 +130,7 @@ function ChipInput({
   );
 
   return (
-    <div className={cx("diana-chip-input", styles.chipInput, className)}>
+    <div className={cx("diana-chip-input", styles.chipInput, className)} ref={wrappedRef}>
       <StyledErrorTextInput
         {...props}
         prefixIcon={
