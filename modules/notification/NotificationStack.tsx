@@ -38,11 +38,13 @@ const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
   styles,
   timeout = 500,
   handleMouseOver,
-  handleMouseOut
+  handleMouseOut,
+  wrappedRef
 }) => {
   return (
     <TransitionGroup
       className={cx("diana-notification-stack", styles.notificationStack, className)}
+      ref={wrappedRef}
     >
       {notifications.map((notification: INotification, index) => {
         const { template: Notification } = notification;

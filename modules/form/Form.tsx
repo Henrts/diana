@@ -34,6 +34,7 @@ const Form: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   defaultValues,
   schema,
   parentStylesheet,
+  wrappedRef,
   ...props
 }) => {
   const { handleSubmit, errors, control, reset } = useForm({
@@ -72,6 +73,7 @@ const Form: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       {...props}
       className={cx("diana-form", styles.form, className)}
       onSubmit={handleSubmit(onSubmitCallback)}
+      ref={wrappedRef}
     >
       {React.Children.map(children, (Child: ReactElement) => {
         if (Child.type === ErrorTextInput || Child.type === TextInput) {

@@ -44,10 +44,11 @@ const ModalHeader: React.FC<IProps & WithStylesProps> = ({
   showCloseButton = true,
   styles,
   title,
-  onClose
+  onClose,
+  wrappedRef
 }) => {
   return (
-    <section className={cx("diana-modal-header", styles.header, className)}>
+    <section className={cx("diana-modal-header", styles.header, className)} ref={wrappedRef}>
       <div className={cx(styles.titleWrapper)}>
         {icon && <div className={cx(styles.icon)}>{icon}</div>}
         <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>

@@ -65,7 +65,8 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   onValueChange,
   disabled = false,
   className = "",
-  inputClassName = ""
+  inputClassName = "",
+  wrappedRef
 }) => {
   const [width] = useWindowSize();
   const isMobile = width <= 700;
@@ -141,7 +142,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={cx("diana-slider", styles.wrapper, className)}>
+    <div className={cx("diana-slider", styles.wrapper, className)} ref={wrappedRef}>
       <div className={cx(styles.valueWrapper)}>
         <TextComponent
           style={{ left: leftSpacing, width: `${max}`.length * 20 }}

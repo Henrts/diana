@@ -28,7 +28,8 @@ const Divider: React.FC<IProps & WithStylesProps> = ({
   className,
   cx,
   orientation = "horizontal",
-  styles
+  styles,
+  wrappedRef
 }) => {
   const dividerStyles = cx(
     "diana-divider",
@@ -38,7 +39,7 @@ const Divider: React.FC<IProps & WithStylesProps> = ({
     className
   );
 
-  return <div className={dividerStyles} />;
+  return <div className={dividerStyles} ref={wrappedRef} />;
 };
 
 export default withStyles(styleSheet)(Divider);

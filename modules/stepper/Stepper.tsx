@@ -75,7 +75,8 @@ const Stepper: React.FC<IProps & WithStylesProps> = ({
   clickable = false,
   onChange,
   activeStep,
-  initialActiveStep = 0
+  initialActiveStep = 0,
+  wrappedRef
 }) => {
   const [_activeStep, setActiveStep] = useState(initialActiveStep);
   const containerStyle = cx("diana-stepper", styles.container, className);
@@ -102,7 +103,7 @@ const Stepper: React.FC<IProps & WithStylesProps> = ({
   );
 
   return (
-    <div className={containerStyle}>
+    <div className={containerStyle} ref={wrappedRef}>
       {_steps.map((isActive: boolean, i) => (
         <div className={cx(styles.stepWrapper)} key={i}>
           {i !== 0 && <div className={cx(styles.line, isActive && "active")} />}

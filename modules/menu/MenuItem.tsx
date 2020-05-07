@@ -28,6 +28,7 @@ const MenuItem: React.FC<IProps & WithStylesProps> = ({
   icon,
   onClick,
   parentStylesheet,
+  wrappedRef,
   ...props
 }) => {
   return (
@@ -36,6 +37,7 @@ const MenuItem: React.FC<IProps & WithStylesProps> = ({
       role="presentation"
       {...props}
       onClick={onClick}
+      ref={wrappedRef}
     >
       {icon && <Icon name={icon} className={cx(styles.icon)} size={16} />}
       <Body>{children}</Body>

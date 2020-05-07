@@ -67,7 +67,7 @@ const BaseChip: React.FC<IProps & WithStylesProps> = ({
     className
   );
   return (
-    <div className={styleArray} {...props}>
+    <div className={styleArray} {...props} ref={wrappedRef}>
       {renderLeftIcon && renderLeftIcon()}
       <Body className={cx(styles.text)}>{children}</Body>
       {renderRightIcon && renderRightIcon()}

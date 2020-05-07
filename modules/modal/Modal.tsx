@@ -44,6 +44,7 @@ const Modal: React.FC<IAllProps> = ({
   isOpen,
   shouldCloseOnEsc = false,
   shouldCloseOnOverlayClick = false,
+  wrappedRef,
   ...rest
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,6 +62,7 @@ const Modal: React.FC<IAllProps> = ({
       onRequestClose={onClose}
       shouldCloseOnEsc={shouldCloseOnEsc}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+      ref={wrappedRef}
       {...rest}
     >
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

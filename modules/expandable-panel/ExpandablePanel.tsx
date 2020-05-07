@@ -78,6 +78,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
   expanded,
   initialExpanded,
   onClick,
+  wrappedRef,
   styles
 }) => {
   const [isExpanded, setIsExpanded] = useState(initialExpanded || false);
@@ -236,6 +237,7 @@ const ExpandablePanel: React.FC<IProps & WithStylesProps> = ({
 
   return (
     <div
+      ref={wrappedRef}
       className={cx("diana-expandable-panel", className, styles.panel, ...stateClasses)}
       style={{ maxHeight: canAnimate ? "initial" : `${headerHeight}px` }}
     >

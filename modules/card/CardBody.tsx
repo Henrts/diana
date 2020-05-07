@@ -10,8 +10,18 @@ const stylesheet: ThemeStyleSheetFactory = () => ({
   }
 });
 
-const CardBody: React.FC<IProps & WithStylesProps> = ({ className, cx, styles, children }) => {
-  return <div className={cx("diana-card-body", styles.body, className)}>{children}</div>;
+const CardBody: React.FC<IProps & WithStylesProps> = ({
+  className,
+  cx,
+  styles,
+  children,
+  wrappedRef
+}) => {
+  return (
+    <div className={cx("diana-card-body", styles.body, className)} ref={wrappedRef}>
+      {children}
+    </div>
+  );
 };
 
 export default withStyles(stylesheet)(CardBody);

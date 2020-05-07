@@ -55,7 +55,8 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
   title,
   styles,
   onMouseOver,
-  onMouseOut
+  onMouseOut,
+  wrappedRef
 }) => {
   const textWithIconStyles = {
     display: "flex",
@@ -75,6 +76,7 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
       className={cx("diana-notification", styles.wrapper, className)}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      ref={wrappedRef}
     >
       {title && <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>}
       {icon ? (
