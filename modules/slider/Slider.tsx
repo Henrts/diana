@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { withStyles } from "@diana-ui/base";
 import { useWindowSize } from "@diana-ui/hooks";
 import { ThemeStyleSheetFactory, WithStylesProps, StandardProps } from "@diana-ui/types";
@@ -75,11 +75,13 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   const [_value, setValue] = useState(value || 0);
   const ref = React.createRef<HTMLInputElement>();
 
+  const calculatedStep = useMemo(() => step ?? calculateSliderStep(max), [step, max]);
   const TextComponent = (isMobile && Label) || Description;
 
   /**
    * This function calculates the left space required
    * for the label with the value follow the thumb.
+   * It tries to keep the number where the label is, so it rounds the number to the closest step.
    * The formula is as follows:
    *
    * (max - min) + 13
@@ -98,10 +100,13 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
    * 20px as default size for letter
    * (`${max}`.length * 20) / 2
    */
+  const alignToStep = _value % calculatedStep >= calculatedStep / 2 ? calculatedStep : 0;
   const calculateLeftSpace = useCallback(
     totalWidth =>
-      (_value * totalWidth) / (max - min) + (thumbSize / 2 + 2) - (`${max}`.length * 20) / 2,
-    [_value, max, min, thumbSize]
+      ((_value - (_value % calculatedStep) + alignToStep) * totalWidth) / (max - min) +
+      (thumbSize / 2 + 2) -
+      (`${max}`.length * 20) / 2,
+    [alignToStep, _value, calculatedStep, max, min, thumbSize]
   );
 
   useEffect(() => {
@@ -158,7 +163,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
         min={min}
         max={max}
         value={_value}
-        step={step ?? calculateSliderStep(max)}
+        step={calculatedStep}
         onChange={ev => changeValue(Number(ev.currentTarget.value))}
         disabled={disabled}
       />
