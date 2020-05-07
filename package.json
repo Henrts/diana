@@ -21,7 +21,7 @@
     "build-storybook": "build-storybook -s public",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "prettier": "prettier '**/*.{js,jsx,tx,tsx,json,md,scss,yaml,yml,mdx}' --write",
+    "prettier": "prettier '**/*.{js,jsx,tx,tsx,json,md,scss,yaml,yml}' --write",
     "new-package": "ts-node ./scripts/new-package.ts",
     "build:root": "yarn clear:files && tsc -p tsconfig.root.json && copyfiles -f modules/assets/custom.d.ts dist/assets && copyfiles -f modules/assets/icons/* dist/assets/icons",
     "clear:files": "rimraf dist",
