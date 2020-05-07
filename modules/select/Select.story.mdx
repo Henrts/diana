@@ -1,5 +1,5 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { SelectStory } from "./Select.story.tsx";
+import { SelectStory, SelectWithNewValueStory } from "./Select.story.tsx";
 
 <Meta title="Components | Select" />
 
@@ -50,3 +50,26 @@ All the props are passed through to the `Dropdown` element, so refer to its docu
     </tr>
   </tbody>
 </table>
+
+## Select with support for a new value
+
+<Preview>
+  <Story name="Select with new value">
+    <SelectWithNewValueStory />
+  </Story>
+</Preview>
+
+```javascript
+<Select
+  inputProps={{ label: "Select or write option" }}
+  items={items}
+  onItemSelected={selectItem}
+  selectedItem={selectedItem}
+  onNewValue={value => selectItem({ id: value, text: value })}
+  renderNewValueItem={text => (
+    <div>
+      Select <b>{text}</b>
+    </div>
+  )}
+/>
+```

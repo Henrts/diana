@@ -1,15 +1,17 @@
 import React, { useMemo, useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
-import { IChipInputProps } from "@diana-ui/chip";
+import * as Chip from "@diana-ui/chip";
 import { IDropdownItem, ISingleDropdownProps } from "@diana-ui/dropdown";
 import { useRegistry, useRegistryWithStyles } from "@diana-ui/hooks";
 import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 
 export interface IProps extends ISingleDropdownProps<IDropdownItem> {
   onFilter?: (option: IDropdownItem, text: string) => boolean;
-  inputProps?: IChipInputProps;
+  inputProps?: Chip.IChipInputProps;
   onTextChange?: (text?: string) => void;
   onItemSelected: (item?: IDropdownItem) => void;
+  onNewValue?: (value: string) => void;
+  renderNewValueItem?: (newValue: string, selected: boolean, index?: number) => JSX.Element;
 }
 
 const defaultFilter = (option: IDropdownItem, text: string) =>
@@ -49,6 +51,8 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
     onFilter,
     onTextChange,
     parentStylesheet,
+    onNewValue,
+    renderNewValueItem,
     ...props
   } = propsT;
   const [value, setValue] = useState(selectedItem?.text);
@@ -68,16 +72,16 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
     () =>
       items.filter(item => {
         if (!text) {
-          return true;
+          return !value;
         }
         const filter = onFilter ?? defaultFilter;
         return filter(item, text ?? "");
       }),
-    [items, text, onFilter]
+    [items, text, onFilter, value]
   );
 
   const Dropdown = useRegistry<ISingleDropdownProps<IDropdownItem>>("Dropdown");
-  const BaseChipInput = useRegistryWithStyles<IChipInputProps>("ChipInput", InputStylesheet);
+  const BaseChipInput = useRegistryWithStyles<Chip.IChipInputProps>("ChipInput", InputStylesheet);
   const ChipInput = useMemo(
     () => (parentStylesheet ? BaseChipInput.extendStyles(parentStylesheet) : BaseChipInput),
     [BaseChipInput, parentStylesheet]
@@ -99,27 +103,62 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
         onChangeChips={newChips => {
           const newChip = newChips[0];
           const item = filteredItems.find(i => i.text === newChip);
-          setValue(item?.text);
-          setText("");
           if (!item) {
-            onItemSelected(undefined);
+            if (onNewValue) {
+              setValue(newChip);
+              onNewValue(newChip);
+            } else {
+              onItemSelected(undefined);
+            }
+          } else {
+            setValue(item.text);
           }
+          setText("");
         }}
         onBlur={event => {
-          setText("");
+          if (onNewValue) {
+            if (text) {
+              setValue(text);
+              onNewValue(text);
+            }
+          } else {
+            setText("");
+          }
           if (inputProps?.onBlur) {
             inputProps.onBlur(event);
           }
         }}
       />
     );
-  }, [chips, filteredItems, inputProps, text, onItemSelected]);
+  }, [chips, filteredItems, inputProps, text, onItemSelected, onNewValue]);
+
+  const showNewValueItem = useMemo(() => Boolean(onNewValue && text && renderNewValueItem), [
+    onNewValue,
+    renderNewValueItem,
+    text
+  ]);
+
+  const itemsToShow = useMemo(() => {
+    if (filteredItems.length) {
+      return filteredItems;
+    }
+    if (showNewValueItem && text) {
+      return [{ id: text, text, newValue: true }];
+    }
+    return [];
+  }, [filteredItems, showNewValueItem, text]);
+
+  const renderNewItem = useCallback(
+    (item: IDropdownItem, selected: boolean, index?: number) =>
+      renderNewValueItem ? renderNewValueItem(item.text, selected, index) : undefined,
+    [renderNewValueItem]
+  );
 
   return (
     <Dropdown
       className="diana-select"
       disabled={chips.length > 0}
-      items={filteredItems}
+      items={itemsToShow}
       renderHeader={renderInput}
       selectedItem={selectedItem}
       {...props}
@@ -127,6 +166,7 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
         setValue(item.text);
         onItemSelected(item);
       }}
+      renderItem={showNewValueItem ? renderNewItem : props.renderItem}
     />
   );
 };

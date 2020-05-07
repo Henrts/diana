@@ -27,3 +27,27 @@ export const SelectStory = () => {
     </div>
   );
 };
+
+export const SelectWithNewValueStory = () => {
+  const [selectedItem, selectItem] = useState<IDropdownItem>();
+
+  return (
+    <div style={{ width: 220, padding: "24px 300px 300px 24px", backgroundColor: "white" }}>
+      <Select
+        inputProps={{ label: "Select Option" }}
+        items={items}
+        onItemSelected={item => {
+          console.log(item);
+          selectItem(item);
+        }}
+        selectedItem={selectedItem}
+        onNewValue={value => selectItem({ id: value, text: value })}
+        renderNewValueItem={text => (
+          <div>
+            Select <b>{text}</b>
+          </div>
+        )}
+      />
+    </div>
+  );
+};

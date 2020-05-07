@@ -4,7 +4,8 @@ import React, {
   useState,
   useRef,
   PropsWithChildren,
-  RefObject
+  RefObject,
+  useEffect
 } from "react";
 import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
@@ -104,6 +105,12 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
     hide: () => setVisible(false),
     toggle: () => toggleVisible()
   }));
+
+  useEffect(() => {
+    if (!disabled) {
+      setVisible(false);
+    }
+  }, [disabled, setVisible]);
 
   const handleClick = showOnHover
     ? undefined
