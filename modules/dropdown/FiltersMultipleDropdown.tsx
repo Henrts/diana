@@ -12,9 +12,9 @@ export interface IFilterMultipleDropDownProps<T extends IItem> extends IMultiple
 
 const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(multipleStylesheet);
 
-const FilterMultipleDropdown: React.FC<
-  IFilterMultipleDropDownProps<IItem> & WithStylesProps & IRenderItem<IItem>
-> = ({ onItemsSelected, items, ...props }) => {
+const FilterMultipleDropdown: React.FC<IFilterMultipleDropDownProps<IItem> &
+  WithStylesProps &
+  IRenderItem<IItem>> = ({ onItemsSelected, items, ...props }) => {
   const [isAllButtonChecked, setIsAllButtonChecked] = useState(false);
 
   const onItemClicked = (item: IItem, selectedItems: IItem[]) => {
