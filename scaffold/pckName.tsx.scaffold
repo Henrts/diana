@@ -1,9 +1,33 @@
 import React from "react";
+import {
+  WithStylesProps,
+  Theme,
+  ThemeStyleSheetFactory,
+  BaseStylesheet
+} from "@diana-ui/types";
+import { withStyles } from "@diana-ui/base";
 
-export interface IProps {}
+export interface I{{packageNameCap}}Props {}
 
-const {{packageNameCap}} = () => <div>New Component {{packageName}}</div>
+export interface I{{packageNameCap}}Styles {
+  /**
+   * (example) Styles the div wrapper
+   */
+  wrapper: BaseStylesheet;
+}
+
+const styleSheet: ThemeStyleSheetFactory<Theme,I{{packageNameCap}}Styles> = theme => ({
+  wrapper: {
+    height: "OVER 9 THOUSANDDDDD"
+  }
+});
+
+const {{packageNameCap}}: React.FC<I{{packageNameCap}}Props
+  & WithStylesProps<Theme, I{{packageNameCap}}Styles>> = ({
+    cx,
+    styles,
+  }) => <div className={cx(styles.wrapper)}>New Component {{packageName}}</div>
 
 {{packageNameCap}}.displayName = "{{packageNameCap}}";
 
-export default {{packageNameCap}};
+export default withStyles(styleSheet)({{packageNameCap}});

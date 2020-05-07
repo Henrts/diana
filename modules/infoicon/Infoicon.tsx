@@ -5,6 +5,9 @@ import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { DescriptionMedium, BodyHighlight } from "@diana-ui/typography";
 
 export interface IInfoIconProps {
+  /**
+   * Title for the infoicon
+   */
   title?: string | JSX.Element;
   children?: string | JSX.Element;
   withPadding?: boolean;

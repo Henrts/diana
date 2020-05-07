@@ -37,7 +37,7 @@ export const styleSheet: ThemeStyleSheetFactory<Theme, IMenuItemStyles> = theme 
   }
 });
 
-const MenuItem: React.FC<IProps & WithStylesProps<Theme>> = ({
+const MenuItem: React.FC<IProps & WithStylesProps<Theme, IMenuItemStyles>> = ({
   className,
   children,
   cx,
