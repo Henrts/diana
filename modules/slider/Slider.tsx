@@ -80,6 +80,7 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
   /**
    * This function calculates the left space required
    * for the label with the value follow the thumb.
+   * It tries to keep the number where the label is, so it rounds the number to the closest step.
    * The formula is as follows:
    *
    * (max - min) + 13
@@ -98,12 +99,13 @@ const Slider: React.FC<ISliderProps & WithStylesProps> = ({
    * 20px as default size for letter
    * (`${max}`.length * 20) / 2
    */
+  const alignToStep = _value % calculatedStep >= calculatedStep / 2 ? calculatedStep : 0;
   const calculateLeftSpace = useCallback(
     totalWidth =>
-      ((_value - (_value % calculatedStep)) * totalWidth) / (max - min) +
+      ((_value - (_value % calculatedStep) + alignToStep) * totalWidth) / (max - min) +
       (thumbSize / 2 + 2) -
       (`${max}`.length * 20) / 2,
-    [_value, calculatedStep, max, min, thumbSize]
+    [alignToStep, _value, calculatedStep, max, min, thumbSize]
   );
 
   useEffect(() => {
