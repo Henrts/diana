@@ -12,9 +12,9 @@ export interface ISimpleMultipleDropdownProps<T extends IItem> extends IMultiple
 
 const StylesBaseMultipleDropdown = BaseMultipleDropdown.extendStyles(multipleStylesheet);
 
-const SimpleMultipleDropdown: React.FC<ISimpleMultipleDropdownProps<IItem> &
-  WithStylesProps &
-  IRenderItem<IItem>> = ({ onItemsSelected, items, selectedItems, onClose, ...props }) => {
+const SimpleMultipleDropdown: React.FC<
+  ISimpleMultipleDropdownProps<IItem> & WithStylesProps & IRenderItem<IItem>
+> = ({ onItemsSelected, items, selectedItems, onClose, ...props }) => {
   const [draftItems, setDraftItems] = useState([...selectedItems]);
   const isAllSelected = items.length === draftItems.length;
 
