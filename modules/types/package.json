@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/types",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "main": "lib/types.js",
   "module": "module/types.js",
   "license": "MIT",
