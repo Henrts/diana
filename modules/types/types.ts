@@ -88,7 +88,7 @@ export type Theme = {
   fontFamily: string;
   fontSize: string | number;
   fonts: any;
-  animations: any;
+  animations?: any;
   spaceUnit: ISpaceUnit;
   spacing: {
     [key: string]: { top: string; left: string };
