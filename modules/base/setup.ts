@@ -11,7 +11,8 @@ export function initDefaultTheme(aesthetic = aestheticDefault) {
           fontSize: theme.fontSize
         }
       },
-      "@font-face": theme.fonts
+      "@font-face": theme.fonts,
+      "@keyframes": theme.animations
     }));
   }
   aesthetic.configure({
@@ -23,10 +24,7 @@ export function initDefaultTheme(aesthetic = aestheticDefault) {
   });
 }
 
-export function initTheme(
-  themeObj = defaultTheme,
-  aesthetic: Aesthetic = aestheticDefault
-) {
+export function initTheme(themeObj = defaultTheme, aesthetic: Aesthetic = aestheticDefault) {
   if (!aesthetic.themes[defaultTheme.name]) {
     aesthetic.registerTheme(defaultTheme.name, defaultTheme, theme => ({
       "@global": {
@@ -34,7 +32,8 @@ export function initTheme(
           fontSize: theme.fontSize
         }
       },
-      "@font-face": theme.fonts
+      "@font-face": theme.fonts,
+      "@keyframes": theme.animations
     }));
   }
   const result = aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
@@ -43,7 +42,8 @@ export function initTheme(
         fontSize: theme.fontSize
       }
     },
-    "@font-face": theme.fonts
+    "@font-face": theme.fonts,
+    "@keyframes": theme.animations
   }));
   aesthetic.configure({
     adapter: new AphroditeAdapter([selfExtension]),
@@ -55,17 +55,15 @@ export function initTheme(
   return result;
 }
 
-export function registerTheme(
-  themeObj = defaultTheme,
-  aesthetic: Aesthetic = aestheticDefault
-) {
+export function registerTheme(themeObj = defaultTheme, aesthetic: Aesthetic = aestheticDefault) {
   aesthetic.registerTheme(themeObj.name, themeObj, theme => ({
     "@global": {
       html: {
         fontSize: theme.fontSize
       }
     },
-    "@font-face": theme.fonts
+    "@font-face": theme.fonts,
+    "@keyframes": theme.animations
   }));
 
   aesthetic.configure({
@@ -73,9 +71,6 @@ export function registerTheme(
   });
 }
 
-export function changeTheme(
-  theme: string,
-  aesthetic: Aesthetic = aestheticDefault
-) {
+export function changeTheme(theme: string, aesthetic: Aesthetic = aestheticDefault) {
   aesthetic.changeTheme(theme);
 }

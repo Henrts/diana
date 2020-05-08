@@ -1,5 +1,6 @@
 import { defaultPalette } from "../palettes";
 import { defaultIcons } from "../icons";
+import { defaultAnimations } from "../animations";
 import { FontWeight } from "./theme.default.types";
 
 const spaceUnit = 16;
@@ -12,6 +13,7 @@ export default {
   fontFamily,
   fontSize,
   fonts: {},
+  animations:defaultAnimations,
   icons: defaultIcons,
   spaceUnit: {
     xxs: `${spaceUnit / 4}px`,

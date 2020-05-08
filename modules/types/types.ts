@@ -83,13 +83,12 @@ export type Theme = {
   colors: typeof defaultPalette;
   typography: IFonts;
   icons: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   };
   fontFamily: string;
   fontSize: string | number;
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   fonts: any;
+  animations: any[];
   spaceUnit: ISpaceUnit;
   spacing: {
     [key: string]: { top: string; left: string };
