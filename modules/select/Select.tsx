@@ -137,11 +137,10 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
     );
   }, [chips, filteredItems, inputProps, text, onItemSelected, onNewValue]);
 
-  const showNewValueItem = useMemo(() => Boolean(onNewValue && text && renderNewValueItem), [
-    onNewValue,
-    renderNewValueItem,
-    text
-  ]);
+  const showNewValueItem = useMemo(
+    () => Boolean(!filteredItems.length && onNewValue && text && renderNewValueItem),
+    [filteredItems, onNewValue, renderNewValueItem, text]
+  );
 
   const itemsToShow = useMemo(() => {
     if (filteredItems.length) {

@@ -37,7 +37,6 @@ export const SelectWithNewValueStory = () => {
         inputProps={{ label: "Select Option" }}
         items={items}
         onItemSelected={item => {
-          console.log(item);
           selectItem(item);
         }}
         selectedItem={selectedItem}
