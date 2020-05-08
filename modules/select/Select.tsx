@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
 import * as Chip from "@diana-ui/chip";
 import { IDropdownItem, ISingleDropdownProps } from "@diana-ui/dropdown";
-import { useRegistry, useRegistryWithStyles } from "@diana-ui/hooks";
+import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 
 export interface IProps extends ISingleDropdownProps<IDropdownItem> {
@@ -80,7 +80,12 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
     [items, text, onFilter, value]
   );
 
-  const Dropdown = useRegistry<ISingleDropdownProps<IDropdownItem>>("Dropdown");
+  const dropdownStylesheet = useMemo(() => parentStylesheet ?? (() => ({})), [parentStylesheet]);
+
+  const Dropdown = useRegistryWithStyles<ISingleDropdownProps<IDropdownItem>>(
+    "Dropdown",
+    dropdownStylesheet
+  );
   const BaseChipInput = useRegistryWithStyles<Chip.IChipInputProps>("ChipInput", InputStylesheet);
   const ChipInput = useMemo(
     () => (parentStylesheet ? BaseChipInput.extendStyles(parentStylesheet) : BaseChipInput),
