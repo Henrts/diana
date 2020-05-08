@@ -1,17 +1,16 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useCallback } from "react";
-import uuid from "uuid";
 import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import { SectionTitle } from "@diana-ui/typography";
-import { Icon, IconNames } from "@diana-ui/icon";
+import { Body, BodyHighlight } from "@diana-ui/typography";
+import { Icon, IIconProps } from "@diana-ui/icon";
 
 // @ts-ignore
 export interface IProps extends StandardProps<"div"> {
   id: string;
-  children: string;
-  icon?: IconNames;
-  title?: string;
+  iconProps?: IIconProps;
+  text: string | JSX.Element;
+  title?: string | JSX.Element;
   onMouseOver?: (id: string) => void;
   onMouseOut?: (id: string) => void;
 }
@@ -23,6 +22,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   text: {},
   title: {},
   wrapper: {
+    display: "flex",
+    flexDirection: "column",
     "@selectors": {
       "&.enter": {
         opacity: 0,
@@ -46,30 +47,39 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const Notifcation: React.FC<IProps & WithStylesProps> = ({
-  children,
+const Notification: React.FC<IProps & WithStylesProps> = ({
   cx,
   className,
-  icon,
-  id = uuid(),
+  iconProps,
+  id,
+  text,
   title,
   styles,
   onMouseOver,
   onMouseOut,
   wrappedRef
 }) => {
-  const textWithIconStyles = {
+  const titleWrapperStyles = {
     display: "flex",
     alignItems: "center"
   };
   const handleMouseOver = () => onMouseOver?.(id);
   const handleMouseOut = () => onMouseOut?.(id);
 
-  const renderText = useCallback(() => <span className={cx(styles.text)}>{children}</span>, [
-    children,
-    cx,
-    styles.text
-  ]);
+  const renderText = useCallback(
+    () => (typeof text === "string" ? <Body className={cx(styles.text)}>{text}</Body> : text),
+    [cx, styles.text, text]
+  );
+
+  const renderTitle = useCallback(
+    () =>
+      typeof title === "string" ? (
+        <BodyHighlight className={cx(styles.title)}>{title}</BodyHighlight>
+      ) : (
+        title
+      ),
+    [cx, styles, title]
+  );
 
   return (
     <div
@@ -78,17 +88,19 @@ const Notifcation: React.FC<IProps & WithStylesProps> = ({
       onMouseOut={handleMouseOut}
       ref={wrappedRef}
     >
-      {title && <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>}
-      {icon ? (
-        <div className={cx(textWithIconStyles)}>
-          <Icon className={cx(styles.icon)} name={icon} />
-          {renderText()}
+      {iconProps ? (
+        <div className={cx(titleWrapperStyles)}>
+          <Icon className={cx(styles.icon)} {...iconProps} />
+          {renderTitle()}
         </div>
       ) : (
-        renderText()
+        renderTitle()
       )}
+      {renderText()}
     </div>
   );
 };
 
-export default withStyles(styleSheet)(Notifcation);
+Notification.displayName = "Notification";
+
+export default withStyles(styleSheet, { register: true })(Notification);
