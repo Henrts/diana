@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/select",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
