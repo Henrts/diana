@@ -1,11 +1,18 @@
 import React from "react";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import { WithStylesProps, ThemeStyleSheetFactory, BaseStylesheet, Theme } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { IPopoverProps, Popover, usePopoverRef } from "@diana-ui/popover";
 
-export interface IProps extends IPopoverProps {}
+export interface IMenuProps extends IPopoverProps {}
 
-const styleSheet: ThemeStyleSheetFactory = theme => ({
+export interface IMenuStyles {
+  /**
+   * Styles the list's ul
+   */
+  list: BaseStylesheet;
+}
+
+const styleSheet: ThemeStyleSheetFactory<Theme, IMenuStyles> = theme => ({
   list: {
     listStyle: "none",
     marginBottom: 0,
@@ -14,9 +21,6 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     overflowY: "auto",
     paddingLeft: 0,
     width: "100%"
-  },
-  item: {
-    cursor: "pointer"
   }
 });
 
@@ -29,7 +33,7 @@ export const styleSheetPopover: ThemeStyleSheetFactory = () => ({
 
 const StyledPopover = Popover.extendStyles(styleSheetPopover);
 
-const Menu: React.FC<IProps & WithStylesProps> = ({
+const Menu: React.FC<IMenuProps & WithStylesProps> = ({
   className,
   children,
   wrappedRef,

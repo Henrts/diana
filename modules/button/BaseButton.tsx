@@ -1,15 +1,53 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory,
+  BaseStylesheet,
+  Theme
+} from "@diana-ui/types";
 import { ButtonText } from "@diana-ui/typography";
 
-export interface IProps extends StandardProps<"button"> {
+// #region TYPES
+
+export interface IBaseButtonProps extends StandardProps<"button"> {
+  /**
+   * react element to be rendered on the left side
+   */
   renderLeftIcon?: () => JSX.Element;
+  /**
+   * react element to be rendered on the right side
+   */
   renderRightIcon?: () => JSX.Element;
+  /**
+   * is button should be styled as danger
+   */
   danger?: boolean;
 }
 
-const styleSheet: ThemeStyleSheetFactory = theme => ({
+export interface IBaseButtonStyles {
+  /**
+   * extend styles of default button
+   */
+  button?: BaseStylesheet;
+  /**
+   * extend styles of danger button
+   */
+  danger?: BaseStylesheet;
+  /**
+   * extend styles of disabled button
+   */
+  disabled?: BaseStylesheet;
+  /**
+   * styles the button text
+   */
+  buttonText?: BaseStylesheet;
+}
+
+// #endregion
+
+const styleSheet: ThemeStyleSheetFactory<Theme, IBaseButtonStyles> = theme => ({
   button: {
     color: theme.colors.primary,
     cursor: "pointer",
@@ -23,7 +61,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   buttonText: {}
 });
 
-const BaseButton: React.FC<IProps & WithStylesProps> = ({
+const BaseButton: React.FC<IBaseButtonProps & WithStylesProps<Theme, IBaseButtonStyles>> = ({
   styles,
   cx,
   danger,

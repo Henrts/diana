@@ -2,7 +2,7 @@ import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
 import Menu from "./Menu";
 import MenuItem from "./MenuItem";
 import { Icon } from "@diana-ui/icon";
-import { MenuDirectionsStory } from "./Menu.story";
+import { MenuDirectionsStory, MenuProps, MenuStyles, MenuItemProps, MenuItemStyles } from "./Menu.story";
 
 <Meta title="Components | Menu" />
 
@@ -43,74 +43,35 @@ These options are preferably used with MenuItem
   </Story>
 </Preview>
 
-### Available props
+<br />
+<br />
+<h2>Menu</h2>
+<br />
+
+<h3>Available props</h3>
 
 Some of the props are passed through to the `Popover` element, so refer to its documentation for more customization options.
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Prop Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>renderHeader</td>
-      <th>() => JSX.Element</th>
-      <td>Element that will be shown as the menu header to be clickable</td>
-    </tr>
-    <tr>
-      <td>onShow (optional)</td>
-      <th>Function</th>
-      <td>Called when the Popover content is shown.</td>
-    </tr>
-    <tr>
-      <td>onHide (optional)</td>
-      <th>Function</th>
-      <td>Called when the Popover content is hidden.</td>
-    </tr>
-    <tr>
-      <td>disabled (optional)</td>
-      <th>boolean</th>
-      <td>If the Popover should not be opened.</td>
-    </tr>
-    <tr>
-      <td>children</td>
-      <th>MenuItem[]</th>
-      <td>List of items to show on the popover</td>
-    </tr>
-  </tbody>
-</table>
+<MenuProps />
 
-#### MenuItem
+<br />
+<h3>Styles Props</h3>
+
+<MenuStyles />
+
+<br />
+<br />
+<h2>MenuItem</h2>
+<br />
+
+<h3>Available Props</h3>
 
 For each MenuItem these are the possible props
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Prop Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>icon (optional)</td>
-      <th>string</th>
-      <td>Icon to show on the item</td>
-    </tr>
-    <tr>
-      <td>children</td>
-      <th>string</th>
-      <td>Text to show on the item</td>
-    </tr>
-    <tr>
-      <td>onClick (optional)</td>
-      <th>() => void</th>
-      <td>Callback after clicking an item</td>
-    </tr>
-  </tbody>
-</table>
+<MenuItemProps />
+
+<br />
+<h3>Styles Props</h3>
+
+<MenuItemStyles />
+

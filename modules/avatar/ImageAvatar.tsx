@@ -1,23 +1,64 @@
 import React, { useCallback, useState } from "react";
 import { Icon, IconNames } from "@diana-ui/icon";
-import { ThemeStyleSheetFactory, Theme, WithStylesProps } from "@diana-ui/types";
+import { ThemeStyleSheetFactory, Theme, WithStylesProps, BaseStylesheet } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { BodyHighlight } from "@diana-ui/typography";
 import Avatar, { IAvatarProps } from "./Avatar";
 
 export interface IImageAvatarProps extends IAvatarProps {
+  /**
+   * className for the innercircle
+   */
   circleClassName?: string;
+  /**
+   * className to be applied to the content
+   * inside the circle
+   */
   className?: string;
-
+  /**
+   * if not undefined this will render an img tag
+   * with this as source
+   */
   src?: string;
+  /**
+   * alt attribute for the img tag
+   */
   alt?: string;
+  /**
+   * fallbackText to be presented in case
+   * an error has occured when loading the image
+   */
   fallbackText?: string;
-
+  /**
+   * iconName from the Icon component
+   * if there's no src, this will render
+   * an Icon component where name = this property
+   */
   icon?: string;
+  /**
+   * Icon's component size property
+   */
   iconSize?: number;
 }
 
-const styleSheet: ThemeStyleSheetFactory = (theme: Theme) => ({
+export interface IImageAvatarStyles {
+  /**
+   * styles the inner circle
+   */
+  circle?: BaseStylesheet;
+  /**
+   * styles the img tag
+   * if src is provided
+   */
+  image?: BaseStylesheet;
+  /**
+   * styles the Icon component
+   * if icon property is provided
+   */
+  icon?: BaseStylesheet;
+}
+
+const styleSheet: ThemeStyleSheetFactory<Theme, IImageAvatarStyles> = theme => ({
   circle: {
     height: "calc(100% - 16px)",
     width: "calc(100% - 16px)",

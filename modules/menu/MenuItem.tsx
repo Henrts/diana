@@ -10,8 +10,18 @@ import { withStyles } from "@diana-ui/base";
 import { Body } from "@diana-ui/typography";
 import { Icon, IconNames } from "@diana-ui/icon";
 
-export interface IProps extends StandardProps<"li"> {
+export interface IMenuItemProps extends StandardProps<"li"> {
+  /**
+   * Icon to show on the item
+   */
   icon?: IconNames;
+  /**
+   * Text to show on the item
+   */
+  children: string | JSX.Element;
+  /**
+   * Callback after clicking an item
+   */
   onClick?: () => void;
 }
 
@@ -37,7 +47,7 @@ export const styleSheet: ThemeStyleSheetFactory<Theme, IMenuItemStyles> = theme 
   }
 });
 
-const MenuItem: React.FC<IProps & WithStylesProps<Theme, IMenuItemStyles>> = ({
+const MenuItem: React.FC<IMenuItemProps & WithStylesProps<Theme, IMenuItemStyles>> = ({
   className,
   children,
   cx,
