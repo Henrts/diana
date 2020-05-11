@@ -1,24 +1,32 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import React from "react";
+import React, { useCallback, useImperativeHandle, useRef, useState } from "react";
 import { StyledComponent } from "aesthetic-react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import uuid from "uuid";
 import { withStyles } from "@diana-ui/base";
+import { useRegistry } from "@diana-ui/hooks";
+import { IIconProps } from "@diana-ui/icon";
+import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import { IProps as INotificationProps } from "./Notification";
 
 export interface INotification {
-  children: string;
-  icon?: string;
+  iconProps?: IIconProps;
+  id?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  template: StyledComponent<any>;
-  title?: string;
+  template?: StyledComponent<any>;
+  text: string | JSX.Element;
+  title?: string | JSX.Element;
+}
+
+export interface INotificationStackRef {
+  addNotification: (notification: INotification) => string;
+  removeNotification: (notificationId: string) => void;
 }
 
 export interface IProps {
   className?: string;
-  notifications: INotification[];
-  timeout?: number;
-  handleMouseOver?: (id: string) => void;
-  handleMouseOut?: (id: string) => void;
+  displayDuration?: number;
+  transitionTimeout?: number;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -31,33 +39,101 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
+const NotifcationStack: React.FC<IProps & WithStylesProps> = ({
   className,
   cx,
-  notifications = [],
+  displayDuration = 4000,
   styles,
-  timeout = 500,
-  handleMouseOver,
-  handleMouseOut,
+  transitionTimeout = 500,
   wrappedRef
 }) => {
+  const BaseNotification = useRegistry<INotificationProps>("Notification");
+  const [notifications, setNotifications] = useState<INotification[]>([]);
+  const [timeouts, setTimeouts] = useState<{ [notificationId: string]: NodeJS.Timeout }>({});
+  const notificationsRef = useRef(notifications);
+  notificationsRef.current = notifications;
+
+  const handleRemoveNotification = useCallback((notificationId: string) => {
+    const currentNotifications = notificationsRef.current;
+    const index = currentNotifications.findIndex(
+      notification => notification.id === notificationId
+    );
+
+    if (index >= 0) {
+      const newNotifications = [...currentNotifications];
+      newNotifications.splice(index, 1);
+
+      setNotifications(newNotifications);
+    }
+  }, []);
+
+  const clearNotificationTimeout = useCallback((notificationId: string) => {
+    setTimeouts(currTimeouts => {
+      const { [notificationId]: timeout, ...restTimeouts } = currTimeouts;
+      clearTimeout(timeout);
+
+      return restTimeouts;
+    });
+  }, []);
+
+  const setNotificationTimeout = useCallback(
+    (notificationId: string) => {
+      const notificationTimeout = setTimeout(() => {
+        handleRemoveNotification(notificationId);
+        clearNotificationTimeout(notificationId);
+      }, displayDuration);
+
+      setTimeouts({ ...timeouts, [notificationId]: notificationTimeout });
+    },
+    [clearNotificationTimeout, displayDuration, handleRemoveNotification, timeouts]
+  );
+
+  const handleAddNotification = useCallback(
+    (notification: INotification) => {
+      const id = uuid();
+      setNotifications([...notificationsRef.current, { ...notification, id }]);
+      setNotificationTimeout(id);
+
+      return id;
+    },
+    [setNotificationTimeout]
+  );
+
+  const handleMouseOver = useCallback(
+    (id: string) => {
+      clearNotificationTimeout(id);
+    },
+    [clearNotificationTimeout]
+  );
+
+  const handleMouseOut = useCallback(
+    (id: string) => {
+      setNotificationTimeout(id);
+    },
+    [setNotificationTimeout]
+  );
+
+  useImperativeHandle<INotificationStackRef, INotificationStackRef>(wrappedRef, () => ({
+    addNotification: handleAddNotification,
+    removeNotification: handleRemoveNotification
+  }));
+
   return (
     <TransitionGroup
       className={cx("diana-notification-stack", styles.notificationStack, className)}
       ref={wrappedRef}
     >
-      {notifications.map((notification: INotification, index) => {
-        const { template: Notification } = notification;
+      {notifications.map((notification: INotification) => {
+        const { id, template: Notification = BaseNotification } = notification;
 
         return (
-          <CSSTransition key={index} timeout={timeout}>
+          <CSSTransition key={id} timeout={transitionTimeout}>
             <Notification
               {...notification}
+              id={id || uuid()}
               onMouseOver={handleMouseOver}
               onMouseOut={handleMouseOut}
-            >
-              {notification.children}
-            </Notification>
+            />
           </CSSTransition>
         );
       })}
@@ -65,4 +141,6 @@ const NotifcationPresenter: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-export default withStyles(styleSheet)(NotifcationPresenter);
+NotifcationStack.displayName = "NotifcationStack";
+
+export default withStyles(styleSheet, { register: true })(NotifcationStack);

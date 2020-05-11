@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.17",
+    "@diana-ui/hooks": "^0.1.23",
     "@diana-ui/icon": "^0.2.11",
     "@diana-ui/types": "^0.1.11",
     "@diana-ui/typography": "^0.1.17",

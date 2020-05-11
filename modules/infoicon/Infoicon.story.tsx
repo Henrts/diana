@@ -1,7 +1,5 @@
 import React from "react";
 import Infoicon from "./Infoicon";
-import { ComponentRegistry } from "@diana-ui/base";
-import { ThemeStyleSheetFactory } from "@diana-ui/types";
 import { Avatar } from "@diana-ui/avatar";
 import { DescriptionMedium } from "@diana-ui/typography";
 
@@ -19,8 +17,6 @@ Avatar.extendStyles(
   { register: true }
 );
 
-const stylesheet: ThemeStyleSheetFactory = theme => ({});
-
 export const InfoiconStory = () => {
   return (
     <Infoicon
@@ -37,7 +33,7 @@ export const InfoiconStory = () => {
 export const CustomTitleInfoiconStory = () => {
   return (
     <Infoicon
-      title={<DescriptionMedium>Test</DescriptionMedium>}
+      title={<DescriptionMedium>Custom title</DescriptionMedium>}
       avatarOptions={{
         children: "TXT"
       }}

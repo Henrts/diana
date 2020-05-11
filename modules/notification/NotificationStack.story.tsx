@@ -1,55 +1,46 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { BaseButton } from "@diana-ui/button";
-import NotificationStack, { INotification } from "./NotificationStack";
-import { SuccessNotification } from "./Notification.story";
+import NotificationStack, { INotification, INotificationStackRef } from "./NotificationStack";
 
 function getRandomNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 export const NotificationStackExample: React.FC<{}> = () => {
-  const [notifications, setNotifications] = useState<INotification[]>([]);
+  const ref = useRef<INotificationStackRef>(null);
+  const [notificationIds, setNotificationIds] = useState<string[]>([]);
   const notification1: INotification = {
-    children: "Notificaiton",
-    template: SuccessNotification
+    text: "Notificaiton"
   };
   const notification2: INotification = {
-    children: "Icon notificaiton",
-    icon: "check",
-    template: SuccessNotification
+    iconProps: { name: "checkmark" },
+    text: "Icon notificaiton",
+    title: "Title with icon"
   };
   const notification3: INotification = {
-    children: "Title notificaiton",
-    title: "Big Title",
-    template: SuccessNotification
+    text: "Title notificaiton",
+    title: "Title"
   };
   const notificationList: INotification[] = [notification1, notification2, notification3];
 
   const addNotification = () => {
-    if (notifications.length < 5) {
+    if (notificationIds.length < 5) {
       const rand = getRandomNumber(0, 3);
 
-      setNotifications([...notifications, notificationList[rand]]);
+      const id = ref?.current?.addNotification(notificationList[rand]) || "";
+      setNotificationIds([...notificationIds, id]);
     }
   };
 
   const removeNotification = () => {
-    if (notifications.length > 0) {
-      const rand = getRandomNumber(0, notifications.length);
-      const newNotifications = [...notifications];
+    if (notificationIds.length > 0) {
+      const rand = getRandomNumber(0, notificationIds.length);
+      const newIds = [...notificationIds];
+      newIds.splice(rand, 1);
 
-      newNotifications.splice(rand, 1);
-
-      setNotifications(newNotifications);
+      ref?.current?.removeNotification(notificationIds[rand]);
+      setNotificationIds(newIds);
     }
-  };
-
-  const handleMouseOver = (id: string) => {
-    console.log("OVER: ", id);
-  };
-
-  const handleMouseOut = (id: string) => {
-    console.log("OUT: ", id);
   };
 
   return (
@@ -57,20 +48,16 @@ export const NotificationStackExample: React.FC<{}> = () => {
       <div style={{ display: "flex", margin: "32px 0" }}>
         <BaseButton
           style={{ marginRight: "8px" }}
-          disabled={notifications.length === 5}
+          disabled={notificationIds.length === 5}
           onClick={addNotification}
         >
           Add Notification
         </BaseButton>
-        <BaseButton disabled={notifications.length === 0} onClick={removeNotification}>
+        <BaseButton disabled={notificationIds.length === 0} onClick={removeNotification}>
           Remove Notification
         </BaseButton>
       </div>
-      <NotificationStack
-        notifications={notifications}
-        handleMouseOut={handleMouseOut}
-        handleMouseOver={handleMouseOver}
-      />
+      <NotificationStack wrappedRef={ref} />
     </>
   );
 };

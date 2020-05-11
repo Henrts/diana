@@ -8,11 +8,10 @@ import Notification from "./Notification";
 # Notification
 
 The `Notification` component can be used independently or in a `NotificationStack`. It should be used to convey meaningful but concise information to the user and should be easily noticeable and understood.
-As of now, the `Notification`'s content/body can only be a string.
 
 <Preview>
   <Story name="Notification">
-    <Notification>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Notification>
+    <Notification id="id" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
   </Story>
 </Preview>
 
@@ -20,9 +19,11 @@ As of now, the `Notification`'s content/body can only be a string.
 
 <Preview>
   <Story name="Notification with title">
-    <Notification title="Title">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    </Notification>
+    <Notification
+      id="id"
+      title="Title"
+      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    />
   </Story>
 </Preview>
 
@@ -30,7 +31,12 @@ As of now, the `Notification`'s content/body can only be a string.
 
 <Preview>
   <Story name="Notification with icon">
-    <Notification icon="check">Something good happened!</Notification>
+    <Notification
+      id="id"
+      iconProps={{ name: "add" }}
+      title="Title"
+      text="Something good happened!"
+    />
   </Story>
 </Preview>
 
@@ -40,10 +46,15 @@ As of now, the `Notification`'s content/body can only be a string.
   <Story name="Custom notification example">
     <div style={{ display: "flex ", flexDirection: "column" }}>
       Variation with icon:
-      <SuccessNotification icon="check">Something good happened!</SuccessNotification>
+      <SuccessNotification
+        id="id"
+        iconProps={{ name: "check" }}
+        title="Title"
+        text="Something good happened!"
+      />
       <br />
       Variation with title:
-      <SuccessNotification title="Success!">Something good happened!</SuccessNotification>
+      <SuccessNotification id="id" title="Success!" text="Something good happened!" />
     </div>
   </Story>
 </Preview>
@@ -60,26 +71,49 @@ As of now, the `Notification`'s content/body can only be a string.
   </thead>
   <tbody>
     <tr>
-      <td>children</td>
+      <td>id</td>
       <td>string</td>
-      <td>The text to be displayed in the Notification body</td>
+      <td>Notification id. If inside a NotificationStack, the id will be injected</td>
     </tr>
     <tr>
-      <td>icon (optional)</td>
-      <td>string</td>
+      <td>iconProps (optional)</td>
+      <td>IIconProps</td>
       <td>
-        The name of the icon to be shown.
+        The props of the icon to be shown.
         <br />
-        If this prop is passed, an icon will be displayed on the left of the Notification body.
+        If this prop is passed, an icon will be displayed on the left of the Notification title.
       </td>
     </tr>
     <tr>
+      <td>text</td>
+      <td>string | JSX.Element</td>
+      <td>The text/ element to be displayed in the Notification body</td>
+    </tr>
+    <tr>
       <td>title (optional)</td>
-      <td>string</td>
+      <td>string | JSX.Element</td>
       <td>
         The title of the Notification
         <br />
         If this prop is passed, the Notification will have a title with the given content.
+      </td>
+    </tr>
+    <tr>
+      <td>onMouseOver (optional)</td>
+      <td>(id: string) => void</td>
+      <td>
+        Callback for when user hovers over the notification
+        <br />
+        If inside a NotificationStack, this prop will be injected
+      </td>
+    </tr>
+    <tr>
+      <td>onMouseOut (optional)</td>
+      <td>(id: string) => void</td>
+      <td>
+        Callback for when user stops hovering over the notification
+        <br />
+        If inside a NotificationStack, this prop will be injected
       </td>
     </tr>
   </tbody>
@@ -141,97 +175,16 @@ As of now, the `Notification`'s content/body can only be a string.
 
 # NotificationStack
 
-The `NotificationStack` receives an array of notifications and handles their display. Through the theme, the animations applied to showing and hiding a notification can be configured.
+The `NotificationStack` handles the display of `Notification`s. Through the theme, the animations applied to showing and hiding a notification can be configured.
 The default behaviour is for `Notification`s to be showed on the lower right corner.
 
-Each notification in the array can specify a `Notification` template, so that different variations of the `Notification` component are supported.
+`Notification`s can be added and removed through the ref (`<INotificationStackRef>`) passed down to the `NotificationStack`'s `wrappedRef` prop.
 
-The `NotificationStack` is a presentational component only and is not concerned with data handling at all (nor should it be).
-
-Examples of what the application using the design system would have to handle internally:
-
-- Hiding `Notification`s after a certain timeout. It would have to add a notification to the `notifications` array and remove it after the timeout.
-  (`onMouseOver` and `onMouseOut` callbacks are already supported for interrupting/resetting the timeout)
-- Allowing the user to close a `Notification`. The `Notification` passed in the template would have to have e.g. an `onClose` callback so that notification could be removed from the `notifications` array.
+When adding a notification, a `Notification` template can specified so that different variations of the `Notification` component are supported.
 
 <Story name="NotificationStack">
   <NotificationStackExample style={{ marginBottom: "16px" }} />
 </Story>
-
-<details>
-  <summary>Example code</summary>
-
-```javascript
-export const NotificationStackExample: React.FC<{}> = () => {
-  const [notifications, setNotifications] = useState < any > [];
-  const notification1 = {
-    children: "Notificaiton",
-    template: SuccessNotification
-  };
-  const notification2 = {
-    children: "Icon notificaiton",
-    icon: "check",
-    template: SuccessNotification
-  };
-  const notification3 = {
-    children: "Title notificaiton",
-    title: "Big Title",
-    template: SuccessNotification
-  };
-  const notificationList = [notification1, notification2, notification3];
-
-  const addNotification = () => {
-    if (notifications.length < 5) {
-      const rand = getRandomNumber(0, 3);
-
-      setNotifications([...notifications, notificationList[rand]]);
-    }
-  };
-
-  const removeNotification = () => {
-    if (notifications.length > 0) {
-      const rand = getRandomNumber(0, notifications.length);
-      const newNotifications = [...notifications];
-
-      newNotifications.splice(rand, 1);
-
-      setNotifications(newNotifications);
-    }
-  };
-
-  const handleMouseOver = (id: string) => {
-    console.log("OVER: ", id);
-  };
-
-  const handleMouseOut = (id: string) => {
-    console.log("OUT: ", id);
-  };
-
-  return (
-    <>
-      <div style={{ display: "flex" }}>
-        <BaseButton
-          style={{ marginRight: "8px" }}
-          disabled={notifications.length === 5}
-          onClick={addNotification}
-        >
-          Add Notification
-        </BaseButton>
-        <BaseButton disabled={notifications.length === 0} onClick={removeNotification}>
-          Remove Notification
-        </BaseButton>
-      </div>
-      <NotificationStack
-        notifications={notifications}
-        handleMouseOut={handleMouseOut}
-        handleMouseOver={handleMouseOver}
-      />
-    </>
-  );
-};
-```
-
-</details>
 
 <br />
 
@@ -247,36 +200,19 @@ export const NotificationStackExample: React.FC<{}> = () => {
   </thead>
   <tbody>
     <tr>
-      <td>notifications</td>
-      <td>INotification[]</td>
-      <td>
-        An array of the notifications to display. A notification contains a template of its
-        Notification component, as well as all the props to be passed to that component
-      </td>
+      <td>className</td>
+      <td>string</td>
+      <td>classname passed to the wrapper element</td>
     </tr>
     <tr>
-      <td>timeout (optional)</td>
+      <td>displayDuration (optional)</td>
       <td>number</td>
-      <td>The timeout for the CSSTransition component in milliseconds.</td>
+      <td>Amount of time in milliseconds the notification is displayed. Defaults to 4000</td>
     </tr>
     <tr>
-      <td>handleMouseOver (optional)</td>
-      <td>function</td>
-      <td>
-        Callback for when the user hovers over a notification.
-        <br />
-        It takes a single argument that is the id of the Notification being hovered over.
-      </td>
-    </tr>
-    <tr>
-      <td>handleMouseOut (optional)</td>
-      <td>function</td>
-      <td>
-        Callback for when the user removes his/her mouse from over a notification.
-        <br />
-        It takes a single argument that is the id of the Notification not being hovered over any
-        longer.
-      </td>
+      <td>transitionTimeout (optional)</td>
+      <td>number</td>
+      <td>The timeout for the CSSTransition component in milliseconds. Defaults to 500</td>
     </tr>
   </tbody>
 </table>
@@ -296,6 +232,72 @@ export const NotificationStackExample: React.FC<{}> = () => {
       <td>notificationStack</td>
       <td></td>
       <td>Style of the wrapper element</td>
+    </tr>
+  </tbody>
+</table>
+
+### INotificationStackRef
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>addNotification</td>
+      <td>(notification: INotification) => string</td>
+      <td>Add a new notification to the notification stack</td>
+    </tr>
+    <tr>
+      <td>removeNotification</td>
+      <td>(notificationId: string) => void</td>
+      <td>Manually remove a notification with given id from the notification stack</td>
+    </tr>
+  </tbody>
+</table>
+
+### INotification
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>iconProps (optional)</td>
+      <td>IIconProps</td>
+      <td>
+        The props of the icon to be shown.
+        <br />
+        If this prop is passed, an icon will be displayed on the left of the Notification title.
+      </td>
+    </tr>
+    <tr>
+      <td>template (optional)</td>
+      <td>StyledComponent&lt;any&gt;</td>
+      <td>Component that should be used to render the notification. Defaults to Notification</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>string | JSX.Element</td>
+      <td>The text/ element to be displayed in the Notification body</td>
+    </tr>
+    <tr>
+      <td>title (optional)</td>
+      <td>string | JSX.Element</td>
+      <td>
+        The title of the Notification
+        <br />
+        If this prop is passed, the Notification will have a title with the given content.
+      </td>
     </tr>
   </tbody>
 </table>
