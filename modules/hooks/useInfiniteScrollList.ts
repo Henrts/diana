@@ -42,12 +42,11 @@ function useInfiniteScrollList(fullList: JSX.Element[], options?: IOptions) {
   const memoList = useMemo(
     () =>
       list.map((item, index) => {
-        return index === list.length - 1 && list.length !== fullList.length
-          ? React.cloneElement(item, {
-              // @ts-ignore
-              wrappedRef: ref
-            })
-          : item;
+        if (index === list.length - 1 && list.length !== fullList.length) {
+          const props = item.type.WrappedComponent ? { wrappedRef: ref } : { ref };
+          return React.cloneElement(item, props);
+        }
+        return item;
       }),
     [list, fullList]
   );
