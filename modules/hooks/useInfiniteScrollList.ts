@@ -5,12 +5,14 @@ interface IOptions {
   limit?: number;
   dependencies?: unknown[];
   intersectionOptions?: IntersectionObserverInit;
+  wrappedRef?: boolean;
 }
 
 function useInfiniteScrollList(fullList: JSX.Element[], options?: IOptions) {
-  const { limit = 10, dependencies = [], intersectionOptions } = useMemo(() => options ?? {}, [
-    options
-  ]);
+  const { limit = 10, dependencies = [], intersectionOptions, wrappedRef = false } = useMemo(
+    () => options ?? {},
+    [options]
+  );
   const [list, setList] = useState(fullList.slice(0, limit));
   useEffect(() => {
     setList(fullList.slice(0, limit));
@@ -43,12 +45,12 @@ function useInfiniteScrollList(fullList: JSX.Element[], options?: IOptions) {
     () =>
       list.map((item, index) => {
         if (index === list.length - 1 && list.length !== fullList.length) {
-          const props = item.type.WrappedComponent ? { wrappedRef: ref } : { ref };
+          const props = wrappedRef ? { wrappedRef: ref } : { ref };
           return React.cloneElement(item, props);
         }
         return item;
       }),
-    [list, fullList]
+    [list, fullList, wrappedRef]
   );
   return memoList;
 }
