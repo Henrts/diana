@@ -178,9 +178,43 @@ The `Notification` component can be used independently or in a `NotificationStac
 The `NotificationStack` handles the display of `Notification`s. Through the theme, the animations applied to showing and hiding a notification can be configured.
 The default behaviour is for `Notification`s to be showed on the lower right corner.
 
-`Notification`s can be added and removed through the ref (`<INotificationStackRef>`) passed down to the `NotificationStack`'s `wrappedRef` prop.
-
 When adding a notification, a `Notification` template can specified so that different variations of the `Notification` component are supported.
+
+`Notification`s can be added and removed through the ref (`<INotificationStackRef>`) passed down to the `NotificationStack`'s `wrappedRef` prop.
+A `NotificationContext` is also provided in order to facilitate adding/ removing notifications to the stack.
+
+```typescript
+import {
+  INotification,
+  INotificationStackRef,
+  NotificationContext,
+  NotificationProvider,
+  useNotificationContext
+} from "@diana-ui/notification";
+
+const NotificationStackParentComponent: React.FC<> = () => {
+  const ref = useRef<INotificationStackRef>(null);
+  const notificationContext = useNotificationContext(ref);
+
+  return (
+    <NotificationProvider value={notificationContext}>
+      <NotificationStack wrappedRef={ref} />
+      <RandomComponent />
+    </NotificationProvider>
+  );
+};
+
+const RandomComponent: React.FC<> = () => {
+  const notificationContext = useContext(NotificationContext);
+  const notification: INotification = {
+    text: "Notification"
+  };
+
+  notificationContext.addNotification(notification);
+
+  return null;
+};
+```
 
 <Story name="NotificationStack">
   <NotificationStackExample style={{ marginBottom: "16px" }} />

@@ -5,3 +5,4 @@ export {
   INotification,
   INotificationStackRef
 } from "./NotificationStack";
+export * from "./NotificationContext";
