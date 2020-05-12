@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/infoicon",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -17,9 +17,9 @@
     "watch": "npm-watch"
   },
   "dependencies": {
-    "@diana-ui/avatar": "^0.0.28",
+    "@diana-ui/avatar": "^0.0.29",
     "@diana-ui/base": "^0.1.17",
-    "@diana-ui/hooks": "^0.1.23",
+    "@diana-ui/hooks": "^0.1.24",
     "@diana-ui/tokens": "^0.1.9",
     "@diana-ui/types": "^0.1.11",
     "@diana-ui/typography": "^0.1.17"
