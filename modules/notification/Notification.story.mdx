@@ -27,10 +27,18 @@ The `Notification` component can be used independently or in a `NotificationStac
   </Story>
 </Preview>
 
-### Notification w/ icon
+### Notification w/ text icon
 
 <Preview>
-  <Story name="Notification with icon">
+  <Story name="Notification with text icon">
+    <Notification id="id" iconProps={{ name: "add" }} text="Something good happened!" />
+  </Story>
+</Preview>
+
+### Notification w/ title icon
+
+<Preview>
+  <Story name="Notification with title icon">
     <Notification
       id="id"
       iconProps={{ name: "add" }}

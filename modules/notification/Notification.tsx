@@ -59,7 +59,7 @@ const Notification: React.FC<IProps & WithStylesProps> = ({
   onMouseOut,
   wrappedRef
 }) => {
-  const titleWrapperStyles = {
+  const contentWrapperStyles = {
     display: "flex",
     alignItems: "center"
   };
@@ -88,15 +88,23 @@ const Notification: React.FC<IProps & WithStylesProps> = ({
       onMouseOut={handleMouseOut}
       ref={wrappedRef}
     >
-      {iconProps ? (
-        <div className={cx(titleWrapperStyles)}>
+      {title &&
+        (iconProps ? (
+          <div className={cx(contentWrapperStyles)}>
+            <Icon className={cx(styles.icon)} {...iconProps} />
+            {renderTitle()}
+          </div>
+        ) : (
+          renderTitle()
+        ))}
+      {!title && iconProps ? (
+        <div className={cx(contentWrapperStyles)}>
           <Icon className={cx(styles.icon)} {...iconProps} />
-          {renderTitle()}
+          {renderText()}
         </div>
       ) : (
-        renderTitle()
+        renderText()
       )}
-      {renderText()}
     </div>
   );
 };
