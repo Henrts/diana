@@ -1,16 +1,29 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps,
+  BaseStylesheet,
+  Theme
+} from "@diana-ui/types";
 
-export interface IProps extends StandardProps<"div"> {}
+export interface ICardBodyProps extends StandardProps<"div"> {}
 
-const stylesheet: ThemeStyleSheetFactory = () => ({
+export interface ICardBodyStyles {
+  /**
+   * This style affects the CardBody's wrapper element
+   */
+  body?: BaseStylesheet;
+}
+
+const stylesheet: ThemeStyleSheetFactory<Theme, ICardBodyStyles> = () => ({
   body: {
     flex: 1
   }
 });
 
-const CardBody: React.FC<IProps & WithStylesProps> = ({
+const CardBody: React.FC<ICardBodyProps & WithStylesProps<Theme, ICardBodyStyles>> = ({
   className,
   cx,
   styles,

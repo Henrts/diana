@@ -7,7 +7,12 @@ import React, {
   useState
 } from "react";
 import { withStyles } from "@diana-ui/base";
-import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory,
+  BaseStylesheet
+} from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 
 export interface ICheckboxRef {
@@ -15,9 +20,35 @@ export interface ICheckboxRef {
   toggle: () => void;
 }
 
-export interface IProps extends StandardProps<"input"> {
+export interface ICheckboxProps extends StandardProps<"input"> {
+  /**
+   * This props enables the possibility to show the checkbox as checked even though it is not
+   * checked specifically (i.e. checking the checkbox when "All options" is selected).
+   */
   showAsChecked?: boolean;
+  /**
+   *  Element that will be used when checkbox is checked.
+   */
   checkedIcon?: JSX.Element;
+}
+
+export interface ICheckboxStyles {
+  /**
+   * Style of the whole container around the checkbox and its text
+   */
+  container?: BaseStylesheet;
+  /**
+   * Style applied to the text of the checkbox
+   */
+  checkboxText?: BaseStylesheet;
+  /**
+   * Style of the icon featuring inside the box
+   */
+  icon?: BaseStylesheet;
+  /**
+   * Style of the box where the icon of the checkbox will display
+   */
+  iconContainer?: BaseStylesheet;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -88,7 +119,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
 
 const defaultCheckedIcon: JSX.Element = <Icon name="check" />;
 
-const Checkbox: React.FC<IProps & WithStylesProps> = ({
+const Checkbox: React.FC<ICheckboxProps & WithStylesProps> = ({
   styles,
   cx,
   className,
