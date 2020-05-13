@@ -57,6 +57,7 @@ export interface IAvatarStyles {
 
 const styleSheet: ThemeStyleSheetFactory<Theme, IAvatarStyles> = theme => ({
   wrapper: {
+    position: "relative",
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 10,
