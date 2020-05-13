@@ -207,8 +207,4 @@ const Slider: React.FC<ISliderProps & WithStylesProps<Theme, ISliderStyles>> = (
   );
 };
 
-const Test = withStyles(styleSheet)(Slider);
-
-const Tesst = <Test min={2} max={2} disabled inputClassName="" onValueChange={() => {}} />;
-
 export default withStyles(styleSheet)(Slider);
