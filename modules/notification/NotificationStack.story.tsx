@@ -1,11 +1,10 @@
 import React, { useContext, useRef, useState } from "react";
 import { BaseButton } from "@diana-ui/button";
 import NotificationStack, { INotification, INotificationStackRef } from "./NotificationStack";
-import {
-  NotificationContext,
-  NotificationProvider,
-  useNotificationContext
-} from "./NotificationContext";
+import { getNotificationContext, useNotificationContext } from "./NotificationContext";
+
+const NotificationContext = getNotificationContext();
+const { Provider: NotificationProvider } = NotificationContext;
 
 function getRandomNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;

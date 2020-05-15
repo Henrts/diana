@@ -13,7 +13,7 @@ export interface INotification {
   className?: string;
   displayDuration?: number;
   hasTimeout?: boolean;
-  iconProps?: IIconProps;
+  iconProps?: IIconProps | any;
   id?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   template?: StyledComponent<any>;

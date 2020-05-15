@@ -1,8 +1,8 @@
 import React from "react";
 import { INotification, INotificationStackRef } from "./NotificationStack";
 
-interface INotificationContext {
-  addNotification: (notification: INotification) => string | undefined;
+export interface INotificationContext<T = INotification> {
+  addNotification: (notification: T) => string | undefined;
   removeNotification: (notificationId: string) => void;
 }
 
@@ -11,10 +11,13 @@ const initialNotificationContext = {
   removeNotification: () => {}
 };
 
-export const useNotificationContext: (
-  ref: React.RefObject<INotificationStackRef>
-) => INotificationContext = ref => {
-  const addNotification = (notification: INotification) =>
+export const useNotificationContext = <
+  T extends INotificationStackRef = INotificationStackRef,
+  ICustomNotification extends INotification = INotification
+>(
+  ref: React.RefObject<T>
+): INotificationContext<ICustomNotification> => {
+  const addNotification = (notification: ICustomNotification) =>
     ref?.current?.addNotification(notification);
   const removeNotification = (notificationId: string) =>
     ref?.current?.removeNotification(notificationId);
@@ -25,9 +28,5 @@ export const useNotificationContext: (
   };
 };
 
-export const NotificationContext = React.createContext<INotificationContext>(
-  initialNotificationContext
-);
-export const NotificationProvider = NotificationContext.Provider;
-export const NotificationConsumer = NotificationContext.Consumer;
-export default useNotificationContext;
+export const getNotificationContext = <T extends INotification = INotification>() =>
+  React.createContext<INotificationContext<T>>(initialNotificationContext);
