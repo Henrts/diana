@@ -139,19 +139,24 @@ The `Notification` component can be used independently or in a `NotificationStac
   </thead>
   <tbody>
     <tr>
-      <td>icon</td>
-      <td></td>
-      <td>Style of the icon that precedes the text</td>
-    </tr>
-    <tr>
       <td>text</td>
       <td></td>
       <td>Style of the Notification text</td>
     </tr>
     <tr>
+      <td>textIcon</td>
+      <td></td>
+      <td>Style of the icon that precedes the text</td>
+    </tr>
+    <tr>
       <td>title</td>
       <td></td>
       <td>Style of the Notification title</td>
+    </tr>
+    <tr>
+      <td>titleIcon</td>
+      <td></td>
+      <td>Style of the icon that precedes the title</td>
     </tr>
     <tr>
       <td>wrapper</td>
@@ -190,6 +195,9 @@ When adding a notification, a `Notification` template can specified so that diff
 
 `Notification`s can be added and removed through the ref (`<INotificationStackRef>`) passed down to the `NotificationStack`'s `wrappedRef` prop.
 A `NotificationContext` is also provided in order to facilitate adding/ removing notifications to the stack.
+
+By default, notifications have a timeout (duration also has a default value of 4s) after which they are dismissed.
+They can be shown indefinitely if `hasTimeout: false` is passed, and timeout duration is also customisable.
 
 ```typescript
 import {
@@ -313,6 +321,21 @@ const RandomComponent: React.FC<> = () => {
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>className (optional)</td>
+      <td>string</td>
+      <td>Classname to be added to Notification's root element.</td>
+    </tr>
+    <tr>
+      <td>displayDuration (optional)</td>
+      <td>number</td>
+      <td>Number of milliseconds that the notification is shown.</td>
+    </tr>
+    <tr>
+      <td>hasTimeout (optional)</td>
+      <td>IIconProps</td>
+      <td>Whether the notification is dismissed after a certain timeout. True by default.</td>
+    </tr>
     <tr>
       <td>iconProps (optional)</td>
       <td>IIconProps</td>

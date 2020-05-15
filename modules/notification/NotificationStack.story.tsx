@@ -36,8 +36,9 @@ const NotificationStackActions: React.FC<{}> = () => {
     title: "Title with icon"
   };
   const notification3: INotification = {
-    text: "Title Notification",
-    title: "Title"
+    hasTimeout: false,
+    text: "I have to be removed manually!",
+    title: "Notification without timeout"
   };
   const notificationList: INotification[] = [notification1, notification2, notification3];
 

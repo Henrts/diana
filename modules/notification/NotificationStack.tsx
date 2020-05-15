@@ -10,6 +10,9 @@ import { WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { IProps as INotificationProps } from "./Notification";
 
 export interface INotification {
+  className?: string;
+  displayDuration?: number;
+  hasTimeout?: boolean;
   iconProps?: IIconProps;
   id?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -77,13 +80,20 @@ const NotifcationStack: React.FC<IProps & WithStylesProps> = ({
   }, []);
 
   const setNotificationTimeout = useCallback(
-    (notificationId: string) => {
-      const notificationTimeout = setTimeout(() => {
-        handleRemoveNotification(notificationId);
-        clearNotificationTimeout(notificationId);
-      }, displayDuration);
+    (notificationId: string, notification?: INotification) => {
+      if (notification && notification.hasTimeout !== false) {
+        const duration =
+          notification.displayDuration && notification.displayDuration > 0
+            ? notification.displayDuration
+            : displayDuration;
 
-      setTimeouts({ ...timeouts, [notificationId]: notificationTimeout });
+        const notificationTimeout = setTimeout(() => {
+          handleRemoveNotification(notificationId);
+          clearNotificationTimeout(notificationId);
+        }, duration);
+
+        setTimeouts({ ...timeouts, [notificationId]: notificationTimeout });
+      }
     },
     [clearNotificationTimeout, displayDuration, handleRemoveNotification, timeouts]
   );
@@ -92,7 +102,7 @@ const NotifcationStack: React.FC<IProps & WithStylesProps> = ({
     (notification: INotification) => {
       const id = uuid();
       setNotifications([...notificationsRef.current, { ...notification, id }]);
-      setNotificationTimeout(id);
+      setNotificationTimeout(id, notification);
 
       return id;
     },
@@ -108,9 +118,10 @@ const NotifcationStack: React.FC<IProps & WithStylesProps> = ({
 
   const handleMouseOut = useCallback(
     (id: string) => {
-      setNotificationTimeout(id);
+      const notification = notifications.find(not => not.id === id);
+      setNotificationTimeout(id, notification);
     },
-    [setNotificationTimeout]
+    [notifications, setNotificationTimeout]
   );
 
   useImperativeHandle<INotificationStackRef, INotificationStackRef>(wrappedRef, () => ({
@@ -131,8 +142,8 @@ const NotifcationStack: React.FC<IProps & WithStylesProps> = ({
             <Notification
               {...notification}
               id={id || uuid()}
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
+              onMouseOver={notification.hasTimeout !== false ? handleMouseOver : undefined}
+              onMouseOut={notification.hasTimeout !== false ? handleMouseOut : undefined}
             />
           </CSSTransition>
         );

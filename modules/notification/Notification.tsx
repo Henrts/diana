@@ -16,11 +16,14 @@ export interface IProps extends StandardProps<"div"> {
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
-  icon: {
+  text: {},
+  textIcon: {
     marginRight: theme.spaceUnit.sm
   },
-  text: {},
   title: {},
+  titleIcon: {
+    marginRight: theme.spaceUnit.sm
+  },
   wrapper: {
     display: "flex",
     flexDirection: "column",
@@ -91,7 +94,7 @@ const Notification: React.FC<IProps & WithStylesProps> = ({
       {title &&
         (iconProps ? (
           <div className={cx(contentWrapperStyles)}>
-            <Icon className={cx(styles.icon)} {...iconProps} />
+            <Icon className={cx(styles.titleIcon)} {...iconProps} />
             {renderTitle()}
           </div>
         ) : (
@@ -99,7 +102,7 @@ const Notification: React.FC<IProps & WithStylesProps> = ({
         ))}
       {!title && iconProps ? (
         <div className={cx(contentWrapperStyles)}>
-          <Icon className={cx(styles.icon)} {...iconProps} />
+          <Icon className={cx(styles.textIcon)} {...iconProps} />
           {renderText()}
         </div>
       ) : (
