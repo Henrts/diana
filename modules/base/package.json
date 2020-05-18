@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/base",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "main": "lib/index.js",
   "license": "MIT",
   "files": [
@@ -23,8 +23,8 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/tokens": "^0.1.9",
-    "@diana-ui/types": "^0.1.11",
+    "@diana-ui/tokens": "^0.1.10",
+    "@diana-ui/types": "^0.1.12",
     "aesthetic": "^5.1.0",
     "aesthetic-react": "^2.1.0",
     "aesthetic-utils": "3.0.1",
