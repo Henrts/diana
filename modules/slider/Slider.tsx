@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { withStyles } from "@diana-ui/base";
 import { useWindowSize } from "@diana-ui/hooks";
-import { ThemeStyleSheetFactory, WithStylesProps, StandardProps } from "@diana-ui/types";
+import {
+  ThemeStyleSheetFactory,
+  WithStylesProps,
+  StandardProps,
+  BaseStylesheet,
+  Theme
+} from "@diana-ui/types";
 import { Description, Label } from "@diana-ui/typography";
 import calculateSliderStep from "./helpers/calculateSliderStep";
 
@@ -16,6 +22,36 @@ export interface ISliderProps extends StandardProps<"input"> {
   onValueChange?: (value: number) => void;
 }
 
+export interface ISliderStyles {
+  /**
+   *  component wrapper
+   */
+  wrapper: BaseStylesheet;
+  /**
+   * value span wrapper
+   */
+  valueWrapper: BaseStylesheet;
+  /**
+   *  configs for input
+   * since this isn't a custom slider and actually
+   * uses the input type range from html there's some styles
+   * required to overwride for the various available browser
+   */
+  input: BaseStylesheet;
+  /**
+   * styles for the value
+   */
+  value: BaseStylesheet;
+  /**
+   * styles for sm size
+   */
+  sm: BaseStylesheet;
+  /**
+   * styles for md size
+   */
+  md: BaseStylesheet;
+}
+
 const thumbSizes = {
   sm: 21,
   md: 32
@@ -28,7 +64,7 @@ const mixinThumbStyle = (size: "sm" | "md") => ({
   marginTop: Math.round(thumbSizes[size] / -2)
 });
 
-const styleSheet: ThemeStyleSheetFactory = () => ({
+const styleSheet: ThemeStyleSheetFactory<Theme, ISliderStyles> = () => ({
   wrapper: {},
   valueWrapper: {},
   input: {
@@ -55,7 +91,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   value: {}
 });
 
-const Slider: React.FC<ISliderProps & WithStylesProps> = ({
+const Slider: React.FC<ISliderProps & WithStylesProps<Theme, ISliderStyles>> = ({
   cx,
   styles,
   min,

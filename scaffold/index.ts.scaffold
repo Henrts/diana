@@ -1,1 +1,1 @@
-export { default as {{packageNameCap}}, IProps as I{{packageNameCap}}Props } from "./{{packageNameCap}}";
+export { default as {{packageNameCap}}, I{{packageNameCap}}Props, I{{packageNameCap}}Styles } from "./{{packageNameCap}}";

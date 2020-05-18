@@ -1,16 +1,29 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps,
+  BaseStylesheet,
+  Theme
+} from "@diana-ui/types";
 
-export interface IProps extends StandardProps<"footer"> {}
+export interface ICardFooterProps extends StandardProps<"footer"> {}
 
-const stylesheet: ThemeStyleSheetFactory = () => ({
+export interface ICardFooterStyles {
+  /**
+   * This style affects the CardFooter's wrapper element
+   */
+  footer?: BaseStylesheet;
+}
+
+const stylesheet: ThemeStyleSheetFactory<Theme, ICardFooterStyles> = () => ({
   footer: {
     display: "flex"
   }
 });
 
-const CardFooter: React.FC<IProps & WithStylesProps> = ({
+const CardFooter: React.FC<ICardFooterProps & WithStylesProps<Theme, ICardFooterStyles>> = ({
   className,
   cx,
   styles,

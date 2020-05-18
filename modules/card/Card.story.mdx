@@ -7,8 +7,17 @@ import {
   CardHeaderLabelStory,
   CardHeaderIconStory,
   CardBodyStory,
-  CardFooterStory
+  CardFooterStory,
+  Props,
+  Styles,
+  CardHeaderPropsStory,
+  CardHeaderStylesStory,
+  CardBodyPropsStory,
+  CardBodyStylesStory,
+  CardFooterPropsStory,
+  CardFooterStylesStory
 } from "./Card.story.tsx";
+
 
 <Meta title="Components | Card" />
 
@@ -29,26 +38,11 @@ A valid example for a different component would be for instance a `Divider`.
 
 ### Available props
 
-This component has no props
+<Props />
 
 ### Extendable styles
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Style name</th>
-      <th>@selectors</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>card</td>
-      <td></td>
-      <td>This style affects the card element that wraps the card's different components</td>
-    </tr>
-  </tbody>
-</table>
+<Styles />
 
 # CardHeader
 
@@ -68,89 +62,11 @@ It also supports having either a label or an icon on the top right corner.
 
 ### Available props
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Prop Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>icon (optional)</td>
-      <td>string</td>
-      <td>
-        Name of the icon to be displayed in the top right corner
-        <br />
-        icon and label should be mutually exclusive
-      </td>
-    </tr>
-    <tr>
-      <td>label (optional)</td>
-      <td>string</td>
-      <td>
-        A label to be displayed in the top right corner
-        <br />
-        icon and label should be mutually exclusive
-      </td>
-    </tr>
-    <tr>
-      <td>title</td>
-      <td>JSX.Element | string</td>
-      <td>CardHeader's title. It can either be a string or a custom element</td>
-    </tr>
-    <tr>
-      <td>subtitle (optional)</td>
-      <td>string</td>
-      <td>CardHeader's subtitle</td>
-    </tr>
-  </tbody>
-</table>
+<CardHeaderPropsStory />
 
 ### Extendable styles
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Style name</th>
-      <th>@selectors</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>header</td>
-      <td></td>
-      <td>This style affects the CardHeader's wrapper element</td>
-    </tr>
-    <tr>
-      <td>icon</td>
-      <td></td>
-      <td>This style affects the icon element displayed in the top right corner</td>
-    </tr>
-    <tr>
-      <td>label</td>
-      <td></td>
-      <td>This style affects the label element displayed in the top right corner</td>
-    </tr>
-    <tr>
-      <td>subtitle</td>
-      <td></td>
-      <td>This style affects the CardHeader's subtitle element</td>
-    </tr>
-    <tr>
-      <td>titleWrapper</td>
-      <td></td>
-      <td>This style affects the wrapper around the title and subtitle elements</td>
-    </tr>
-    <tr>
-      <td>title</td>
-      <td></td>
-      <td>This style affects the CardHeader's title element</td>
-    </tr>
-  </tbody>
-</table>
+<CardHeaderStylesStory />
 
 # CardBody
 
@@ -164,26 +80,11 @@ The `CardBody` serves as the wrapper for the `Card`'s main content wrapper.
 
 ### Available props
 
-This component has no props
+<CardBodyPropsStory />
 
 ### Extendable styles
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Style name</th>
-      <th>@selectors</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>body</td>
-      <td></td>
-      <td>This style affects the CardBody's wrapper element</td>
-    </tr>
-  </tbody>
-</table>
+<CardBodyStylesStory />
 
 # CardFooter
 
@@ -197,23 +98,8 @@ The `CardFooter` contains mainly actionable elements like buttons or links.
 
 ### Available props
 
-This component has no props
+<CardFooterPropsStory />
 
 ### Extendable styles
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Style name</th>
-      <th>@selectors</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>footer</td>
-      <td></td>
-      <td>This style affects the CardFooter's wrapper element</td>
-    </tr>
-  </tbody>
-</table>
+<CardFooterStylesStory />

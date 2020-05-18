@@ -1,13 +1,26 @@
 import React from "react";
 import { withStyles } from "@diana-ui/base";
-import { StandardProps, WithStylesProps, ThemeStyleSheetFactory } from "@diana-ui/types";
+import {
+  StandardProps,
+  WithStylesProps,
+  ThemeStyleSheetFactory,
+  BaseStylesheet,
+  Theme
+} from "@diana-ui/types";
 
-export interface IProps extends StandardProps<"section"> {}
+export interface ICardProps extends StandardProps<"section"> {}
 
-const stylesheet: ThemeStyleSheetFactory = theme => ({
+export interface ICardStyles {
+  /**
+   * This style affects the card element that wraps the card's different components
+   */
+  card?: BaseStylesheet;
+}
+
+const stylesheet: ThemeStyleSheetFactory<Theme, ICardStyles> = theme => ({
   card: {
     background: theme.colors.white,
-    border: `1px solid ${theme.colors.grey.greenish}`,
+    border: `1px solid ${theme.colors.grey.grey25}`,
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
@@ -15,7 +28,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const Card: React.FC<IProps & WithStylesProps> = ({
+const Card: React.FC<ICardProps & WithStylesProps<Theme, ICardStyles>> = ({
   className,
   cx,
   styles,

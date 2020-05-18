@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
-import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import { ThemeStyleSheetFactory, WithStylesProps, Theme, BaseStylesheet } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import Slider, { ISliderProps } from "./Slider";
 
@@ -12,11 +12,30 @@ export interface ILockedSliderProps extends ISliderProps {
   onLockChange?: (locked: boolean) => void;
 }
 
-const styleSheet: ThemeStyleSheetFactory = theme => ({
+export interface ILockedSliderStyles {
+  /**
+   * Wrapper for the whole component
+   */
+  lockWrapper?: BaseStylesheet;
+  /**
+   * Wrapper for the icon
+   */
+  iconWrapper?: BaseStylesheet;
+  /**
+   * styles for the icon
+   */
+  icon?: BaseStylesheet;
+  /**
+   * styles for disabled Icon
+   */
+  disabledIcon?: BaseStylesheet;
+}
+
+const styleSheet: ThemeStyleSheetFactory<Theme, ILockedSliderStyles> = theme => ({
   lockWrapper: {
     position: "relative",
-    display: "flex",
     flexDirection: "row",
+    display: "flex",
     alignItems: "center",
     flexGrow: 1
   },
@@ -34,7 +53,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
   disabledIcon: {}
 });
 
-const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps> = ({
+const LockedSlider: React.FC<ILockedSliderProps & WithStylesProps<Theme, ILockedSliderStyles>> = ({
   cx,
   styles,
   onValueChange,

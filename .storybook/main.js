@@ -1,3 +1,5 @@
+const path = require("path");
+
 const createCompiler = require("@storybook/addon-docs/mdx-compiler-plugin");
 
 module.exports = {
@@ -34,6 +36,9 @@ module.exports = {
         {
           test: /\.(ts|tsx)$/,
           use: [
+            {
+              loader: path.resolve("./.storybook/typesLoader.js")
+            },
             {
               loader: require.resolve("awesome-typescript-loader")
             },

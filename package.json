@@ -25,7 +25,8 @@
     "new-package": "ts-node ./scripts/new-package.ts",
     "build:root": "yarn clear:files && tsc -p tsconfig.root.json && copyfiles -f modules/assets/custom.d.ts dist/assets && copyfiles -f modules/assets/icons/* dist/assets/icons",
     "clear:files": "rimraf dist",
-    "generate:icons": "ts-node scripts/update-icons"
+    "generate:icons": "ts-node scripts/update-icons",
+    "generate:styles": "ts-node scripts/generate-styles"
   },
   "lint-staged": {
     "*.{js,jsx,tx,tsx}": [
@@ -87,6 +88,7 @@
     "npm-watch": "^0.6.0",
     "prettier": "prettier/prettier",
     "react-docgen-typescript-loader": "^3.6.0",
+    "react-syntax-highlighter": "^12.2.1",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.0",
     "ts-node": "^8.6.2",

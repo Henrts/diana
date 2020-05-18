@@ -1,18 +1,71 @@
 import React from "react";
 import { useRegistry } from "@diana-ui/hooks";
 import { withStyles } from "@diana-ui/base";
-import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import { ThemeStyleSheetFactory, WithStylesProps, BaseStylesheet } from "@diana-ui/types";
 import { DescriptionMedium, BodyHighlight } from "@diana-ui/typography";
 
+// #region TYPES
+
 export interface IInfoIconProps {
+  /**
+   * Title for the Infoicon.
+   * Can also be a React element
+   */
   title?: string | JSX.Element;
+  /**
+   * Content for the infoicon
+   */
   children?: string | JSX.Element;
+  /**
+   * if it should have padding and border
+   */
   withPadding?: boolean;
+  /**
+   * vertical version of infoicon
+   */
   vertical?: boolean;
+  /**
+   * className to be applied to the wrapper
+   */
   className?: string;
+  /**
+   * name to be picked up from registry for the avatar component
+   * usually: 'Avatar' | 'ImageAvatar'
+   * defaults to 'Avatar'
+   */
   avatarComponentName?: string;
+  /**
+   * Options to be passed to the avatar component
+   */
   avatarOptions?: any;
 }
+
+export interface IInfoIconStyles {
+  /**
+   * InfoIcon component wrapper styles
+   */
+  infoicon: BaseStylesheet;
+  /**
+   * Padding / border styles
+   */
+  withpadding: BaseStylesheet;
+  /**
+   * Styles for the title | content wrapper
+   */
+  text: BaseStylesheet;
+  /**
+   * InfoIcon title styles
+   */
+  title: BaseStylesheet;
+  /**
+   * Styles for the content
+   */
+  content: BaseStylesheet;
+}
+
+type IProps = IInfoIconProps & WithStylesProps;
+
+// #endregion
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   infoicon: {
@@ -52,8 +105,6 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     }
   }
 });
-
-type IProps = IInfoIconProps & WithStylesProps;
 
 const Infoicon: React.FC<IProps> = ({
   cx,

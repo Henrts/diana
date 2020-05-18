@@ -1,15 +1,61 @@
 import React, { useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
-import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
+import {
+  StandardProps,
+  ThemeStyleSheetFactory,
+  WithStylesProps,
+  BaseStylesheet
+} from "@diana-ui/types";
 import { LabelMedium, SectionTitle, Body } from "@diana-ui/typography";
 import { Icon, IIconProps } from "@diana-ui/icon";
 
 // @ts-ignore
-export interface IProps extends StandardProps<"header"> {
+export interface ICardHeaderProps extends StandardProps<"header"> {
+  /**
+   * Name of the icon to be displayed in the top right corner.
+   * icon and label should be mutually exclusive
+   */
   icon?: string;
+  /**
+   * A label to be displayed in the top right corner.
+   * icon and label should be mutually exclusive
+   */
   label?: string;
+  /**
+   * CardHeader's title. It can either be a string or a custom element
+   */
   title: JSX.Element | string;
+  /**
+   * CardHeader's subtitle
+   */
   subtitle?: string;
+}
+
+export interface ICardHeaderStyles {
+  /**
+   * This style affects the CardHeader's wrapper element
+   */
+  header?: BaseStylesheet;
+  /**
+   * This style affects the icon element displayed in the top right corner
+   */
+  icon?: BaseStylesheet;
+  /**
+   * This style affects the label element displayed in the top right corner
+   */
+  label?: BaseStylesheet;
+  /**
+   * This style affects the CardHeader's subtitle element
+   */
+  subtitle?: BaseStylesheet;
+  /**
+   * This style affects the wrapper around the title and subtitle elements
+   */
+  titleWrapper?: BaseStylesheet;
+  /**
+   * This style affects the CardHeader's title element
+   */
+  title?: BaseStylesheet;
 }
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
@@ -36,7 +82,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const CardHeader: React.FC<IProps & WithStylesProps> = ({
+const CardHeader: React.FC<ICardHeaderProps & WithStylesProps> = ({
   className,
   cx,
   icon,

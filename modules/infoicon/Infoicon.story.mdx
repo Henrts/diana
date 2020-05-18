@@ -1,5 +1,6 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { InfoiconStory, CustomTitleInfoiconStory } from "./Infoicon.story.tsx";
+import { InfoiconStory, CustomTitleInfoiconStory, Props, Styles } from "./Infoicon.story.tsx";
+
 
 <Meta title="Components | Infoicon" />
 
@@ -19,65 +20,8 @@ import { InfoiconStory, CustomTitleInfoiconStory } from "./Infoicon.story.tsx";
 
 ## Available Props
 
-```typescript
-interface IInfoIconProps {
-  /**
-   * Title for the Infoicon
-   * Can also be a React element
-   */
-  title?: string | JSX.Element;
-  /**
-   * Content for the infoicon
-   */
-  children?: string | JSX.Element;
-  /**
-   * if it should have padding and border
-   */
-  withPadding?: boolean;
-  /**
-   * vertical version of infoicon
-   */
-  vertical?: boolean;
-  /**
-   * className to be applied to the wrapper
-   */
-  className?: string;
-  /**
-   * name to be picked up from registry for the avatar component
-   * usually: 'Avatar' | 'ImageAvatar'
-   * defaults to 'Avatar'
-   */
-  avatarComponentName?: string;
-  /**
-   * Options to be passed to the avatar component
-   */
-  avatarOptions?: any;
-}
-```
+<Props />
 
 ## Styles Props
 
-```json
-{
-  /**
-   * InfoIcon component wrapper styles
-   */
-  "infoicon": {},
-  /**
-   * Padding / border styles
-   */
-  "withpadding": {},
-  /**
-   * Styles for the title | content wrapper
-   */
-  "text": {},
-  /**
-   * InfoIcon title styles
-   */
-  "title": {},
-  /**
-   * Styles for the content
-   */
-  "content": {}
-}
-```
+<Styles />

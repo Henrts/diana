@@ -17,7 +17,7 @@
     "watch": "npm-watch"
   },
   "peerDependencies": {
-    "react": "^{{reactVersion}}"
+    "react": "{{reactVersion}}"
   },
   "dependencies": {
     {{#dianaPackages}}

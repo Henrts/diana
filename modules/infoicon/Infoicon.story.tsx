@@ -1,12 +1,17 @@
 import React from "react";
-import Infoicon from "./Infoicon";
+// @ts-ignore
+import Infoicon, { typesLoaderProps, typesLoaderStyles } from "./Infoicon";
 import { Avatar } from "@diana-ui/avatar";
 import { DescriptionMedium } from "@diana-ui/typography";
+import { typesHighlight } from "../../.storybook/helpers";
+
+const { Props, Styles } = typesHighlight(typesLoaderProps, typesLoaderStyles);
+export { Props, Styles };
 
 Avatar.extendStyles(
   theme => ({
     wrapper: {
-      borderColor: theme.colors.grey.greenish,
+      borderColor: theme.colors.grey.grey25,
       borderStyle: "solid",
       boxSizing: "border-box",
       flexShrink: 0,

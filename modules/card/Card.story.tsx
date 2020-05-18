@@ -2,6 +2,52 @@ import React from "react";
 import { Card, CardHeader, CardBody, CardFooter } from "./";
 import { BaseButton } from "@diana-ui/button";
 import { ThemeStyleSheetFactory } from "@diana-ui/types";
+import { typesHighlight } from "../../.storybook/helpers";
+import {
+  // @ts-ignore
+  typesLoaderProps,
+  // @ts-ignore
+  typesLoaderStyles
+} from "./Card";
+import {
+  // @ts-ignore
+  typesLoaderProps as cardHeaderProps,
+  // @ts-ignore
+  typesLoaderStyles as cardHeaderStyles
+} from "./CardHeader";
+import {
+  // @ts-ignore
+  typesLoaderProps as cardBodyProps,
+  // @ts-ignore
+  typesLoaderStyles as cardBodyStyles
+} from "./CardBody";
+import {
+  // @ts-ignore
+  typesLoaderProps as cardFooterProps,
+  // @ts-ignore
+  typesLoaderStyles as cardFooterStyles
+} from "./CardFooter";
+
+const { Props, Styles } = typesHighlight(typesLoaderProps, typesLoaderStyles);
+export { Props, Styles };
+
+const { Props: CardHeaderPropsStory, Styles: CardHeaderStylesStory } = typesHighlight(
+  cardHeaderProps,
+  cardHeaderStyles
+);
+export { CardHeaderPropsStory, CardHeaderStylesStory };
+
+const { Props: CardBodyPropsStory, Styles: CardBodyStylesStory } = typesHighlight(
+  cardBodyProps,
+  cardBodyStyles
+);
+export { CardBodyPropsStory, CardBodyStylesStory };
+
+const { Props: CardFooterPropsStory, Styles: CardFooterStylesStory } = typesHighlight(
+  cardFooterProps,
+  cardFooterStyles
+);
+export { CardFooterPropsStory, CardFooterStylesStory };
 
 const CardStylesheet: ThemeStyleSheetFactory = theme => ({
   card: {

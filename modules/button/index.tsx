@@ -1,5 +1,1 @@
-import { IProps } from "./BaseButton";
-
-export { default as BaseButton } from "./BaseButton";
-
-export type IBaseButtonProps = IProps;
+export { default as BaseButton, IBaseButtonProps, IBaseButtonStyles } from "./BaseButton";

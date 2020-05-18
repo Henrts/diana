@@ -5,9 +5,7 @@ import inquirer from "inquirer";
 /* eslint-enable import/no-extraneous-dependencies */
 
 const getAllPackagesName = () => {
-  return fs
-    .readdirSync("modules")
-    .filter(value => !["index.ts"].includes(value));
+  return fs.readdirSync("modules").filter(value => !["index.ts"].includes(value));
 };
 
 const getAllPackagesVersions = () => {
@@ -16,9 +14,7 @@ const getAllPackagesVersions = () => {
   const packages = {} as any;
   modules.forEach((packageName: string) => {
     if (fs.existsSync(`modules/${packageName}/package.json`)) {
-      const packageJson = fs.readFileSync(
-        `modules/${packageName}/package.json`
-      );
+      const packageJson = fs.readFileSync(`modules/${packageName}/package.json`);
       packages[packageName] = JSON.parse(packageJson.toString()).version;
     }
   });
@@ -34,9 +30,7 @@ const checkDependencyVersion = (packageName = "", dependencyName = "") => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const processFiles = (values: any) => (fromPath: any) => {
-  const to = fromPath
-    .replace(".scaffold", "")
-    .replace("pckName", values.packageNameCap);
+  const to = fromPath.replace(".scaffold", "").replace("pckName", values.packageNameCap);
   const fileFrom = fs.readFileSync(`./scaffold/${fromPath}`).toString();
   const finalFrom = Mustache.render(fileFrom, values);
   fs.writeFileSync(`modules/${values.packageName}/${to}`, finalFrom);
@@ -59,7 +53,7 @@ inquirer
     {
       type: "checkbox",
       name: "dianaPackagesInclude",
-      default: ["types"],
+      default: ["types", "base"],
       choices: getAllPackagesName(),
       message: "Which @diana-ui packages do you want to include ?"
     }
@@ -72,17 +66,14 @@ inquirer
     const dianaPackagesIncludeLastItem = dianaPackagesInclude.length - 1;
     const values = {
       packageName,
-      packageNameCap:
-        packageName.charAt(0).toUpperCase() + packageName.slice(1),
+      packageNameCap: packageName.charAt(0).toUpperCase() + packageName.slice(1),
       reactVersion: checkDependencyVersion("", "react"),
       ...allModulesVersions,
-      dianaPackages: dianaPackagesInclude.map(
-        (moduleName: string, index: number) => ({
-          name: `@diana-ui/${moduleName}`,
-          version: allModulesVersions[moduleName],
-          last: dianaPackagesIncludeLastItem === index
-        })
-      )
+      dianaPackages: dianaPackagesInclude.map((moduleName: string, index: number) => ({
+        name: `@diana-ui/${moduleName}`,
+        version: allModulesVersions[moduleName],
+        last: dianaPackagesIncludeLastItem === index
+      }))
     };
 
     const processScaffoldFiles = processFiles(values);
