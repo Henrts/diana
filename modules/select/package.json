@@ -22,7 +22,7 @@
   "dependencies": {
     "@diana-ui/base": "^0.1.18",
     "@diana-ui/chip": "^0.2.15",
-    "@diana-ui/dropdown": "0.1.33",
+    "@diana-ui/dropdown": "0.1.51",
     "@diana-ui/hooks": "^0.1.26",
     "@diana-ui/icon": "^0.2.12",
     "@diana-ui/popover": "^0.1.41",

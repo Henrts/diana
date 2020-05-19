@@ -1174,16 +1174,6 @@
     resolve-from "^5.0.0"
     resolve-global "^1.0.0"
 
-"@diana-ui/dropdown@0.1.33":
-  version "0.1.33"
-  resolved "https://registry.yarnpkg.com/@diana-ui/dropdown/-/dropdown-0.1.33.tgz#cdd94ba5d8fe1d419d93bb63e6dedcaeb45af0d6"
-  integrity sha512-EXq9bNLoZIBSvDBOy2mJy3BXMh3aHazPSot7I+BqeH0wNeKwQfyiEOC7XecmnHNnMPjDOB+yEgNUoR/1kPj9Zw==
-  dependencies:
-    "@diana-ui/base" "^0.1.11"
-    "@diana-ui/hooks" "^0.1.15"
-    "@diana-ui/popover" "^0.1.27"
-    "@diana-ui/types" "^0.1.8"
-
 "@egoist/vue-to-react@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@egoist/vue-to-react/-/vue-to-react-1.1.0.tgz#83c884b8608e8ee62e76c03e91ce9c26063a91ad"
