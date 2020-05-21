@@ -110,7 +110,8 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
     if (!disabled) {
       setVisible(false);
     }
-  }, [disabled, setVisible]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [disabled]);
 
   const handleClick = showOnHover
     ? undefined
