@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { withStyles } from "@diana-ui/base";
-import { BodyHighlight } from "@diana-ui/typography";
+import { DescriptionMedium } from "@diana-ui/typography";
 import { ThemeStyleSheetFactory, WithStylesProps, BaseStylesheet, Theme } from "@diana-ui/types";
 
 // #region TYPES
@@ -101,7 +101,8 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps<Theme, IAvatarStyles> &
       }}
       ref={wrappedRef}
     >
-      {(typeof children === "string" && <BodyHighlight>{children}</BodyHighlight>) || children}
+      {(typeof children === "string" && <DescriptionMedium>{children}</DescriptionMedium>) ||
+        children}
     </div>
   );
 };
