@@ -1,9 +1,10 @@
-import React, { PropsWithChildren, useMemo } from "react";
+import React, { PropsWithChildren, useMemo, useCallback } from "react";
 import { withStyles } from "@diana-ui/base";
 import { ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { Popover, IPopoverProps, usePopoverRef } from "@diana-ui/popover";
 
 export interface IItem {
+  disabled?: boolean;
   id: string;
   text: string;
 }
@@ -29,9 +30,15 @@ export const styleSheet: ThemeStyleSheetFactory = () => ({
     padding: "10px 0"
   },
   item: {
-    cursor: "pointer"
+    cursor: "pointer",
+    "@selectors": {
+      "&.disabled": {
+        cursor: "default",
+        pointerEvents: "none"
+      },
+      "&.selected": {}
+    }
   },
-  itemSelected: {},
   itemText: {
     display: "block",
     overflow: "hidden",
@@ -126,11 +133,17 @@ const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesP
         <ul className={cx(styles.list, "list")}>
           {items.map((item, index) => (
             <li
-              className={cx(styles.item, selectedItem?.id === item.id ? styles.itemSelected : {})}
+              className={cx(
+                styles.item,
+                selectedItem?.id === item.id && "selected",
+                item.disabled && "disabled"
+              )}
               key={item.id}
               onClick={() => {
-                onItemSelected(item);
-                hide();
+                if (!item.disabled) {
+                  onItemSelected(item);
+                  hide();
+                }
               }}
               role="presentation"
             >

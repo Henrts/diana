@@ -98,7 +98,7 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<IItem>> = props 
       >
         <ul className={cx(styles.list)}>
           <li
-            className={cx(styles.item, styles.itemAll, isAllButtonChecked && styles.itemSelected)}
+            className={cx(styles.item, styles.itemAll, isAllButtonChecked && "selected")}
             onClick={onAllButtonClicked}
             role="presentation"
           >
@@ -106,10 +106,7 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<IItem>> = props 
           </li>
           {items.map((item: IItem, index: number) => (
             <li
-              className={cx(
-                styles.item,
-                selectedItems?.find(i => i.id === item.id) ? styles.itemSelected : {}
-              )}
+              className={cx(styles.item, selectedItems?.find(i => i.id === item.id) && "selected")}
               key={item.id}
               onClick={() => onItemClicked(item, selectedItems)}
               role="presentation"

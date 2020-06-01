@@ -14,16 +14,18 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   item: {
     ":hover": {
       fontWeight: 700
+    },
+    "@selectors": {
+      "&.selected": { fontWeight: 700 }
     }
-  },
-  itemSelected: { fontWeight: 700 }
+  }
 });
 
 const items = [
   { id: "1", text: "Option 1" },
-  { id: "2", text: "Option 2" },
+  { id: "2", text: "Option 2 (disabled)", disabled: true },
   { id: "3", text: "Option 3" },
-  { id: "4", text: "Option 4" },
+  { id: "4", text: "Option 4 (disabled)", disabled: true },
   { id: "5", text: "Option 5 with long text" }
 ];
 

@@ -68,8 +68,7 @@ const Modal: React.FC<IAllProps> = ({
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       {React.Children.map(children, (child: any) =>
         React.cloneElement(child, {
-          ...(child.type.displayName === "withStyles(ModalHeader)" ||
-          child.type.name === "ModalHeader"
+          ...(child.type.displayName === "ModalHeader"
             ? {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onClose: (e: any) => onClose(e)

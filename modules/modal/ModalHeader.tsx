@@ -63,4 +63,8 @@ const ModalHeader: React.FC<IProps & WithStylesProps> = ({
   );
 };
 
-export default withStyles(stylesheet)(ModalHeader);
+const StyledModalHeader = withStyles(stylesheet)(ModalHeader);
+
+StyledModalHeader.displayName = "ModalHeader";
+
+export default StyledModalHeader;
