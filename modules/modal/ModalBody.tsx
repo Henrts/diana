@@ -16,12 +16,10 @@ const ModalBody: React.FC<IProps & WithStylesProps> = ({
   className,
   children,
   wrappedRef
-}) => {
-  return (
-    <section className={cx("diana-modal-body", styles.body, className)} ref={wrappedRef}>
-      {children}
-    </section>
-  );
-};
+}) => (
+  <section className={cx("diana-modal-body", styles.body, className)} ref={wrappedRef}>
+    {children}
+  </section>
+);
 
 export default withStyles(stylesheet)(ModalBody);
