@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/popover",
-  "version": "0.1.44",
+  "version": "0.1.45",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.18",
-    "@diana-ui/hooks": "^0.1.27",
-    "@diana-ui/portal": "^0.1.16",
+    "@diana-ui/hooks": "^0.1.28",
+    "@diana-ui/portal": "^0.1.17",
     "@diana-ui/types": "^0.1.12"
   },
   "publishConfig": {

@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/slider",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.18",
-    "@diana-ui/hooks": "^0.1.27",
+    "@diana-ui/hooks": "^0.1.28",
     "@diana-ui/icon": "^0.2.12",
     "@diana-ui/types": "^0.1.12",
     "@diana-ui/typography": "^0.1.18"
