@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 export function useScroll(element?: Element) {
-  const scrollingElement = element || document.getElementById("root") || document.body;
+  const scrollingElement = useMemo(
+    () => element || document.getElementById("root") || document.body,
+    [element]
+  );
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [scrollY, setScrollY] = useState(scrollingElement.scrollTop);
   const [scrollDirection, setScrollDirection] = useState<string>();
