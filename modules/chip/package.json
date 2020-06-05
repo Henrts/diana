@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/chip",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@diana-ui/base": "^0.1.18",
-    "@diana-ui/hooks": "^0.1.26",
+    "@diana-ui/hooks": "^0.1.27",
     "@diana-ui/icon": "^0.2.12",
-    "@diana-ui/textinput": "^0.1.36",
+    "@diana-ui/textinput": "^0.1.37",
     "@diana-ui/types": "^0.1.12",
     "@diana-ui/typography": "^0.1.18"
   },
