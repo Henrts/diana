@@ -10,9 +10,13 @@ export function useIntersectionObserver(
 ) {
   const [observer, setObserver] = useState<IntersectionObserver>();
   useEffect(() => {
+    if (observer) {
+      return;
+    }
     const newObserver = new IntersectionObserver(callback, options);
     setObserver(newObserver);
     return () => {
+      console.log("unmounted");
       newObserver.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
