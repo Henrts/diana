@@ -22,7 +22,6 @@ function useInfiniteScrollList(fullList: JSX.Element[], options?: IOptions) {
   const ref = useRef<JSX.Element>();
 
   const incrementList = useCallback(() => {
-    debugger;
     if (list.length === fullList.length) {
       return;
     }
@@ -32,10 +31,8 @@ function useInfiniteScrollList(fullList: JSX.Element[], options?: IOptions) {
 
   const callback = useCallback(
     (entries: IntersectionObserverEntry[]) => {
-      console.log("incrementttttt");
       const entry = entries.pop();
       if (entry?.isIntersecting) {
-        console.log("interseting");
         incrementList();
       }
     },
