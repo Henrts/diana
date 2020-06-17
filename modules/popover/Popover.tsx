@@ -4,8 +4,7 @@ import React, {
   useState,
   useRef,
   PropsWithChildren,
-  RefObject,
-  useEffect
+  RefObject
 } from "react";
 import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
@@ -139,7 +138,6 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
         className={cx(styles.headerWrapper, !showOnHover && "clickable")}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         {renderHeader?.(visible)}
       </div>
@@ -153,7 +151,6 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
           <div
             ref={portalRef}
             className={cx(styles.popover, styles[direction])}
-            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             {children}
