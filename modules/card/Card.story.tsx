@@ -121,7 +121,7 @@ export const CardFooterStory = () => {
     <StyledCard>
       <StyledCardHeader title="Card with footer" />
       <CardFooter>
-        <BaseButton>Some action ></BaseButton>
+        <BaseButton>Some action {">"}</BaseButton>
       </CardFooter>
     </StyledCard>
   );

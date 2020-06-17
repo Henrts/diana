@@ -94,6 +94,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
     },
     [onHide, onShow]
   );
+  const [onContent, setOnContent] = useState(false);
 
   const divRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
@@ -138,6 +139,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
         className={cx(styles.headerWrapper, !showOnHover && "clickable")}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
+        onMouseLeave={onContent ? undefined : handleMouseLeave}
       >
         {renderHeader?.(visible)}
       </div>
@@ -151,7 +153,15 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
           <div
             ref={portalRef}
             className={cx(styles.popover, styles[direction])}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => {
+              setOnContent(true);
+            }}
+            onMouseLeave={() => {
+              if (handleMouseLeave) {
+                handleMouseLeave();
+              }
+              setOnContent(false);
+            }}
           >
             {children}
           </div>
