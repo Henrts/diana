@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/dropdown",
-  "version": "0.1.56",
+  "version": "0.1.57",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "module/index.js",
@@ -22,7 +22,7 @@
   "dependencies": {
     "@diana-ui/base": "^0.1.18",
     "@diana-ui/hooks": "^0.1.28",
-    "@diana-ui/popover": "^0.1.45",
+    "@diana-ui/popover": "^0.1.46",
     "@diana-ui/types": "^0.1.12"
   },
   "devDependencies": {
