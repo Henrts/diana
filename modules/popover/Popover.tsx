@@ -88,13 +88,16 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   const [visible, _setVisible] = useState(false);
   const setVisible = useCallback(
     (newVisible: boolean) => {
+      if (newVisible === visible) {
+        return;
+      }
       const handler = newVisible ? onShow : onHide;
       if (handler) {
         handler();
       }
       _setVisible(newVisible);
     },
-    [onHide, onShow]
+    [onHide, onShow, visible]
   );
   const [anchorHover, setAnchorHover] = useState(false);
   const [contentHover, setContentHover] = useState(false);
