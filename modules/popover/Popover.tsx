@@ -57,7 +57,9 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
       }
     }
   },
-  content: {},
+  content: {
+    width: "100%"
+  },
   popover: {
     display: "flex",
     width: "100%",
