@@ -4,7 +4,8 @@ import React, {
   useState,
   useRef,
   PropsWithChildren,
-  RefObject
+  RefObject,
+  useEffect
 } from "react";
 import { StandardProps, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
@@ -56,6 +57,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
       }
     }
   },
+  content: {},
   popover: {
     display: "flex",
     width: "100%",
@@ -94,7 +96,24 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
     },
     [onHide, onShow]
   );
-  const [onContent, setOnContent] = useState(false);
+  const [anchorHover, setAnchorHover] = useState(false);
+  const [contentHover, setContentHover] = useState(false);
+
+  useEffect(() => {
+    let timeout: number | undefined;
+    if (!anchorHover && !contentHover) {
+      timeout = setTimeout(() => {
+        setVisible(false);
+      });
+    } else if (!disabled) {
+      setVisible(true);
+    }
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [anchorHover, contentHover, setVisible, disabled]);
 
   const divRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
@@ -116,17 +135,25 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
 
   const handleMouseEnter = showOnHover
     ? () => {
-        if (!disabled) {
-          setVisible(true);
-        }
+        setAnchorHover(true);
       }
     : undefined;
 
-  const handleMouseLeave = showOnHover
+  const handleMouseLeaveAnchor = showOnHover
     ? () => {
-        if (!disabled) {
-          setVisible(false);
-        }
+        setAnchorHover(false);
+      }
+    : undefined;
+
+  const handleMouseEnterContent = showOnHover
+    ? () => {
+        setContentHover(true);
+      }
+    : undefined;
+
+  const handleMouseLeaveContent = showOnHover
+    ? () => {
+        setContentHover(false);
       }
     : undefined;
 
@@ -139,7 +166,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
         className={cx(styles.headerWrapper, !showOnHover && "clickable")}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
-        onMouseLeave={onContent ? undefined : handleMouseLeave}
+        onMouseLeave={handleMouseLeaveAnchor}
       >
         {renderHeader?.(visible)}
       </div>
@@ -151,19 +178,13 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
           useParentWidth={useParentWidth}
         >
           <div
-            ref={portalRef}
-            className={cx(styles.popover, styles[direction])}
-            onMouseEnter={() => {
-              setOnContent(true);
-            }}
-            onMouseLeave={() => {
-              if (handleMouseLeave) {
-                handleMouseLeave();
-              }
-              setOnContent(false);
-            }}
+            className={cx(styles.content)}
+            onMouseEnter={handleMouseEnterContent}
+            onMouseLeave={handleMouseLeaveContent}
           >
-            {children}
+            <div className={cx(styles.popover, styles[direction])} ref={portalRef}>
+              {children}
+            </div>
           </div>
         </Portal>
       )}
