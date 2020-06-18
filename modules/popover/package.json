@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/popover",
-  "version": "0.1.47",
+  "version": "0.1.48",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
