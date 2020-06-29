@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/chip",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -20,12 +20,12 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.18",
-    "@diana-ui/hooks": "^0.1.28",
-    "@diana-ui/icon": "^0.2.12",
-    "@diana-ui/textinput": "^0.1.38",
-    "@diana-ui/types": "^0.1.12",
-    "@diana-ui/typography": "^0.1.18"
+    "@diana-ui/base": "^0.1.19",
+    "@diana-ui/hooks": "^0.1.29",
+    "@diana-ui/icon": "^0.2.13",
+    "@diana-ui/textinput": "^0.1.39",
+    "@diana-ui/types": "^0.1.13",
+    "@diana-ui/typography": "^0.1.19"
   },
   "publishConfig": {
     "access": "public"

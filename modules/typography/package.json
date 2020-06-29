@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/typography",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "main": "lib/index.js",
   "module": "module/index.js",
   "license": "MIT",
@@ -12,8 +12,8 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.18",
-    "@diana-ui/types": "^0.1.12"
+    "@diana-ui/base": "^0.1.19",
+    "@diana-ui/types": "^0.1.13"
   },
   "scripts": {
     "build": "yarn compile:lib && yarn compile:module",
