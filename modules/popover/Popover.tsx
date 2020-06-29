@@ -57,7 +57,9 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
       }
     }
   },
-  content: {},
+  content: {
+    width: "100%"
+  },
   popover: {
     display: "flex",
     width: "100%",
@@ -103,20 +105,22 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   const [contentHover, setContentHover] = useState(false);
 
   useEffect(() => {
-    let timeout: number | undefined;
-    if (!anchorHover && !contentHover) {
-      timeout = setTimeout(() => {
-        setVisible(false);
-      });
-    } else if (!disabled) {
-      setVisible(true);
-    }
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout);
+    if (showOnHover) {
+      let timeout: number | undefined;
+      if (!anchorHover && !contentHover) {
+        timeout = setTimeout(() => {
+          setVisible(false);
+        });
+      } else if (!disabled) {
+        setVisible(true);
       }
-    };
-  }, [anchorHover, contentHover, setVisible, disabled]);
+      return () => {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      };
+    }
+  }, [anchorHover, contentHover, setVisible, disabled, showOnHover]);
 
   const divRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
