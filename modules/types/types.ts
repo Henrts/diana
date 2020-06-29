@@ -65,7 +65,7 @@ export type StyledParentStylesheet<Props extends object = {}, StyleSheet = {}> =
 
 export type WithStylesType<T = Theme> = <Props extends object = {}>(
   WrappedComponent: React.ComponentType<ParentStylesheet<Props, ThemeStyleSheetFactory<T>>>
-) => StyledParentStylesheet<Props, T>;
+) => StyledParentStylesheet<Props, ThemeStyleSheetFactory<T>>;
 
 // #endregion
 

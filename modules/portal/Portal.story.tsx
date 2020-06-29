@@ -119,3 +119,18 @@ export const TopRightPortalStory = () => {
     </div>
   );
 };
+
+export const CenterTopPortalStory = () => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "inline-block", backgroundColor: "burlywood" }} ref={divRef}>
+        Parent component
+        <Portal parentRef={divRef} direction="center-top">
+          <div>center top text aligned</div>
+        </Portal>
+      </div>
+    </div>
+  );
+};
