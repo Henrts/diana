@@ -85,7 +85,8 @@ const styleSheet: ThemeStyleSheetFactory<Theme, ICarouselStyles> = theme => ({
     gridAutoFlow: "column",
     overflowY: "hidden",
     overflowX: "auto",
-    overflow: "-moz-scrollbars-none",
+    scrollbarWidth: "none",
+    scrollBehavior: "smooth",
     "-ms-overflow-style": "none",
     "@selectors": {
       "&::-webkit-scrollbar": {
@@ -129,6 +130,8 @@ const onMouseUp = (e: MouseEvent, scrollElement: any) => {
     };
     dragVariables.drag = false;
     animate();
+    // eslint-disable-next-line no-param-reassign
+    scrollElement.style.scrollBehavior = "smooth";
   }
 };
 
@@ -170,6 +173,10 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
       dragVariables.drag = true;
       dragVariables.diffx = 0;
       dragVariables.startx = e.clientX + (scrollableElementRef?.current?.scrollLeft || 0);
+      if (scrollableElementRef?.current?.style) {
+        // eslint-disable-next-line no-param-reassign
+        scrollableElementRef.current.style.scrollBehavior = "unset";
+      }
     });
 
     addEvent("mousemove", scrollableElementRef?.current, (e: MouseEvent) => {
@@ -225,9 +232,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           }
           newOffset = newOffset < sizeOfCardWithMargin ? 0 : newOffset - sizeOfCardWithMargin;
         }
-        element.style.scrollBehavior = "smooth";
         element.scrollTo(newOffset, 0);
-        element.style.scrollBehavior = "unset";
       }
     },
     [borderWidth, marginBetweenItems, scrollableElementRef]
