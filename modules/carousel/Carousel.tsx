@@ -34,13 +34,13 @@ export interface ICarouselProps {
   /**
    * If it should have arrows controlling the carousel scroll
    */
-  scrollArrows?: boolean;
+  showScrollArrows?: boolean;
   /**
    * Tells how much margin should be used in between items
    */
   marginBetweenItems?: number;
   /**
-   * Tells if it virtualization should be used to render
+   * Tells if virtualization should be used to render
    * the component items
    * * default value: true
    */
@@ -114,7 +114,7 @@ const addEvent = (name: string, el: any, func: any) => {
   }
 };
 
-const onMouseUp = (e: MouseEvent, scrollElement: any) => {
+const onMouseUp = (scrollElement: any) => {
   if (dragVariables.drag) {
     let start = 1;
     const animate: any = () => {
@@ -142,7 +142,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   children,
   header,
   footer,
-  scrollArrows = true,
+  showScrollArrows = true,
   scrollableElementRef,
   marginBetweenItems = 0,
   useVirtualization = true,
@@ -153,6 +153,21 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   const [elem, setElem] = useState<React.RefObject<HTMLDivElement> | undefined>();
   const [testCurrentScroll, setTestCurrentScroll] = useState(0);
 
+  const intersectionOptions = useMemo(
+    () => ({
+      intersectionOptions: {
+        root: document.querySelector("#root"),
+        rootMargin: "0px 100px 0px 0px"
+      }
+    }),
+    []
+  );
+  let newItems = useMemo(() => items.map(children), [children, items]);
+  if (useVirtualization && items.length > 0) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    newItems = useInfiniteScrollList(newItems, intersectionOptions);
+  }
+
   useEffect(() => {
     if (!elem && scrollableElementRef && scrollableElementRef.current) {
       setElem(scrollableElementRef);
@@ -161,8 +176,6 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
       );
     }
   }, [elem, scrollableElementRef]);
-
-  let newItems = useMemo(() => items.map(children), [children, items]);
 
   useEffect(() => {
     if (!scrollableElementRef) {
@@ -190,14 +203,35 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
       }
     });
 
-    addEvent("mouseup", scrollableElementRef?.current, (e: MouseEvent) =>
-      onMouseUp(e, scrollableElementRef?.current)
+    addEvent("mouseup", scrollableElementRef?.current, () =>
+      onMouseUp(scrollableElementRef?.current)
     );
 
-    addEvent("mouseleave", scrollableElementRef?.current, (e: MouseEvent) =>
-      onMouseUp(e, scrollableElementRef?.current)
+    addEvent("mouseleave", scrollableElementRef?.current, () =>
+      onMouseUp(scrollableElementRef?.current)
     );
   }, [scrollableElementRef]);
+
+  const calculateChildrenSize = useCallback<() => number>(() => {
+    if (!scrollableElementRef?.current) {
+      return 0;
+    }
+
+    const element: HTMLElement = scrollableElementRef.current;
+
+    return (
+      (element.children[0]?.clientWidth || 0) +
+      (borderWidth ||
+        Number(
+          (element.children[0] as HTMLElement)?.style?.borderLeftWidth?.replace("px", "") || 0
+        )) +
+      (borderWidth ||
+        Number(
+          (element.children[0] as HTMLElement)?.style?.borderRightWidth?.replace("px", "") || 0
+        )) +
+      marginBetweenItems
+    );
+  }, [borderWidth, marginBetweenItems, scrollableElementRef]);
 
   const scroll = useCallback(
     (rightDir = true) => {
@@ -207,52 +241,35 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         const scrollElementWidth = element.clientWidth || 0;
         const halfMarginBetweenItems = marginBetweenItems / 2;
 
-        const sizeOfCardWithMargin =
-          (element.querySelector("*")?.clientWidth || 0) +
-          (borderWidth ||
-            Number(element.querySelector("div")?.style?.borderLeftWidth?.replace("px", "") || 0)) +
-          (borderWidth ||
-            Number(element.querySelector("div")?.style?.borderRightWidth?.replace("px", "") || 0)) +
-          marginBetweenItems;
+        const childrenSize = calculateChildrenSize();
 
-        const numberOfFullyVisibleCards = Math.floor(scrollElementWidth / sizeOfCardWithMargin);
-        const lastCardVisibleWidth =
-          scrollElementWidth - sizeOfCardWithMargin * numberOfFullyVisibleCards;
+        const numberOfFullyVisibleCards = Math.floor(scrollElementWidth / childrenSize);
+        const lastCardVisibleWidth = scrollElementWidth - childrenSize * numberOfFullyVisibleCards;
 
         let newOffset = 0;
         if (rightDir) {
-          newOffset = sizeOfCardWithMargin - lastCardVisibleWidth - halfMarginBetweenItems;
+          newOffset = childrenSize - lastCardVisibleWidth - halfMarginBetweenItems;
 
           while (currentScroll >= Math.floor(newOffset)) {
-            newOffset += sizeOfCardWithMargin;
+            newOffset += childrenSize;
           }
         } else {
           while (currentScroll > Math.floor(newOffset)) {
-            newOffset += sizeOfCardWithMargin;
+            newOffset += childrenSize;
           }
-          newOffset = newOffset < sizeOfCardWithMargin ? 0 : newOffset - sizeOfCardWithMargin;
+          newOffset = newOffset < childrenSize ? 0 : newOffset - childrenSize;
         }
         element.scrollTo(newOffset, 0);
       }
     },
-    [borderWidth, marginBetweenItems, scrollableElementRef]
+    [calculateChildrenSize, marginBetweenItems, scrollableElementRef]
   );
-
-  if (useVirtualization && items.length > 0) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    newItems = useInfiniteScrollList(newItems, {
-      intersectionOptions: {
-        root: document.querySelector("#root"),
-        rootMargin: "0px 100px 0px 0px"
-      }
-    });
-  }
 
   return (
     <section className={cx(styles.wrapper)}>
       {header}
       <div className={cx(styles.body)}>
-        {scrollArrows && (
+        {showScrollArrows && (
           <div className={cx(styles.arrowsContainer)} onClick={() => scroll(false)}>
             <Icon name={leftIcon as IconNames} />
           </div>
@@ -264,7 +281,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         >
           {newItems}
         </div>
-        {scrollArrows && (
+        {showScrollArrows && (
           <div className={cx(styles.arrowsContainer)} onClick={scroll}>
             <Icon name={rightIcon as IconNames} />
           </div>
