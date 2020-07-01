@@ -4,7 +4,7 @@ import "intersection-observer";
 
 export function useIntersectionObserver(
   callback: IntersectionObserverCallback,
-  target?: JSX.Element,
+  target?: HTMLElement,
   options?: IntersectionObserverInit,
   dependencies: unknown[] = []
 ) {
@@ -20,8 +20,8 @@ export function useIntersectionObserver(
 
   useEffect(() => {
     if (observer && target) {
-      observer.observe((target as unknown) as Element);
-      return () => observer?.unobserve((target as unknown) as Element);
+      observer.observe(target);
+      return () => observer?.unobserve(target);
     }
   }, [observer, target]);
 }

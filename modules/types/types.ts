@@ -35,13 +35,9 @@ export type WithStylesWrappedProps<T = Theme, OwnStyles = {}> = Extract<
 > &
   ICustomWithStylesWrappedProps<OwnStyles>;
 
-export type WithStylesProps<T extends Theme = Theme, OwnStyles = {}> = WithStylesWrappedProps<
-  T,
-  OwnStyles
-> &
+export type WithStylesProps<T = Theme, OwnStyles = {}> = WithStylesWrappedProps<T, OwnStyles> &
   WithStylesWrapperProps;
-export type WithThemeProps<T extends Theme = Theme> = WithThemeWrappedProps<T> &
-  WithThemeWrapperProps;
+export type WithThemeProps<T = Theme> = WithThemeWrappedProps<T> & WithThemeWrapperProps;
 
 export type WithStylesWrapperProps = AesWithStylesWrapperProps;
 

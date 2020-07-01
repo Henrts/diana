@@ -19,7 +19,7 @@ function useInfiniteScrollList(fullList: JSX.Element[], options?: IOptions) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullList, ...dependencies]);
 
-  const ref = useRef<JSX.Element>();
+  const ref = useRef<HTMLElement>();
 
   const incrementList = useCallback(() => {
     if (list.length === fullList.length) {
@@ -39,7 +39,7 @@ function useInfiniteScrollList(fullList: JSX.Element[], options?: IOptions) {
     [incrementList]
   );
 
-  useIntersectionObserver(callback, ref.current, intersectionOptions, [ref]);
+  useIntersectionObserver(callback, ref.current, intersectionOptions);
 
   const memoList = useMemo(
     () =>
