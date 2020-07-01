@@ -8,14 +8,10 @@ import { Icon, IconNames } from "@diana-ui/icon";
 
 export interface ICarouselProps {
   /**
-   * List of items to be put into the carousel component
+   * List of JSX.Elements items
+   * to be rendered
    */
-  items: any[];
-  /**
-   * Function to be called for each item
-   * in order to render them
-   */
-  children: (item: any, index: number) => any;
+  children: JSX.Element[];
   /**
    * Header section for the component
    */
@@ -146,7 +142,6 @@ const onMouseUp = (scrollElement: any) => {
 const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles>> = ({
   cx,
   styles,
-  items,
   children,
   header,
   footer,
@@ -170,10 +165,10 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     }),
     []
   );
-  let newItems = useMemo(() => items.map(children), [children, items]);
-  if (useVirtualization && items.length > 0) {
+  let items = [...children];
+  if (useVirtualization && children) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    newItems = useInfiniteScrollList(newItems, intersectionOptions);
+    items = useInfiniteScrollList(children, intersectionOptions);
   }
 
   useEffect(() => {
@@ -287,7 +282,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           className={cx(styles.scrollableElement)}
           style={{ gridColumnGap: marginBetweenItems }}
         >
-          {newItems}
+          {items}
         </div>
         {showScrollArrows && (
           <div className={cx(styles.arrowsContainer)} onClick={scroll}>

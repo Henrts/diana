@@ -15,8 +15,10 @@ export { CarouselProps, CarouselStyles };
 
 export const CarouselStory = () => {
   return (
-    <Carousel items={[{ name: "test" }, { name: "test2" }]}>
-      {item => <div>{item.name}</div>}
+    <Carousel>
+      {[{ name: "test" }, { name: "test2" }].map(item => (
+        <div>{item.name}</div>
+      ))}
     </Carousel>
   );
 };
