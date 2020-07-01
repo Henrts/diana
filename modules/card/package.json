@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/card",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -16,12 +16,12 @@
     "prepare": "yarn clean:files && yarn build"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.19",
-    "@diana-ui/button": "^0.1.26",
-    "@diana-ui/divider": "^0.1.23",
-    "@diana-ui/icon": "^0.2.13",
-    "@diana-ui/types": "^0.1.13",
-    "@diana-ui/typography": "^0.1.19"
+    "@diana-ui/base": "^0.1.20",
+    "@diana-ui/button": "^0.1.27",
+    "@diana-ui/divider": "^0.1.24",
+    "@diana-ui/icon": "^0.2.14",
+    "@diana-ui/types": "^0.1.14",
+    "@diana-ui/typography": "^0.1.20"
   },
   "devDependencies": {
     "@diana-ui/button": "^0.1.13"

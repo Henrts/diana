@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/expandable-panel",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -17,11 +17,11 @@
     "watch": "npm-watch"
   },
   "dependencies": {
-    "@diana-ui/base": "^0.1.19",
-    "@diana-ui/hooks": "^0.1.29",
-    "@diana-ui/icon": "^0.2.13",
-    "@diana-ui/types": "^0.1.13",
-    "@diana-ui/typography": "^0.1.19"
+    "@diana-ui/base": "^0.1.20",
+    "@diana-ui/hooks": "^0.1.30",
+    "@diana-ui/icon": "^0.2.14",
+    "@diana-ui/types": "^0.1.14",
+    "@diana-ui/typography": "^0.1.20"
   },
   "peerDependencies": {
     "react": "^16.12.0"
