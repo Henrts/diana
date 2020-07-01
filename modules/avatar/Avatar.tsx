@@ -27,7 +27,7 @@ export interface IAvatarProps {
    * avatar size
    * sm | md | lg
    */
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
 }
 
 export interface IAvatarStyles {
@@ -69,6 +69,7 @@ const styleSheet: ThemeStyleSheetFactory<Theme, IAvatarStyles> = theme => ({
       ":hover": {}
     }
   },
+  xs: {},
   sm: {},
   md: {},
   lg: {},
