@@ -19,10 +19,11 @@ export interface ICarouselProps {
   /**
    * Footer section for the component
    */
-  footer?: (
-    scrollableElement?: React.RefObject<HTMLDivElement>,
-    currentScroll?: number
-  ) => JSX.Element;
+  footer?: (data: {
+    scrollableElement?: React.RefObject<HTMLDivElement>;
+    currentScroll?: number;
+    childrenSize?: number;
+  }) => JSX.Element;
   /**
    * Ref for the scroll element
    */
@@ -55,6 +56,13 @@ export interface ICarouselProps {
    * Tells the items border width
    */
   borderWidth?: number;
+  /**
+   * Percentage of not visible element's body
+   * that makes scroll skip to another element
+   * number between 0 - 1;
+   * defaults to 0.3
+   */
+  notVisiblePercentageToSkipElement?: number;
 }
 
 export interface ICarouselStyles {
@@ -151,10 +159,11 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   useVirtualization = true,
   rightIcon = "chevron-right",
   leftIcon = "chevron-left",
-  borderWidth
+  borderWidth,
+  notVisiblePercentageToSkipElement = 0.3
 }) => {
   const [elem, setElem] = useState<React.RefObject<HTMLDivElement> | undefined>();
-  const [testCurrentScroll, setTestCurrentScroll] = useState(0);
+  const [wrapperCurrentScrollPosition, setWrapperCurrentScrollPosition] = useState(0);
 
   const intersectionOptions = useMemo(
     () => ({
@@ -175,7 +184,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     if (!elem && scrollableElementRef && scrollableElementRef.current) {
       setElem(scrollableElementRef);
       scrollableElementRef.current.addEventListener("scroll", () =>
-        setTestCurrentScroll(scrollableElementRef.current?.scrollLeft || 0)
+        setWrapperCurrentScrollPosition(scrollableElementRef.current?.scrollLeft || 0)
       );
     }
   }, [elem, scrollableElementRef]);
@@ -256,6 +265,19 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           while (currentScroll >= Math.floor(newOffset)) {
             newOffset += childrenSize;
           }
+
+          /**
+           * This 0.3 value means that if we don't see only 30% or less of the
+           * last element it jumps to the next one
+           */
+          if (
+            Math.abs(currentScroll - newOffset) <
+            lastCardVisibleWidth * notVisiblePercentageToSkipElement
+          ) {
+            newOffset += childrenSize;
+          }
+
+          newOffset -= halfMarginBetweenItems;
         } else {
           while (currentScroll > Math.floor(newOffset)) {
             newOffset += childrenSize;
@@ -265,7 +287,12 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         element.scrollTo(newOffset, 0);
       }
     },
-    [calculateChildrenSize, marginBetweenItems, scrollableElementRef]
+    [
+      calculateChildrenSize,
+      marginBetweenItems,
+      notVisiblePercentageToSkipElement,
+      scrollableElementRef
+    ]
   );
 
   return (
@@ -290,7 +317,12 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           </div>
         )}
       </div>
-      {footer && footer(elem, testCurrentScroll)}
+      {footer &&
+        footer({
+          scrollableElement: scrollableElementRef,
+          currentScroll: wrapperCurrentScrollPosition,
+          childrenSize: calculateChildrenSize()
+        })}
     </section>
   );
 };
