@@ -67,6 +67,14 @@ export interface ICarouselStyles {
    */
   wrapper?: BaseStylesheet;
   /**
+   * Carousel body styles (include arrows)
+   */
+  body?: BaseStylesheet;
+  /**
+   * Applied on body when with arrows
+   */
+  bodyWithArrows?: BaseStylesheet;
+  /**
    * Styles the scrollable element
    */
   scrollableElement?: BaseStylesheet;
@@ -268,7 +276,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   return (
     <section className={cx(styles.wrapper)}>
       {header}
-      <div className={cx(styles.body)}>
+      <div className={cx(styles.body, showScrollArrows && styles.bodyWithArrows)}>
         {showScrollArrows && (
           <div className={cx(styles.arrowsContainer)} onClick={() => scroll(false)}>
             <Icon name={leftIcon as IconNames} />
