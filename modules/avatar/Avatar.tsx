@@ -27,7 +27,7 @@ export interface IAvatarProps {
    * avatar size
    * sm | md | lg
    */
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg" | number;
 }
 
 export interface IAvatarStyles {
@@ -98,7 +98,9 @@ const Avatar: React.FC<PropsWithChildren<WithStylesProps<Theme, IAvatarStyles> &
       )}
       style={{
         backgroundColor,
-        borderColor: borderColor || backgroundColor
+        borderColor: borderColor || backgroundColor,
+        width: typeof size === "number" ? size : undefined,
+        height: typeof size === "number" ? size : undefined
       }}
       ref={wrappedRef}
     >
