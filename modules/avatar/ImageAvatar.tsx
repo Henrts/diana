@@ -39,6 +39,10 @@ export interface IImageAvatarProps extends IAvatarProps {
    * Icon's component size property
    */
   iconSize?: number;
+  /**
+   * Circle's component size property
+   */
+  circleSize?: number;
 }
 
 export interface IImageAvatarStyles extends IAvatarStyles {
@@ -64,8 +68,8 @@ export interface IImageAvatarStyles extends IAvatarStyles {
 
 const styleSheet: ThemeStyleSheetFactory<Theme, IImageAvatarStyles> = theme => ({
   circle: {
-    height: "calc(100% - 16px)",
-    width: "calc(100% - 16px)",
+    height: "80%",
+    width: "80%",
     borderRadius: "50%"
   },
   image: {
@@ -99,6 +103,7 @@ const ImageAvatar: React.FC<IProps> = ({
   fallbackText,
   icon,
   iconSize,
+  circleSize,
   children,
   styles,
   cx,
@@ -117,7 +122,7 @@ const ImageAvatar: React.FC<IProps> = ({
       <div className={cx(styles.avatarOverlay)}>
         <div
           className={cx(styles.circle, circleClassName)}
-          style={{ backgroundColor: backgroundColorTheme }}
+          style={{ backgroundColor: backgroundColorTheme, width: circleSize, height: circleSize }}
         >
           {(src && !useFallback && (
             <img className={cx(styles.image, className)} onError={onError} src={src} alt={alt} />
