@@ -17,6 +17,7 @@
     "watch": "npm-watch"
   },
   "dependencies": {
+    "@diana-ui/icon": "^0.2.14",
     "@diana-ui/base": "^0.1.20",
     "@diana-ui/types": "^0.1.14",
     "@diana-ui/typography": "^0.1.20"

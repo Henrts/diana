@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ThemeStyleSheetFactory, StandardProps, WithStylesProps } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { ButtonText } from "@diana-ui/typography";
+import { Icon } from "@diana-ui/icon";
 
 // @ts-ignore
 export interface IProps extends StandardProps<"input"> {
@@ -12,6 +13,7 @@ export interface IProps extends StandardProps<"input"> {
   initialValue?: number;
   onChange?: (value: number) => void;
   displayFormat?: (value: number) => string;
+  useIcons?: boolean;
 }
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
@@ -65,6 +67,7 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
   initialValue = 0,
   onChange,
   displayFormat,
+  useIcons,
   parentStylesheet,
   wrappedRef,
   ...props
@@ -141,7 +144,7 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
         onBlur={() => setIsFocused(false)}
         onFocus={() => setIsFocused(true)}
       >
-        <ButtonText>-</ButtonText>
+        {useIcons ? <Icon name={"less" as any} className={cx(styles.buttonMinIcon)}/> : <ButtonText className={cx(styles.buttonMinText)}>-</ButtonText>}
       </button>
       <input
         {...props}
@@ -162,7 +165,7 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
         onBlur={() => setIsFocused(false)}
         onFocus={() => setIsFocused(true)}
       >
-        <ButtonText>+</ButtonText>
+        {useIcons ? <Icon name={"more" as any} className={cx(styles.buttonMaxIcon)}/> : <ButtonText className={cx(styles.buttonMaxText)}>+</ButtonText>}
       </button>
     </div>
   );
