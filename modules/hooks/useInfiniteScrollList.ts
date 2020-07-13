@@ -8,11 +8,22 @@ interface IOptions {
   wrappedRef?: boolean;
 }
 
-function useInfiniteScrollList(fullList: JSX.Element[], options?: IOptions) {
+function useInfiniteScrollList(initialList: JSX.Element[], options?: IOptions) {
   const { limit = 10, dependencies = [], intersectionOptions, wrappedRef = false } = useMemo(
     () => options ?? {},
     [options]
   );
+  const [fullList, setFullList] = useState(initialList);
+
+  useEffect(() => {
+    if (!initialList.length && !fullList.length) {
+      return;
+    }
+
+    setFullList(initialList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialList]);
+
   const [list, setList] = useState(fullList.slice(0, limit));
   useEffect(() => {
     setList(fullList.slice(0, limit));
