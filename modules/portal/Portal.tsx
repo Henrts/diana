@@ -18,6 +18,7 @@ export interface IProps extends StandardProps<"div"> {
   direction?: Direction;
   parentRef: React.RefObject<HTMLDivElement>;
   useParentWidth?: boolean;
+  overlayParent?: boolean;
   scrollableRootElement?: string | HTMLElement;
 }
 
@@ -29,6 +30,7 @@ const getPortalStyles = (
   direction: Direction,
   useParentWidth: boolean,
   centered: boolean,
+  overlayParent: boolean,
   theme: Theme
 ) => {
   const dimensions = ref.current?.getBoundingClientRect();
@@ -47,47 +49,63 @@ const getPortalStyles = (
 
   switch (direction) {
     case "top": {
-      styles += `left: ${
-        centered && !useParentWidth ? centeredLeft : dimensions?.left
-      }px; top: ${(dimensions?.top || 0) - target.offsetHeight + getScrollTop()}px;`;
+      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
+        (dimensions?.top || 0) -
+        target.offsetHeight +
+        getScrollTop() +
+        (overlayParent ? target.offsetHeight : 0)
+      }px;`;
       break;
     }
     case "right": {
-      styles += `left: ${dimensions?.right}px; top: ${(dimensions?.top || 0) + getScrollTop()}px;`;
+      styles += `left: ${
+        (dimensions?.right || 0) - (overlayParent ? target.offsetWidth : 0)
+      }px; top: ${(dimensions?.top || 0) + getScrollTop()}px;`;
       break;
     }
     case "bottom": {
-      styles += `left: ${
-        centered && !useParentWidth ? centeredLeft : dimensions?.left
-      }px; top: ${(dimensions?.top || 0) + (dimensions?.height || 0) + getScrollTop()}px;`;
+      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
+        (dimensions?.top || 0) +
+        (dimensions?.height || 0) +
+        getScrollTop() -
+        (overlayParent ? target.offsetHeight : 0)
+      }px;`;
       break;
     }
     case "left": {
-      styles += `left: ${(dimensions?.left || 0) -
-        (targetDimensions?.width || 0)}px; top: ${dimensions &&
-        dimensions?.top + getScrollTop()}px;`;
+      styles += `left: ${
+        (dimensions?.left || 0) -
+        (targetDimensions?.width || 0) +
+        (overlayParent ? target.offsetWidth : 0)
+      }px; top: ${dimensions && dimensions?.top + getScrollTop()}px;`;
       break;
     }
     case "bottom-right": {
-      styles += `left: ${(dimensions?.right || 0) -
-        (targetDimensions?.width || 0)}px; top: ${(dimensions?.top || 0) +
+      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
+        (dimensions?.top || 0) +
         (dimensions?.height || 0) +
-        getScrollTop()}px;`;
+        getScrollTop() -
+        (overlayParent ? target.offsetHeight : 0)
+      }px;`;
       break;
     }
     case "top-right": {
-      styles += `left: ${(dimensions?.right || 0) -
-        (targetDimensions?.width || 0)}px; top: ${(dimensions?.top || 0) -
+      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
+        (dimensions?.top || 0) -
         target.offsetHeight +
-        getScrollTop()}px;`;
+        getScrollTop() +
+        (overlayParent ? target.offsetHeight : 0)
+      }px;`;
       break;
     }
     case "center-top": {
-      styles += `left: ${(dimensions?.left || 0) +
-        (dimensions?.width ?? 0) / 2}px; top: calc(${(dimensions?.top || 0) -
+      styles += `left: ${(dimensions?.left || 0) + (dimensions?.width ?? 0) / 2}px; top:${
+        (dimensions?.top || 0) -
         target.offsetHeight +
-        getScrollTop()}px + ${theme.spaceUnit.sm});`;
-      styles += "transform: translate(-50%, 100%)";
+        getScrollTop() +
+        (overlayParent ? target.offsetHeight : 0)
+      }px;`;
+      styles += "transform: translate(-50%, 0)";
       break;
     }
     default:
@@ -99,6 +117,7 @@ const getPortalStyles = (
 
 const Portal: React.FC<IProps> = ({
   centered = false,
+  overlayParent = false,
   direction = "bottom",
   parentRef,
   useParentWidth = false,
@@ -132,7 +151,15 @@ const Portal: React.FC<IProps> = ({
     const updateTargetStyle = () => {
       target.setAttribute(
         "style",
-        getPortalStyles(target, parentRef, direction, useParentWidth, centered, theme)
+        getPortalStyles(
+          target,
+          parentRef,
+          direction,
+          useParentWidth,
+          centered,
+          overlayParent,
+          theme
+        )
       );
     };
     updateTargetStyle();
@@ -150,6 +177,7 @@ const Portal: React.FC<IProps> = ({
     }
   }, [
     centered,
+    overlayParent,
     direction,
     parentRef,
     scrollableRootElement,

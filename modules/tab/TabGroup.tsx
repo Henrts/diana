@@ -75,7 +75,7 @@ const TabGroup: React.FC<IProps & WithStylesProps> = ({
   return (
     <>
       <Flipper flipKey={animate && selected}>
-        <ul className={cx("diana-tab-group", className, styles.tabGroup)}>
+        <ul className={cx("diana-tab-group", styles.tabGroup, className)}>
           {React.Children.map(children, (tab, index) =>
             React.cloneElement(tab, {
               disabled: tab.props.disabled ?? disabled,

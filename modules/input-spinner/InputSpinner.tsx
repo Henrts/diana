@@ -144,7 +144,11 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
         onBlur={() => setIsFocused(false)}
         onFocus={() => setIsFocused(true)}
       >
-        {useIcons ? <Icon name={"less" as any} className={cx(styles.buttonMinIcon)}/> : <ButtonText className={cx(styles.buttonMinText)}>-</ButtonText>}
+        {useIcons ? (
+          <Icon name={"less" as any} className={cx(styles.buttonMinIcon)} />
+        ) : (
+          <ButtonText className={cx(styles.buttonMinText)}>-</ButtonText>
+        )}
       </button>
       <input
         {...props}
@@ -165,7 +169,11 @@ const InputSpinner: React.FC<IProps & WithStylesProps> = ({
         onBlur={() => setIsFocused(false)}
         onFocus={() => setIsFocused(true)}
       >
-        {useIcons ? <Icon name={"more" as any} className={cx(styles.buttonMaxIcon)}/> : <ButtonText className={cx(styles.buttonMaxText)}>+</ButtonText>}
+        {useIcons ? (
+          <Icon name={"more" as any} className={cx(styles.buttonMaxIcon)} />
+        ) : (
+          <ButtonText className={cx(styles.buttonMaxText)}>+</ButtonText>
+        )}
       </button>
     </div>
   );

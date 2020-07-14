@@ -140,9 +140,7 @@ function ChipInput({
               onListChange={handleChange}
               onChipClick={handleChipClick}
             />
-          ) : (
-            undefined
-          )
+          ) : undefined
         }
         disabled={singleChip && !!chips.length}
         className={cx(styles.input)}
