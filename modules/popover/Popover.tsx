@@ -14,6 +14,7 @@ import { Portal, Direction } from "@diana-ui/portal";
 
 export interface IProps extends StandardProps<"div"> {
   centered?: boolean;
+  overlayParent?: boolean;
   direction?: Direction;
   disabled?: boolean;
   dismissOnClick?: boolean;
