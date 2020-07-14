@@ -73,6 +73,7 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 
 const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   centered = false,
+  overlayParent = false,
   children,
   className,
   cx,
@@ -180,6 +181,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       {visible && (
         <Portal
           centered={centered}
+          overlayParent={overlayParent}
           direction={direction}
           parentRef={divRef}
           useParentWidth={useParentWidth}
