@@ -53,13 +53,13 @@ const getPortalStyles = (
         (dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? target.offsetHeight : 0)
+        (overlayParent ? dimensions?.height || 0 : 0)
       }px;`;
       break;
     }
     case "right": {
       styles += `left: ${
-        (dimensions?.right || 0) - (overlayParent ? target.offsetWidth : 0)
+        (dimensions?.right || 0) - (overlayParent ? targetDimensions?.width || 0 : 0)
       }px; top: ${(dimensions?.top || 0) + getScrollTop()}px;`;
       break;
     }
@@ -68,7 +68,7 @@ const getPortalStyles = (
         (dimensions?.top || 0) +
         (dimensions?.height || 0) +
         getScrollTop() -
-        (overlayParent ? target.offsetHeight : 0)
+        (overlayParent ? dimensions?.height || 0 : 0)
       }px;`;
       break;
     }
@@ -76,7 +76,7 @@ const getPortalStyles = (
       styles += `left: ${
         (dimensions?.left || 0) -
         (targetDimensions?.width || 0) +
-        (overlayParent ? target.offsetWidth : 0)
+        (overlayParent ? targetDimensions?.width || 0 : 0)
       }px; top: ${dimensions && dimensions?.top + getScrollTop()}px;`;
       break;
     }
@@ -85,7 +85,7 @@ const getPortalStyles = (
         (dimensions?.top || 0) +
         (dimensions?.height || 0) +
         getScrollTop() -
-        (overlayParent ? target.offsetHeight : 0)
+        (overlayParent ? dimensions?.height || 0 : 0)
       }px;`;
       break;
     }
@@ -94,7 +94,7 @@ const getPortalStyles = (
         (dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? target.offsetHeight : 0)
+        (overlayParent ? dimensions?.height || 0 : 0)
       }px;`;
       break;
     }
@@ -103,7 +103,7 @@ const getPortalStyles = (
         (dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? target.offsetHeight : 0)
+        (overlayParent ? dimensions?.height || 0 : 0)
       }px;`;
       styles += "transform: translate(-50%, 0)";
       break;
