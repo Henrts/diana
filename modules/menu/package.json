@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/menu",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -22,7 +22,7 @@
   "dependencies": {
     "@diana-ui/base": "^0.1.20",
     "@diana-ui/icon": "^0.2.14",
-    "@diana-ui/popover": "^0.1.55",
+    "@diana-ui/popover": "^0.1.56",
     "@diana-ui/types": "^0.1.14",
     "@diana-ui/typography": "^0.1.20"
   },
