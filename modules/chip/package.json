@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/chip",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
