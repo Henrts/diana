@@ -20,6 +20,7 @@ export interface IProps extends StandardProps<"div"> {
   useParentWidth?: boolean;
   overlayParent?: boolean;
   scrollableRootElement?: string | HTMLElement;
+  zIndex?: number;
 }
 
 const getScrollTop = () => document.documentElement.scrollTop;
@@ -31,12 +32,13 @@ const getPortalStyles = (
   useParentWidth: boolean,
   centered: boolean,
   overlayParent: boolean,
-  theme: Theme
+  theme: Theme,
+  zIndex: number
 ) => {
   const dimensions = ref.current?.getBoundingClientRect();
   const targetDimensions = target.getBoundingClientRect();
 
-  let styles = "display: flex; position: absolute; z-index: 100; ";
+  let styles = `display: flex; position: absolute; z-index: ${zIndex}; `;
 
   if (useParentWidth) {
     styles += `width: ${ref.current?.offsetWidth}px; `;
@@ -49,62 +51,58 @@ const getPortalStyles = (
 
   switch (direction) {
     case "top": {
-      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
-        (dimensions?.top || 0) -
+      styles += `left: ${
+        centered && !useParentWidth ? centeredLeft : dimensions?.left
+      }px; top: ${(dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
       break;
     }
     case "right": {
-      styles += `left: ${
-        (dimensions?.right || 0) - (overlayParent ? targetDimensions?.width || 0 : 0)
-      }px; top: ${(dimensions?.top || 0) + getScrollTop()}px;`;
+      styles += `left: ${(dimensions?.right || 0) -
+        (overlayParent ? targetDimensions?.width || 0 : 0)}px; top: ${(dimensions?.top || 0) +
+        getScrollTop()}px;`;
       break;
     }
     case "bottom": {
-      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
-        (dimensions?.top || 0) +
+      styles += `left: ${
+        centered && !useParentWidth ? centeredLeft : dimensions?.left
+      }px; top: ${(dimensions?.top || 0) +
         (dimensions?.height || 0) +
         getScrollTop() -
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
       break;
     }
     case "left": {
-      styles += `left: ${
-        (dimensions?.left || 0) -
+      styles += `left: ${(dimensions?.left || 0) -
         (targetDimensions?.width || 0) +
-        (overlayParent ? targetDimensions?.width || 0 : 0)
-      }px; top: ${dimensions && dimensions?.top + getScrollTop()}px;`;
+        (overlayParent ? targetDimensions?.width || 0 : 0)}px; top: ${dimensions &&
+        dimensions?.top + getScrollTop()}px;`;
       break;
     }
     case "bottom-right": {
-      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
-        (dimensions?.top || 0) +
+      styles += `left: ${(dimensions?.right || 0) -
+        (targetDimensions?.width || 0)}px; top: ${(dimensions?.top || 0) +
         (dimensions?.height || 0) +
         getScrollTop() -
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
       break;
     }
     case "top-right": {
-      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
-        (dimensions?.top || 0) -
+      styles += `left: ${(dimensions?.right || 0) -
+        (targetDimensions?.width || 0)}px; top: ${(dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
       break;
     }
     case "center-top": {
-      styles += `left: ${(dimensions?.left || 0) + (dimensions?.width ?? 0) / 2}px; top:${
-        (dimensions?.top || 0) -
+      styles += `left: ${(dimensions?.left || 0) +
+        (dimensions?.width ?? 0) / 2}px; top:${(dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
       styles += "transform: translate(-50%, 0)";
       break;
     }
@@ -122,7 +120,8 @@ const Portal: React.FC<IProps> = ({
   parentRef,
   useParentWidth = false,
   scrollableRootElement = "root",
-  children
+  children,
+  zIndex = 100
 }) => {
   const windowSize = useWindowSize();
 
@@ -158,7 +157,8 @@ const Portal: React.FC<IProps> = ({
           useParentWidth,
           centered,
           overlayParent,
-          theme
+          theme,
+          zIndex
         )
       );
     };
@@ -184,7 +184,8 @@ const Portal: React.FC<IProps> = ({
     target,
     useParentWidth,
     windowSize,
-    theme
+    theme,
+    zIndex
   ]);
 
   return createPortal(children, target);

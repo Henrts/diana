@@ -23,6 +23,7 @@ export interface IProps extends StandardProps<"div"> {
   useParentWidth?: boolean;
   onShow?: () => void;
   onHide?: () => void;
+  zIndex?: number;
 }
 
 export interface IPopoverRef {
@@ -87,7 +88,8 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   useParentWidth = false,
   wrappedRef,
   onShow,
-  onHide
+  onHide,
+  zIndex
 }) => {
   const [visible, _setVisible] = useState(false);
   const setVisible = useCallback(
@@ -186,6 +188,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
           direction={direction}
           parentRef={divRef}
           useParentWidth={useParentWidth}
+          zIndex={zIndex}
         >
           <div
             className={cx(styles.content)}
