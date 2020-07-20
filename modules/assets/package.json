@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/assets",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
