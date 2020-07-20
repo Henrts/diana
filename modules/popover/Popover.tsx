@@ -78,7 +78,8 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: theme.colors.background.overlay
+    backgroundColor: theme.colors.background.overlay,
+    zIndex: 10
   }
 });
 
@@ -183,7 +184,12 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       className={cx("diana-popover", styles.container, disabled && styles.disabled, className)}
       ref={divRef}
     >
-      {showOverlay && visible && <div className={cx("diana-popover-overlay", styles.overlay)} />}
+      {showOverlay && visible && (
+        <div
+          className={cx("diana-popover-overlay", styles.overlay)}
+          onClick={() => dismissOnClick && setVisible(false)}
+        />
+      )}
 
       <div
         className={cx(styles.headerWrapper, !showOnHover && "clickable")}
