@@ -2,13 +2,16 @@
   "name": "@diana-ui/assets",
   "version": "0.0.8",
   "main": "lib/index.js",
+  "module": "module/index.js",
   "files": [
-    "lib"
+    "lib",
+    "module"
   ],
   "license": "MIT",
   "scripts": {
-    "build": "yarn compile:assets && yarn generate:types",
-    "compile:assets": "babel . --out-dir lib --extensions .ts,.tsx --ignore *.d.ts",
+    "build": "yarn compile:lib && yarn compile:module && yarn generate:types",
+    "compile:lib": "cross-env MODULE=commonjs babel . --out-dir lib --extensions .ts,.tsx --ignore *.d.ts",
+    "compile:module": "babel . --out-dir module --extensions .ts,.tsx --ignore *.d.ts",
     "generate:types": "tsc lib/index.js --declaration --emitDeclarationOnly --allowJs ",
     "clean:files": "rimraf lib",
     "prepare": "yarn clean:files && yarn build",
