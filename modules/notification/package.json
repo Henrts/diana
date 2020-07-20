@@ -1,6 +1,6 @@
 {
   "name": "@diana-ui/notification",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "module": "module/index.js",
   "files": [
@@ -20,17 +20,17 @@
     "react": "^16.12.0"
   },
   "dependencies": {
-    "@diana-ui/base": "^1.0.0",
-    "@diana-ui/hooks": "^1.0.0",
-    "@diana-ui/icon": "^1.0.0",
-    "@diana-ui/types": "^1.0.0",
-    "@diana-ui/typography": "^1.0.0",
+    "@diana-ui/base": "^1.0.1",
+    "@diana-ui/hooks": "^1.0.1",
+    "@diana-ui/icon": "^1.0.1",
+    "@diana-ui/types": "^1.0.1",
+    "@diana-ui/typography": "^1.0.1",
     "aesthetic-react": "^2.1.0",
     "react-transition-group": "^4.3.0",
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@diana-ui/button": "^1.0.0"
+    "@diana-ui/button": "^1.0.1"
   },
   "publishConfig": {
     "access": "public"
