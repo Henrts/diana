@@ -51,58 +51,62 @@ const getPortalStyles = (
 
   switch (direction) {
     case "top": {
-      styles += `left: ${
-        centered && !useParentWidth ? centeredLeft : dimensions?.left
-      }px; top: ${(dimensions?.top || 0) -
+      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
+        (dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)
+      }px;`;
       break;
     }
     case "right": {
-      styles += `left: ${(dimensions?.right || 0) -
-        (overlayParent ? targetDimensions?.width || 0 : 0)}px; top: ${(dimensions?.top || 0) +
-        getScrollTop()}px;`;
+      styles += `left: ${
+        (dimensions?.right || 0) - (overlayParent ? targetDimensions?.width || 0 : 0)
+      }px; top: ${(dimensions?.top || 0) + getScrollTop()}px;`;
       break;
     }
     case "bottom": {
-      styles += `left: ${
-        centered && !useParentWidth ? centeredLeft : dimensions?.left
-      }px; top: ${(dimensions?.top || 0) +
+      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
+        (dimensions?.top || 0) +
         (dimensions?.height || 0) +
         getScrollTop() -
-        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)
+      }px;`;
       break;
     }
     case "left": {
-      styles += `left: ${(dimensions?.left || 0) -
+      styles += `left: ${
+        (dimensions?.left || 0) -
         (targetDimensions?.width || 0) +
-        (overlayParent ? targetDimensions?.width || 0 : 0)}px; top: ${dimensions &&
-        dimensions?.top + getScrollTop()}px;`;
+        (overlayParent ? targetDimensions?.width || 0 : 0)
+      }px; top: ${dimensions && dimensions?.top + getScrollTop()}px;`;
       break;
     }
     case "bottom-right": {
-      styles += `left: ${(dimensions?.right || 0) -
-        (targetDimensions?.width || 0)}px; top: ${(dimensions?.top || 0) +
+      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
+        (dimensions?.top || 0) +
         (dimensions?.height || 0) +
         getScrollTop() -
-        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)
+      }px;`;
       break;
     }
     case "top-right": {
-      styles += `left: ${(dimensions?.right || 0) -
-        (targetDimensions?.width || 0)}px; top: ${(dimensions?.top || 0) -
+      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
+        (dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)
+      }px;`;
       break;
     }
     case "center-top": {
-      styles += `left: ${(dimensions?.left || 0) +
-        (dimensions?.width ?? 0) / 2}px; top:${(dimensions?.top || 0) -
+      styles += `left: ${(dimensions?.left || 0) + (dimensions?.width ?? 0) / 2}px; top:${
+        (dimensions?.top || 0) -
         target.offsetHeight +
         getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)}px;`;
+        (overlayParent ? dimensions?.height || 0 : 0)
+      }px;`;
       styles += "transform: translate(-50%, 0)";
       break;
     }

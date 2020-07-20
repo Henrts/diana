@@ -23,6 +23,7 @@ export interface IProps extends StandardProps<"div"> {
   useParentWidth?: boolean;
   onShow?: () => void;
   onHide?: () => void;
+  showOverlay?: boolean;
   zIndex?: number;
 }
 
@@ -45,7 +46,7 @@ export const usePopoverRef = (
   return ref;
 };
 
-const styleSheet: ThemeStyleSheetFactory = () => ({
+const styleSheet: ThemeStyleSheetFactory = theme => ({
   container: {
     position: "relative"
   },
@@ -70,7 +71,15 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
   bottom: {},
   top: {},
   left: {},
-  right: {}
+  right: {},
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: theme.colors.background.overlay
+  }
 });
 
 const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
@@ -89,6 +98,7 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
   wrappedRef,
   onShow,
   onHide,
+  showOverlay = false,
   zIndex
 }) => {
   const [visible, _setVisible] = useState(false);
@@ -173,6 +183,8 @@ const Popover: React.FC<PropsWithChildren<IProps & WithStylesProps>> = ({
       className={cx("diana-popover", styles.container, disabled && styles.disabled, className)}
       ref={divRef}
     >
+      {showOverlay && visible && <div className={cx("diana-popover-overlay", styles.overlay)} />}
+
       <div
         className={cx(styles.headerWrapper, !showOnHover && "clickable")}
         onClick={handleClick}

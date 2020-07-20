@@ -1,5 +1,5 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { PopoverStory, PopoverHoverStory, PopoverDirectionsStory } from "./Popover.story.tsx";
+import { PopoverStory, PopoverHoverStory, PopoverOverlayStory, PopoverDirectionsStory } from "./Popover.story.tsx";
 
 <Meta title="Components | Popover" />
 
@@ -17,6 +17,12 @@ which is used to toggle the element and show the current state when it is closed
 <Preview>
   <Story name="Popover on hover">
     <PopoverHoverStory />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Popover with overlay">
+    <PopoverOverlayStory />
   </Story>
 </Preview>
 
@@ -88,6 +94,11 @@ which is used to toggle the element and show the current state when it is closed
       <td>onHide</td>
       <th>Function</th>
       <td>Called when the Popover content is hidden.</td>
+    </tr>
+    <tr>
+      <td>showOverlay (optional)</td>
+      <th>boolean</th>
+      <td>The popover will create a back overlay that will fill the page</td>
     </tr>
   </tbody>
 </table>
