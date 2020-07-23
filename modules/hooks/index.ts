@@ -1,6 +1,9 @@
 export { default as useInfiniteScrollList } from "./useInfiniteScrollList";
 export { default as useIntersectionObserver } from "./useIntersectionObserver";
 export { default as useOnClickOutside } from "./useOnClickOutside";
+export { default as useCheckWindowSize } from "./useCheckWindowSize";
+export { default as useIsMobile } from "./useIsMobile";
+export { default as useIsTablet } from "./useIsTablet";
 export { default as useRegistryWithStyles, useRegistry } from "./useRegistry";
 export { useResizeObserver } from "./useResizeObserver";
 export { useWindowSize } from "./useWindowSize";

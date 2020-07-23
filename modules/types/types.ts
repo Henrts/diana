@@ -15,7 +15,7 @@ import {
   StyleBlock as AesStyleBlock,
   Properties as AesProperties
 } from "aesthetic";
-import { defaultPalette } from "@diana-ui/tokens";
+import { defaultPalette, FontWeight, EBreakpoints } from "@diana-ui/tokens";
 
 // #region EXPORTS
 
@@ -24,6 +24,8 @@ export {
   StyleBlock as AesStyleBlock,
   Properties as AesProperties
 } from "aesthetic";
+
+export { FontWeight, EBreakpoints };
 
 // #endregion
 
@@ -108,13 +110,6 @@ export interface StyledComponent<Props, T = Theme> extends React.NamedExoticComp
 
 // #region THEME
 
-export enum FontWeight {
-  REGULAR = 400,
-  MEDIUM = 500,
-  BOLD = 700,
-  BOLDER = 900
-}
-
 interface IFont {
   fontSize: string | number;
   fontWeight: FontWeight.REGULAR | FontWeight.MEDIUM | FontWeight.BOLD | FontWeight.BOLDER;
@@ -187,6 +182,9 @@ export type Theme = {
   spaceUnit: ISpaceUnit;
   spacing: {
     [key: string]: { top: string; left: string };
+  };
+  breakpoints: {
+    [key: string]: number;
   };
 };
 

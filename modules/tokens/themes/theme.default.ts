@@ -1,7 +1,7 @@
 import { defaultPalette } from "../palettes";
 import { defaultIcons } from "../icons";
 import { defaultAnimations } from "../animations";
-import { FontWeight } from "./theme.default.types";
+import { FontWeight, EBreakpoints } from "./theme.default.constants";
 
 export const spaceUnit = 16;
 const fontSize = 18;
@@ -13,7 +13,7 @@ export default {
   fontFamily,
   fontSize,
   fonts: {},
-  animations:defaultAnimations,
+  animations: defaultAnimations,
   icons: defaultIcons,
   spaceUnit: {
     xxs: `${spaceUnit * 0.25}px`,
@@ -118,5 +118,10 @@ export default {
       lineHeight: "10px",
       fontFamily
     }
+  },
+  breakpoints: {
+    [EBreakpoints.MOBILE1]: 700,
+    [EBreakpoints.MOBILE2]: 900,
+    [EBreakpoints.TABLET1]: 1140
   }
 };
