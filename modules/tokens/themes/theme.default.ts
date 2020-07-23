@@ -122,8 +122,8 @@ export default {
     }
   },
   breakpoints: {
-    [EBreakpoints.MOBILE1]: 900,
-    [EBreakpoints.MOBILE2]: 700,
+    [EBreakpoints.MOBILE1]: 700,
+    [EBreakpoints.MOBILE2]: 900,
     [EBreakpoints.TABLET1]: 1140
   }
 };

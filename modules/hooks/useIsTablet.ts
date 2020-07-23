@@ -5,7 +5,7 @@ import useCheckWindowSize from "./useCheckWindowSize";
 const useIsTablet = () => {
   const { breakpoints } = useTheme();
 
-  return useCheckWindowSize(breakpoints[EBreakpoints.TABLET1], breakpoints[EBreakpoints.MOBILE2]);
+  return useCheckWindowSize(breakpoints[EBreakpoints.TABLET1], breakpoints[EBreakpoints.MOBILE1]);
 };
 
 export default useIsTablet;

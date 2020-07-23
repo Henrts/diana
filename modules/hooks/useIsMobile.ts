@@ -4,4 +4,4 @@ const useIsMobile = () => {
   return useCheckWindowSize();
 };
 
-export default useIsMobile();
+export default useIsMobile;

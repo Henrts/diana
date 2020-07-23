@@ -3,7 +3,7 @@ import { EBreakpoints } from "@diana-ui/types";
 import { useWindowSize } from "./useWindowSize";
 
 const useCheckWindowSize = (
-  highBreakpoint: string | number = EBreakpoints.MOBILE2,
+  highBreakpoint: string | number = EBreakpoints.MOBILE1,
   lowBreakpoint: string | number = 0
 ) => {
   const [width] = useWindowSize();
