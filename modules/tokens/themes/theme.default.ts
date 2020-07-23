@@ -1,13 +1,11 @@
 import { defaultPalette } from "../palettes";
 import { defaultIcons } from "../icons";
 import { defaultAnimations } from "../animations";
-import { FontWeight, EBreakpoints } from "./theme.default.types";
+import { FontWeight, EBreakpoints } from "./theme.default.constants";
 
 export const spaceUnit = 16;
 const fontSize = 18;
 const fontFamily = "Arial";
-
-export { FontWeight, EBreakpoints };
 
 export default {
   name: "default_theme",

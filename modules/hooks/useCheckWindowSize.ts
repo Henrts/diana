@@ -15,7 +15,7 @@ const useCheckWindowSize = (
     breakpointToCheck = theme.breakpoints[highBreakpoint] || 0;
   }
 
-  return breakpointToCheck < width && width > lowBreakpoint;
+  return breakpointToCheck > width && width > lowBreakpoint;
 };
 
 export default useCheckWindowSize;
