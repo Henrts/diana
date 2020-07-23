@@ -4,3 +4,9 @@ export enum FontWeight {
   BOLD = 700,
   BOLDER = 900
 }
+
+export enum EBreakpoints {
+  MOBILE1 = "mobile-1",
+  MOBILE2 = "mobile-2",
+  TABLET1 = "tablet-1"
+}

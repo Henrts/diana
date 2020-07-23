@@ -1,1 +1,1 @@
-export { default as defaultTheme } from "./theme.default";
+export { default as defaultTheme, FontWeight, EBreakpoints } from "./theme.default";
