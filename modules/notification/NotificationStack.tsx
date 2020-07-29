@@ -52,7 +52,7 @@ const NotifcationStack: React.FC<IProps & WithStylesProps> = ({
 }) => {
   const BaseNotification = useRegistry<INotificationProps>("Notification");
   const [notifications, setNotifications] = useState<INotification[]>([]);
-  const [timeouts, setTimeouts] = useState<{ [notificationId: string]: NodeJS.Timeout }>({});
+  const [timeouts, setTimeouts] = useState<{ [notificationId: string]: any }>({});
   const notificationsRef = useRef(notifications);
   notificationsRef.current = notifications;
 

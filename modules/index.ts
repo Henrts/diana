@@ -14,6 +14,5 @@ export * from "./radio/index";
 export * from "./tab/index";
 export * from "./textInput/index";
 export * from "./tokens/index";
-export * from "./types/types";
 export * from "./typography/index";
 export * from "./utils/index";
