@@ -20,34 +20,46 @@ const styleSheet: ThemeStyleSheetFactory = () => ({
 const defaultColorMap = (theme: Theme) => ({
   default: {
     chip: {
+      backgroundColor: "transparent",
+      border: "1px solid",
       borderColor: theme.colors.grey.grey25
     },
     selected: {
-      backgroundColor: theme.colors.grey.grey25
+      backgroundColor: theme.colors.grey.grey25,
+      borderColor: theme.colors.grey.grey25
     }
   },
   success: {
     chip: {
+      backgroundColor: "transparent",
+      border: "1px solid",
       borderColor: theme.colors.success.success25
     },
     selected: {
-      backgroundColor: theme.colors.success.success25
+      backgroundColor: theme.colors.success.success25,
+      borderColor: theme.colors.success.success25
     }
   },
   warning: {
     chip: {
+      backgroundColor: "transparent",
+      border: "1px solid",
       borderColor: theme.colors.warning.warning25
     },
     selected: {
-      backgroundColor: theme.colors.warning.warning25
+      backgroundColor: theme.colors.warning.warning25,
+      borderColor: theme.colors.warning.warning25
     }
   },
   danger: {
     chip: {
+      backgroundColor: "transparent",
+      border: "1px solid",
       borderColor: theme.colors.alert.alert25
     },
     selected: {
-      backgroundColor: theme.colors.alert.alert25
+      backgroundColor: theme.colors.alert.alert25,
+      borderColor: theme.colors.alert.alert25
     }
   }
 });
