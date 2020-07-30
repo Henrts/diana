@@ -62,7 +62,7 @@ export interface ICarouselProps {
    */
   notVisiblePercentageToSkipElement?: number;
   /**
-   * Sets the wanted scroll type
+   * Sets the wanted alignmentType
    * "normal" will align the items to the
    *      left/right
    * "centered" will focus 1 element on the center
@@ -118,6 +118,7 @@ const styleSheet: ThemeStyleSheetFactory<Theme, ICarouselStyles> = theme => ({
     overflowY: "hidden",
     overflowX: "auto",
     scrollbarWidth: "none",
+    scrollBehavior: "smooth",
     "-ms-overflow-style": "none",
     "@selectors": {
       "&::-webkit-scrollbar": {
@@ -341,11 +342,13 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         (element.clientWidth / 2 - childrenSize / 2) +
         marginBetweenItems / 2;
 
-      const scrollPerItem = element.scrollLeft + childrenSize;
+      const scrollPerItem = childrenSize;
 
-      element.style.scrollBehavior = "none";
+      if (!animateScroll) {
+        element.style.scrollBehavior = "unset";
+      }
       element.scrollTo(scrollTo + scrollPerItem * centeredItemInd, 0);
-      // element.style.scrollBehavior = "smooth";
+      element.style.scrollBehavior = "smooth";
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calculateChildrenSize, alignmentType, scrollableElementRef?.current?.clientWidth]);
@@ -364,7 +367,6 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           className={cx(styles.scrollableElement)}
           style={{
             gridColumnGap: marginBetweenItems,
-            scrollBehavior: animateScroll ? "smooth" : "unset",
             ...(blockScroll ? { overflowX: "hidden" } : {})
           }}
         >

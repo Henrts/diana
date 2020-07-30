@@ -33,10 +33,16 @@ const Card: React.FC<ICardProps & WithStylesProps<Theme, ICardStyles>> = ({
   cx,
   styles,
   children,
-  wrappedRef
+  wrappedRef,
+  onClick = () => {}
 }) => {
   return (
-    <section className={cx("diana-card", styles.card, className)} ref={wrappedRef}>
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <section
+      className={cx("diana-card", styles.card, className)}
+      ref={wrappedRef}
+      onClick={onClick}
+    >
       {children}
     </section>
   );
