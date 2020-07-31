@@ -23,6 +23,8 @@ export interface ICarouselProps {
     scrollableElement?: React.RefObject<HTMLDivElement>;
     currentScroll?: number;
     childrenSize?: number;
+    centeredItemInd?: number;
+    scroll: (rightDir: boolean) => void;
   }) => JSX.Element;
   /**
    * Ref for the scroll element
@@ -53,16 +55,34 @@ export interface ICarouselProps {
    */
   rightIcon?: string;
   /**
-   * Tells the items border width
-   */
-  borderWidth?: number;
-  /**
    * Percentage of not visible element's body
    * that makes scroll skip to another element
    * number between 0 - 1;
    * defaults to 0.3
    */
   notVisiblePercentageToSkipElement?: number;
+  /**
+   * Sets the wanted alignmentType
+   * "normal" will align the items to the
+   *      left/right
+   * "centered" will focus 1 element on the center
+   *      of the parent component
+   */
+  alignmentType?: "centered" | "normal";
+  /**
+   * if wheel/touch scroll is disabled
+   */
+  blockScroll?: boolean;
+  /**
+   * if alignmentType="centered" this tells on which element
+   * to begin the scroll on
+   */
+  centeredItemIndex?: number;
+  /**
+   * if should animate on scroll
+   * default to true
+   */
+  animateScroll?: boolean;
 }
 
 export interface ICarouselStyles {
@@ -104,6 +124,9 @@ const styleSheet: ThemeStyleSheetFactory<Theme, ICarouselStyles> = theme => ({
       "&::-webkit-scrollbar": {
         width: "0 !important",
         height: "0 !important"
+      },
+      "&:focus": {
+        outline: "none"
       }
     }
   }
@@ -159,10 +182,14 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   useVirtualization = true,
   rightIcon = "chevron-right",
   leftIcon = "chevron-left",
-  borderWidth,
-  notVisiblePercentageToSkipElement = 0.3
+  notVisiblePercentageToSkipElement = 0.3,
+  alignmentType = "normal",
+  blockScroll = false,
+  centeredItemIndex = 0,
+  animateScroll = true
 }) => {
   const [elem, setElem] = useState<React.RefObject<HTMLDivElement> | undefined>();
+  const [centeredItemInd, setCenteredItemInd] = useState(centeredItemIndex);
   const [wrapperCurrentScrollPosition, setWrapperCurrentScrollPosition] = useState(0);
 
   const intersectionOptions = useMemo(
@@ -190,7 +217,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   }, [elem, scrollableElementRef]);
 
   useEffect(() => {
-    if (!scrollableElementRef) {
+    if (!scrollableElementRef || blockScroll) {
       return;
     }
 
@@ -222,78 +249,109 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     addEvent("mouseleave", scrollableElementRef?.current, () =>
       onMouseUp(scrollableElementRef?.current)
     );
-  }, [scrollableElementRef]);
+  }, [blockScroll, scrollableElementRef]);
 
   const calculateChildrenSize = useCallback<() => number>(() => {
     if (!scrollableElementRef?.current) {
       return 0;
     }
 
-    const element: HTMLElement = scrollableElementRef.current;
+    const element = scrollableElementRef.current.children[
+      alignmentType === "centered" ? 1 : 0
+    ] as HTMLElement;
 
-    return (
-      (element.children[0]?.clientWidth || 0) +
-      (borderWidth ||
-        Number(
-          (element.children[0] as HTMLElement)?.style?.borderLeftWidth?.replace("px", "") || 0
-        )) +
-      (borderWidth ||
-        Number(
-          (element.children[0] as HTMLElement)?.style?.borderRightWidth?.replace("px", "") || 0
-        )) +
-      marginBetweenItems
-    );
-  }, [borderWidth, marginBetweenItems, scrollableElementRef]);
+    return element?.offsetWidth + marginBetweenItems;
+  }, [marginBetweenItems, alignmentType, scrollableElementRef]);
 
   const scroll = useCallback(
     (rightDir = true) => {
       if (scrollableElementRef && scrollableElementRef.current) {
         const element = scrollableElementRef.current;
-        const currentScroll = element.scrollLeft ?? 0;
-        const scrollElementWidth = element.clientWidth || 0;
-        const halfMarginBetweenItems = marginBetweenItems / 2;
+        if (alignmentType === "normal") {
+          const currentScroll = element.scrollLeft ?? 0;
+          const scrollElementWidth = element.clientWidth || 0;
+          const halfMarginBetweenItems = marginBetweenItems / 2;
 
-        const childrenSize = calculateChildrenSize();
+          const childrenSize = calculateChildrenSize();
 
-        const numberOfFullyVisibleCards = Math.floor(scrollElementWidth / childrenSize);
-        const lastCardVisibleWidth = scrollElementWidth - childrenSize * numberOfFullyVisibleCards;
+          const numberOfFullyVisibleCards = Math.floor(scrollElementWidth / childrenSize);
+          const lastCardVisibleWidth =
+            scrollElementWidth - childrenSize * numberOfFullyVisibleCards;
 
-        let newOffset = 0;
-        if (rightDir) {
-          newOffset = childrenSize - lastCardVisibleWidth - halfMarginBetweenItems;
+          let newOffset = 0;
+          if (rightDir) {
+            newOffset = childrenSize - lastCardVisibleWidth - halfMarginBetweenItems;
 
-          while (currentScroll >= Math.floor(newOffset)) {
-            newOffset += childrenSize;
+            while (currentScroll >= Math.floor(newOffset)) {
+              newOffset += childrenSize;
+            }
+
+            /**
+             * This 0.3 value means that if we don't see only 30% or less of the
+             * last element it jumps to the next one
+             */
+            if (
+              Math.abs(currentScroll - newOffset) <
+              lastCardVisibleWidth * notVisiblePercentageToSkipElement
+            ) {
+              newOffset += childrenSize;
+            }
+
+            newOffset -= halfMarginBetweenItems;
+          } else {
+            while (currentScroll > Math.floor(newOffset)) {
+              newOffset += childrenSize;
+            }
+            newOffset = newOffset < childrenSize ? 0 : newOffset - childrenSize;
           }
-
-          /**
-           * This 0.3 value means that if we don't see only 30% or less of the
-           * last element it jumps to the next one
-           */
-          if (
-            Math.abs(currentScroll - newOffset) <
-            lastCardVisibleWidth * notVisiblePercentageToSkipElement
-          ) {
-            newOffset += childrenSize;
+          element.scrollTo(newOffset, 0);
+        } else if (alignmentType === "centered") {
+          if (rightDir) {
+            setCenteredItemInd(centeredItemInd + 1);
+            element.scrollTo(element.scrollLeft + calculateChildrenSize(), 0);
+          } else {
+            setCenteredItemInd(centeredItemInd - 1);
+            element.scrollTo(element.scrollLeft - calculateChildrenSize(), 0);
           }
-
-          newOffset -= halfMarginBetweenItems;
-        } else {
-          while (currentScroll > Math.floor(newOffset)) {
-            newOffset += childrenSize;
-          }
-          newOffset = newOffset < childrenSize ? 0 : newOffset - childrenSize;
         }
-        element.scrollTo(newOffset, 0);
       }
     },
     [
       calculateChildrenSize,
+      centeredItemInd,
       marginBetweenItems,
       notVisiblePercentageToSkipElement,
+      alignmentType,
       scrollableElementRef
     ]
   );
+
+  /**
+   * This useEffect calculates the needed scroll position
+   * in order for the wanted item to be centered
+   * when the carousel starts
+   */
+  useEffect(() => {
+    if (alignmentType === "centered" && scrollableElementRef?.current) {
+      const element = scrollableElementRef?.current;
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      const childrenSize = calculateChildrenSize();
+
+      const scrollTo =
+        element.clientWidth / 2 -
+        (element.clientWidth / 2 - childrenSize / 2) +
+        marginBetweenItems / 2;
+
+      const scrollPerItem = childrenSize;
+
+      if (!animateScroll) {
+        element.style.scrollBehavior = "unset";
+      }
+      element.scrollTo(scrollTo + scrollPerItem * centeredItemInd, 0);
+      element.style.scrollBehavior = "smooth";
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [calculateChildrenSize, alignmentType, scrollableElementRef?.current?.clientWidth]);
 
   return (
     <section className={cx(styles.wrapper)}>
@@ -307,9 +365,18 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         <div
           ref={scrollableElementRef}
           className={cx(styles.scrollableElement)}
-          style={{ gridColumnGap: marginBetweenItems }}
+          style={{
+            gridColumnGap: marginBetweenItems,
+            ...(blockScroll ? { overflowX: "hidden" } : {})
+          }}
         >
+          {alignmentType === "centered" && (
+            <div style={{ width: (scrollableElementRef?.current?.clientWidth || 0) / 2 }} />
+          )}
           {items}
+          {alignmentType === "centered" && (
+            <div style={{ width: (scrollableElementRef?.current?.clientWidth || 0) / 2 }} />
+          )}
         </div>
         {showScrollArrows && (
           <div className={cx(styles.arrowsContainer)} onClick={scroll}>
@@ -321,7 +388,9 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         footer({
           scrollableElement: scrollableElementRef,
           currentScroll: wrapperCurrentScrollPosition,
-          childrenSize: calculateChildrenSize()
+          childrenSize: calculateChildrenSize(),
+          centeredItemInd,
+          scroll
         })}
     </section>
   );

@@ -17,14 +17,13 @@
   },
   "dependencies": {
     "@diana-ui/base": "^1.0.2",
-    "@diana-ui/button": "^1.0.2",
     "@diana-ui/divider": "^1.0.2",
     "@diana-ui/icon": "^1.0.2",
     "@diana-ui/types": "^1.0.2",
     "@diana-ui/typography": "^1.0.2"
   },
   "devDependencies": {
-    "@diana-ui/button": "^0.1.13"
+    "@diana-ui/button": "^1.0.2"
   },
   "peerDependencies": {
     "react": "^16.12.0"
