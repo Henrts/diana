@@ -16,7 +16,11 @@ export interface IToggleProps extends StandardProps<"input"> {}
 
 export interface IToggleStyles {
   /**
-   * Style of the whole container around the toggle and its text
+   * Style of the wrapper around the toggle and its text
+   */
+  wrapper?: BaseStylesheet;
+  /**
+   * Style of the container of the toggle
    */
   container?: BaseStylesheet;
   /**
@@ -24,7 +28,7 @@ export interface IToggleStyles {
    */
   toggleText?: BaseStylesheet;
   /**
-   * Style of the thumb featuring inside the box
+   * Style of the thumb featuring inside the container
    */
   thumb?: BaseStylesheet;
 }
@@ -67,7 +71,7 @@ const styleSheet: ThemeStyleSheetFactory = theme => ({
       }
     }
   },
-  toggleText: {
+  text: {
     cursor: "inherit",
     marginLeft: theme.spaceUnit.xxs,
     ...theme.typography.description
@@ -169,7 +173,7 @@ const Toggle: React.FC<IToggleProps & WithStylesProps> = ({
           id={name}
         />
       </div>
-      <label htmlFor={name} className={cx(styles.toggleText)}>
+      <label htmlFor={name} className={cx(styles.text)}>
         {children}
       </label>
     </div>
