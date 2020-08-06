@@ -64,6 +64,22 @@ export interface IImageAvatarStyles extends IAvatarStyles {
    * styles for the avatar wrapper
    */
   avatarOverlay?: BaseStylesheet;
+  /**
+   * styles for the text when in xs
+   */
+  textxs?: BaseStylesheet;
+  /**
+   * styles for the text when in md
+   */
+  textmd?: BaseStylesheet;
+  /**
+   * styles for the text when in sm
+   */
+  textsm?: BaseStylesheet;
+  /**
+   * styles for the text when in lg
+   */
+  textlg?: BaseStylesheet;
 }
 
 const styleSheet: ThemeStyleSheetFactory<Theme, IImageAvatarStyles> = theme => ({
@@ -110,13 +126,13 @@ const ImageAvatar: React.FC<IProps> = ({
   theme,
   ...rest
 }) => {
+  const { size } = rest;
   const [useFallback, setUseFallback] = useState(false);
   const onError = useCallback(() => {
     setUseFallback(true);
   }, []);
 
   const backgroundColorTheme = backgroundColor || theme?.colors.grey.grey25;
-
   return (
     <Avatar {...rest} backgroundColor={backgroundColorTheme}>
       <div className={cx(styles.avatarOverlay)}>
@@ -128,7 +144,9 @@ const ImageAvatar: React.FC<IProps> = ({
             <img className={cx(styles.image, className)} onError={onError} src={src} alt={alt} />
           )) ||
             ((useFallback || (!src && fallbackText)) && (
-              <BodyHighlight className={className}>{fallbackText}</BodyHighlight>
+              <BodyHighlight className={cx(className, styles[`text${size}`])}>
+                {fallbackText}
+              </BodyHighlight>
             )) ||
             (icon && (
               <Icon

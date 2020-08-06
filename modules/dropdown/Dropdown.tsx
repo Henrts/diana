@@ -146,6 +146,7 @@ const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesP
                 }
               }}
               role="presentation"
+              title={item.text}
             >
               {renderItem?.(
                 item,

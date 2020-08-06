@@ -110,6 +110,7 @@ const BaseMultipleDropdown: React.FC<IBaseMultipleDropdownProps<IItem>> = props 
               key={item.id}
               onClick={() => onItemClicked(item, selectedItems)}
               role="presentation"
+              title={item.text}
             >
               {renderItem?.(
                 item,

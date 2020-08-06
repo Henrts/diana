@@ -1,11 +1,17 @@
 import React, { PropsWithChildren } from "react";
 import { withStyles } from "@diana-ui/base";
 import { DescriptionMedium } from "@diana-ui/typography";
-import { ThemeStyleSheetFactory, WithStylesProps, BaseStylesheet, Theme } from "@diana-ui/types";
+import {
+  ThemeStyleSheetFactory,
+  WithStylesProps,
+  BaseStylesheet,
+  Theme,
+  StandardProps
+} from "@diana-ui/types";
 
 // #region TYPES
 
-export interface IAvatarProps {
+export interface IAvatarProps extends StandardProps<"div"> {
   /**
    * applies the selected class
    */
@@ -35,6 +41,10 @@ export interface IAvatarStyles {
    * styles the wrapper element
    */
   wrapper?: BaseStylesheet;
+  /**
+   * styles for xs size
+   */
+  xs?: BaseStylesheet;
   /**
    * styles for sm size
    */
