@@ -1,10 +1,18 @@
-import React, { useState } from "react";
-import {{packageNameCap}} from "./{{packageNameCap}}";
-import { ThemeStyleSheetFactory } from "@diana-ui/types";
+import React from "react";
+import {{packageNameCap}}, {
+  // @ts-ignore
+  typesLoaderProps as {{packageNameCap}}PropTypes,
+  // @ts-ignore
+  typesLoaderStyles as {{packageNameCap}}StyleTypes
+}  from "./{{packageNameCap}}";
+import { typesHighlight } from "../../.storybook/helpers";
 
-const stylesheet: ThemeStyleSheetFactory = theme => ({
+const { Props: {{packageNameCap}}Props, Styles: {{packageNameCap}}Styles } = typesHighlight(
+  {{packageNameCap}}PropTypes,
+  {{packageNameCap}}StyleTypes
+);
+export { {{packageNameCap}}Props, {{packageNameCap}}Styles };
 
-});
 
 export const {{packageNameCap}}Story = () => {
   return (
