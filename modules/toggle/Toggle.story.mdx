@@ -1,0 +1,39 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { ToggleStory,ToggleStoryDisabled,ToggleStoryLabel, ToggleProps, ToggleStyles } from "./Toggle.story.tsx";
+
+<Meta title="Components | Toggle" />
+
+# Toggle
+
+This component is similar to the checkbox in terms of logic but changes the way the value is displayed to the user.
+
+<Preview>
+  <Story name="Toggle">
+    <ToggleStory />
+  </Story>
+</Preview>
+
+## Disabled
+
+<Preview>
+  <Story name="Toggle disabled">
+    <ToggleStoryDisabled />
+  </Story>
+</Preview>
+
+
+## with label
+
+<Preview>
+  <Story name="Toggle label">
+    <ToggleStoryLabel />
+  </Story>
+</Preview>
+
+## Available Props
+
+<ToggleProps />
+
+## Styles Props
+
+<ToggleStyles />

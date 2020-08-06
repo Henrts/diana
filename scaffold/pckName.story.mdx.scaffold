@@ -1,5 +1,5 @@
 import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { {{packageNameCap}}Story } from "./{{packageNameCap}}.story.tsx";
+import { {{packageNameCap}}Story, {{packageNameCap}}Props, {{packageNameCap}}Styles } from "./{{packageNameCap}}.story.tsx";
 
 <Meta title="Components | {{packageNameCap}}" />
 
@@ -10,3 +10,12 @@ import { {{packageNameCap}}Story } from "./{{packageNameCap}}.story.tsx";
     <{{packageNameCap}}Story />
   </Story>
 </Preview>
+
+
+## Available Props
+
+<{{packageNameCap}}Props />
+
+## Styles Props
+
+<{{packageNameCap}}Styles />
