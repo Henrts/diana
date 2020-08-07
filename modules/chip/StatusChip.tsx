@@ -22,7 +22,7 @@ const defaultColorMap = (theme: Theme) => ({
     chip: {
       backgroundColor: "transparent",
       border: "1px solid",
-      borderColor: theme.colors.grey.grey25
+      borderColor: theme.colors.grey.grey100
     },
     selected: {
       backgroundColor: theme.colors.grey.grey25,
@@ -33,7 +33,7 @@ const defaultColorMap = (theme: Theme) => ({
     chip: {
       backgroundColor: "transparent",
       border: "1px solid",
-      borderColor: theme.colors.success.success25
+      borderColor: theme.colors.success.success100
     },
     selected: {
       backgroundColor: theme.colors.success.success25,
@@ -44,7 +44,7 @@ const defaultColorMap = (theme: Theme) => ({
     chip: {
       backgroundColor: "transparent",
       border: "1px solid",
-      borderColor: theme.colors.warning.warning25
+      borderColor: theme.colors.warning.warning100
     },
     selected: {
       backgroundColor: theme.colors.warning.warning25,
@@ -55,7 +55,7 @@ const defaultColorMap = (theme: Theme) => ({
     chip: {
       backgroundColor: "transparent",
       border: "1px solid",
-      borderColor: theme.colors.alert.alert25
+      borderColor: theme.colors.alert.alert100
     },
     selected: {
       backgroundColor: theme.colors.alert.alert25,
