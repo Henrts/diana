@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
+import debounce from "lodash.debounce";
 import { WithStylesProps, Theme, ThemeStyleSheetFactory, BaseStylesheet } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { useInfiniteScrollList } from "@diana-ui/hooks";
@@ -150,6 +151,10 @@ const addEvent = (name: string, el: any, func: any) => {
 };
 
 const onMouseUp = (scrollElement: any) => {
+  if (!scrollElement) {
+    return;
+  }
+
   if (dragVariables.drag) {
     let start = 1;
     const animate: any = () => {
@@ -189,6 +194,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   animateScroll = true
 }) => {
   const [elem, setElem] = useState<React.RefObject<HTMLDivElement> | undefined>();
+  const [scrollBaseReference, setScrollBaseReference] = useState<number>(0);
   const [centeredItemInd, setCenteredItemInd] = useState(centeredItemIndex);
   const [wrapperCurrentScrollPosition, setWrapperCurrentScrollPosition] = useState(0);
 
@@ -342,6 +348,10 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         (element.clientWidth / 2 - childrenSize / 2) +
         marginBetweenItems / 2;
 
+      if (scrollBaseReference === 0) {
+        setScrollBaseReference(scrollTo);
+      }
+
       const scrollPerItem = childrenSize;
 
       if (!animateScroll) {
@@ -352,6 +362,72 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calculateChildrenSize, alignmentType, scrollableElementRef?.current?.clientWidth]);
+
+  /**
+   * This useEffect makes sure that after some scroll action there's
+   * an item on the center.
+   * This calculates if the scrollLeft where the user stop scrolling
+   * is closer to the next item, or the previous one, and scroll accordingly.
+   */
+  useEffect(() => {
+    if (alignmentType !== "centered") {
+      return;
+    }
+
+    const eventListener = () => {
+      if (scrollableElementRef?.current && scrollBaseReference) {
+        const currentScroll = scrollableElementRef.current.scrollLeft;
+        let indexScroll = scrollBaseReference;
+        let indexCount = 0;
+        const childrenSize = calculateChildrenSize();
+
+        if (currentScroll < indexScroll) {
+          // eslint-disable-next-line no-param-reassign
+          scrollableElementRef.current.scrollLeft = indexScroll;
+          setCenteredItemInd(0);
+        }
+
+        const maxPossibleScroll = indexScroll + childrenSize * (items.length - 1);
+        if (currentScroll > maxPossibleScroll) {
+          // eslint-disable-next-line no-param-reassign
+          scrollableElementRef.current.scrollLeft = maxPossibleScroll;
+          setCenteredItemInd(items.length - 1);
+        }
+
+        while (currentScroll >= indexScroll) {
+          indexScroll += childrenSize;
+          indexCount += 1;
+        }
+
+        const highOffset = indexScroll - currentScroll;
+        const lowOffset = currentScroll - (indexScroll - childrenSize);
+        let chosenOffset = indexScroll;
+
+        if (highOffset > lowOffset) {
+          chosenOffset -= childrenSize;
+          indexCount -= 1;
+        }
+
+        if (
+          chosenOffset > scrollBaseReference &&
+          Math.ceil(chosenOffset) !== currentScroll &&
+          Math.floor(chosenOffset) !== currentScroll
+        ) {
+          // eslint-disable-next-line no-param-reassign
+          scrollableElementRef.current.scrollLeft = chosenOffset;
+          setCenteredItemInd(indexCount);
+        }
+      }
+    };
+    // eslint-disable-next-line mdx/no-unused-expressions
+    scrollableElementRef?.current?.addEventListener("scroll", debounce(eventListener, 300));
+  }, [
+    alignmentType,
+    calculateChildrenSize,
+    items.length,
+    scrollBaseReference,
+    scrollableElementRef
+  ]);
 
   return (
     <section className={cx(styles.wrapper)}>
