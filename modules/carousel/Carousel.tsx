@@ -429,6 +429,53 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     scrollableElementRef
   ]);
 
+  /**
+   * This useEffect darkens the elements beside the centered one.
+   * As the user scrolls, this calculates how dark should be based on
+   * the distance from the center to that item.
+   * The furthest from the center, the less opacity it owns
+   */
+  useEffect(() => {
+    if (alignmentType !== "centered" || !scrollableElementRef?.current) {
+      return;
+    }
+
+    const element = scrollableElementRef.current;
+
+    const darkenEffectFunc = () => {
+      const currentScroll = element.scrollLeft;
+      const totalScroll = element.scrollWidth;
+
+      element.childNodes.forEach((item: any, index: number) => {
+        if (index === 0 || index === element.childNodes.length - 1) {
+          return;
+        }
+        const offsetDiff =
+          Math.abs(
+            currentScroll + scrollBaseReference + calculateChildrenSize() - item.offsetLeft
+          ) /
+          (totalScroll / 4);
+        // eslint-disable-next-line no-param-reassign
+        item.style = `opacity: ${offsetDiff < 0.1 ? 1 : 1 - offsetDiff}`;
+      });
+    };
+
+    const eventListenerCleanup = () => {
+      document.removeEventListener("scroll", darkenEffectFunc);
+    };
+
+    // eslint-disable-next-line mdx/no-unused-expressions
+    scrollableElementRef?.current?.addEventListener("scroll", darkenEffectFunc);
+    // eslint-disable-next-line mdx/no-unused-expressions
+    scrollableElementRef?.current?.addEventListener("scroll", debounce(eventListenerCleanup, 1000));
+  }, [
+    alignmentType,
+    calculateChildrenSize,
+    centeredItemInd,
+    scrollBaseReference,
+    scrollableElementRef
+  ]);
+
   return (
     <section className={cx(styles.wrapper)}>
       {header}
