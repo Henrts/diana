@@ -84,6 +84,18 @@ export interface ICarouselProps {
    * default to true
    */
   animateScroll?: boolean;
+  /**
+   * if true it'll darken furthest items
+   * from the center
+   * Default: true
+   */
+  darkenFurthestItems?: boolean;
+  /**
+   * if true it'll try to center an item
+   * when scroll is untouched for 400ms
+   * Default: true
+   */
+  autoFocus?: boolean;
 }
 
 export interface ICarouselStyles {
@@ -191,7 +203,9 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   alignmentType = "normal",
   blockScroll = false,
   centeredItemIndex = 0,
-  animateScroll = true
+  animateScroll = true,
+  darkenFurthestItems = true,
+  autoFocus = true
 }) => {
   const [elem, setElem] = useState<React.RefObject<HTMLDivElement> | undefined>();
   const [scrollBaseReference, setScrollBaseReference] = useState<number>(0);
@@ -370,7 +384,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
    * is closer to the next item, or the previous one, and scroll accordingly.
    */
   useEffect(() => {
-    if (alignmentType !== "centered") {
+    if (alignmentType !== "centered" || !autoFocus) {
       return;
     }
 
@@ -423,6 +437,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     scrollableElementRef?.current?.addEventListener("scroll", debounce(eventListener, 300));
   }, [
     alignmentType,
+    autoFocus,
     calculateChildrenSize,
     items.length,
     scrollBaseReference,
@@ -436,7 +451,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
    * The furthest from the center, the less opacity it owns
    */
   useEffect(() => {
-    if (alignmentType !== "centered" || !scrollableElementRef?.current) {
+    if (alignmentType !== "centered" || !scrollableElementRef?.current || !darkenFurthestItems) {
       return;
     }
 
@@ -472,6 +487,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     alignmentType,
     calculateChildrenSize,
     centeredItemInd,
+    darkenFurthestItems,
     scrollBaseReference,
     scrollableElementRef
   ]);
