@@ -493,17 +493,20 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   ]);
 
   return (
-    <section className={cx(styles.wrapper)}>
+    <section className={cx(styles.wrapper, "carousel-wrapper")}>
       {header}
-      <div className={cx(styles.body, showScrollArrows && styles.bodyWithArrows)}>
+      <div className={cx(styles.body, showScrollArrows && styles.bodyWithArrows, "carousel-body")}>
         {showScrollArrows && (
-          <div className={cx(styles.arrowsContainer)} onClick={() => scroll(false)}>
+          <div
+            className={cx(styles.arrowsContainer, "carousel-arrows", "carousel-arrow-left")}
+            onClick={() => scroll(false)}
+          >
             <Icon name={leftIcon as IconNames} />
           </div>
         )}
         <div
           ref={scrollableElementRef}
-          className={cx(styles.scrollableElement)}
+          className={cx(styles.scrollableElement, "carousel-scrollable-element")}
           style={{
             gridColumnGap: marginBetweenItems,
             ...(blockScroll ? { overflowX: "hidden" } : {})
@@ -518,7 +521,10 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           )}
         </div>
         {showScrollArrows && (
-          <div className={cx(styles.arrowsContainer)} onClick={scroll}>
+          <div
+            className={cx(styles.arrowsContainer, "carousel-arrows", "carousel-arrow-right")}
+            onClick={scroll}
+          >
             <Icon name={rightIcon as IconNames} />
           </div>
         )}
