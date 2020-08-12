@@ -362,9 +362,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         (element.clientWidth / 2 - childrenSize / 2) +
         marginBetweenItems / 2;
 
-      if (scrollBaseReference === 0) {
-        setScrollBaseReference(scrollTo);
-      }
+      setScrollBaseReference(scrollTo);
 
       const scrollPerItem = childrenSize;
 
@@ -422,11 +420,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           indexCount -= 1;
         }
 
-        if (
-          chosenOffset > scrollBaseReference &&
-          Math.ceil(chosenOffset) !== currentScroll &&
-          Math.floor(chosenOffset) !== currentScroll
-        ) {
+        if (chosenOffset >= scrollBaseReference && Math.abs(chosenOffset - currentScroll) > 2) {
           // eslint-disable-next-line no-param-reassign
           scrollableElementRef.current.scrollLeft = chosenOffset;
           setCenteredItemInd(indexCount);
@@ -448,7 +442,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
    * This useEffect darkens the elements beside the centered one.
    * As the user scrolls, this calculates how dark should be based on
    * the distance from the center to that item.
-   * The furthest from the center, the less opacity it owns
+   * The furthest from the center, the darker will get
    */
   useEffect(() => {
     if (alignmentType !== "centered" || !scrollableElementRef?.current || !darkenFurthestItems) {
@@ -458,36 +452,60 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     const element = scrollableElementRef.current;
 
     const darkenEffectFunc = () => {
-      const currentScroll = element.scrollLeft;
-      const totalScroll = element.scrollWidth;
-
       element.childNodes.forEach((item: any, index: number) => {
         if (index === 0 || index === element.childNodes.length - 1) {
           return;
         }
+
+        let dummyDiv = item.querySelector(".carousel-dummy-overlay");
+        if (!dummyDiv) {
+          // eslint-disable-next-line no-param-reassign
+          item.style.position = "relative";
+
+          const div = document.createElement("div");
+          div.className = "carousel-dummy-overlay";
+          div.style.position = "absolute";
+          div.style.top = "0";
+          div.style.left = "0";
+          div.style.right = "0";
+          div.style.bottom = "0";
+          item.appendChild(div);
+
+          dummyDiv = item.querySelector(".carousel-dummy-overlay");
+        }
+
         const offsetDiff =
           Math.abs(
-            currentScroll + scrollBaseReference + calculateChildrenSize() - item.offsetLeft
-          ) /
-          (totalScroll / 4);
+            element.scrollLeft +
+              element.clientWidth / 2 -
+              (item.offsetLeft + calculateChildrenSize() / 2 - marginBetweenItems / 2)
+          ) / element.clientWidth;
         // eslint-disable-next-line no-param-reassign
-        item.style = `opacity: ${offsetDiff < 0.1 ? 1 : 1 - offsetDiff}`;
-      });
-    };
+        dummyDiv.style.display = "block";
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, no-param-reassign
+        dummyDiv.style.backgroundColor = `rgba(7, 7, 7, ${offsetDiff < 0.1 ? 0 : offsetDiff})`;
+        // eslint-disable-next-line no-param-reassign
+        item.style.borderStyle = "hidden";
 
-    const eventListenerCleanup = () => {
-      document.removeEventListener("scroll", darkenEffectFunc);
+        if (offsetDiff < 0.1) {
+          // eslint-disable-next-line no-param-reassign
+          dummyDiv.style.display = "none";
+          // eslint-disable-next-line no-param-reassign
+          item.style.borderStyle = "solid";
+        }
+      });
     };
 
     // eslint-disable-next-line mdx/no-unused-expressions
     scrollableElementRef?.current?.addEventListener("scroll", darkenEffectFunc);
-    // eslint-disable-next-line mdx/no-unused-expressions
-    scrollableElementRef?.current?.addEventListener("scroll", debounce(eventListenerCleanup, 1000));
+
+    return () => document.removeEventListener("scroll", darkenEffectFunc);
   }, [
     alignmentType,
     calculateChildrenSize,
     centeredItemInd,
     darkenFurthestItems,
+    marginBetweenItems,
     scrollBaseReference,
     scrollableElementRef
   ]);
