@@ -1,4 +1,6 @@
+/* eslint-disable no-param-reassign */
 import React, { useState, useMemo, useCallback, useEffect } from "react";
+import debounce from "lodash.debounce";
 import { WithStylesProps, Theme, ThemeStyleSheetFactory, BaseStylesheet } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
 import { useInfiniteScrollList } from "@diana-ui/hooks";
@@ -83,6 +85,18 @@ export interface ICarouselProps {
    * default to true
    */
   animateScroll?: boolean;
+  /**
+   * if true it'll darken furthest items
+   * from the center
+   * Default: true
+   */
+  darkenFurthestItems?: boolean;
+  /**
+   * if true it'll try to center an item
+   * when scroll is untouched for 300ms
+   * Default: true
+   */
+  autoFocus?: boolean;
 }
 
 export interface ICarouselStyles {
@@ -144,12 +158,15 @@ const addEvent = (name: string, el: any, func: any) => {
   } else if (el.attachEvent) {
     el.attachEvent(`on${name}`, func);
   } else {
-    // eslint-disable-next-line no-param-reassign
     el[name] = func;
   }
 };
 
 const onMouseUp = (scrollElement: any) => {
+  if (!scrollElement) {
+    return;
+  }
+
   if (dragVariables.drag) {
     let start = 1;
     const animate: any = () => {
@@ -157,7 +174,6 @@ const onMouseUp = (scrollElement: any) => {
       if (step <= 0) {
         window.cancelAnimationFrame(animate);
       } else {
-        // eslint-disable-next-line no-param-reassign
         scrollElement.scrollLeft += dragVariables.diffx * step;
         start -= 0.02;
         window.requestAnimationFrame(animate);
@@ -165,7 +181,6 @@ const onMouseUp = (scrollElement: any) => {
     };
     dragVariables.drag = false;
     animate();
-    // eslint-disable-next-line no-param-reassign
     scrollElement.style.scrollBehavior = "smooth";
   }
 };
@@ -186,9 +201,12 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   alignmentType = "normal",
   blockScroll = false,
   centeredItemIndex = 0,
-  animateScroll = true
+  animateScroll = true,
+  darkenFurthestItems = true,
+  autoFocus = true
 }) => {
   const [elem, setElem] = useState<React.RefObject<HTMLDivElement> | undefined>();
+  const [scrollBaseReference, setScrollBaseReference] = useState<number>(0);
   const [centeredItemInd, setCenteredItemInd] = useState(centeredItemIndex);
   const [wrapperCurrentScrollPosition, setWrapperCurrentScrollPosition] = useState(0);
 
@@ -226,7 +244,6 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
       dragVariables.diffx = 0;
       dragVariables.startx = e.clientX + (scrollableElementRef?.current?.scrollLeft || 0);
       if (scrollableElementRef?.current?.style) {
-        // eslint-disable-next-line no-param-reassign
         scrollableElementRef.current.style.scrollBehavior = "unset";
       }
     });
@@ -236,7 +253,6 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         dragVariables.diffx =
           dragVariables.startx - (e.clientX + (scrollableElementRef?.current?.scrollLeft || 0));
         if (scrollableElementRef?.current) {
-          // eslint-disable-next-line no-param-reassign
           scrollableElementRef.current.scrollLeft += dragVariables.diffx;
         }
       }
@@ -342,6 +358,8 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         (element.clientWidth / 2 - childrenSize / 2) +
         marginBetweenItems / 2;
 
+      setScrollBaseReference(scrollTo);
+
       const scrollPerItem = childrenSize;
 
       if (!animateScroll) {
@@ -353,18 +371,149 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calculateChildrenSize, alignmentType, scrollableElementRef?.current?.clientWidth]);
 
+  /**
+   * This useEffect makes sure that after some scroll action there's
+   * an item on the center.
+   * This calculates if the scrollLeft where the user stop scrolling
+   * is closer to the next item, or the previous one, and scroll accordingly.
+   */
+  useEffect(() => {
+    if (alignmentType !== "centered" || !autoFocus) {
+      return;
+    }
+
+    const eventListener = debounce(() => {
+      if (scrollableElementRef?.current && scrollBaseReference) {
+        const currentScroll = scrollableElementRef.current.scrollLeft;
+        let indexScroll = scrollBaseReference;
+        let indexCount = 0;
+        const childrenSize = calculateChildrenSize();
+
+        if (currentScroll < indexScroll) {
+          scrollableElementRef.current.scrollLeft = indexScroll;
+          setCenteredItemInd(0);
+        }
+
+        const maxPossibleScroll = indexScroll + childrenSize * (items.length - 1);
+        if (currentScroll > maxPossibleScroll) {
+          scrollableElementRef.current.scrollLeft = maxPossibleScroll;
+          setCenteredItemInd(items.length - 1);
+        }
+
+        while (currentScroll >= indexScroll) {
+          indexScroll += childrenSize;
+          indexCount += 1;
+        }
+
+        const highOffset = indexScroll - currentScroll;
+        const lowOffset = currentScroll - (indexScroll - childrenSize);
+        let chosenOffset = indexScroll;
+
+        if (highOffset > lowOffset) {
+          chosenOffset -= childrenSize;
+          indexCount -= 1;
+        }
+
+        if (chosenOffset >= scrollBaseReference && Math.abs(chosenOffset - currentScroll) > 2) {
+          scrollableElementRef.current.scrollLeft = chosenOffset;
+          setCenteredItemInd(indexCount);
+        }
+      }
+    }, 300);
+    // eslint-disable-next-line mdx/no-unused-expressions
+    scrollableElementRef?.current?.addEventListener("scroll", eventListener);
+
+    return () => scrollableElementRef?.current?.removeEventListener("scroll", eventListener);
+  }, [
+    alignmentType,
+    autoFocus,
+    calculateChildrenSize,
+    items.length,
+    scrollBaseReference,
+    scrollableElementRef
+  ]);
+
+  /**
+   * This useEffect darkens the elements beside the centered one.
+   * As the user scrolls, this calculates how dark should be based on
+   * the distance from the center to that item.
+   * The furthest from the center, the darker will get
+   */
+  useEffect(() => {
+    if (alignmentType !== "centered" || !scrollableElementRef?.current || !darkenFurthestItems) {
+      return;
+    }
+
+    const element = scrollableElementRef.current;
+
+    const darkenEffectFunc = () => {
+      element.childNodes.forEach((item: any, index: number) => {
+        if (index === 0 || index === element.childNodes.length - 1) {
+          return;
+        }
+
+        let overlayDiv = item.querySelector(".carousel-overlay");
+        if (!overlayDiv) {
+          item.style.position = "relative";
+
+          const div = document.createElement("div");
+          div.className = "carousel-overlay";
+          div.style.position = "absolute";
+          div.style.top = "0";
+          div.style.left = "0";
+          div.style.right = "0";
+          div.style.bottom = "0";
+          item.appendChild(div);
+
+          overlayDiv = item.querySelector(".carousel-overlay");
+        }
+
+        const offsetDiff =
+          Math.abs(
+            element.scrollLeft +
+              element.clientWidth / 2 -
+              (item.offsetLeft + calculateChildrenSize() / 2 - marginBetweenItems / 2)
+          ) / element.clientWidth;
+        overlayDiv.style.display = "block";
+        overlayDiv.style.backgroundColor = `rgba(7, 7, 7, ${offsetDiff})`;
+        item.style.borderStyle = "hidden";
+
+        if (offsetDiff < 0.1) {
+          overlayDiv.style.display = "none";
+          item.style.borderStyle = "solid";
+        }
+      });
+    };
+
+    // eslint-disable-next-line mdx/no-unused-expressions
+    scrollableElementRef?.current?.addEventListener("scroll", darkenEffectFunc);
+
+    return () => scrollableElementRef?.current?.removeEventListener("scroll", darkenEffectFunc);
+  }, [
+    alignmentType,
+    calculateChildrenSize,
+    centeredItemInd,
+    darkenFurthestItems,
+    marginBetweenItems,
+    scrollBaseReference,
+    scrollableElementRef
+  ]);
+
   return (
-    <section className={cx(styles.wrapper)}>
+    <section className={cx(styles.wrapper, "carousel-wrapper")}>
       {header}
-      <div className={cx(styles.body, showScrollArrows && styles.bodyWithArrows)}>
+      <div className={cx(styles.body, showScrollArrows && styles.bodyWithArrows, "carousel-body")}>
         {showScrollArrows && (
-          <div className={cx(styles.arrowsContainer)} onClick={() => scroll(false)}>
+          <div
+            className={cx(styles.arrowsContainer, "carousel-arrows", "carousel-arrow-left")}
+            onClick={() => scroll(false)}
+          >
             <Icon name={leftIcon as IconNames} />
           </div>
         )}
         <div
           ref={scrollableElementRef}
-          className={cx(styles.scrollableElement)}
+          className={cx(styles.scrollableElement, "carousel-scrollable-element")}
           style={{
             gridColumnGap: marginBetweenItems,
             ...(blockScroll ? { overflowX: "hidden" } : {})
@@ -379,7 +528,10 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           )}
         </div>
         {showScrollArrows && (
-          <div className={cx(styles.arrowsContainer)} onClick={scroll}>
+          <div
+            className={cx(styles.arrowsContainer, "carousel-arrows", "carousel-arrow-right")}
+            onClick={scroll}
+          >
             <Icon name={rightIcon as IconNames} />
           </div>
         )}
