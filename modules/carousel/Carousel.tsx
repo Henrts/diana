@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { WithStylesProps, Theme, ThemeStyleSheetFactory, BaseStylesheet } from "@diana-ui/types";
@@ -92,7 +93,7 @@ export interface ICarouselProps {
   darkenFurthestItems?: boolean;
   /**
    * if true it'll try to center an item
-   * when scroll is untouched for 400ms
+   * when scroll is untouched for 300ms
    * Default: true
    */
   autoFocus?: boolean;
@@ -157,7 +158,6 @@ const addEvent = (name: string, el: any, func: any) => {
   } else if (el.attachEvent) {
     el.attachEvent(`on${name}`, func);
   } else {
-    // eslint-disable-next-line no-param-reassign
     el[name] = func;
   }
 };
@@ -174,7 +174,6 @@ const onMouseUp = (scrollElement: any) => {
       if (step <= 0) {
         window.cancelAnimationFrame(animate);
       } else {
-        // eslint-disable-next-line no-param-reassign
         scrollElement.scrollLeft += dragVariables.diffx * step;
         start -= 0.02;
         window.requestAnimationFrame(animate);
@@ -182,7 +181,6 @@ const onMouseUp = (scrollElement: any) => {
     };
     dragVariables.drag = false;
     animate();
-    // eslint-disable-next-line no-param-reassign
     scrollElement.style.scrollBehavior = "smooth";
   }
 };
@@ -246,7 +244,6 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
       dragVariables.diffx = 0;
       dragVariables.startx = e.clientX + (scrollableElementRef?.current?.scrollLeft || 0);
       if (scrollableElementRef?.current?.style) {
-        // eslint-disable-next-line no-param-reassign
         scrollableElementRef.current.style.scrollBehavior = "unset";
       }
     });
@@ -256,7 +253,6 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         dragVariables.diffx =
           dragVariables.startx - (e.clientX + (scrollableElementRef?.current?.scrollLeft || 0));
         if (scrollableElementRef?.current) {
-          // eslint-disable-next-line no-param-reassign
           scrollableElementRef.current.scrollLeft += dragVariables.diffx;
         }
       }
@@ -386,7 +382,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
       return;
     }
 
-    const eventListener = () => {
+    const eventListener = debounce(() => {
       if (scrollableElementRef?.current && scrollBaseReference) {
         const currentScroll = scrollableElementRef.current.scrollLeft;
         let indexScroll = scrollBaseReference;
@@ -394,14 +390,12 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         const childrenSize = calculateChildrenSize();
 
         if (currentScroll < indexScroll) {
-          // eslint-disable-next-line no-param-reassign
           scrollableElementRef.current.scrollLeft = indexScroll;
           setCenteredItemInd(0);
         }
 
         const maxPossibleScroll = indexScroll + childrenSize * (items.length - 1);
         if (currentScroll > maxPossibleScroll) {
-          // eslint-disable-next-line no-param-reassign
           scrollableElementRef.current.scrollLeft = maxPossibleScroll;
           setCenteredItemInd(items.length - 1);
         }
@@ -421,14 +415,15 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
         }
 
         if (chosenOffset >= scrollBaseReference && Math.abs(chosenOffset - currentScroll) > 2) {
-          // eslint-disable-next-line no-param-reassign
           scrollableElementRef.current.scrollLeft = chosenOffset;
           setCenteredItemInd(indexCount);
         }
       }
-    };
+    }, 300);
     // eslint-disable-next-line mdx/no-unused-expressions
-    scrollableElementRef?.current?.addEventListener("scroll", debounce(eventListener, 300));
+    scrollableElementRef?.current?.addEventListener("scroll", eventListener);
+
+    return () => scrollableElementRef?.current?.removeEventListener("scroll", eventListener);
   }, [
     alignmentType,
     autoFocus,
@@ -457,13 +452,12 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           return;
         }
 
-        let dummyDiv = item.querySelector(".carousel-dummy-overlay");
-        if (!dummyDiv) {
-          // eslint-disable-next-line no-param-reassign
+        let overlayDiv = item.querySelector(".carousel-overlay");
+        if (!overlayDiv) {
           item.style.position = "relative";
 
           const div = document.createElement("div");
-          div.className = "carousel-dummy-overlay";
+          div.className = "carousel-overlay";
           div.style.position = "absolute";
           div.style.top = "0";
           div.style.left = "0";
@@ -471,7 +465,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
           div.style.bottom = "0";
           item.appendChild(div);
 
-          dummyDiv = item.querySelector(".carousel-dummy-overlay");
+          overlayDiv = item.querySelector(".carousel-overlay");
         }
 
         const offsetDiff =
@@ -480,17 +474,12 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
               element.clientWidth / 2 -
               (item.offsetLeft + calculateChildrenSize() / 2 - marginBetweenItems / 2)
           ) / element.clientWidth;
-        // eslint-disable-next-line no-param-reassign
-        dummyDiv.style.display = "block";
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, no-param-reassign
-        dummyDiv.style.backgroundColor = `rgba(7, 7, 7, ${offsetDiff < 0.1 ? 0 : offsetDiff})`;
-        // eslint-disable-next-line no-param-reassign
+        overlayDiv.style.display = "block";
+        overlayDiv.style.backgroundColor = `rgba(7, 7, 7, ${offsetDiff})`;
         item.style.borderStyle = "hidden";
 
         if (offsetDiff < 0.1) {
-          // eslint-disable-next-line no-param-reassign
-          dummyDiv.style.display = "none";
-          // eslint-disable-next-line no-param-reassign
+          overlayDiv.style.display = "none";
           item.style.borderStyle = "solid";
         }
       });
@@ -499,7 +488,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     // eslint-disable-next-line mdx/no-unused-expressions
     scrollableElementRef?.current?.addEventListener("scroll", darkenEffectFunc);
 
-    return () => document.removeEventListener("scroll", darkenEffectFunc);
+    return () => scrollableElementRef?.current?.removeEventListener("scroll", darkenEffectFunc);
   }, [
     alignmentType,
     calculateChildrenSize,
