@@ -2,17 +2,21 @@ import React, { useEffect, useState, useRef, useMemo, useCallback } from "react"
 import useIntersectionObserver from "./useIntersectionObserver";
 
 interface IOptions {
-  limit?: number;
   dependencies?: unknown[];
+  initialLimit?: number;
   intersectionOptions?: IntersectionObserverInit;
+  limit?: number;
   wrappedRef?: boolean;
 }
 
 function useInfiniteScrollList(initialList: JSX.Element[], options?: IOptions) {
-  const { limit = 10, dependencies = [], intersectionOptions, wrappedRef = false } = useMemo(
-    () => options ?? {},
-    [options]
-  );
+  const {
+    dependencies = [],
+    initialLimit = 10,
+    intersectionOptions,
+    limit = 10,
+    wrappedRef = false
+  } = useMemo(() => options ?? {}, [options]);
   const [fullList, setFullList] = useState(initialList);
 
   useEffect(() => {
@@ -24,9 +28,9 @@ function useInfiniteScrollList(initialList: JSX.Element[], options?: IOptions) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialList]);
 
-  const [list, setList] = useState(fullList.slice(0, limit));
+  const [list, setList] = useState(fullList.slice(0, initialLimit));
   useEffect(() => {
-    setList(fullList.slice(0, limit));
+    setList(fullList.slice(0, initialLimit));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullList, ...dependencies]);
 
