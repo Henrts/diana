@@ -104,6 +104,7 @@ const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesP
     wrappedRef
   } = props;
   const ref = usePopoverRef(wrappedRef);
+  const isDisabled = disabled ?? items.length === 0;
 
   const hide = () => ref.current?.hide();
 
@@ -121,11 +122,11 @@ const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesP
   );
 
   return (
-    <div className={cx("diana-dropdown", styles.wrapper, className)}>
+    <div className={cx("diana-dropdown", styles.wrapper, isDisabled && "disabled", className)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
         {...props}
-        disabled={disabled ?? items.length === 0}
+        disabled={isDisabled}
         renderHeader={renderCustomHeader}
         useParentWidth
         wrappedRef={ref}

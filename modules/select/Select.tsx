@@ -42,19 +42,19 @@ const InputStylesheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
-  const {
-    inputProps,
-    items,
-    selectedItem,
-    onItemSelected,
-    onFilter,
-    onTextChange,
-    parentStylesheet,
-    onNewValue,
-    renderNewValueItem,
-    ...props
-  } = propsT;
+const BaseSelect: React.FC<IProps & WithStylesProps> = ({
+  inputProps,
+  items,
+  parentStylesheet,
+  selectedItem,
+  styles,
+  onFilter,
+  onItemSelected,
+  onNewValue,
+  onTextChange,
+  renderNewValueItem,
+  ...props
+}) => {
   const [value, setValue] = useState(selectedItem?.text);
   const [text, setText] = useState<string>();
   useEffect(() => {
@@ -161,7 +161,7 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = (propsT: IProps) => {
   return (
     <Dropdown
       className="diana-select"
-      disabled={chips.length > 0}
+      disabled={chips.length > 0 || itemsToShow.length === 0}
       items={itemsToShow}
       renderHeader={renderInput}
       selectedItem={selectedItem}
