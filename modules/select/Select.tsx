@@ -161,7 +161,7 @@ const BaseSelect: React.FC<IProps & WithStylesProps> = ({
   return (
     <Dropdown
       className="diana-select"
-      disabled={chips.length > 0 || itemsToShow.length === 0}
+      disabled={chips.length > 0}
       items={itemsToShow}
       renderHeader={renderInput}
       selectedItem={selectedItem}

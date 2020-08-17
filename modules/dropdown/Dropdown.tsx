@@ -104,7 +104,7 @@ const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesP
     wrappedRef
   } = props;
   const ref = usePopoverRef(wrappedRef);
-  const isDisabled = disabled ?? items.length === 0;
+  const isEmpty = useMemo(() => items.length === 0, [items.length]);
 
   const hide = () => ref.current?.hide();
 
@@ -122,41 +122,43 @@ const BaseDropdown: React.FC<PropsWithChildren<ISingleProps<IItem> & WithStylesP
   );
 
   return (
-    <div className={cx("diana-dropdown", styles.wrapper, isDisabled && "disabled", className)}>
+    <div className={cx("diana-dropdown", styles.wrapper, isEmpty && "empty", className)}>
       {label && <div className={cx(styles.label)}>{label}</div>}
       <StyledPopover
         {...props}
-        disabled={isDisabled}
+        disabled={disabled ?? items.length === 0}
         renderHeader={renderCustomHeader}
         useParentWidth
         wrappedRef={ref}
       >
-        <ul className={cx(styles.list, "list")}>
-          {items.map((item, index) => (
-            <li
-              className={cx(
-                styles.item,
-                selectedItem?.id === item.id && "selected",
-                item.disabled && "disabled"
-              )}
-              key={item.id}
-              onClick={() => {
-                if (!item.disabled) {
-                  onItemSelected(item);
-                  hide();
-                }
-              }}
-              role="presentation"
-              title={item.text}
-            >
-              {renderItem?.(
-                item,
-                selectedItem !== undefined && selectedItem.id === item.id,
-                index
-              ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
-            </li>
-          ))}
-        </ul>
+        {!isEmpty && (
+          <ul className={cx(styles.list, "list")}>
+            {items.map((item, index) => (
+              <li
+                className={cx(
+                  styles.item,
+                  selectedItem?.id === item.id && "selected",
+                  item.disabled && "disabled"
+                )}
+                key={item.id}
+                onClick={() => {
+                  if (!item.disabled) {
+                    onItemSelected(item);
+                    hide();
+                  }
+                }}
+                role="presentation"
+                title={item.text}
+              >
+                {renderItem?.(
+                  item,
+                  selectedItem !== undefined && selectedItem.id === item.id,
+                  index
+                ) ?? <span className={cx(styles.itemText)}>{item.text}</span>}
+              </li>
+            ))}
+          </ul>
+        )}
       </StyledPopover>
     </div>
   );
