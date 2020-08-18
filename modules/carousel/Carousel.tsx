@@ -3,7 +3,7 @@ import React, { useState, useMemo, useCallback, useEffect } from "react";
 import debounce from "lodash.debounce";
 import { WithStylesProps, Theme, ThemeStyleSheetFactory, BaseStylesheet } from "@diana-ui/types";
 import { withStyles } from "@diana-ui/base";
-import { useInfiniteScrollList } from "@diana-ui/hooks";
+import { useInfiniteScrollList, useIsMobile } from "@diana-ui/hooks";
 import { Icon, IconNames } from "@diana-ui/icon";
 
 // #region Interfaces
@@ -205,6 +205,7 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
   darkenFurthestItems = true,
   autoFocus = true
 }) => {
+  const isMobile = useIsMobile();
   const [elem, setElem] = useState<React.RefObject<HTMLDivElement> | undefined>();
   const [scrollBaseReference, setScrollBaseReference] = useState<number>(0);
   const [centeredItemInd, setCenteredItemInd] = useState(centeredItemIndex);
@@ -499,6 +500,11 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
     scrollableElementRef
   ]);
 
+  const dummyDivWidth =
+    (alignmentType === "centered" &&
+      (isMobile ? window.innerWidth : scrollableElementRef?.current?.clientWidth || 0) / 2) ||
+    0;
+
   return (
     <section className={cx(styles.wrapper, "carousel-wrapper")}>
       {header}
@@ -519,13 +525,9 @@ const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles
             ...(blockScroll ? { overflowX: "hidden" } : {})
           }}
         >
-          {alignmentType === "centered" && (
-            <div style={{ width: (scrollableElementRef?.current?.clientWidth || 0) / 2 }} />
-          )}
+          {alignmentType === "centered" && <div style={{ width: dummyDivWidth }} />}
           {items}
-          {alignmentType === "centered" && (
-            <div style={{ width: (scrollableElementRef?.current?.clientWidth || 0) / 2 }} />
-          )}
+          {alignmentType === "centered" && <div style={{ width: dummyDivWidth }} />}
         </div>
         {showScrollArrows && (
           <div
