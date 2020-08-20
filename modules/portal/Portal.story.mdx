@@ -7,7 +7,8 @@ import {
   CenteredPortalStory,
   BottomRightPortalStory,
   TopRightPortalStory,
-  CenterTopPortalStory
+  CenterTopPortalStory,
+  OverflowPortalStory
 } from "./Portal.story.tsx";
 
 <Meta title="Components | Portal" />
@@ -71,6 +72,21 @@ To calculate that position, the parent element's position is used via the `paren
   </Story>
 </Preview>
 
+### Repositioning partially hidden Portals
+
+If the element were to be rendered (partially) outside the viewport, a new direction will be chosen and the Portal's position will be recalculated until either
+the element is not outside the viewport or the element is outside the viewport no matter the direction.
+In the latter case, the original direction is used.
+
+Vertical clipping of the Portal is not taken into account for repositioning purposes, as it represents a more complex problem due to how common vertical scrolling
+is. This can be revisited in the future.
+
+<Preview>
+  <Story name="Partially hidden">
+    <OverflowPortalStory />
+  </Story>
+</Preview>
+
 ### Available props
 
 <table width="100%">
@@ -89,7 +105,7 @@ To calculate that position, the parent element's position is used via the `paren
     </tr>
     <tr>
       <td>direction (optional)</td>
-      <td>"bottom" (default) | "left" | "right" | "top"</td>
+      <td>"bottom" (default) | "left" | "right" | "top" | "bottom-right" | "top-right"</td>
       <td>Where to place the portal relative to the parent element</td>
     </tr>
     <tr>

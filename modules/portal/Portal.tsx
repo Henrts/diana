@@ -1,17 +1,9 @@
-import React, { useEffect, useMemo, RefObject } from "react";
+import React, { useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
-import { useTheme } from "@diana-ui/base";
 import { useWindowSize } from "@diana-ui/hooks";
-import { StandardProps, Theme } from "@diana-ui/types";
+import { StandardProps } from "@diana-ui/types";
 
-export type Direction =
-  | "bottom"
-  | "left"
-  | "right"
-  | "top"
-  | "bottom-right"
-  | "top-right"
-  | "center-top";
+export type Direction = "bottom" | "left" | "right" | "top" | "bottom-right" | "top-right";
 
 export interface IProps extends StandardProps<"div"> {
   centered?: boolean;
@@ -25,6 +17,39 @@ export interface IProps extends StandardProps<"div"> {
 
 const getScrollTop = () => document.documentElement.scrollTop;
 
+/*
+ * given the current direction and the repositionDirection (i.e. to which side the element should reposition),
+ * return the next direction or null if there isn't any
+ */
+const getNextDirection: (
+  direction: Direction,
+  repositionDirection: "left" | "right"
+) => Direction | null = (direction, repositionDirection) => {
+  switch (direction) {
+    case "left": {
+      return repositionDirection === "left" ? null : "bottom";
+    }
+    case "bottom": {
+      return repositionDirection === "left" ? "left" : "bottom-right";
+    }
+    case "top": {
+      return repositionDirection === "left" ? "left" : "top-right";
+    }
+    case "bottom-right": {
+      return repositionDirection === "left" ? "bottom" : "right";
+    }
+    case "top-right": {
+      return repositionDirection === "left" ? "top" : "right";
+    }
+    case "right": {
+      return repositionDirection === "left" ? "bottom-right" : null;
+    }
+    default: {
+      return null;
+    }
+  }
+};
+
 const getPortalStyles = (
   target: HTMLDivElement,
   ref: React.RefObject<HTMLDivElement>,
@@ -32,7 +57,6 @@ const getPortalStyles = (
   useParentWidth: boolean,
   centered: boolean,
   overlayParent: boolean,
-  theme: Theme,
   zIndex: number
 ) => {
   const dimensions = ref.current?.getBoundingClientRect();
@@ -48,71 +72,109 @@ const getPortalStyles = (
     dimensions?.left && dimensions?.width
       ? Math.round(dimensions?.left + dimensions?.width / 2 - targetDimensions.width / 2)
       : targetDimensions.left;
+  let repositionDirection =
+    direction === "left" || direction === "top" || direction === "bottom" ? "right" : "left";
 
-  switch (direction) {
-    case "top": {
-      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
-        (dimensions?.top || 0) -
-        target.offsetHeight +
-        getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
-      break;
+  const getPositionValues = (dir: Direction, shouldUseCentered = true) => {
+    switch (dir) {
+      case "top": {
+        return {
+          left:
+            centered && shouldUseCentered && !useParentWidth ? centeredLeft : dimensions?.left ?? 0,
+          top:
+            (dimensions?.top || 0) -
+            target.offsetHeight +
+            getScrollTop() +
+            (overlayParent ? dimensions?.height || 0 : 0)
+        };
+      }
+      case "right": {
+        return {
+          left: (dimensions?.right || 0) - (overlayParent ? targetDimensions?.width || 0 : 0),
+          top: (dimensions?.top || 0) + getScrollTop()
+        };
+      }
+      case "bottom": {
+        return {
+          left:
+            centered && shouldUseCentered && !useParentWidth ? centeredLeft : dimensions?.left ?? 0,
+          top:
+            (dimensions?.top || 0) +
+            (dimensions?.height || 0) +
+            getScrollTop() -
+            (overlayParent ? dimensions?.height || 0 : 0)
+        };
+      }
+      case "left": {
+        return {
+          left:
+            (dimensions?.left || 0) -
+            (targetDimensions?.width || 0) +
+            (overlayParent ? targetDimensions?.width || 0 : 0),
+          top: dimensions && dimensions?.top + getScrollTop()
+        };
+      }
+      case "bottom-right": {
+        return {
+          left: (dimensions?.right || 0) - (targetDimensions?.width || 0),
+          top:
+            (dimensions?.top || 0) +
+            (dimensions?.height || 0) +
+            getScrollTop() -
+            (overlayParent ? dimensions?.height || 0 : 0)
+        };
+      }
+      case "top-right": {
+        return {
+          left: (dimensions?.right || 0) - (targetDimensions?.width || 0),
+          top:
+            (dimensions?.top || 0) -
+            target.offsetHeight +
+            getScrollTop() +
+            (overlayParent ? dimensions?.height || 0 : 0)
+        };
+      }
+      default:
+        return { left: 0, top: 0 };
     }
-    case "right": {
-      styles += `left: ${
-        (dimensions?.right || 0) - (overlayParent ? targetDimensions?.width || 0 : 0)
-      }px; top: ${(dimensions?.top || 0) + getScrollTop()}px;`;
-      break;
+  };
+
+  let { left, top } = getPositionValues(direction);
+  let nextDirection: Direction | null = direction;
+  let hasTriedUncenteredPosition = false;
+
+  /*
+   * if the element is outside of the viewport, reposition it to the next logical direction
+   * if the element is outside of the viewport in any direction, use original direction
+   */
+  while ((left + target.offsetWidth > window.innerWidth || left < 0) && nextDirection) {
+    // if the element is centered, try positioning it with the same direction but uncentered
+    if (
+      !hasTriedUncenteredPosition &&
+      centered &&
+      (nextDirection === "top" || nextDirection === "bottom")
+    ) {
+      hasTriedUncenteredPosition = true;
+    } else {
+      nextDirection = getNextDirection(
+        nextDirection as Direction,
+        repositionDirection as "left" | "right"
+      );
     }
-    case "bottom": {
-      styles += `left: ${centered && !useParentWidth ? centeredLeft : dimensions?.left}px; top: ${
-        (dimensions?.top || 0) +
-        (dimensions?.height || 0) +
-        getScrollTop() -
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
-      break;
+
+    const positionValues = getPositionValues(nextDirection || direction, !nextDirection);
+    left = positionValues.left;
+    top = positionValues.top;
+
+    // if element is centered, try repositioning on both sides (if first doesn't work)
+    if (centered && !nextDirection && repositionDirection === "right") {
+      hasTriedUncenteredPosition = false;
+      repositionDirection = "left";
+      nextDirection = direction;
     }
-    case "left": {
-      styles += `left: ${
-        (dimensions?.left || 0) -
-        (targetDimensions?.width || 0) +
-        (overlayParent ? targetDimensions?.width || 0 : 0)
-      }px; top: ${dimensions && dimensions?.top + getScrollTop()}px;`;
-      break;
-    }
-    case "bottom-right": {
-      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
-        (dimensions?.top || 0) +
-        (dimensions?.height || 0) +
-        getScrollTop() -
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
-      break;
-    }
-    case "top-right": {
-      styles += `left: ${(dimensions?.right || 0) - (targetDimensions?.width || 0)}px; top: ${
-        (dimensions?.top || 0) -
-        target.offsetHeight +
-        getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
-      break;
-    }
-    case "center-top": {
-      styles += `left: ${(dimensions?.left || 0) + (dimensions?.width ?? 0) / 2}px; top:${
-        (dimensions?.top || 0) -
-        target.offsetHeight +
-        getScrollTop() +
-        (overlayParent ? dimensions?.height || 0 : 0)
-      }px;`;
-      styles += "transform: translate(-50%, 0)";
-      break;
-    }
-    default:
-      break;
   }
+
+  styles += `left: ${left}px; top: ${top}px;`;
 
   return styles;
 };
@@ -128,8 +190,6 @@ const Portal: React.FC<IProps> = ({
   zIndex = 100
 }) => {
   const windowSize = useWindowSize();
-
-  const theme = useTheme();
 
   const target = useMemo(() => {
     const el = document.createElement("div");
@@ -161,7 +221,6 @@ const Portal: React.FC<IProps> = ({
           useParentWidth,
           centered,
           overlayParent,
-          theme,
           zIndex
         )
       );
@@ -188,7 +247,6 @@ const Portal: React.FC<IProps> = ({
     target,
     useParentWidth,
     windowSize,
-    theme,
     zIndex
   ]);
 
