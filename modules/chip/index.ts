@@ -11,7 +11,7 @@ export { default as ChipList } from "./ChipList";
 export { default as ChipInput } from "./ChipInput";
 
 export type IBaseChipProps = IBaseProps;
-export type IStatusChipProps = IStatusProps;
+export type IStatusChipProps<T> = IStatusProps<T>;
 export type ICloseableChipProps = ICloseableProps;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type IChipListProps = IListProps<any>;

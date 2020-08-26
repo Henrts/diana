@@ -4,11 +4,12 @@ import { useRegistryWithStyles } from "@diana-ui/hooks";
 import { Theme, ThemeStyleSheetFactory, WithStylesProps } from "@diana-ui/types";
 import { IProps as BaseChipProps } from "./BaseChip";
 
-type ChipTypes = "default" | "success" | "warning" | "danger";
+type ChipTypes<T = string> = "default" | "success" | "warning" | "danger" | T;
 
-export interface IProps extends BaseChipProps {
-  colorMap?: (theme: Theme) => { [type: string]: object };
-  type: ChipTypes;
+export interface IProps<T = string> extends BaseChipProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  colorMap?: (theme: Theme | any) => { [type: string]: object };
+  type: ChipTypes<T>;
 }
 
 const styleSheet: ThemeStyleSheetFactory = () => ({
@@ -65,12 +66,14 @@ const defaultColorMap = (theme: Theme) => ({
 });
 
 const StatusChip: React.FC<IProps & WithStylesProps> = ({
-  colorMap = defaultColorMap,
+  colorMap = () => ({}),
   type,
   ...props
 }) => {
   const extendedStyleSheet = extendStyles(
     theme => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...((defaultColorMap(theme) as any)[type] || {}),
       ...colorMap(theme)[type]
     }),
     theme => styleSheet(theme)
