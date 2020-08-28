@@ -31,7 +31,6 @@ export interface IAvatarProps extends StandardProps<"div"> {
   borderColor?: string;
   /**
    * avatar size
-   * sm | md | lg
    */
   size?: "xs" | "sm" | "md" | "lg" | number;
 }
@@ -86,13 +85,15 @@ const styleSheet: ThemeStyleSheetFactory<Theme, IAvatarStyles> = theme => ({
   selected: {}
 });
 
-const Avatar: React.FC<PropsWithChildren<WithStylesProps<Theme, IAvatarStyles> & IAvatarProps>> = ({
+export const Avatar: React.FC<PropsWithChildren<
+  WithStylesProps<Theme, IAvatarStyles> & IAvatarProps
+>> = ({
   cx,
   styles,
   children,
   backgroundColor,
   borderColor,
-  selected,
+  selected = false,
   wrapperClassName = "",
   size = "md",
   wrappedRef

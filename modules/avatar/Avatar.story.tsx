@@ -1,31 +1,15 @@
-import React, { useState } from "react";
-import { Avatar, ImageAvatar } from "./";
-import {
-  // @ts-ignore
-  typesLoaderProps as AvatarPropTypes,
-  // @ts-ignore
-  typesLoaderStyles as AvatarStyleTypes
-} from "./Avatar";
-import {
-  // @ts-ignore
-  typesLoaderProps as ImageAvatarPropTypes,
-  // @ts-ignore
-  typesLoaderStyles as ImageAvatarStyleTypes
-} from "./ImageAvatar";
-import { ThemeStyleSheetFactory, Theme } from "@diana-ui/types";
-import { typesHighlight } from "../../.storybook/helpers";
+import React from "react";
+import { ThemeStyleSheetFactory } from "@diana-ui/types";
+import Avatar, { Avatar as BaseAvatar } from "./Avatar";
+import ImageAvatar, { ImageAvatar as BaseImageAvatar } from "./ImageAvatar";
 
-const { Props: AvatarProps, Styles: AvatarStyles } = typesHighlight(
-  AvatarPropTypes,
-  AvatarStyleTypes
-);
-export { AvatarProps, AvatarStyles };
+export const title = "Components/Avatar";
 
-const { Props: ImageAvatarProps, Styles: ImageAvatarStyles } = typesHighlight(
-  ImageAvatarPropTypes,
-  ImageAvatarStyleTypes
-);
-export { ImageAvatarProps, ImageAvatarStyles };
+export default {
+  title: "Components/Avatar",
+  component: BaseAvatar,
+  subcomponents: { ImageAvatar: BaseImageAvatar }
+};
 
 const stylesheet: ThemeStyleSheetFactory = theme => ({
   wrapper: {

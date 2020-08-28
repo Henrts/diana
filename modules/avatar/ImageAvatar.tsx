@@ -110,7 +110,7 @@ const styleSheet: ThemeStyleSheetFactory<Theme, IImageAvatarStyles> = theme => (
 
 type IProps = IImageAvatarProps & WithStylesProps<Theme, IImageAvatarStyles>;
 
-const ImageAvatar: React.FC<IProps> = ({
+export const ImageAvatar: React.FC<IProps> = ({
   circleClassName,
   className,
   backgroundColor,
