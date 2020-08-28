@@ -2,7 +2,7 @@ import React from "react";
 import { Theme } from "@diana-ui/types";
 import { PageTitle, Subtitle, SectionTitle, ButtonText } from "./Typography";
 import { useTheme } from "@diana-ui/base";
-import "../../stories/style.scss";
+// import "../../stories/style.scss";
 
 export const TypographyTable = () => {
   const theme: Theme = useTheme();

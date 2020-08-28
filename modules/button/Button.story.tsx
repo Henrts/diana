@@ -1,17 +1,8 @@
 import React from "react";
-import BaseButton, {
-  // @ts-ignore
-  typesLoaderProps,
-  // @ts-ignore
-  typesLoaderStyles
-} from "./BaseButton";
+import BaseButton from "./BaseButton";
 import { Theme, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import { useStyles } from "@diana-ui/base";
-import { typesHighlight } from "../../.storybook/helpers";
-
-const { Props, Styles } = typesHighlight(typesLoaderProps, typesLoaderStyles);
-export { Props, Styles };
 
 const styleSheet: ThemeStyleSheetFactory = theme => ({
   icon: {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Icon, { IconNames } from "./Icon";
-import "../../stories/style.scss";
+// import "../../stories/style.scss";
 import { ButtonText } from "@diana-ui/typography";
 import { useTheme } from "aesthetic-react";
 import { TextInput } from "@diana-ui/textinput";

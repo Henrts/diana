@@ -1,26 +1,6 @@
 import React from "react";
-import Menu, {
-  // @ts-ignore
-  typesLoaderProps as MenuPropTypes,
-  // @ts-ignore
-  typesLoaderStyles as MenuStyleTypes
-} from "./Menu";
-import MenuItem, {
-  // @ts-ignore
-  typesLoaderProps as MenuItemPropTypes,
-  // @ts-ignore
-  typesLoaderStyles as MenuItemStyleTypes
-} from "./MenuItem";
-import { typesHighlight } from "../../.storybook/helpers";
-
-const { Props: MenuProps, Styles: MenuStyles } = typesHighlight(MenuPropTypes, MenuStyleTypes);
-export { MenuProps, MenuStyles };
-
-const { Props: MenuItemProps, Styles: MenuItemStyles } = typesHighlight(
-  MenuItemPropTypes,
-  MenuItemStyleTypes
-);
-export { MenuItemProps, MenuItemStyles };
+import Menu from "./Menu";
+import MenuItem from "./MenuItem";
 
 export const MenuDirectionsStory = () => {
   return (

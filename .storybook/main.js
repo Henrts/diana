@@ -3,7 +3,7 @@ const path = require("path");
 const createCompiler = require("@storybook/addon-docs/mdx-compiler-plugin");
 
 module.exports = {
-  stories: ["../modules/button/*.story.mdx"],
+  stories: ["../stories/*/*.story.@(tsx|mdx)", "../modules/*/*.story.@(tsx|mdx)"],
   addons: [
     "@storybook/addon-actions",
     {
@@ -22,5 +22,16 @@ module.exports = {
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: prop => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
     }
+  },
+  webpackFinal: async config => {
+    config.module.rules = [
+      ...config.module.rules,
+      {
+        test: /\.s?css$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
+      }
+    ];
+
+    return config;
   }
 };

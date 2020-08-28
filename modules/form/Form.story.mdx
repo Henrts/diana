@@ -5,7 +5,7 @@ import { ErrorTextInput } from "@diana-ui/textinput";
 import { Checkbox } from "@diana-ui/checkbox";
 import { BaseButton } from "@diana-ui/button";
 
-<Meta title="Components | Form" />
+<Meta title="Components/Form" />
 
 # Form
 
@@ -16,10 +16,7 @@ import { BaseButton } from "@diana-ui/button";
     <Form
       schema={yup.object().shape({
         username: yup.string().required("Username is required"),
-        password: yup
-          .string()
-          .required("Password is required")
-          .min(12, "Password is too small"),
+        password: yup.string().required("Password is required").min(12, "Password is too small"),
         remember: yup.boolean()
       })}
       onSubmit={e => console.log(e)}
