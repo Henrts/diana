@@ -1,5 +1,5 @@
 import React from "react";
-import BaseButton from "./BaseButton";
+import BaseButton from "../src/BaseButton";
 import { Theme, ThemeStyleSheetFactory } from "@diana-ui/types";
 import { Icon } from "@diana-ui/icon";
 import { useStyles } from "@diana-ui/base";
