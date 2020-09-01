@@ -1,0 +1,87 @@
+import { Meta, Story, Preview, ArgsTable } from "@storybook/addon-docs/blocks";
+import { StyledAvatar, StyledImageAvatar } from "./Avatar.story";
+import { Avatar } from "../src/Avatar";
+
+<Meta title="Components/Avatar" />
+
+# Avatar
+
+<h2>Default Avatar</h2>
+
+<Story
+  name="Avatar"
+  args={{ selected: false, children: "TXTr4" }}
+  argTypes={{
+    selected: {
+      control: {
+        type: "boolean"
+      }
+    },
+    children: {
+      control: {
+        type: "text"
+      }
+    },
+    backgroundColor: {
+      control: {
+        type: "text"
+      }
+    },
+    borderColor: {
+      control: {
+        type: "text"
+      }
+    },
+    size: {
+      control: {
+        type: "number"
+      }
+    }
+  }}
+>
+  {args => <StyledAvatar {...args} />}
+</Story>
+
+<h2>Image Avatar</h2>
+
+<Story
+  name="ImageAvatar"
+  args={{
+    src: "https://cdn.worldvectorlogo.com/logos/carlsberg-6.svg",
+    alt: "carsberg beer",
+    backgroundColor: "#3f9e59"
+  }}
+  argTypes={{
+    src: {
+      control: {
+        type: "text"
+      }
+    },
+    fallbackText: {
+      control: {
+        type: "text"
+      }
+    },
+    icon: {
+      control: {
+        type: "text"
+      }
+    },
+    iconSize: {
+      control: {
+        type: "number"
+      }
+    },
+    circleSize: {
+      control: {
+        type: "number"
+      }
+    }
+  }}
+>
+  {args => <StyledImageAvatar {...args} />}
+</Story>
+
+<h2>Props</h2>
+
+<ArgsTable of={Avatar} />

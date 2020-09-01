@@ -3,7 +3,7 @@ const path = require("path");
 const createCompiler = require("@storybook/addon-docs/mdx-compiler-plugin");
 
 module.exports = {
-  stories: ["../stories/*/*.story.@(tsx|mdx)", "../modules/*/*.story.@(tsx|mdx)"],
+  stories: ["../stories/**/*.story.@(tsx|mdx)", "../modules/**/*.story.@(tsx|mdx)"],
   addons: [
     "@storybook/addon-actions",
     {
@@ -12,6 +12,8 @@ module.exports = {
         configureJSX: true
       }
     },
+    "@storybook/addon-controls",
+    "@storybook/addon-storysource",
     "@storybook/addon-links"
   ],
   typescript: {
