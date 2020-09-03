@@ -140,6 +140,7 @@ export const CenterTopPortalStory = () => {
 export const OverflowPortalStory = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const [direction, setDirection] = useState<IDropdownItem>({ id: "top", text: "top" });
+  const [align, setAlign] = useState<IDropdownItem>({ id: "flex-start", text: "flex-start" });
   const [isCentered, setIsCentered] = useState<boolean>(true);
   const directions = [
     { id: "top", text: "top" },
@@ -148,6 +149,10 @@ export const OverflowPortalStory = () => {
     { id: "bottom", text: "bottom" },
     { id: "bottom-right", text: "bottom-right" },
     { id: "right", text: "right" }
+  ];
+  const aligns = [
+    { id: "flex-start", text: "flex-start" },
+    { id: "flex-end", text: "flex-end" }
   ];
 
   console.log("isCentered", isCentered);
@@ -159,14 +164,20 @@ export const OverflowPortalStory = () => {
           display: "inline-block",
           backgroundColor: "burlywood",
           width: "fit-content",
-          alignSelf: "flex-start"
+          alignSelf: align?.id
         }}
         ref={divRef}
       >
         Parent component
-        <Portal parentRef={divRef} direction={direction?.id as Direction} centered={isCentered}>
+        <Portal
+          zIndex={align?.id == "flex-start" ? 100 : 99}
+          parentRef={divRef}
+          direction={direction?.id as Direction}
+          centered={isCentered}
+        >
           <div style={{ width: "300px" }}>
-            I will always be partially hidden if placed on the left!
+            I will always be partially hidden if placed on the{" "}
+            {align?.id == "flex-start" ? "left" : "right"}!
           </div>
         </Portal>
       </div>
@@ -176,6 +187,12 @@ export const OverflowPortalStory = () => {
           items={directions}
           selectedItem={direction}
           onItemSelected={setDirection}
+        />
+        <Dropdown
+          label="choose align: "
+          items={aligns}
+          selectedItem={align}
+          onItemSelected={setAlign}
         />
         <Toggle
           checked={isCentered}
