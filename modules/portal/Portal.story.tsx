@@ -155,8 +155,6 @@ export const OverflowPortalStory = () => {
     { id: "flex-end", text: "flex-end" }
   ];
 
-  console.log("isCentered", isCentered);
-
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div
