@@ -24,6 +24,10 @@
     "@diana-ui/hooks": "^1.0.3",
     "@diana-ui/types": "^1.0.2"
   },
+  "devDependencies": {
+    "@diana-ui/dropdown": "^1.0.6",
+    "@diana-ui/toggle": "^1.0.1"
+  },
   "publishConfig": {
     "access": "public"
   }

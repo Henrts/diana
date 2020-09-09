@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
-import Portal from "./Portal";
+import { Dropdown, IDropdownItem } from "@diana-ui/dropdown";
+import { Toggle } from "@diana-ui/toggle";
+import Portal, { Direction } from "./Portal";
 
 export const PortalStory = () => {
   const [isPortalOpen, setPortalOpen] = useState(false);
@@ -127,9 +129,75 @@ export const CenterTopPortalStory = () => {
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ display: "inline-block", backgroundColor: "burlywood" }} ref={divRef}>
         Parent component
-        <Portal parentRef={divRef} direction="center-top">
-          <div>center top text aligned</div>
+        <Portal parentRef={divRef} direction="top" centered>
+          center top text aligned
         </Portal>
+      </div>
+    </div>
+  );
+};
+
+export const OverflowPortalStory = () => {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [direction, setDirection] = useState<IDropdownItem>({ id: "top", text: "top" });
+  const [align, setAlign] = useState<IDropdownItem>({ id: "flex-start", text: "flex-start" });
+  const [isCentered, setIsCentered] = useState<boolean>(true);
+  const directions = [
+    { id: "top", text: "top" },
+    { id: "top-right", text: "top-right" },
+    { id: "left", text: "left" },
+    { id: "bottom", text: "bottom" },
+    { id: "bottom-right", text: "bottom-right" },
+    { id: "right", text: "right" }
+  ];
+  const aligns = [
+    { id: "flex-start", text: "flex-start" },
+    { id: "flex-end", text: "flex-end" }
+  ];
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "inline-block",
+          backgroundColor: "burlywood",
+          width: "fit-content",
+          alignSelf: align?.id
+        }}
+        ref={divRef}
+      >
+        Parent component
+        <Portal
+          zIndex={align?.id == "flex-start" ? 100 : 99}
+          parentRef={divRef}
+          direction={direction?.id as Direction}
+          centered={isCentered}
+        >
+          <div style={{ width: "300px" }}>
+            I will always be partially hidden if placed on the{" "}
+            {align?.id == "flex-start" ? "left" : "right"}!
+          </div>
+        </Portal>
+      </div>
+      <div style={{ display: "flex", alignSelf: "center", marginTop: "48px" }}>
+        <Dropdown
+          label="choose direction: "
+          items={directions}
+          selectedItem={direction}
+          onItemSelected={setDirection}
+        />
+        <Dropdown
+          label="choose align: "
+          items={aligns}
+          selectedItem={align}
+          onItemSelected={setAlign}
+        />
+        <Toggle
+          checked={isCentered}
+          onChange={() => setIsCentered(currentIsCentered => !currentIsCentered)}
+        >
+          isCentered
+        </Toggle>
       </div>
     </div>
   );
