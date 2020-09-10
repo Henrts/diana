@@ -1,6 +1,6 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { Meta, Story, Preview, ArgsTable } from "@storybook/addon-docs/blocks";
 import { DerivedButton } from "./Button.story";
-import BaseButton from "../src/BaseButton";
+import BaseButton, { BaseButton as BB } from "../src/BaseButton";
 
 <Meta title="Components/Button" />
 
@@ -10,11 +10,25 @@ Base Button is used to derive the App Button variants.
 
 ### API
 
-<Preview>
-  <Story name="BaseButton">
-    <BaseButton onClick={() => console.log("Was clicked")}>Button</BaseButton>
-  </Story>
-</Preview>
+<Story
+  name="BaseButton"
+  args={{ danger: false, children: "Button" }}
+  argTypes={{
+    danger: {
+      control: {
+        type: "boolean"
+      }
+    },
+    children: {
+      title: "cenas",
+      control: {
+        type: "text"
+      }
+    }
+  }}
+>
+  {args => <BaseButton {...args} onClick={() => console.log("Was clicked")} />}
+</Story>
 
 ### Building a new Button
 
@@ -79,11 +93,9 @@ const DerivedButton: React.FC = ({ children, ...props }) => {
 
 The resulting Component `DerivedButton` can be used as a normal extended button:
 
-<Preview>
-  <Story name="DerivedButton">
-    <DerivedButton>Derived</DerivedButton>
-  </Story>
-</Preview>
+<Story name="DerivedButton">
+  <DerivedButton>Derived</DerivedButton>
+</Story>
 
 <table width="100%">
   <thead>
@@ -102,4 +114,6 @@ The resulting Component `DerivedButton` can be used as a normal extended button:
       <td>Render a HTMLElement to the Right of the Button Text</td>
     </tr>
   </tbody>
-</table>
+</table>{" "}
+
+<ArgsTable of={BB} />

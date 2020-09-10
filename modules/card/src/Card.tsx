@@ -28,7 +28,7 @@ const stylesheet: ThemeStyleSheetFactory<Theme, ICardStyles> = theme => ({
   }
 });
 
-const Card: React.FC<ICardProps & WithStylesProps<Theme, ICardStyles>> = ({
+export const Card: React.FC<ICardProps & WithStylesProps<Theme, ICardStyles>> = ({
   className,
   cx,
   styles,

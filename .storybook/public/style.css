@@ -16,7 +16,7 @@ body {
 
 .typography-table tr td {
   padding: 12px 16px;
-  border: 0.5px solid #ddd;
+  /* border: 0.5px solid #ddd; */
 }
 
 .typography-details {
@@ -38,7 +38,7 @@ body {
   align-items: center;
 }
 .typography-detail-title {
-  color: #bbb;
+  /* color: #bbb; */
 }
 
 .typography-spacing {
@@ -55,7 +55,7 @@ body {
   margin: 8px;
   font-size: 24px;
   font-weight: 700;
-  color: black;
+  /* color: black; */
   position: relative;
 }
 .typography-spacing > div > .spacing-spec {
@@ -64,7 +64,7 @@ body {
   left: 4px;
   font-weight: 700;
   font-size: 16px;
-  color: white;
+  /* color: white; */
 }
 .typography-spacing > div > .spacing-spec.black-spec {
   color: black;
@@ -78,13 +78,13 @@ body {
 .typography-spacing > div > .spacing-spec.spacing-spec-top {
   top: 0px;
   left: 90px;
-  color: black;
+  /* color: black; */
 }
 
 .typography-spacing > div > .spacing-spec.spacing-spec-left {
   top: 30px;
   left: 5px;
-  color: black;
+  /* color: black; */
 }
 .typography-spacing > .spacing-outside {
   justify-content: unset;
@@ -92,7 +92,7 @@ body {
 }
 .spacing-inside {
   flex: 1;
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,14 +135,14 @@ body {
 }
 .colors-table {
   border-spacing: 0px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 5px;
 }
 .colors-table .row:last-child td {
   border: none;
 }
 .row td {
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
   padding: 12px 24px;
 }
 .color-div-container {
@@ -150,7 +150,7 @@ body {
   flex-direction: row;
 }
 .color-div {
-  border: 1px solid #eee;
+  /* border: 1px solid #eee; */
   height: 80px;
   width: 80px;
   border-radius: 5px;
@@ -177,7 +177,7 @@ body {
   padding: 12px;
   min-height: 80px;
 }
-
+/*
 .icon-gallery .icon-container:hover {
   background-color: #f6f6f6;
-}
+} */

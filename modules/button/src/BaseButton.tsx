@@ -21,7 +21,7 @@ export interface IBaseButtonProps extends StandardProps<"button"> {
    */
   renderRightIcon?: () => JSX.Element;
   /**
-   * is button should be styled as danger
+   * if button should be styled as danger
    */
   danger?: boolean;
 }
@@ -61,7 +61,7 @@ const styleSheet: ThemeStyleSheetFactory<Theme, IBaseButtonStyles> = theme => ({
   buttonText: {}
 });
 
-const BaseButton: React.FC<IBaseButtonProps & WithStylesProps<Theme, IBaseButtonStyles>> = ({
+export const BaseButton: React.FC<IBaseButtonProps & WithStylesProps<Theme, IBaseButtonStyles>> = ({
   styles,
   cx,
   danger,

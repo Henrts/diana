@@ -23,7 +23,7 @@ const stylesheet: ThemeStyleSheetFactory<Theme, ICardBodyStyles> = () => ({
   }
 });
 
-const CardBody: React.FC<ICardBodyProps & WithStylesProps<Theme, ICardBodyStyles>> = ({
+export const CardBody: React.FC<ICardBodyProps & WithStylesProps<Theme, ICardBodyStyles>> = ({
   className,
   cx,
   styles,

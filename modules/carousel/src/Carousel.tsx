@@ -185,7 +185,7 @@ const onMouseUp = (scrollElement: any) => {
   }
 };
 
-const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles>> = ({
+export const Carousel: React.FC<ICarouselProps & WithStylesProps<Theme, ICarouselStyles>> = ({
   cx,
   styles,
   children,

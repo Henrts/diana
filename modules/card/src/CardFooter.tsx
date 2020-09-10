@@ -23,7 +23,7 @@ const stylesheet: ThemeStyleSheetFactory<Theme, ICardFooterStyles> = () => ({
   }
 });
 
-const CardFooter: React.FC<ICardFooterProps & WithStylesProps<Theme, ICardFooterStyles>> = ({
+export const CardFooter: React.FC<ICardFooterProps & WithStylesProps<Theme, ICardFooterStyles>> = ({
   className,
   cx,
   styles,

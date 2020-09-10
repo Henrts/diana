@@ -1,53 +1,16 @@
 import React from "react";
-import { Card, CardHeader, CardBody, CardFooter } from "./";
 import { BaseButton } from "@diana-ui/button";
 import { ThemeStyleSheetFactory } from "@diana-ui/types";
-import { typesHighlight } from "../../.storybook/helpers";
-import {
-  // @ts-ignore
-  typesLoaderProps,
-  // @ts-ignore
-  typesLoaderStyles
-} from "./Card";
-import {
-  // @ts-ignore
-  typesLoaderProps as cardHeaderProps,
-  // @ts-ignore
-  typesLoaderStyles as cardHeaderStyles
-} from "./CardHeader";
-import {
-  // @ts-ignore
-  typesLoaderProps as cardBodyProps,
-  // @ts-ignore
-  typesLoaderStyles as cardBodyStyles
-} from "./CardBody";
-import {
-  // @ts-ignore
-  typesLoaderProps as cardFooterProps,
-  // @ts-ignore
-  typesLoaderStyles as cardFooterStyles
-} from "./CardFooter";
+import Card, { Card as C } from "../src/Card";
+import CardBody, { CardBody as CB } from "../src/CardBody";
+import CardHeader, { CardHeader as CH } from "../src/CardHeader";
+import CardFooter, { CardFooter as CF } from "../src/CardFooter";
 
-const { Props, Styles } = typesHighlight(typesLoaderProps, typesLoaderStyles);
-export { Props, Styles };
-
-const { Props: CardHeaderPropsStory, Styles: CardHeaderStylesStory } = typesHighlight(
-  cardHeaderProps,
-  cardHeaderStyles
-);
-export { CardHeaderPropsStory, CardHeaderStylesStory };
-
-const { Props: CardBodyPropsStory, Styles: CardBodyStylesStory } = typesHighlight(
-  cardBodyProps,
-  cardBodyStyles
-);
-export { CardBodyPropsStory, CardBodyStylesStory };
-
-const { Props: CardFooterPropsStory, Styles: CardFooterStylesStory } = typesHighlight(
-  cardFooterProps,
-  cardFooterStyles
-);
-export { CardFooterPropsStory, CardFooterStylesStory };
+export default {
+  title: "Components/Card",
+  component: C,
+  subcomponents: { CardHeader: CH, CardBody: CB, CardFooter: CF }
+};
 
 const CardStylesheet: ThemeStyleSheetFactory = theme => ({
   card: {
@@ -72,10 +35,10 @@ export const CardStory = () => {
   return <StyledCard>Simple card</StyledCard>;
 };
 
-export const CardHeaderStory = () => {
+export const CardHeaderStory = props => {
   return (
     <StyledCard>
-      <StyledCardHeader title="Card title" />
+      <StyledCardHeader {...props} />
     </StyledCard>
   );
 };

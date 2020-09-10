@@ -1,0 +1,17 @@
+import { Meta, Story, Preview, ArgsTable } from "@storybook/addon-docs/blocks";
+import { CarouselStory } from "./Carousel.story.tsx";
+import { Carousel } from "../src/Carousel";
+
+<Meta title="Components/Carousel" />
+
+# Carousel
+
+A slideshow component for cycling through elements like a carousel.
+
+<Preview>
+  <Story name="Carousel">
+    <CarouselStory />
+  </Story>
+</Preview>
+
+<ArgsTable of={Carousel} />

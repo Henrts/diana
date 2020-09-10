@@ -1,4 +1,4 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { Meta, Story, Preview, ArgsTable } from "@storybook/addon-docs/blocks";
 import LinkTo from "@storybook/addon-links/react";
 import {
   CardStory,
@@ -7,16 +7,9 @@ import {
   CardHeaderLabelStory,
   CardHeaderIconStory,
   CardBodyStory,
-  CardFooterStory,
-  Props,
-  Styles,
-  CardHeaderPropsStory,
-  CardHeaderStylesStory,
-  CardBodyPropsStory,
-  CardBodyStylesStory,
-  CardFooterPropsStory,
-  CardFooterStylesStory
+  CardFooterStory
 } from "./Card.story.tsx";
+import { Card } from "../src/Card";
 
 <Meta title="Components/Card" />
 
@@ -35,37 +28,68 @@ A valid example for a different component would be for instance a `Divider`.
   </Story>
 </Preview>
 
-### Available props
-
-<Props />
-
-### Extendable styles
-
-<Styles />
-
 # CardHeader
 
 The `CardHeader` can contain both the `Card`'s title and subtitle.
 It also supports having either a label or an icon on the top right corner.
 
 <Preview>
-  <Story name="CardHeader">
-    <div>
-      <CardHeaderStory />
-      <CardHeaderSubtitleStory />
-      <CardHeaderLabelStory />
-      <CardHeaderIconStory />
-    </div>
+  <Story
+    name="CardHeader"
+    args={{
+      icon: "",
+      label: "",
+      title: "Card Header Title",
+      subtitle: "Card Header Subtitle"
+    }}
+    argTypes={{
+      icon: {
+        control: {
+          type: "select",
+          options: [
+            "",
+            "add",
+            "arrow-down",
+            "arrow",
+            "block",
+            "chart",
+            "check",
+            "checkmark",
+            "chevron-down",
+            "chevron-left",
+            "chevron-right",
+            "chevron-up",
+            "close"
+          ]
+        }
+      },
+      label: {
+        control: {
+          type: "text"
+        }
+      },
+      title: {
+        control: {
+          type: "text"
+        }
+      },
+      subtitle: {
+        control: {
+          type: "text"
+        }
+      }
+    }}
+  >
+    {args => (
+      <div>
+        <CardHeaderStory {...args} />
+        <CardHeaderSubtitleStory />
+        <CardHeaderLabelStory />
+        <CardHeaderIconStory />
+      </div>
+    )}
   </Story>
 </Preview>
-
-### Available props
-
-<CardHeaderPropsStory />
-
-### Extendable styles
-
-<CardHeaderStylesStory />
 
 # CardBody
 
@@ -77,14 +101,6 @@ The `CardBody` serves as the wrapper for the `Card`'s main content wrapper.
   </Story>
 </Preview>
 
-### Available props
-
-<CardBodyPropsStory />
-
-### Extendable styles
-
-<CardBodyStylesStory />
-
 # CardFooter
 
 The `CardFooter` contains mainly actionable elements like buttons or links.
@@ -95,10 +111,4 @@ The `CardFooter` contains mainly actionable elements like buttons or links.
   </Story>
 </Preview>
 
-### Available props
-
-<CardFooterPropsStory />
-
-### Extendable styles
-
-<CardFooterStylesStory />
+<ArgsTable of={Card} />

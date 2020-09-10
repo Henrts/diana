@@ -82,7 +82,7 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   }
 });
 
-const CardHeader: React.FC<ICardHeaderProps & WithStylesProps> = ({
+export const CardHeader: React.FC<ICardHeaderProps & WithStylesProps> = ({
   className,
   cx,
   icon,
