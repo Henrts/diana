@@ -25,6 +25,11 @@ const stylesheet: ThemeStyleSheetFactory = theme => ({
   closeIcon: {
     cursor: "pointer"
   },
+  iconWrapper: {
+    display: "flex",
+    flex: 1,
+    alignItems: "center"
+  },
   icon: {
     marginRight: theme.spaceUnit.xs
   },
@@ -50,8 +55,10 @@ const ModalHeader: React.FC<IProps & WithStylesProps> = ({
   return (
     <section className={cx("diana-modal-header", styles.header, className)} ref={wrappedRef}>
       <div className={cx(styles.titleWrapper)}>
-        {icon && <div className={cx(styles.icon)}>{icon}</div>}
-        <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>
+        <div className={cx(styles.iconWrapper)}>
+          {icon && <div className={cx(styles.icon)}>{icon}</div>}
+          <SectionTitle className={cx(styles.title)}>{title}</SectionTitle>
+        </div>
         {showCloseButton && (
           <div onClick={onClose} className={cx(styles.closeIcon)}>
             <Icon size={16} name="close" />
