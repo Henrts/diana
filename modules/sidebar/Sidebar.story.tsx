@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Sidebar, {
-// @ts-ignore
+  // @ts-ignore
   typesLoaderProps as SidebarPropTypes,
-// @ts-ignore
+  // @ts-ignore
   typesLoaderStyles as SidebarStyleTypes
 } from "./Sidebar";
 import { typesHighlight } from "../../.storybook/helpers";
@@ -21,6 +21,19 @@ export const SidebarStory = () => {
   const [overlay, setOverlay] = useState(true);
   const [mode, setMode] = useState(0);
 
+  const SidebarComponent = () => (
+    <Sidebar
+      open={isOpen}
+      mode={modes[mode] as any}
+      hasOverlay={overlay}
+      animate={animate}
+      direction={direction as any}
+      onClose={() => setIsOpen(false)}
+    >
+      <div style={{ width: 200, backgroundColor: "red", height: "100%" }}>sidebar here</div>
+    </Sidebar>
+  );
+
   return (
     <div
       style={{
@@ -33,18 +46,7 @@ export const SidebarStory = () => {
         color: "white"
       }}
     >
-      {direction === "left" && (
-        <Sidebar
-          open={isOpen}
-          mode={modes[mode] as any}
-          hasOverlay={overlay}
-          animate={animate}
-          direction={direction as any}
-          onClose={() => setIsOpen(false)}
-        >
-          <div style={{ width: 200, backgroundColor: "red", height: "100%" }}>sidebar here</div>
-        </Sidebar>
-      )}
+      {direction === "left" && SidebarComponent()}
 
       <div>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
@@ -67,18 +69,7 @@ export const SidebarStory = () => {
         </div>
       </div>
 
-      {direction === "right" && (
-        <Sidebar
-          open={isOpen}
-          mode={modes[mode] as any}
-          hasOverlay={overlay}
-          animate={animate}
-          direction={direction as any}
-          onClose={() => setIsOpen(false)}
-        >
-          <div style={{ width: 200, backgroundColor: "red", height: "100%" }}>sidebar here</div>
-        </Sidebar>
-      )}
+      {direction === "right" && SidebarComponent()}
     </div>
   );
 };
